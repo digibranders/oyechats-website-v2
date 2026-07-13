@@ -1,6 +1,7 @@
 import Link from 'next/link';
 import { ArrowRight } from 'lucide-react';
 import { FinalCTA } from '@/components/site/FinalCTA';
+import { HeroDemo } from '@/components/site/HeroDemo';
 import {
   Button,
   Card,
@@ -43,8 +44,9 @@ export default function Home() {
               </Reveal>
               <Reveal delay={160}>
                 <p className="type-body-lg text-ink-2 mt-6 max-w-[520px]">
-                  OyeChats qualifies every visitor with BANT scoring, grounded in your docs,
-                  streamed in real time, before your sales reps ever see them.
+                  OyeChats answers every visitor from your own docs — in real time, with citations —
+                  scores intent as they chat, and routes the buyers to your team. One script tag,
+                  live in 5 minutes.
                 </p>
               </Reveal>
               <Reveal delay={240}>
@@ -60,29 +62,7 @@ export default function Home() {
             </div>
 
             <Reveal delay={200} className="lg:pl-8">
-              <ChatStack>
-                <ChatBubble role="visitor">
-                  Hey, do you support SOC2 and self-hosted deployments?
-                </ChatBubble>
-                <ChatBubble role="agent">
-                  Yes to SOC2 (Type II). Self-hosted is on Enterprise. Team size?
-                </ChatBubble>
-                <ChatBubble role="visitor">Around 40 seats, launching next quarter.</ChatBubble>
-                <ChatBubble role="operator">
-                  [Handoff] Hi, Priya from sales. I saw your questions. Book 15 min?
-                </ChatBubble>
-              </ChatStack>
-
-              <div className="mt-8 flex items-center gap-6 justify-end">
-                <BantScoreRing value={87} size={104} />
-                <div className="max-w-[180px]">
-                  <div className="type-mono-sm text-muted mb-1">Live score</div>
-                  <div className="type-heading-3 text-ink">Enterprise, high-intent</div>
-                  <div className="type-body-sm text-muted mt-1">
-                    Routed to sales in 12 seconds.
-                  </div>
-                </div>
-              </div>
+              <HeroDemo />
             </Reveal>
           </div>
         </Container>
@@ -94,7 +74,7 @@ export default function Home() {
           <StatBand k="BANT range" v="0–100" />
           <StatBand k="Setup time" v="< 10 min" />
           <StatBand k="Webhook events" v="5 types" />
-          <StatBand k="Uptime SLA" v="99.9%" />
+          <StatBand k="Uptime target" v="99.9%" />
         </div>
       </Section>
 
@@ -204,17 +184,17 @@ export default function Home() {
           <div className="text-center mb-14">
             <div className="type-mono-sm text-ink-invert-muted mb-4 flex items-center gap-2 justify-center">
               <span className="eyebrow-line" />
-              <span>Live from the platform</span>
+              <span>Under the hood</span>
             </div>
             <h2 className="type-display-3 text-ink-invert-fg">
-              Numbers that <GradientText variant="volt-only">move</GradientText>.
+              Numbers you can <GradientText variant="volt-only">verify</GradientText>.
             </h2>
           </div>
           <div className="grid md:grid-cols-4 gap-8 md:gap-12">
-            <BigStat n={87} suffix="%" k="Rep meetings with qualified buyers" />
-            <BigStat n={3} suffix="×" k="Fewer unqualified meetings" />
-            <BigStat n={2} suffix=" min" prefix="<" k="Time to qualified handoff" />
-            <BigStat n={10} suffix=" min" k="Average setup time" />
+            <BigStat n={768} k="Vector dimensions per embedding" />
+            <BigStat n={200} k="Free credits, no card required" />
+            <BigStat n={3} k="Doc formats ingested — PDF, DOCX, TXT" />
+            <BigStat n={2} k="Crawl engines, with auto-fallback" />
           </div>
         </Container>
       </section>
@@ -223,8 +203,8 @@ export default function Home() {
       <Section
         tone="paper"
         eyebrow="04 · Integrations"
-        heading={<>Ships to 30+ platforms.</>}
-        sub="One script tag installs everywhere. Push to any CRM. Automate with Zapier or Make."
+        heading={<>Drops into any stack.</>}
+        sub="One script tag installs on any site. Every event pushes to your CRM, Zapier, or Make via signed webhooks."
       >
         <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-3">
           {INTEGRATIONS.slice(0, 12).map((i, idx) => (
