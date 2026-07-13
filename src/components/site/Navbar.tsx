@@ -80,7 +80,6 @@ const TOP_LINKS = [
   { label: 'Solutions', href: '/solutions', menu: SOLUTIONS_MENU },
   { label: 'Integrations', href: '/integrations' },
   { label: 'Pricing', href: '/pricing' },
-  { label: 'Customers', href: '/customers' },
   { label: 'Resources', href: '/docs', menu: RESOURCES_MENU },
 ] as const;
 
@@ -89,7 +88,6 @@ const MOBILE_LINKS = [
   { label: 'Solutions', href: '/solutions' },
   { label: 'Integrations', href: '/integrations' },
   { label: 'Pricing', href: '/pricing' },
-  { label: 'Customers', href: '/customers' },
   { label: 'Docs', href: '/docs' },
   { label: 'Blog', href: '/blog' },
   { label: 'Changelog', href: '/changelog' },

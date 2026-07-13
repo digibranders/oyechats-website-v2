@@ -18,7 +18,6 @@ export const NAV_LINKS = [
   { label: 'Solutions', href: '/solutions' },
   { label: 'Integrations', href: '/integrations' },
   { label: 'Pricing', href: '/pricing' },
-  { label: 'Customers', href: '/customers' },
   { label: 'Docs', href: '/docs' },
 ] as const;
 
@@ -37,7 +36,6 @@ export const FOOTER_COLUMNS = [
     title: 'Company',
     links: [
       { label: 'About', href: '/about' },
-      { label: 'Customers', href: '/customers' },
       { label: 'Blog', href: '/blog' },
       { label: 'Contact', href: '/contact' },
     ],

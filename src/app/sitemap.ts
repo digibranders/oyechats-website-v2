@@ -1,7 +1,6 @@
 import type { MetadataRoute } from 'next';
 import { LEGAL_PAGES } from '@/lib/legal';
 import { BLOG_POSTS } from '@/lib/blog';
-import { CUSTOMERS } from '@/lib/customers';
 
 const BASE = 'https://oyechats.com';
 
@@ -14,7 +13,6 @@ export default function sitemap(): MetadataRoute.Sitemap {
     '/solutions',
     '/integrations',
     '/pricing',
-    '/customers',
     '/docs',
     '/blog',
     '/changelog',
@@ -42,12 +40,5 @@ export default function sitemap(): MetadataRoute.Sitemap {
     priority: 0.6,
   }));
 
-  const customers = CUSTOMERS.map((c) => ({
-    url: `${BASE}/customers/${c.slug}`,
-    lastModified: now,
-    changeFrequency: 'monthly' as const,
-    priority: 0.6,
-  }));
-
-  return [...routes, ...legal, ...blog, ...customers];
+  return [...routes, ...legal, ...blog];
 }
