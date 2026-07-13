@@ -48,7 +48,7 @@ const RAG_STEPS = [
   { icon: Scissors, label: 'Prepare it', desc: 'We split your content into clean, searchable pieces and remove duplicates.' },
   { icon: Brain, label: 'Understand it', desc: 'Turns your content into a form the AI can search by meaning, not just exact words.' },
   { icon: Search, label: 'Smart search', desc: 'Meaning-based and keyword search work together, so the right answer surfaces every time.' },
-  { icon: Zap, label: 'Write the answer', desc: 'Writes a reply from the right sources, with citations back to your docs.' },
+  { icon: Zap, label: 'Write the answer', desc: 'Writes a reply grounded in your docs, retrieved from hybrid semantic and keyword search.' },
   { icon: MessageCircle, label: 'Reply in real time', desc: 'The answer streams back word by word as it is written, no waiting.' },
 ];
 
@@ -120,13 +120,13 @@ export default function FeaturesPage() {
               <p className="type-body text-ink-2 mb-6">
                 OyeChats does not just search your documents, it understands them. Hybrid AI search
                 combines semantic understanding with keyword precision so visitors get accurate,
-                grounded answers backed by citations to your own content.
+                grounded answers retrieved from your own content.
               </p>
               <ul className="space-y-3">
                 {[
                   'Supports PDFs, Word docs, plain text, URLs, and full website crawls',
                   'Production-grade vector storage built for scale',
-                  'Custom AI instructions per bot with citation grounding',
+                  'Custom AI instructions per bot with content grounding',
                   'Automatic re-indexing when you add or remove documents',
                   'Optional reranking and relevance filtering for precise answers',
                 ].map((it) => (

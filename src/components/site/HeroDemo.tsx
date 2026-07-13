@@ -1,14 +1,14 @@
 'use client';
 
 import { useCallback, useEffect, useRef, useState } from 'react';
-import { Sparkles, FileText, ArrowUpRight } from 'lucide-react';
+import { Sparkles, ArrowUpRight } from 'lucide-react';
 import { cn } from '@/lib/cn';
 
 /**
  * "Ask OyeChats", a scripted, simulated live demo for the home hero.
  * Auto-plays a realistic exchange when in view, and lets visitors click a
  * suggested question to replay that script. Each script tells the full arc:
- * a question answered from the docs (with a citation), then intent detected,
+ * a question answered from the docs, then intent detected,
  * a BANT score ticking up, and the lead routed. No backend, pure animation.
  * Respects prefers-reduced-motion (renders the final state statically) and
  * pauses while off-screen.
@@ -18,7 +18,6 @@ type Script = {
   chip: string;
   q: string;
   a: string;
-  source: string;
   context: string;
   score: number;
   routed: string;
@@ -29,17 +28,15 @@ const SCRIPTS: Script[] = [
     chip: 'Webhooks?',
     q: 'Do you support webhooks?',
     a: 'Yes, five event types (tier transitions, lead captured, handoff, meeting booked, chat closed), all HMAC-signed.',
-    source: '/docs/webhooks',
     context: '“We’d need this for ~40 seats, launching next quarter.”',
     score: 84,
     routed: 'routed to sales',
   },
   {
-    chip: 'Cites sources?',
-    q: 'Does it cite its sources?',
-    a: 'Every answer links back to the exact doc chunk it came from, hybrid semantic + keyword retrieval over your content.',
-    source: '/docs/rag',
-    context: '“Comparing a few tools for our support team.”',
+    chip: 'Grounded RAG?',
+    q: 'Is the bot grounded in our docs?',
+    a: 'Yes, every answer is retrieved from your content via hybrid semantic and keyword search. Answers come directly from your docs, not the model\'s training data.',
+    context: '”Comparing a few tools for our support team.”',
     score: 68,
     routed: 'nurture sequence',
   },
@@ -47,7 +44,6 @@ const SCRIPTS: Script[] = [
     chip: 'Setup time?',
     q: 'How fast is setup?',
     a: 'One script tag. Upload your docs, embed the snippet, and you’re live in about five minutes.',
-    source: '/docs/quickstart',
     context: '“Shipping a new product page this week.”',
     score: 88,
     routed: 'routed to sales',
@@ -56,14 +52,13 @@ const SCRIPTS: Script[] = [
     chip: 'Live handoff?',
     q: 'Can it hand off to a human?',
     a: 'When the bot reaches its limit it hands off in the same thread, full transcript and BANT context included.',
-    source: '/docs/live-chat',
-    context: '“Need live agents during business hours.”',
+    context: '”Need live agents during business hours.”',
     score: 76,
     routed: 'routed to sales',
   },
 ];
 
-const PHASES = ['q', 'a', 'cite', 'qualify', 'routed', 'done'] as const;
+const PHASES = ['q', 'a', 'qualify', 'routed', 'done'] as const;
 type Phase = (typeof PHASES)[number];
 const reached = (p: Phase, target: Phase) => PHASES.indexOf(p) >= PHASES.indexOf(target);
 
@@ -153,10 +148,6 @@ export function HeroDemo() {
       await sleep(15);
     }
     await sleep(350);
-    if (!alive()) return;
-
-    setPhase('cite');
-    await sleep(650);
     if (!alive()) return;
 
     setPhase('qualify');
@@ -255,15 +246,6 @@ export function HeroDemo() {
                 {typedA}
                 {phase === 'a' && <Caret />}
               </div>
-              {reached(phase, 'cite') && (
-                <a
-                  href="/docs"
-                  className="mt-2 inline-flex items-center gap-1.5 px-2.5 py-1 rounded-[var(--r-1)] bg-canvas border border-line type-mono-sm text-muted hover:text-volt hover:border-volt-line transition-colors no-underline"
-                >
-                  <FileText size={11} />
-                  source: {active.source}
-                </a>
-              )}
             </div>
           )}
 

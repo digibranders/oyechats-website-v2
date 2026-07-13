@@ -57,7 +57,7 @@ const SOLUTIONS_MENU: MegaColumn[] = [
     items: [
       { icon: Headphones, label: 'Customer Support', description: 'Cut ticket volume, keep quality', href: '/solutions#customer-support' },
       { icon: Target, label: 'Sales and Lead Gen', description: 'Qualify every visitor', href: '/solutions#sales-lead-gen' },
-      { icon: BookOpen, label: 'Docs Assistant', description: 'Every answer cites its source', href: '/solutions#docs-assistant' },
+      { icon: BookOpen, label: 'Docs Assistant', description: 'Grounded answers from your knowledge base', href: '/solutions#docs-assistant' },
       { icon: MessageCircle, label: 'Live Chat Handoff', description: 'Bot first, human second', href: '/solutions#live-chat-handoff' },
     ],
   },

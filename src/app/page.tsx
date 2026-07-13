@@ -42,7 +42,7 @@ export default function Home() {
               </Reveal>
               <Reveal delay={160}>
                 <p className="type-body-lg text-ink-2 mt-6 max-w-[520px]">
-                  OyeChats answers every visitor from your own docs (in real time, with citations),
+                  OyeChats answers every visitor from your own docs (in real time, grounded in your content),
                   scores intent as they chat, and routes the buyers to your team. One script tag,
                   live in 5 minutes.
                 </p>

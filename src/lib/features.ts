@@ -42,7 +42,7 @@ export const FEATURES: Feature[] = [
     title: 'Grounded answers',
     tagline: 'Answers from your content, with sources.',
     description:
-      'Every answer comes from your own docs and links back to the source, not the model\'s guesses. It refreshes on its own as your content changes.',
+      'Every answer is grounded in your own docs, retrieved via hybrid semantic and keyword search. It refreshes on its own as your content changes.',
     anchor: 'feature-rag',
   },
   {
@@ -135,7 +135,7 @@ export const SOLUTIONS: Solution[] = [
     intro:
       'Turn your help center, product docs, and past tickets into a bot that answers on the first message, day or night.',
     body: [
-      'The vast majority of inbound tickets are questions your team has already answered somewhere. OyeChats reads your entire knowledge base, retrieves the right snippet in real time, and responds in your brand voice with a citation the visitor can trust.',
+      'The vast majority of inbound tickets are questions your team has already answered somewhere. OyeChats reads your entire knowledge base, retrieves the right snippet in real time, and responds in your brand voice grounded in that content.',
       'When the question needs a human, the bot hands off with the full transcript, the pages the visitor was looking at, and a suggested department. Nobody starts from scratch.',
     ],
     bullets: [
@@ -172,7 +172,7 @@ export const SOLUTIONS: Solution[] = [
     category: 'Docs Assistant',
     title: 'Turn every doc into a conversation',
     intro:
-      'Point OyeChats at a docs site, a Notion workspace, or a folder of PDFs. Add an in-product assistant that always cites its source.',
+      'Point OyeChats at a docs site, a Notion workspace, or a folder of PDFs. Add an in-product assistant grounded in your content.',
     body: [
       'Developers and end users rarely read docs top to bottom. They arrive with a question and want an answer with a link they can trust. OyeChats does exactly that. Hybrid retrieval blends vector similarity with keyword search so acronyms, error codes, and product names always land on the right page.',
       'When your docs change, the recrawl runs on a schedule. The bot stays fresh without a rebuild.',
@@ -180,10 +180,10 @@ export const SOLUTIONS: Solution[] = [
     bullets: [
       'Ingests PDF, DOCX, TXT, and any crawlable URL',
       'Hybrid search over vector plus TSVECTOR keyword index',
-      'Every answer links back to the source doc',
+      'Grounded in your docs, not the model\'s training data',
       'Scheduled auto-recrawl keeps the knowledge base current',
     ],
-    outcome: { metric: 'Every answer', label: 'links back to the source doc it came from' },
+    outcome: { metric: 'Every answer', label: 'grounded in your docs via hybrid RAG' },
     icon: BookOpen,
     accent: 'violet',
   },
