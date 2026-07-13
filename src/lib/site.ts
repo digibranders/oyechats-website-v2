@@ -5,6 +5,9 @@
 
 const APP_URL = process.env.NEXT_PUBLIC_APP_URL ?? 'https://app.oyechats.com';
 
+/** Platform REST API base. Health status is read from `${API_URL}/health`. */
+export const API_URL = process.env.NEXT_PUBLIC_API_URL ?? 'https://api.oyechats.com';
+
 export const APP_LINKS = {
   register: `${APP_URL}/register`,
   registerStarter: `${APP_URL}/register?plan=starter`,

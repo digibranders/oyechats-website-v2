@@ -135,7 +135,7 @@ export const PRICING_TIERS: PricingTier[] = [
 
 export const CREDIT_COSTS: CreditCost[] = [
   { action: '1 AI chat reply', credits: 1 },
-  { action: '1 URL page crawl + ingest', credits: 5 },
+  { action: '1 web page crawled and added to your knowledge base', credits: 5 },
   { action: '1 customer-facing email (lead alert / summary)', credits: 1 },
 ];
 
@@ -164,11 +164,11 @@ export const FEATURE_ROWS: PricingFeature[] = [
 export const CATEGORY_LABELS: Record<PricingFeatureCategory, string> = {
   usage: 'Usage and seats',
   features: 'Features',
-  security: 'Security and SLA',
+  security: 'Security and uptime',
 };
 
 export const PRICING_FAQ = [
-  { q: "What's a credit?", a: 'Credits are how OyeChats meters work. Each AI chat reply uses 1 credit, each URL page we crawl and ingest uses 5 credits, and each customer-facing email (lead alerts, conversation summaries) uses 1 credit. System emails like password resets and operator notifications are always free.' },
+  { q: "What's a credit?", a: 'Credits are how OyeChats measures usage. Each AI chat reply uses 1 credit, each web page we crawl and add to your knowledge base uses 5 credits, and each customer-facing email (lead alerts, conversation summaries) uses 1 credit. System emails like password resets and operator notifications are always free.' },
   { q: 'How do I pay?', a: 'We use Razorpay for checkout. UPI, cards, NetBanking, and wallets are all supported. You can switch payment methods any time from the Billing page.' },
   { q: 'Is there a free trial?', a: 'Yes. Starter and Standard plans include a 14-day free trial with full access to all features. No credit card required.' },
   { q: 'What happens when I run out of credits?', a: 'Your bot pauses new conversations until your monthly credits reset, or you can buy a top-up pack any time from the Billing page. We never let costs run away. We hard-cap at zero, with a friendly message to visitors.' },

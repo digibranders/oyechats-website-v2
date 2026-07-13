@@ -32,20 +32,20 @@ type MegaColumn = {
 
 const PRODUCT_MENU: MegaColumn[] = [
   {
-    title: 'Core capabilities',
+    title: 'What it does',
     items: [
-      { icon: BrainCircuit, label: 'BANT scoring', description: 'Qualify every visitor automatically', href: '/features#bant-scoring' },
-      { icon: Search, label: 'Hybrid RAG', description: 'Answers grounded in your docs', href: '/features#grounded-rag' },
-      { icon: MessageSquare, label: 'Live handoff', description: 'Escalate to a human, with context', href: '/features#live-handoff' },
-      { icon: Zap, label: 'Streaming answers', description: 'Replies stream in real time', href: '/features#streaming-answers' },
+      { icon: BrainCircuit, label: 'BANT scoring', description: 'Qualify every visitor automatically', href: '/features#feature-bant' },
+      { icon: Search, label: 'Grounded answers', description: 'Answers pulled from your own docs', href: '/features#feature-rag' },
+      { icon: MessageSquare, label: 'Live handoff', description: 'Hand off to a human, with context', href: '/features#feature-live-chat' },
+      { icon: Zap, label: 'Streaming answers', description: 'Replies stream in real time', href: '/features#feature-rag' },
     ],
   },
   {
-    title: 'Ship and scale',
+    title: 'Set up and grow',
     items: [
-      { icon: Code, label: 'Easy integration', description: 'One script tag, every stack', href: '/features#easy-integration' },
-      { icon: Webhook, label: 'Webhooks and REST API', description: 'Push events to any pipeline', href: '/docs#webhooks' },
-      { icon: LineChart, label: 'Deep analytics', description: 'See what actually converts', href: '/features#analytics' },
+      { icon: Code, label: 'Easy setup', description: 'One script tag, any website', href: '/features#feature-integrations' },
+      { icon: Webhook, label: 'Webhooks and REST API', description: 'Push events to your own tools', href: '/docs#webhooks' },
+      { icon: LineChart, label: 'Deep analytics', description: 'See what actually converts', href: '/features#feature-analytics' },
       { icon: ShieldCheck, label: 'Security', description: 'GDPR, HMAC signing, RBAC', href: '/security' },
     ],
   },
@@ -53,7 +53,7 @@ const PRODUCT_MENU: MegaColumn[] = [
 
 const SOLUTIONS_MENU: MegaColumn[] = [
   {
-    title: 'By workflow',
+    title: 'By team',
     items: [
       { icon: Headphones, label: 'Customer Support', description: 'Cut ticket volume, keep quality', href: '/solutions#customer-support' },
       { icon: Target, label: 'Sales and Lead Gen', description: 'Qualify every visitor', href: '/solutions#sales-lead-gen' },
@@ -67,7 +67,7 @@ const RESOURCES_MENU: MegaColumn[] = [
   {
     title: 'Resources',
     items: [
-      { icon: BookOpen, label: 'Documentation', description: 'Install, configure, ship webhooks', href: '/docs' },
+      { icon: BookOpen, label: 'Documentation', description: 'Install, configure, connect webhooks', href: '/docs' },
       { icon: Sparkles, label: 'Changelog', description: 'Every release, tagged and dated', href: '/changelog' },
       { icon: LineChart, label: 'Blog', description: 'Ideas from the team', href: '/blog' },
       { icon: ShieldCheck, label: 'Security', description: 'How we protect your data', href: '/security' },

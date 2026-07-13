@@ -74,13 +74,13 @@ export default function AboutPage() {
         <DottedGrid />
         <Container className="relative pt-24 pb-24 md:pt-32 md:pb-32 text-center">
           <h1 className="type-display-2 text-ink max-w-3xl mx-auto">
-            We&apos;re defining the AI era of{' '}
-            <GradientText>customer conversations</GradientText>.
+            We help teams answer every visitor — and{' '}
+            <GradientText>qualify</GradientText> the ones worth calling.
           </h1>
           <p className="type-body-lg text-ink-2 mt-6 max-w-2xl mx-auto">
-            OyeChats is the RAG-powered chat platform that turns your knowledge base into a
-            real-time customer agent that answers questions, qualifies leads, and hands off to your
-            team when the moment is right.
+            OyeChats turns your knowledge base into a chat assistant that answers questions from your
+            own content, scores each visitor as they chat, and hands the hot ones to your team — all
+            in one conversation.
           </p>
 
           <div className="grid grid-cols-2 md:grid-cols-4 gap-4 max-w-4xl mx-auto mt-14">
@@ -102,8 +102,8 @@ export default function AboutPage() {
       <Section
         tone="canvas"
         eyebrow="Our vision"
-        heading={<>One agent, every customer moment.</>}
-        sub="Businesses are best served by a single conversational agent with full context across the entire customer journey, from the first question to the qualified lead to the paying customer."
+        heading={<>One assistant, every customer moment.</>}
+        sub="One assistant that carries full context across the whole customer journey — from the first question, to the qualified lead, to the paying customer."
         containerSize="wide"
       >
         <div className="grid md:grid-cols-2 gap-4">
@@ -148,8 +148,8 @@ export default function AboutPage() {
       <Section
         tone="canvas"
         eyebrow="Where we work"
-        heading={<>Built async, shipped weekly.</>}
-        sub="A small, remote-first team. Product decisions happen in the codebase, not in meetings. If that's how you work best, we'd love to hear from you."
+        heading={<>Built remotely. Shipped often.</>}
+        sub="A small, remote-first team. We make product decisions in the code, not in meetings. If that's how you work best, we'd love to hear from you."
         containerSize="wide"
       >
         <div className="grid grid-cols-1 gap-5 max-w-md mx-auto">

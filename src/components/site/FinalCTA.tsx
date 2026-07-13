@@ -120,7 +120,7 @@ export function FinalCTA() {
         {/* Eyebrow */}
         <div className="text-center type-mono-sm text-ink-invert-muted mb-5 flex items-center gap-2 justify-center">
           <span className="eyebrow-line" />
-          <span>Ship in 10 minutes · every minute a lead</span>
+          <span>Go live in 10 minutes · every minute a lead</span>
         </div>
 
         {/* Rotating headline */}
@@ -141,8 +141,8 @@ export function FinalCTA() {
         </h2>
 
         <p className="text-center type-body-lg text-ink-invert-muted max-w-[680px] mx-auto mt-6">
-          Deploy OyeChats to your site in under 10 minutes. First qualified lead in the same hour.
-          Every visitor scored, routed, and reported.
+          Add OyeChats to your site in under 10 minutes. Your first qualified lead can land the same
+          hour — every visitor scored, routed, and reported.
         </p>
 
         <div className="flex justify-center gap-3 flex-wrap mt-9">

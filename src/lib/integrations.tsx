@@ -57,8 +57,8 @@ function BrandIcon({
 }
 
 export const INTEGRATIONS: Integration[] = [
-  { id: 'wordpress', name: 'WordPress', description: 'Paste one script tag', category: 'cms', install: 'Plugin', available: true, icon: <BrandIcon icon={siWordpress} /> },
-  { id: 'shopify', name: 'Shopify', description: 'Add the script to your theme', category: 'cms', install: 'App', available: true, icon: <BrandIcon icon={siShopify} /> },
+  { id: 'wordpress', name: 'WordPress', description: 'Paste one script tag', category: 'cms', install: 'Script', available: true, icon: <BrandIcon icon={siWordpress} /> },
+  { id: 'shopify', name: 'Shopify', description: 'Add the script to your theme', category: 'cms', install: 'Embed', available: true, icon: <BrandIcon icon={siShopify} /> },
   { id: 'webflow', name: 'Webflow', description: 'Custom embed code', category: 'cms', install: 'Embed', available: true, icon: <BrandIcon icon={siWebflow} /> },
 
   { id: 'nextjs', name: 'Next.js', description: 'Script component', category: 'website', install: 'Script', available: true, icon: <BrandIcon icon={siNextdotjs} /> },

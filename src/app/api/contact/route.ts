@@ -218,19 +218,25 @@ export async function POST(req: NextRequest) {
   const recipient = process.env.CONTACT_RECIPIENT ?? 'support@oyechats.com';
 
   if (!brevoKey) {
-    return NextResponse.json({ error: 'Email service not configured' }, { status: 503 });
+    return NextResponse.json(
+      { error: 'We can’t send messages right now. Please email us at support@oyechats.com.' },
+      { status: 503 }
+    );
   }
 
   // Per-IP rate limit before doing any work (audit F12).
   if (_isRateLimited(_clientIp(req))) {
-    return NextResponse.json({ error: 'Too many requests. Please try again later.' }, { status: 429 });
+    return NextResponse.json(
+      { error: 'You’ve sent a few messages already. Please wait a few minutes and try again.' },
+      { status: 429 }
+    );
   }
 
   let body: unknown;
   try {
     body = await req.json();
   } catch {
-    return NextResponse.json({ error: 'Invalid JSON' }, { status: 400 });
+    return NextResponse.json({ error: 'Something went wrong. Please try again.' }, { status: 400 });
   }
 
   const { name, email, company, intent, message } = body as Record<string, string>;
@@ -243,11 +249,17 @@ export async function POST(req: NextRequest) {
   }
 
   if (!name?.trim() || !email?.trim() || !message?.trim()) {
-    return NextResponse.json({ error: 'name, email, and message are required' }, { status: 422 });
+    return NextResponse.json(
+      { error: 'Please add your name, email, and a short message.' },
+      { status: 422 }
+    );
   }
 
   if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
-    return NextResponse.json({ error: 'Invalid email address' }, { status: 422 });
+    return NextResponse.json(
+      { error: 'That email address doesn’t look right. Please check it and try again.' },
+      { status: 422 }
+    );
   }
 
   // Length caps so a single request can't ship a huge payload / abuse the send.
@@ -257,7 +269,10 @@ export async function POST(req: NextRequest) {
     (company?.length ?? 0) > MAX_LEN.company ||
     message.length > MAX_LEN.message
   ) {
-    return NextResponse.json({ error: 'One or more fields exceed the allowed length' }, { status: 422 });
+    return NextResponse.json(
+      { error: 'One of your fields is a bit too long. Please shorten it and try again.' },
+      { status: 422 }
+    );
   }
 
   const intentLabel = INTENT_LABELS[intent] ?? 'General inquiry';
@@ -286,12 +301,18 @@ export async function POST(req: NextRequest) {
     if (!res.ok) {
       const errBody = await res.text();
       console.error(`Brevo error ${res.status}: ${errBody}`);
-      return NextResponse.json({ error: 'Failed to send email' }, { status: 502 });
+      return NextResponse.json(
+        { error: 'We couldn’t send your message just now. Please try again in a moment, or email support@oyechats.com.' },
+        { status: 502 }
+      );
     }
 
     return NextResponse.json({ ok: true });
   } catch (err) {
     console.error('Brevo fetch failed:', err);
-    return NextResponse.json({ error: 'Network error sending email' }, { status: 502 });
+    return NextResponse.json(
+      { error: 'We couldn’t send your message just now. Please try again in a moment, or email support@oyechats.com.' },
+      { status: 502 }
+    );
   }
 }

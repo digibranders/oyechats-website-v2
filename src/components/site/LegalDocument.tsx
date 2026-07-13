@@ -1,6 +1,7 @@
 import Link from 'next/link';
 import { ReactNode } from 'react';
 import { Chip, Container } from '@/components/ds';
+import { ScrollSpyToc } from './ScrollSpyToc';
 import { LEGAL_PAGES } from '@/lib/legal';
 import type { LegalPage } from '@/lib/legal';
 
@@ -62,19 +63,10 @@ export function LegalDocument({ page }: { page: LegalPage }) {
 
             <aside className="hidden lg:block">
               <div className="sticky top-24">
-                <div className="type-mono-sm text-muted mb-3">On this page</div>
-                <ul className="space-y-1.5">
-                  {page.sections.map((s) => (
-                    <li key={s.id}>
-                      <a
-                        href={`#${s.id}`}
-                        className="type-body-sm text-ink-2 hover:text-ink no-underline block"
-                      >
-                        {s.heading}
-                      </a>
-                    </li>
-                  ))}
-                </ul>
+                <ScrollSpyToc
+                  label="On this page"
+                  items={page.sections.map((s) => ({ id: s.id, label: s.heading }))}
+                />
 
                 <div className="mt-8 pt-6 border-t border-line">
                   <div className="type-mono-sm text-muted mb-3">Other policies</div>

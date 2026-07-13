@@ -1,5 +1,6 @@
 import type { Metadata } from 'next';
 import Link from 'next/link';
+import { ScrollSpyToc } from '@/components/site/ScrollSpyToc';
 import {
   FileText,
   Scissors,
@@ -34,8 +35,8 @@ export const metadata: Metadata = {
 };
 
 const NAV = [
-  { id: 'rag', label: 'RAG Pipeline' },
-  { id: 'bant', label: 'BANT scoring' },
+  { id: 'rag', label: 'Grounded answers' },
+  { id: 'bant', label: 'Lead scoring' },
   { id: 'live-chat', label: 'Live chat' },
   { id: 'analytics', label: 'Analytics' },
   { id: 'webhooks', label: 'Webhooks' },
@@ -43,19 +44,19 @@ const NAV = [
 ];
 
 const RAG_STEPS = [
-  { icon: FileText, label: 'Upload docs', desc: 'PDFs, Word files, URLs, or web crawl. Any content you own.' },
-  { icon: Scissors, label: 'Chunk and clean', desc: 'Sentence-aware splitting, deduplication, and metadata tagging.' },
-  { icon: Brain, label: 'Embed', desc: 'Converts your content into semantic meaning the AI can reason over.' },
-  { icon: Search, label: 'Hybrid search', desc: 'Semantic plus keyword search working together, always finds the right answer.' },
-  { icon: Zap, label: 'AI generate', desc: 'Context-aware response generation with citation grounding.' },
-  { icon: MessageCircle, label: 'Stream reply', desc: 'Token-streamed response delivered in real time as the answer is generated.' },
+  { icon: FileText, label: 'Add your content', desc: 'PDFs, Word files, URLs, or a full website crawl — any content you own.' },
+  { icon: Scissors, label: 'Prepare it', desc: 'We split your content into clean, searchable pieces and remove duplicates.' },
+  { icon: Brain, label: 'Understand it', desc: 'Turns your content into a form the AI can search by meaning, not just exact words.' },
+  { icon: Search, label: 'Smart search', desc: 'Meaning-based and keyword search work together, so the right answer surfaces every time.' },
+  { icon: Zap, label: 'Write the answer', desc: 'Writes a reply from the right sources, with citations back to your docs.' },
+  { icon: MessageCircle, label: 'Reply in real time', desc: 'The answer streams back word by word as it is written — no waiting.' },
 ];
 
 const BANT_CRITERIA = [
-  { key: 'B', label: 'Budget', score: 85, desc: 'Signals budget fit from conversation context.' },
-  { key: 'A', label: 'Authority', score: 72, desc: 'Detects decision-maker language patterns.' },
-  { key: 'N', label: 'Need', score: 91, desc: 'Identifies pain points and urgency signals.' },
-  { key: 'T', label: 'Timeline', score: 68, desc: 'Extracts purchase timeline from responses.' },
+  { key: 'B', label: 'Budget', score: 85, desc: 'Reads budget fit from what the visitor says.' },
+  { key: 'A', label: 'Authority', score: 72, desc: 'Spots who the decision-maker is.' },
+  { key: 'N', label: 'Need', score: 91, desc: 'Picks up on pain points and urgency.' },
+  { key: 'T', label: 'Timeline', score: 68, desc: 'Catches when they plan to buy.' },
 ];
 
 const BANT_TIMELINE = [
@@ -89,28 +90,22 @@ export default function FeaturesPage() {
         <DottedGrid />
         <Container className="relative pt-24 pb-16 md:pt-32 md:pb-20 text-center">
           <h1 className="type-display-2 text-ink max-w-3xl mx-auto">
-            Everything you need to <GradientText>ship</GradientText>.
+            Everything you need, <GradientText>built in</GradientText>.
           </h1>
           <p className="type-body-lg text-ink-2 mt-6 max-w-2xl mx-auto">
-            Hybrid RAG. BANT scoring. Live chat. Analytics. Webhooks. Integrations. Each one deep,
-            each one wired to the next, no bolt-ons.
+            Grounded answers. Lead scoring. Live chat. Analytics. Webhooks. Integrations. Each one
+            is deep, and they all work together — no bolt-ons.
           </p>
         </Container>
       </section>
 
       <div className="sticky top-16 z-30 bg-canvas/90 backdrop-blur-md border-y border-line">
         <Container>
-          <div className="flex gap-2 py-4 overflow-x-auto">
-            {NAV.map((n) => (
-              <Link
-                key={n.id}
-                href={`#feature-${n.id}`}
-                className="shrink-0 px-3.5 py-1.5 rounded-[var(--r-full)] type-mono-sm bg-canvas text-muted border border-line hover:border-line-2 hover:text-ink no-underline transition-colors"
-              >
-                {n.label}
-              </Link>
-            ))}
-          </div>
+          <ScrollSpyToc
+            variant="pills"
+            className="py-4"
+            items={NAV.map((n) => ({ id: `feature-${n.id}`, label: n.label }))}
+          />
         </Container>
       </div>
 
@@ -118,9 +113,9 @@ export default function FeaturesPage() {
         <Container>
           <div className="grid lg:grid-cols-2 gap-16 items-center">
             <div>
-              <div className="type-mono-sm text-volt mb-3">RAG Pipeline</div>
+              <div className="type-mono-sm text-volt mb-3">Grounded answers</div>
               <h2 className="type-display-3 text-ink mb-5">
-                Knowledge that actually <GradientText>understands</GradientText> context.
+                Answers that actually <GradientText>understand</GradientText> the question.
               </h2>
               <p className="type-body text-ink-2 mb-6">
                 OyeChats does not just search your documents, it understands them. Hybrid AI search
@@ -277,9 +272,12 @@ export default function FeaturesPage() {
                 <Chip variant="soft">BANT · 87</Chip>
               </div>
               <ChatStack>
-                <ChatBubble role="visitor">Hey, do you support SOC2?</ChatBubble>
-                <ChatBubble role="agent">Yes, SOC2 Type II. What team size?</ChatBubble>
-                <ChatBubble role="visitor">Around 40, launching Q3.</ChatBubble>
+                <ChatBubble role="visitor">How do you handle our data?</ChatBubble>
+                <ChatBubble role="agent">
+                  Encrypted in transit and at rest, GDPR-aligned, and we never train models on your
+                  data. Want the details?
+                </ChatBubble>
+                <ChatBubble role="visitor">Yes — we&apos;re rolling out to ~40 seats in Q3.</ChatBubble>
                 <ChatBubble role="operator">
                   [Handoff, BANT 87] Priya here. I have your context. 15 min tomorrow?
                 </ChatBubble>
@@ -298,7 +296,7 @@ export default function FeaturesPage() {
                   <BarChart3 size={16} className="text-volt" />
                   <span className="type-mono-sm text-muted">/analytics/dashboard</span>
                 </div>
-                <Chip variant="signal">Live</Chip>
+                <Chip variant="soft">Sample</Chip>
               </div>
 
               <div className="grid grid-cols-2 gap-3 mb-6">
@@ -376,11 +374,11 @@ export default function FeaturesPage() {
             <div>
               <div className="type-mono-sm text-volt mb-3">Webhooks and REST API</div>
               <h2 className="type-display-3 text-ink mb-5">
-                Ship every event to your <GradientText>stack</GradientText>.
+                Send every event to your own <GradientText>tools</GradientText>.
               </h2>
               <p className="type-body text-ink-2 mb-6">
-                Five HMAC-signed webhook events plus a full REST API. Push into your CRM, notify your
-                team on Slack, trigger Zaps, or build your own workflow.
+                Five signed webhook events plus a full REST API. Send leads to your CRM, ping your
+                team on Slack, trigger a Zap, or build your own automation.
               </p>
 
               <div className="space-y-2.5">
@@ -457,11 +455,11 @@ Content-Type: application/json
             <div>
               <div className="type-mono-sm text-volt mb-3">Integrations</div>
               <h2 className="type-display-3 text-ink mb-5">
-                Ships to your <GradientText>stack</GradientText>.
+                Fits your existing <GradientText>tools</GradientText>.
               </h2>
               <p className="type-body text-ink-2 mb-6">
-                WordPress, Shopify, Webflow, Next.js, React, Vue, HTML, and Framer. Meetings via
-                Calendly. Automation via Zapier and Make — plus webhooks (5 event types) and a full
+                WordPress, Shopify, Webflow, Next.js, React, Vue, HTML, and Framer. Booking via
+                Calendly. Automation via Zapier and Make — plus 5 signed webhook events and a full
                 REST API.
               </p>
               <Button href="/integrations" variant="ghost">
@@ -487,9 +485,9 @@ Content-Type: application/json
 
       <Section
         tone="paper"
-        eyebrow="Ready to ship?"
+        eyebrow="Ready to go live?"
         heading={<>Try every feature. <GradientText>Free.</GradientText></>}
-        sub="Every OyeChats bot starts free. Upload your docs, embed one script tag, and go live in under five minutes."
+        sub="Every OyeChats bot starts free. Add your docs, paste one script tag, and go live in under five minutes."
         actions={
           <>
             <Button href={APP_LINKS.register} external variant="volt" size="lg">

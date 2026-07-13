@@ -1,6 +1,5 @@
 export type ChangelogEntry = {
   id: string;
-  version: string;
   date: string;
   dateISO: string;
   title: string;
@@ -13,7 +12,6 @@ export type ChangelogEntry = {
 export const CHANGELOG: ChangelogEntry[] = [
   {
     id: 'auto-recrawl',
-    version: 'v3.2.0',
     date: 'July 7, 2026',
     dateISO: '2026-07-07',
     title: 'Auto-recrawl keeps your knowledge base fresh, automatically',
@@ -24,18 +22,16 @@ export const CHANGELOG: ChangelogEntry[] = [
   },
   {
     id: 'crawler-youtube-docs',
-    version: 'v3.2.0',
     date: 'July 2, 2026',
     dateISO: '2026-07-02',
     title: 'The crawler now understands YouTube and linked downloadables',
     description: 'Point OyeChats at any page and it pulls in YouTube transcripts and linked PDFs, DOCX, and TXT files inline with the source. One URL, one crawl, richer context, more accurate answers.',
     tags: ['Improved', 'Crawler'],
-    author: { name: 'Steve · Ingestion', initials: 'ST' },
+    author: { name: 'Ingestion Team', initials: 'IG' },
     accent: 'violet',
   },
   {
     id: 'billing-tab',
-    version: 'v3.1.0',
     date: 'June 24, 2026',
     dateISO: '2026-06-24',
     title: 'Billing moves into its own tab, with the right currency from day one',
@@ -46,7 +42,6 @@ export const CHANGELOG: ChangelogEntry[] = [
   },
   {
     id: 'currency-context',
-    version: 'v3.1.0',
     date: 'June 18, 2026',
     dateISO: '2026-06-18',
     title: 'A global currency context, everywhere at once',
@@ -57,7 +52,6 @@ export const CHANGELOG: ChangelogEntry[] = [
   },
   {
     id: 'security-hardening',
-    version: 'v3.0.1',
     date: 'May 30, 2026',
     dateISO: '2026-05-30',
     title: 'A quiet security pass across the whole platform',
@@ -68,7 +62,6 @@ export const CHANGELOG: ChangelogEntry[] = [
   },
   {
     id: 'auth-hardening',
-    version: 'v3.0.1',
     date: 'May 12, 2026',
     dateISO: '2026-05-12',
     title: 'Strict auth on every account-credential endpoint',
@@ -79,7 +72,6 @@ export const CHANGELOG: ChangelogEntry[] = [
   },
   {
     id: 'live-chat-ga',
-    version: 'v3.0.0',
     date: 'April 15, 2026',
     dateISO: '2026-04-15',
     title: 'Live chat handoff, now generally available',
@@ -90,7 +82,6 @@ export const CHANGELOG: ChangelogEntry[] = [
   },
   {
     id: 'auto-rollback',
-    version: 'v3.0.0',
     date: 'April 3, 2026',
     dateISO: '2026-04-03',
     title: 'Auto-rollback on failed post-deploy health checks',
@@ -101,9 +92,8 @@ export const CHANGELOG: ChangelogEntry[] = [
   },
   {
     id: 'bant-scoring',
-    version: 'v2.4.0',
-    date: 'March 20, 2026',
-    dateISO: '2026-03-20',
+    date: 'March 30, 2026',
+    dateISO: '2026-03-30',
     title: 'BANT scoring, built into every conversation',
     description: 'OyeChats now scores every conversation on Budget, Authority, Need, and Timing, automatically. Combined with visitor context (pages viewed, return visits, UTM, device), sales sees a qualified lead the moment intent shows up, without asking a single form question.',
     tags: ['New feature', 'Analytics'],
@@ -112,9 +102,8 @@ export const CHANGELOG: ChangelogEntry[] = [
   },
   {
     id: 'hybrid-search',
-    version: 'v2.4.0',
-    date: 'March 5, 2026',
-    dateISO: '2026-03-05',
+    date: 'March 28, 2026',
+    dateISO: '2026-03-28',
     title: 'Hybrid retrieval, tighter answers',
     description: 'Reciprocal rank fusion now blends semantic similarity with keyword TSVECTOR search. Answers stay grounded in your docs even when the visitor uses acronyms, product codes, or phrasing your knowledge base never anticipated.',
     tags: ['Improved', 'RAG'],

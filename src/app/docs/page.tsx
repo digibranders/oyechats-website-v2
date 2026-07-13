@@ -11,18 +11,19 @@ import {
   Th,
   Td,
 } from '@/components/ds';
+import { ScrollSpyToc } from '@/components/site/ScrollSpyToc';
 
 export const metadata: Metadata = {
   title: 'Documentation',
   description:
-    'Everything you need to integrate and configure OyeChats on your website. Install, configure, ship webhooks.',
+    'Everything you need to add and configure OyeChats on your website. Install, configure, and connect webhooks.',
   alternates: { canonical: '/docs' },
 };
 
 const QUICK_START = [
   { icon: Package, step: '1', title: 'Install the widget', desc: 'Add a single script tag to your site and the chat widget appears instantly.', anchor: '#widget' },
   { icon: KeyRound, step: '2', title: 'Get your bot key', desc: 'Find your unique bot key in the dashboard under Settings, Widget.', anchor: '#widget' },
-  { icon: Brain, step: '3', title: 'Upload your docs', desc: 'Upload PDFs, paste URLs, or connect a sitemap. The RAG pipeline handles the rest.', anchor: '#api' },
+  { icon: Brain, step: '3', title: 'Upload your docs', desc: 'Upload PDFs, paste URLs, or connect a sitemap. OyeChats reads and indexes the rest.', anchor: '#api' },
   { icon: Zap, step: '4', title: 'Configure webhooks', desc: 'Push lead events, BANT scores, and chat transcripts to your own backend.', anchor: '#webhooks' },
 ];
 
@@ -68,10 +69,10 @@ export default function DocsPage() {
         <DottedGrid />
         <Container className="relative pt-24 pb-16 md:pt-32 md:pb-20 text-center">
           <h1 className="type-display-2 text-ink max-w-3xl mx-auto">
-            Everything you need to <GradientText>ship</GradientText>.
+            Everything you need to <GradientText>go live</GradientText>.
           </h1>
           <p className="type-body-lg text-ink-2 mt-6 max-w-2xl mx-auto">
-            From a one-line embed to full webhook pipelines. Integrate OyeChats in minutes, not days.
+            From a one-line embed to full webhook setups. Get OyeChats running in minutes, not days.
           </p>
         </Container>
       </section>
@@ -81,18 +82,10 @@ export default function DocsPage() {
           <div className="lg:grid lg:grid-cols-[220px_1fr] lg:gap-16">
             <aside className="hidden lg:block">
               <div className="sticky top-28">
-                <div className="type-mono-sm text-muted mb-4">On this page</div>
-                <nav className="space-y-1.5">
-                  {TOC.map((item) => (
-                    <a
-                      key={item.anchor}
-                      href={item.anchor}
-                      className="block type-body-sm text-ink-2 hover:text-volt transition-colors py-1 no-underline"
-                    >
-                      {item.label}
-                    </a>
-                  ))}
-                </nav>
+                <ScrollSpyToc
+                  label="On this page"
+                  items={TOC.map((item) => ({ id: item.anchor.replace(/^#/, ''), label: item.label }))}
+                />
               </div>
             </aside>
 

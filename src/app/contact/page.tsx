@@ -99,10 +99,10 @@ export default function ContactPage() {
         <DottedGrid />
         <Container className="relative pt-24 pb-16 md:pt-32 md:pb-20 text-center">
           <h1 className="type-display-2 text-ink max-w-3xl mx-auto">
-            Let&apos;s <GradientText>talk</GradientText> pipeline.
+            Let&apos;s <GradientText>talk</GradientText>.
           </h1>
           <p className="type-body-lg text-ink-2 mt-6 max-w-2xl mx-auto">
-            Whether you have an enterprise question, need technical support, or just want to say hi. We usually respond within one business day.
+            Have an enterprise question, need support, or just want to say hi? We usually reply within one business day.
           </p>
         </Container>
       </section>

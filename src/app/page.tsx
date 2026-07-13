@@ -12,8 +12,6 @@ import {
   Reveal,
   Section,
   TerminalCard,
-  TermCmd,
-  TermK,
   TermS,
   TermCmt,
   ChatBubble,
@@ -81,7 +79,7 @@ export default function Home() {
       {/* ═══════════════════════ FEATURE BENTO ═══════════════════════ */}
       <Section
         tone="paper"
-        eyebrow="02 · Product"
+        eyebrow="Product"
         heading={<>Every feature. One workflow.</>}
         sub="From the first message to the closed deal, everything happens in the same thread."
       >
@@ -95,10 +93,10 @@ export default function Home() {
                 <h3 className="type-heading-3 text-ink mb-1">{f.title}</h3>
                 <p className="type-body text-ink-2">{f.description}</p>
                 <Link
-                  href={`/features#${f.slug}`}
+                  href={f.anchor ? `/features#${f.anchor}` : '/features'}
                   className="inline-flex items-center gap-1 mt-4 text-[13px] text-volt no-underline hover:underline hover:decoration-2 underline-offset-4"
                 >
-                  Learn more <ArrowRight size={13} />
+                  See how it works <ArrowRight size={13} />
                 </Link>
               </Card>
             </Reveal>
@@ -109,7 +107,7 @@ export default function Home() {
       {/* ═══════════════════════ SCROLL STORY ═══════════════════════ */}
       <Section
         tone="canvas"
-        eyebrow="03 · How it works"
+        eyebrow="How it works"
         heading={<>Visitor lands. AI qualifies. Rep closes.</>}
         sub="Three steps, all inside a single conversation. No forms. No handoff loss."
       >
@@ -117,16 +115,16 @@ export default function Home() {
           <Reveal>
             <StoryStep
               n="01"
-              title="Ingest"
-              body="OyeChats crawls your docs, help center, and pricing page. Hybrid semantic + keyword index built in minutes."
+              title="Connect your content"
+              body="Point OyeChats at your docs, help center, and pricing page. It reads them and builds a searchable index in minutes — no engineering required."
               demo={
-                <TerminalCard title="~/oyechats · ingest" showCursor={false}>
-                  <TermCmd>
-                    npx <TermK>oyechats</TermK> init
-                  </TermCmd>
-                  <TermCmt>// crawls docs.acme.com · builds vector index · deploys</TermCmt>
+                <TerminalCard title="~/oyechats · setup" showCursor={false}>
+                  <TermCmt>{'// paste one script tag — we crawl and index the rest'}</TermCmt>
+                  <div className="mt-2 text-white/70 break-all">
+                    {'<script src="cdn.oyechats.com/widget.js" data-bot-key="…">'}
+                  </div>
                   <div className="mt-3 text-white/60">
-                    → indexed <TermS>1,247</TermS> passages
+                    → crawled docs.acme.com · indexed <TermS>1,247</TermS> passages
                   </div>
                 </TerminalCard>
               }
@@ -136,7 +134,7 @@ export default function Home() {
             <StoryStep
               n="02"
               title="Qualify"
-              body="Every conversation is scored across Budget, Authority, Need, Timeline. Inferred from natural chat, no form ever."
+              body="Every chat is scored on Budget, Authority, Need, and Timeline — read from the conversation itself, never a form."
               demo={
                 <div className="bg-paper border border-line rounded-[var(--r-4)] p-6 flex flex-col gap-4 items-center">
                   <BantScoreRing value={87} size={120} />
@@ -155,8 +153,8 @@ export default function Home() {
           <Reveal delay={240}>
             <StoryStep
               n="03"
-              title="Route"
-              body="At your threshold, we hand off to a human operator with the full transcript. Sales opens with context; the visitor never repeats themselves."
+              title="Hand off"
+              body="When a lead is ready, OyeChats passes the chat to a teammate with the full transcript. Sales picks up with context, and the visitor never repeats themselves."
               demo={
                 <ChatStack className="mt-2">
                   <ChatBubble role="operator">
@@ -202,9 +200,9 @@ export default function Home() {
       {/* ═══════════════════════ INTEGRATIONS PREVIEW ═══════════════════════ */}
       <Section
         tone="paper"
-        eyebrow="04 · Integrations"
-        heading={<>Drops into any stack.</>}
-        sub="One script tag installs on any site. Every event pushes to your CRM, Zapier, or Make via signed webhooks."
+        eyebrow="Integrations"
+        heading={<>Drops onto any website.</>}
+        sub="One script tag installs on any site. Every event is sent straight to your CRM, Zapier, or Make with a signed webhook."
       >
         <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-3">
           {INTEGRATIONS.slice(0, 12).map((i, idx) => (
@@ -229,7 +227,7 @@ export default function Home() {
       {/* ═══════════════════════ PRICING PREVIEW ═══════════════════════ */}
       <Section
         tone="canvas"
-        eyebrow="05 · Pricing"
+        eyebrow="Pricing"
         heading={<>Simple, credit-based pricing.</>}
         sub="Start free. Scale credits as you grow. Cancel anytime."
       >
@@ -237,14 +235,15 @@ export default function Home() {
           {PRICING_TIERS.filter((t) => t.id !== 'enterprise').map((tier, idx) => (
             <Reveal key={tier.id} delay={idx * 100}>
               <div
-                className={`bg-canvas rounded-[var(--r-4)] p-7 shadow-[var(--e-1)] flex flex-col relative h-full ${
+                className={`group relative h-full flex flex-col rounded-[var(--r-4)] p-7 bg-canvas transition-[transform,box-shadow,border-color] duration-300 ${
                   tier.featured
-                    ? 'border-[1.5px] border-volt border-beam'
-                    : 'border border-line'
+                    ? 'border-[1.5px] border-volt shadow-[0_24px_70px_-28px_rgba(162,28,175,0.45)] hover:shadow-[0_30px_80px_-24px_rgba(162,28,175,0.55)] hover:-translate-y-1.5'
+                    : 'border border-line shadow-[var(--e-1)] hover:border-line-2 hover:shadow-[var(--e-2)] hover:-translate-y-1'
                 }`}
               >
                 {tier.featured && (
-                  <span className="absolute top-4 right-4 font-mono text-[10px] font-medium text-volt-ink bg-volt-tint px-2 py-1 rounded-[var(--r-1)] border border-volt-line animate-badge-glow">
+                  <span className="absolute -top-3 left-1/2 -translate-x-1/2 inline-flex items-center gap-1.5 px-3 py-1 rounded-[var(--r-full)] bg-volt text-white font-mono text-[10px] font-semibold tracking-wide whitespace-nowrap shadow-[0_8px_20px_-6px_rgba(162,28,175,0.7)]">
+                    <span className="w-1.5 h-1.5 rounded-full bg-white/90 animate-pulse" />
                     Recommended
                   </span>
                 )}
@@ -255,7 +254,7 @@ export default function Home() {
                     : tier.monthlyPrice === 0
                     ? 'Free'
                     : `$${tier.monthlyPrice}`}
-                  {tier.monthlyPrice && tier.monthlyPrice > 0 && (
+                  {tier.monthlyPrice !== null && tier.monthlyPrice > 0 && (
                     <span className="text-[14px] text-muted font-normal ml-1">/mo</span>
                   )}
                 </div>

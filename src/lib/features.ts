@@ -22,6 +22,8 @@ export type Feature = {
   title: string;
   tagline: string;
   description: string;
+  /** Section id on /features to deep-link to (keeps homepage "See how it works" links working). */
+  anchor?: string;
 };
 
 export const FEATURES: Feature[] = [
@@ -31,15 +33,17 @@ export const FEATURES: Feature[] = [
     title: 'Streaming answers',
     tagline: 'Replies stream in real time.',
     description:
-      'Words appear as they are generated, token by token. No spinners, no blank waiting screen, so the conversation feels immediate.',
+      'Answers appear word by word as they are written — no spinners, no blank waiting screen. The conversation feels instant.',
+    anchor: 'feature-rag',
   },
   {
     slug: 'grounded-rag',
     icon: Search,
     title: 'Grounded answers',
-    tagline: 'Hybrid semantic + keyword RAG.',
+    tagline: 'Answers from your content, with sources.',
     description:
-      'Answers pull from your docs with inline citations, grounded in your content rather than the model\'s guesses. Refreshes automatically as content updates.',
+      'Every answer comes from your own docs and links back to the source — not the model\'s guesses. It refreshes on its own as your content changes.',
+    anchor: 'feature-rag',
   },
   {
     slug: 'bant-scoring',
@@ -47,39 +51,43 @@ export const FEATURES: Feature[] = [
     title: 'BANT lead scoring',
     tagline: 'Every conversation, qualified.',
     description:
-      'Budget, Authority, Need, Timeline scored automatically from natural conversation, no form questions.',
+      'OyeChats scores each conversation on Budget, Authority, Need, and Timeline — read from the chat itself, so visitors never fill out a form.',
+    anchor: 'feature-bant',
   },
   {
     slug: 'live-handoff',
     icon: MessageSquare,
     title: 'Live human handoff',
-    tagline: 'Handoff at the moment of intent.',
+    tagline: 'A person steps in at the right moment.',
     description:
-      'Escalate to a human operator when the BANT score crosses your threshold. Full context handed over instantly.',
+      'When a lead heats up, OyeChats hands the chat to a live teammate in the same thread — with the full transcript and score already in hand.',
+    anchor: 'feature-live-chat',
   },
   {
     slug: 'easy-integration',
     icon: Code,
-    title: 'Easy integration',
-    tagline: 'One script tag. Every stack.',
+    title: 'Easy setup',
+    tagline: 'One script tag. Any website.',
     description:
-      'WordPress, Shopify, Webflow, Next.js, React, Vue, plain HTML, drop OyeChats in with one line.',
+      'Add one line of code and OyeChats goes live — on WordPress, Shopify, Webflow, Next.js, React, Vue, or plain HTML.',
+    anchor: 'feature-integrations',
   },
   {
     slug: 'custom-personality',
     icon: Sparkles,
-    title: 'Custom personality',
-    tagline: 'On-brand every response.',
+    title: 'Your brand voice',
+    tagline: 'Every reply sounds like you.',
     description:
-      'Train OyeChats on your brand voice, FAQs, and product docs. Every response reflects your positioning.',
+      'Set the tone, share your FAQs and product docs, and OyeChats answers in your brand voice — not a generic robot.',
+    anchor: 'feature-rag',
   },
   {
     slug: 'security',
     icon: ShieldCheck,
     title: 'Built-in security',
-    tagline: 'Encrypted end to end.',
+    tagline: 'Encrypted in transit and at rest.',
     description:
-      'TLS in transit, HMAC-signed webhooks, prompt-injection guards, role-based access control.',
+      'Encryption in transit and at rest, signed webhooks, prompt-injection guards, and role-based access — built in, not bolted on.',
   },
   {
     slug: 'analytics',
@@ -93,7 +101,7 @@ export const FEATURES: Feature[] = [
     slug: 'webhooks',
     icon: Webhook,
     title: 'Webhooks & REST API',
-    tagline: 'Ship to your stack.',
+    tagline: 'Send events to your tools.',
     description:
       'Five HMAC-signed event types wired to Zapier, Make, or your own endpoint. REST API for full control.',
   },
@@ -135,7 +143,7 @@ export const SOLUTIONS: Solution[] = [
       'Automatic ticket deflection with a live human fallback',
       'Post-chat survey with a 1 to 5 rating stored per session',
     ],
-    outcome: { metric: 'Up to 60%', label: 'of routine tickets deflected' },
+    outcome: { metric: '24/7', label: 'first-line answers from your own docs — no scripts to maintain' },
     icon: Headphones,
     accent: 'blue',
   },
@@ -155,16 +163,16 @@ export const SOLUTIONS: Solution[] = [
       'Lead capture with name, email, phone, and company fields',
       'Calendly and CRM webhooks for zero-touch follow up',
     ],
-    outcome: { metric: 'Up to 3.4x', label: 'more qualified leads per visitor' },
+    outcome: { metric: '0', label: 'form fields — every lead is BANT-scored from the chat itself' },
     icon: Target,
     accent: 'amber',
   },
   {
     slug: 'docs-assistant',
     category: 'Docs Assistant',
-    title: 'Turn every doc into a chat interface',
+    title: 'Turn every doc into a conversation',
     intro:
-      'Point OyeChats at a docs site, a Notion workspace, or a folder of PDFs. Ship an in-product assistant that always cites its source.',
+      'Point OyeChats at a docs site, a Notion workspace, or a folder of PDFs. Add an in-product assistant that always cites its source.',
     body: [
       'Developers and end users rarely read docs top to bottom. They arrive with a question and want an answer with a link they can trust. OyeChats does exactly that. Hybrid retrieval blends vector similarity with keyword search so acronyms, error codes, and product names always land on the right page.',
       'When your docs change, the recrawl runs on a schedule. The bot stays fresh without a rebuild.',
@@ -175,7 +183,7 @@ export const SOLUTIONS: Solution[] = [
       'Every answer links back to the source doc',
       'Scheduled auto-recrawl keeps the knowledge base current',
     ],
-    outcome: { metric: 'Typically <5s', label: 'to a cited answer' },
+    outcome: { metric: 'Every answer', label: 'links back to the source doc it came from' },
     icon: BookOpen,
     accent: 'violet',
   },
@@ -195,7 +203,7 @@ export const SOLUTIONS: Solution[] = [
       'Canned responses with keyboard shortcuts like /hello',
       'Post-chat rating from 1 to 5 stars, stored per session',
     ],
-    outcome: { metric: 'Typically <25s', label: 'to reach a human' },
+    outcome: { metric: '1 click', label: 'from bot to a human, with the full transcript attached' },
     icon: MessageCircle,
     accent: 'rose',
   },

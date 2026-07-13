@@ -1,8 +1,9 @@
 import Link from 'next/link';
 import { Linkedin, Instagram, Twitter, Github } from 'lucide-react';
 import { FOOTER_COLUMNS } from '@/lib/site';
-import { Chip } from '@/components/ds';
+import { CHANGELOG } from '@/lib/changelog';
 import { Logo } from './Logo';
+import { SystemStatus } from './SystemStatus';
 
 const SOCIAL_LINKS = [
   { label: 'LinkedIn', href: 'https://www.linkedin.com/company/oyechats', icon: Linkedin },
@@ -11,7 +12,7 @@ const SOCIAL_LINKS = [
   { label: 'GitHub', href: 'https://github.com/digibranders', icon: Github },
 ];
 
-const CURRENT_VERSION = 'v3.2.0';
+const LAST_UPDATED = CHANGELOG[0].date;
 
 export default function Footer() {
   return (
@@ -32,21 +33,21 @@ export default function Footer() {
         <div className="grid md:grid-cols-[1.4fr_2fr] gap-10 md:gap-16">
           {/* Brand column */}
           <div className="max-w-sm">
-            <Logo invert size={32} subtitle="/ voltage-paper" />
+            <Logo invert size={32} />
             <p className="type-body-sm text-ink-invert-muted mt-4 leading-relaxed">
               The AI chatbot that qualifies inbound leads with BANT scoring so sales reps only talk
               to buyers.
             </p>
 
             <div className="mt-5 flex items-center gap-3 flex-wrap">
-              <Chip variant="signal">All systems operational</Chip>
+              <SystemStatus />
               <Link
                 href="/changelog"
                 className="type-mono-sm text-ink-invert-muted hover:text-volt-light no-underline inline-flex items-center gap-1.5"
               >
-                <span>{CURRENT_VERSION}</span>
-                <span>·</span>
                 <span>What&apos;s new</span>
+                <span>·</span>
+                <span>{LAST_UPDATED}</span>
               </Link>
             </div>
 
@@ -90,7 +91,7 @@ export default function Footer() {
 
         <div className="mt-16 pt-6 border-t border-white/10 flex flex-col md:flex-row justify-between gap-3 text-[12px] text-ink-invert-muted">
           <div>© {new Date().getFullYear()} OyeChats, a brand of Digibranders Pvt Ltd. All rights reserved.</div>
-          <div className="font-mono">~/oyechats · {CURRENT_VERSION}</div>
+          <div className="font-mono">~/oyechats · updated {LAST_UPDATED}</div>
         </div>
       </div>
 

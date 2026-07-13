@@ -62,10 +62,11 @@ export default function SolutionsPage() {
         <DottedGrid />
         <Container className="relative pt-24 pb-16 md:pt-32 md:pb-24 text-center">
           <h1 className="type-display-2 text-ink max-w-3xl mx-auto">
-            Workflows that drive <GradientText>real</GradientText> business outcomes.
+            Built for support, sales, and <GradientText>everything</GradientText> between.
           </h1>
           <p className="type-body-lg text-ink-2 mt-6 max-w-2xl mx-auto">
-            OyeChats adapts to your use case. Choose a workflow, and let AI handle the conversations that matter.
+            Pick what you need — support, sales, docs, or live chat — and OyeChats handles the
+            conversations that matter.
           </p>
           <div className="mt-9 flex justify-center gap-3 flex-wrap">
             <Button href="/pricing" variant="volt" size="lg">
@@ -79,7 +80,7 @@ export default function SolutionsPage() {
           <div className="mt-16">
             <div className="type-mono-sm text-muted mb-4 flex items-center gap-2 justify-center">
               <span className="w-6 h-px bg-line-2" />
-              <span>Jump to a workflow</span>
+              <span>Jump to a solution</span>
               <span className="w-6 h-px bg-line-2" />
             </div>
             <nav
@@ -182,10 +183,10 @@ export default function SolutionsPage() {
               <span>Get started</span>
             </div>
             <h2 className="type-display-3 text-ink mb-5">
-              Pick a solution, <GradientText>ship it</GradientText> this week.
+              Pick a solution, <GradientText>go live</GradientText> this week.
             </h2>
             <p className="type-body-lg text-ink-2 mb-8 max-w-xl mx-auto">
-              Every OyeChats bot starts free. Upload your docs, embed one script tag, and go live in under five minutes.
+              Every OyeChats bot starts free. Add your docs, paste one script tag, and go live in under five minutes.
             </p>
             <div className="flex justify-center gap-3 flex-wrap">
               <Button href="/pricing" variant="volt" size="lg">

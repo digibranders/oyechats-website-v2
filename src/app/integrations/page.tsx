@@ -76,11 +76,11 @@ export default function IntegrationsPage() {
         <DottedGrid />
         <Container className="relative pt-24 pb-16 md:pt-32 md:pb-20 text-center">
           <h1 className="type-display-2 text-ink max-w-3xl mx-auto">
-            Ships to your <GradientText>stack</GradientText>.
+            Works with your whole <GradientText>setup</GradientText>.
           </h1>
           <p className="type-body-lg text-ink-2 mt-6 max-w-2xl mx-auto">
-            One script tag installs everywhere. Every event pushes to any CRM, automation tool, or
-            analytics platform.
+            One script tag installs everywhere. Every event is sent straight to your CRM, automation
+            tool, or analytics platform.
           </p>
           <div className="mt-8 max-w-md mx-auto relative">
             <Search size={16} className="absolute left-4 top-1/2 -translate-y-1/2 text-muted-2" aria-hidden />
@@ -118,7 +118,8 @@ export default function IntegrationsPage() {
       <Section tone="paper" containerSize="wide">
         {filtered.length === 0 ? (
           <div className="type-body text-muted text-center py-16">
-            No integrations match your search.
+            No integrations match your search yet. Try a different name, or clear the filters to see
+            everything. Every event also ships to any tool via signed webhooks.
           </div>
         ) : (
           <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-4">

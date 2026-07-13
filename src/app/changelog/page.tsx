@@ -5,7 +5,7 @@ import { CHANGELOG, type ChangelogEntry } from '@/lib/changelog';
 export const metadata: Metadata = {
   title: 'Changelog',
   description:
-    'OyeChats product updates and release notes. New features, improvements, and fixes shipped every two weeks.',
+    'OyeChats product updates and release notes — new features, improvements, and fixes as they ship.',
   alternates: { canonical: '/changelog' },
 };
 
@@ -28,7 +28,7 @@ export default function ChangelogPage() {
             What&apos;s <GradientText>new</GradientText> in OyeChats.
           </h1>
           <p className="type-body-lg text-ink-2 mt-6 max-w-2xl mx-auto">
-            Weekly product updates for the OyeChats platform, widget, and admin. New features,
+            Product updates for the OyeChats platform, widget, and dashboard — new features,
             improvements, and fixes as they ship.
           </p>
         </Container>
@@ -64,7 +64,7 @@ export default function ChangelogPage() {
                             {tag}
                           </Chip>
                         ))}
-                        <span className="type-mono-sm text-muted ml-auto">{entry.version}</span>
+                        <span className="type-mono-sm text-muted ml-auto">{entry.date}</span>
                       </div>
                       <h2 className="type-heading-1 text-ink mb-3">{entry.title}</h2>
                       <p className="type-body text-ink-2 mb-6">{entry.description}</p>
@@ -75,7 +75,6 @@ export default function ChangelogPage() {
                           </div>
                           <div className="text-xs">
                             <div className="text-ink font-medium">{entry.author.name}</div>
-                            <div className="text-muted">{entry.date}</div>
                           </div>
                         </div>
                         <a

@@ -11,6 +11,7 @@ import {
   DottedGrid,
   GradientText,
   HeroGlow,
+  NumberTicker,
   Reveal,
   Section,
   Table,
@@ -82,38 +83,55 @@ export default function PricingPage() {
           {PRICING_TIERS.map((tier, i) => {
             const price = annual ? tier.annualPrice : tier.monthlyPrice;
             return (
-              <Reveal key={tier.id} delay={i * 80}>
+              <Reveal key={tier.id} delay={i * 80} className="h-full">
                 <div
-                  className={`bg-canvas rounded-[var(--r-4)] p-7 shadow-[var(--e-1)] flex flex-col relative h-full ${
-                    tier.featured ? 'border-[1.5px] border-volt border-beam' : 'border border-line'
+                  className={`group relative h-full flex flex-col rounded-[var(--r-4)] p-7 bg-canvas transition-[transform,box-shadow,border-color] duration-300 ${
+                    tier.featured
+                      ? 'border-[1.5px] border-volt shadow-[0_24px_70px_-28px_rgba(162,28,175,0.45)] hover:shadow-[0_30px_80px_-24px_rgba(162,28,175,0.55)] hover:-translate-y-1.5'
+                      : 'border border-line shadow-[var(--e-1)] hover:border-line-2 hover:shadow-[var(--e-2)] hover:-translate-y-1'
                   }`}
                 >
                   {tier.featured && tier.badge && (
-                    <span className="absolute top-4 right-4 font-mono text-[10px] font-medium text-volt-ink bg-volt-tint px-2 py-1 rounded-[var(--r-1)] border border-volt-line animate-badge-glow">
+                    <span className="absolute -top-3 left-1/2 -translate-x-1/2 inline-flex items-center gap-1.5 px-3 py-1 rounded-[var(--r-full)] bg-volt text-white font-mono text-[10px] font-semibold tracking-wide whitespace-nowrap shadow-[0_8px_20px_-6px_rgba(162,28,175,0.7)]">
+                      <span className="w-1.5 h-1.5 rounded-full bg-white/90 animate-pulse" />
                       {tier.badge}
                     </span>
                   )}
+
                   <div className="type-mono-sm text-muted mb-3">{tier.name}</div>
-                  <div className="font-display font-semibold text-[36px] leading-none text-ink tabular-nums mb-1 tracking-[-0.03em]">
-                    {price === null ? 'Custom' : price === 0 ? 'Free' : `$${price}`}
+
+                  <div className="flex items-baseline gap-1.5 mb-1 min-h-[42px]">
+                    <span className="font-display font-semibold text-[40px] leading-none text-ink tabular-nums tracking-[-0.03em]">
+                      {price === null ? (
+                        'Custom'
+                      ) : price === 0 ? (
+                        'Free'
+                      ) : (
+                        <NumberTicker key={annual ? 'annual' : 'monthly'} value={price} prefix="$" duration={900} />
+                      )}
+                    </span>
                     {price !== null && price > 0 && (
-                      <span className="text-[13px] text-muted font-normal ml-1">/mo</span>
+                      <span className="text-[13px] text-muted font-normal">/mo</span>
                     )}
                   </div>
-                  {annual && tier.annualTotal !== null && tier.annualTotal > 0 && (
-                    <div className="type-mono-sm text-muted mb-1">
-                      Billed ${tier.annualTotal}/yr
-                    </div>
-                  )}
-                  <p className="type-body-sm text-muted mb-5">{tier.tagline}</p>
-                  <ul className="space-y-2.5 mb-6 flex-1">
+
+                  {annual && tier.annualTotal !== null && tier.annualTotal > 0 ? (
+                    <div className="type-mono-sm text-muted mb-1">Billed ${tier.annualTotal}/yr</div>
+                  ) : null}
+
+                  <p className="type-body-sm text-muted mb-6 mt-1">{tier.tagline}</p>
+
+                  <ul className="space-y-2.5 mb-7 flex-1">
                     {tier.features.map((f) => (
-                      <li key={f} className="type-body-sm text-ink-2 flex items-start gap-2">
-                        <span className="font-mono text-signal font-semibold mt-0.5">✓</span>
+                      <li key={f} className="type-body-sm text-ink-2 flex items-start gap-2.5">
+                        <span className="mt-0.5 inline-flex items-center justify-center w-4 h-4 rounded-full bg-signal-tint text-signal shrink-0">
+                          <Check size={11} strokeWidth={3} />
+                        </span>
                         <span>{f}</span>
                       </li>
                     ))}
                   </ul>
+
                   <Button
                     href={tier.ctaHref}
                     external={tier.ctaHref.startsWith('http')}
@@ -244,7 +262,7 @@ export default function PricingPage() {
               <span>Enterprise</span>
             </div>
             <h2 className="type-display-3 text-ink-invert-fg mb-4">
-              Custom volume. <span className="text-volt">Dedicated CSM.</span>
+              Custom volume. <span className="text-volt">A dedicated manager.</span>
             </h2>
             <p className="type-body-lg text-ink-invert-muted max-w-lg">
               Unlimited chatbots, unlimited seats, custom SLA, and a dedicated account manager.

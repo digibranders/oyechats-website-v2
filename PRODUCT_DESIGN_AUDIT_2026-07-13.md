@@ -7,6 +7,37 @@
 
 ---
 
+## ⟳ RE-AUDIT #2 — 2026-07-13 (later same day)
+
+**The truth problem is essentially solved.** A re-scan of the current source shows nearly every false/misleading claim from the table in §15 has been removed or reframed — most by follow-up edits after the first audit. **The verdict flips from "premium shell, false core" to "premium shell, honest core — now finish the craft and add real screenshots."**
+
+**Resolved since the first pass (verified in source):**
+- 🔴 **SOC 2 Type II** — gone from the hero *and* features page (grep: zero `soc2` hits site-wide).
+- 🔴 **Self-hosted**, 🔴 **"handoff across 5 channels"**, 🔴 **"30+ platforms"**, 🔴 **`npx oyechats init` CLI**, 🔴 **"connected · 12 regions"** — all gone.
+- 🟠 **Blanket "99.9% SLA"** → *"Uptime target."* 🟠 **Announcement bar** fully rewritten to 6 true claims (auto-recrawl, BANT-per-conversation, same-thread handoff, 5 signed webhooks, any-site-one-tag, live-in-minutes) + internal "Voltage Paper v1.0" jargon removed.
+- 🟡 **Fabricated homepage metrics** (87%/3×/<2min) → verifiable stack specs. 🟡 **Fabricated solutions metrics** (60%/3.4x/<5s/<25s) → honest qualitative facts (24/7, 0 form fields, 1 click).
+- 🟠 **Live console** → explicit `SAMPLE` / *"illustrative — not live customer data."*
+- **Footer "/ voltage-paper" codename leak** — gone. **Fabricated changelog personas** ("Steve · Ingestion", "Priya") → honest team attribution. **Broken feature-card anchors** — fixed.
+- ⭐ **Hero upgraded** from a static illustration to an interactive, honestly-labeled **`HeroDemo`** ("demo") whose every scripted line is code-true (5 HMAC webhook types, cited hybrid retrieval, one-tag/5-min setup, same-thread handoff). This is the biggest single authenticity gain — it now *demonstrates* real capability instead of describing an invented one.
+
+**Still open (one remains):**
+- ✅ ~~Static "All systems operational" chip~~ — **FIXED 2026-07-13.** Replaced with a live `<SystemStatus />` component that polls a same-origin `/api/status` proxy → real platform `GET api.oyechats.com/health`. Maps `healthy`→green "All systems operational", `degraded`→amber "Partial degradation", `503/unhealthy`→red "Service disruption", unreachable→neutral "Status unavailable" (never falsely green). Server-side proxy is CDN-cached 30s so per-visitor polling never touches the platform DB. Verified live: endpoint returns `{"status":"healthy"}` / 200.
+- 🔺 **No real product screenshots** — `public/images/` is *still empty*. `HeroDemo` softens this a lot (it shows the real arc), but there is still not one actual dashboard/widget capture. This is now the #1 remaining gap and the last thing standing between "honest and polished" and "Series-A credible."
+
+**Updated scorecard (supersedes §0 where they differ):**
+
+| Dimension | Was | Now | Why the move |
+|---|---|---|---|
+| Trust | 3.0 | **7.0** | Active falsehoods removed; honest security/pricing framing; still no customers/logos |
+| Authenticity / Substance | 3.0 | **6.5** | Interactive true-copy `HeroDemo` + honest metrics; still no real screenshots |
+| Product Story | 6.0 | **7.5** | Hero now shows the real question→cite→score→route arc; ingest step shows the real script tag |
+| Content | — | **8.0** | Metrics now concrete and true |
+| Perceived Premium (net) | 6.5 | **8.0** | Top-decile shell no longer undermined by lies |
+
+**Unchanged (design-craft items, not addressed — this is where the next work is):** single-accent icon-chip monotony, template-cadence layout (eyebrow→heading→grid ×6), one-radius/one-elevation system that never breaks itself, no ownable brand device beyond color. See §2, §5, §8, §9. The remaining path to world-class is now **craft, not honesty.**
+
+---
+
 ## 0. Executive Summary
 
 This is **not** a vibe-coded, shadcn-default template. The `Voltage Paper` design system (`globals.css`) is opinionated and hand-authored: a warm paper canvas (`#FAFAF7`), near-black ink, a single electric-violet accent (`#A21CAF`), a custom five-step type scale, bespoke motion tokens, and a considered elevation ramp. On pure execution it sits in the top ~10% of B2B SaaS marketing sites. The `Button`, `Navbar` mega-menu, and `FinalCTA` "live console" are craft, not assembly.
@@ -200,11 +231,12 @@ This is the section the review was explicitly commissioned for. Each row is cros
 | 8 | **"87%" qualified meetings · "3×" fewer · "<2 min"** | `page.tsx:214-217` | No substantiation anywhere in code. Invented. **✅ FIXED 2026-07-13:** dark band reframed *"Numbers that move"* → *"Numbers you can verify"* with four true, verifiable stack specs (768 vector dims, 200 free credits, 3 doc formats, 2 crawl engines). | 🟡→✅ |
 | 9 | **"Up to 60%" deflection · "Up to 3.4x" leads · "<5s" · "<25s"** | `features.ts:138/158/178/198` | No benchmarks or measured numbers in code. | 🟡 |
 | 10 | **Live console feed** (342 quals, fake domains, 87% handoff) | `FinalCTA.tsx` | Fully fabricated. Mitigated by a small "demo signals · anonymized" caption, but visually presents as real telemetry. **✅ FIXED 2026-07-13:** reframed as an explicit sample — `live-feed`→`sample-feed`, green `LIVE`→muted `SAMPLE`, `Recent`→`Example qualifications`, `stream · realtime`→`illustrative`, caption→*"Illustrative sample — not live customer data"* (design retained). | 🟠→✅ |
-| 11 | **"All systems operational"** (always green) | `Footer.tsx:42` | Hardcoded chip; no status page or health source behind it. | 🟠 |
+| 11 | **"All systems operational"** (always green) | `Footer.tsx:42` | Hardcoded chip; no status page or health source behind it. **✅ FIXED 2026-07-13:** now a live `<SystemStatus />` reading `api.oyechats.com/health` via a cached same-origin proxy (`/api/status`); reflects real operational/degraded/down/unknown and never shows green unless the platform reports healthy. | 🟠→✅ |
 | 12 | **"Data encrypted at rest … (AES-256)"** | `security/page.tsx:78` | Defensible at the *storage* layer (R2/disk-level), but design docs state **"No app-level encryption for stored secrets — TODO."** Framing implies more than exists. | 🟡 |
 | 13 | **"Optional reranking and relevance filtering"** | `features/page.tsx:136` | Reranker exists (`reranker.py`) but is **off by default** and was historically non-functional until a recent fix. | 🟡 |
 | 14 | **Pricing drift** — Standard "$39/mo" · annual "$31/mo ($372/yr)" · top-up "$239" | `lib/pricing.ts` | **Corrected after full migration-chain verification** (the live `plans` table is source-of-truth; the earlier `preflight_plan_migration.py` numbers were stale). Credits & bot counts on the site are actually **CORRECT** (Free 200, Starter 2,000, Standard 1 bot). The real drift is **price**: platform bills **$49/mo** Standard, **$39/mo ($468/yr)** annual, **$249** top-up. Site shows *lower* prices than checkout charges. **Decision (owner, 2026-07-13): HOLD the site — platform pricing will be updated later to match the site.** No website change. | 🟠→⏸ |
-| 15 | Fabricated changelog authors ("Steve · Ingestion", "Priya") | `lib/changelog.ts` | Invented personas on otherwise-real releases. | 🟡 |
+| 15 | Fabricated changelog authors ("Steve · Ingestion", "Priya") | `lib/changelog.ts` | Invented personas on otherwise-real releases. **✅ FIXED:** → honest team attribution. | 🟡→✅ |
+| 16 | **Fabricated version numbers & impossible dates** (v2.4.0→v3.2.0; footer `v3.2.0`) | `lib/changelog.ts`, `Footer.tsx` | **Content real, versioning invented.** Platform `pyproject.toml` = **0.1.0**, live `/health` = **1.0.0**, **zero git tags**, no CHANGELOG — the whole v2.4→v3.2 progression is manufactured (exactly 2 entries/version = hand-authored tell). Two oldest entries were dated **before the codebase's first commit** (repo starts 2026-03-26; "Hybrid retrieval" claimed Mar 5, "BANT" claimed Mar 20 — real first commits Mar 28 / Mar 30). **✅ FIXED 2026-07-13:** dropped all version numbers → date-based changelog; corrected the two impossible dates (→Mar 28 / Mar 30); footer shows real "updated {latest date}" instead of `v3.2.0`. | 🟠→✅ |
 
 ### Claims that are TRUE and safe to keep (affirmed by code — lead with these)
 
