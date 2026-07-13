@@ -89,7 +89,7 @@ export default function Home() {
       </section>
 
       {/* ═══════════════════════ STATS BAND ═══════════════════════ */}
-      <Section tone="canvas" className="py-16 md:py-20">
+      <Section tone="canvas" className="py-8 md:py-10">
         <div className="grid grid-cols-2 md:grid-cols-4 gap-y-10 gap-x-6 max-w-4xl mx-auto text-center md:divide-x divide-line">
           <StatBand k="BANT range" v="0–100" />
           <StatBand k="Setup time" v="< 10 min" />
