@@ -22,7 +22,6 @@ import {
   DottedGrid,
   GradientText,
   HeroGlow,
-  MonoMark,
   Section,
 } from '@/components/ds';
 import { APP_LINKS } from '@/lib/site';
@@ -89,10 +88,6 @@ export default function FeaturesPage() {
         <HeroGlow />
         <DottedGrid />
         <Container className="relative pt-24 pb-16 md:pt-32 md:pb-20 text-center">
-          <div className="flex justify-center gap-2 mb-6">
-            <MonoMark>~/oyechats · features</MonoMark>
-            <Chip variant="soft">6 modules · 1 workflow</Chip>
-          </div>
           <h1 className="type-display-2 text-ink max-w-3xl mx-auto">
             Everything you need to <GradientText>ship</GradientText>.
           </h1>

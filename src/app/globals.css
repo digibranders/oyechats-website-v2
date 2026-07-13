@@ -26,6 +26,7 @@
   /* ── Volt (primary accent) ── */
   --volt: #A21CAF;
   --volt-2: #86198F;
+  --volt-light: #D946EF; /* brighter violet for hover/accents on dark surfaces */
   --volt-tint: #FDF4FF;
   --volt-line: #F0ABFC;
   --volt-ink: #701A75;
@@ -73,6 +74,7 @@
 
   --color-volt: var(--volt);
   --color-volt-2: var(--volt-2);
+  --color-volt-light: var(--volt-light);
   --color-volt-tint: var(--volt-tint);
   --color-volt-line: var(--volt-line);
   --color-volt-ink: var(--volt-ink);
@@ -205,8 +207,43 @@ body {
 
 ::selection { background: var(--volt-tint); color: var(--volt-ink); }
 
-a { color: var(--volt); text-underline-offset: 3px; text-decoration-thickness: 1px; }
-a:hover { color: var(--volt-2); text-decoration-thickness: 2px; }
+/* Base link styling lives in @layer base so Tailwind color utilities
+   (text-paper, text-ink-2, …) override it. Bare inline/prose links still
+   default to volt; links that set an explicit color class win. */
+@layer base {
+  a { color: var(--volt); text-underline-offset: 3px; text-decoration-thickness: 1px; }
+  a:hover { color: var(--volt-2); text-decoration-thickness: 2px; }
+
+  /* Every interactive element gets a pointer cursor (modern browsers and
+     Tailwind Preflight no longer do this for <button> by default). Lives in
+     @layer base so an explicit cursor-* utility still overrides it. */
+  button:not(:disabled),
+  [role="button"]:not([aria-disabled="true"]),
+  [role="option"],
+  [role="menuitem"],
+  [role="menuitemcheckbox"],
+  [role="menuitemradio"],
+  [role="tab"],
+  [role="switch"],
+  a[href],
+  summary,
+  label[for],
+  select:not(:disabled),
+  input[type="checkbox"]:not(:disabled),
+  input[type="radio"]:not(:disabled),
+  input[type="submit"]:not(:disabled),
+  input[type="button"]:not(:disabled),
+  input[type="reset"]:not(:disabled),
+  input[type="file"]:not(:disabled) {
+    cursor: pointer;
+  }
+
+  button:disabled,
+  [aria-disabled="true"],
+  [role="button"][aria-disabled="true"] {
+    cursor: not-allowed;
+  }
+}
 
 :focus-visible {
   outline: none;
@@ -298,10 +335,10 @@ img { max-width: 100%; display: block; }
   width: 1200px; height: 600px;
   border-radius: 50%;
   background: radial-gradient(ellipse at center,
-    rgba(162,28,175,.35) 0%,
-    rgba(162,28,175,.15) 30%,
-    transparent 60%);
-  filter: blur(60px);
+    rgba(162,28,175,.14) 0%,
+    rgba(162,28,175,.06) 30%,
+    transparent 62%);
+  filter: blur(80px);
   transform: translate(-50%, -50%);
   animation: glow-drift 12s ease-in-out infinite;
 }

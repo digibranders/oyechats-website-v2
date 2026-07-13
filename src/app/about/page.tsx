@@ -6,7 +6,6 @@ import {
   DottedGrid,
   GradientText,
   HeroGlow,
-  MonoMark,
   PullQuote,
   Section,
 } from '@/components/ds';
@@ -74,8 +73,7 @@ export default function AboutPage() {
         <HeroGlow />
         <DottedGrid />
         <Container className="relative pt-24 pb-24 md:pt-32 md:pb-32 text-center">
-          <MonoMark>~/oyechats · about</MonoMark>
-          <h1 className="type-display-2 text-ink max-w-3xl mx-auto mt-6">
+          <h1 className="type-display-2 text-ink max-w-3xl mx-auto">
             We&apos;re defining the AI era of{' '}
             <GradientText>customer conversations</GradientText>.
           </h1>

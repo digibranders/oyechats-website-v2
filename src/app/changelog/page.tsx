@@ -1,5 +1,5 @@
 import type { Metadata } from 'next';
-import { Chip, Container, DottedGrid, GradientText, HeroGlow, MonoMark } from '@/components/ds';
+import { Chip, Container, DottedGrid, GradientText, HeroGlow } from '@/components/ds';
 import { CHANGELOG, type ChangelogEntry } from '@/lib/changelog';
 
 export const metadata: Metadata = {
@@ -24,8 +24,7 @@ export default function ChangelogPage() {
         <HeroGlow size="sm" />
         <DottedGrid />
         <Container className="relative pt-24 pb-16 md:pt-32 md:pb-20 text-center">
-          <MonoMark>~/oyechats · changelog</MonoMark>
-          <h1 className="type-display-2 text-ink max-w-3xl mx-auto mt-6">
+          <h1 className="type-display-2 text-ink max-w-3xl mx-auto">
             What&apos;s <GradientText>new</GradientText> in OyeChats.
           </h1>
           <p className="type-body-lg text-ink-2 mt-6 max-w-2xl mx-auto">

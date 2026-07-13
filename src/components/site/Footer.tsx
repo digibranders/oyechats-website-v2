@@ -42,7 +42,7 @@ export default function Footer() {
               <Chip variant="signal">All systems operational</Chip>
               <Link
                 href="/changelog"
-                className="type-mono-sm text-ink-invert-muted hover:text-volt no-underline inline-flex items-center gap-1.5"
+                className="type-mono-sm text-ink-invert-muted hover:text-volt-light no-underline inline-flex items-center gap-1.5"
               >
                 <span>{CURRENT_VERSION}</span>
                 <span>·</span>
@@ -58,7 +58,7 @@ export default function Footer() {
                   target="_blank"
                   rel="noopener noreferrer"
                   aria-label={s.label}
-                  className="w-9 h-9 rounded-[var(--r-2)] border border-white/10 bg-white/5 flex items-center justify-center text-ink-invert-fg hover:bg-white/10 hover:border-white/25 hover:text-volt transition-colors"
+                  className="w-9 h-9 rounded-[var(--r-2)] border border-white/10 bg-white/5 flex items-center justify-center text-ink-invert-fg hover:bg-white/10 hover:border-white/25 hover:text-volt-light transition-colors"
                 >
                   <s.icon size={14} />
                 </a>
@@ -76,7 +76,7 @@ export default function Footer() {
                     <li key={l.href}>
                       <Link
                         href={l.href}
-                        className="text-[13px] text-paper no-underline hover:text-volt"
+                        className="text-[13px] text-paper no-underline hover:text-volt-light"
                       >
                         {l.label}
                       </Link>

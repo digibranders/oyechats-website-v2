@@ -7,7 +7,6 @@ import {
   DottedGrid,
   GradientText,
   HeroGlow,
-  MonoMark,
   Reveal,
   Section,
 } from '@/components/ds';
@@ -27,8 +26,7 @@ export default function CustomersPage() {
         <HeroGlow size="sm" />
         <DottedGrid />
         <Container className="relative pt-24 pb-16 md:pt-32 md:pb-24 text-center">
-          <MonoMark>~/oyechats · use-cases</MonoMark>
-          <h1 className="type-display-2 text-ink max-w-3xl mx-auto mt-6">
+          <h1 className="type-display-2 text-ink max-w-3xl mx-auto">
             Built for teams that turn chat into <GradientText>pipeline</GradientText>.
           </h1>
           <p className="type-body-lg text-ink-2 mt-6 max-w-2xl mx-auto">

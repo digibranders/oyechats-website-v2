@@ -1,6 +1,6 @@
 import Link from 'next/link';
 import { ReactNode } from 'react';
-import { Chip, Container, MonoMark } from '@/components/ds';
+import { Chip, Container } from '@/components/ds';
 import { LEGAL_PAGES } from '@/lib/legal';
 import type { LegalPage } from '@/lib/legal';
 
@@ -39,8 +39,7 @@ export function LegalDocument({ page }: { page: LegalPage }) {
     <>
       <section className="bg-paper border-b border-line pt-16 pb-12 md:pt-24 md:pb-16">
         <Container>
-          <MonoMark>~/oyechats · legal / {page.slug}</MonoMark>
-          <h1 className="type-display-3 text-ink mt-6 max-w-3xl">{page.title}</h1>
+          <h1 className="type-display-3 text-ink max-w-3xl">{page.title}</h1>
           <p className="type-body-lg text-ink-2 mt-4 max-w-2xl">{page.description}</p>
           <div className="mt-6 flex gap-2 flex-wrap">
             <Chip variant="outline">Last updated · {page.lastUpdated}</Chip>

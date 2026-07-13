@@ -10,7 +10,6 @@ import {
   GradientText,
   HeroGlow,
   Input,
-  MonoMark,
   Section,
 } from '@/components/ds';
 import {
@@ -76,10 +75,6 @@ export default function IntegrationsPage() {
         <HeroGlow size="sm" />
         <DottedGrid />
         <Container className="relative pt-24 pb-16 md:pt-32 md:pb-20 text-center">
-          <div className="flex justify-center gap-2 mb-6">
-            <MonoMark>~/oyechats · integrations</MonoMark>
-            <Chip variant="soft">{INTEGRATIONS.length}+ integrations</Chip>
-          </div>
           <h1 className="type-display-2 text-ink max-w-3xl mx-auto">
             Ships to your <GradientText>stack</GradientText>.
           </h1>

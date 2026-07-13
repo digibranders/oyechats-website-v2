@@ -140,7 +140,7 @@ export function FinalCTA() {
           </span>
         </h2>
 
-        <p className="text-center type-body-lg text-ink-invert-muted max-w-[540px] mx-auto mt-6">
+        <p className="text-center type-body-lg text-ink-invert-muted max-w-[680px] mx-auto mt-6">
           Deploy OyeChats to your site in under 10 minutes. First qualified lead in the same hour.
           Every visitor scored, routed, and reported.
         </p>
@@ -156,7 +156,7 @@ export function FinalCTA() {
 
         {/* ═══════════════════════ LIVE CONSOLE ═══════════════════════ */}
         <div className="mt-20 max-w-5xl mx-auto">
-          <div className="relative rounded-[var(--r-4)] overflow-hidden border border-white/12 bg-white/[0.03] backdrop-blur-xl shadow-[0_40px_120px_-40px_rgba(162,28,175,0.5),inset_0_1px_0_rgba(255,255,255,0.08)]">
+          <div className="relative rounded-[var(--r-4)] overflow-hidden border border-white/12 bg-white/[0.03] backdrop-blur-xl shadow-[0_32px_80px_-32px_rgba(0,0,0,0.55),0_16px_48px_-24px_rgba(162,28,175,0.22),inset_0_1px_0_rgba(255,255,255,0.08)]">
             {/* Console chrome */}
             <div className="h-11 px-5 flex items-center justify-between border-b border-white/8">
               <div className="flex items-center gap-3">

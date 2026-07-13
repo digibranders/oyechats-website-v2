@@ -1,14 +1,12 @@
 import Link from 'next/link';
-import { ArrowRight, Sparkles } from 'lucide-react';
+import { ArrowRight } from 'lucide-react';
 import { FinalCTA } from '@/components/site/FinalCTA';
 import {
   Button,
   Card,
-  Chip,
   Container,
   GradientText,
   HeroGlow,
-  MonoMark,
   NumberTicker,
   Reveal,
   Section,
@@ -22,7 +20,6 @@ import {
   BantScoreRing,
   DottedGrid,
   DataFlowLine,
-  LogoCloud,
 } from '@/components/ds';
 import { FEATURES } from '@/lib/features';
 import { PRICING_TIERS } from '@/lib/pricing';
@@ -39,15 +36,6 @@ export default function Home() {
         <Container className="relative pt-24 pb-32 md:pt-32 md:pb-40">
           <div className="grid lg:grid-cols-[1.15fr_1fr] gap-16 items-center">
             <div>
-              <Reveal>
-                <div className="flex gap-2 flex-wrap mb-6">
-                  <MonoMark>~/oyechats</MonoMark>
-                  <span className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-[var(--r-1)] bg-volt-tint border border-volt-line text-[12px] text-volt-ink font-medium animate-badge-glow">
-                    <Sparkles size={11} className="text-volt" /> v4.2 shipped
-                  </span>
-                  <Chip variant="signal">Live</Chip>
-                </div>
-              </Reveal>
               <Reveal delay={80}>
                 <h1 className="type-display-1 text-ink">
                   You only talk to <GradientText>buyers</GradientText>.
@@ -64,20 +52,9 @@ export default function Home() {
                   <Button href={APP_LINKS.register} external variant="volt" size="lg">
                     Start free <ArrowRight size={16} />
                   </Button>
-                  <Button href="/contact" variant="ghost" size="lg">
-                    Book demo
-                  </Button>
                   <Button href="/docs" variant="link" size="lg">
                     Read the docs →
                   </Button>
-                </div>
-              </Reveal>
-              <Reveal delay={320}>
-                <div className="mt-12 pt-6 border-t border-line grid grid-cols-2 md:grid-cols-4 gap-6">
-                  <StatMini k="BANT range" v="0–100" />
-                  <StatMini k="Setup time" v="< 10 min" />
-                  <StatMini k="Webhook events" v="5 types" />
-                  <StatMini k="Uptime SLA" v="99.9%" />
                 </div>
               </Reveal>
             </div>
@@ -111,21 +88,14 @@ export default function Home() {
         </Container>
       </section>
 
-      {/* ═══════════════════════ LOGO CLOUD ═══════════════════════ */}
-      <Section tone="canvas" className="py-14 md:py-16">
-        <div className="type-mono-sm text-muted text-center mb-8">
-          Trusted by revenue teams at
+      {/* ═══════════════════════ STATS BAND ═══════════════════════ */}
+      <Section tone="canvas" className="py-16 md:py-20">
+        <div className="grid grid-cols-2 md:grid-cols-4 gap-y-10 gap-x-6 max-w-4xl mx-auto text-center md:divide-x divide-line">
+          <StatBand k="BANT range" v="0–100" />
+          <StatBand k="Setup time" v="< 10 min" />
+          <StatBand k="Webhook events" v="5 types" />
+          <StatBand k="Uptime SLA" v="99.9%" />
         </div>
-        <LogoCloud
-          logos={[
-            { name: 'Acme' },
-            { name: 'Northwind' },
-            { name: 'Quill' },
-            { name: 'Fabrikam' },
-            { name: 'Contoso' },
-            { name: 'Vercel' },
-          ]}
-        />
       </Section>
 
       {/* ═══════════════════════ FEATURE BENTO ═══════════════════════ */}
@@ -343,11 +313,13 @@ export default function Home() {
   );
 }
 
-function StatMini({ k, v }: { k: string; v: string }) {
+function StatBand({ k, v }: { k: string; v: string }) {
   return (
-    <div>
-      <div className="type-mono-sm text-muted">{k}</div>
-      <div className="font-display font-semibold text-[16px] text-ink mt-0.5">{v}</div>
+    <div className="px-2">
+      <div className="font-display font-semibold text-[32px] md:text-[38px] leading-none text-ink tracking-[-0.02em]">
+        {v}
+      </div>
+      <div className="type-mono-sm text-muted mt-2">{k}</div>
     </div>
   );
 }

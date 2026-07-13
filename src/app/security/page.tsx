@@ -15,12 +15,10 @@ import {
   type LucideIcon,
 } from 'lucide-react';
 import {
-  Chip,
   Container,
   DottedGrid,
   GradientText,
   HeroGlow,
-  MonoMark,
   Section,
 } from '@/components/ds';
 
@@ -97,10 +95,6 @@ export default function SecurityPage() {
         <HeroGlow size="sm" />
         <DottedGrid />
         <Container className="relative pt-24 pb-16 md:pt-32 md:pb-24 text-center">
-          <div className="flex justify-center gap-2 mb-6">
-            <MonoMark>~/oyechats · security</MonoMark>
-            <Chip variant="signal">All systems operational</Chip>
-          </div>
           <h1 className="type-display-2 text-ink max-w-3xl mx-auto">
             Enterprise-grade <GradientText>security</GradientText>.
           </h1>

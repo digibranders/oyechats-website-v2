@@ -7,7 +7,6 @@ import {
   DottedGrid,
   GradientText,
   HeroGlow,
-  MonoMark,
   Table,
   Th,
   Td,
@@ -68,8 +67,7 @@ export default function DocsPage() {
         <HeroGlow size="sm" />
         <DottedGrid />
         <Container className="relative pt-24 pb-16 md:pt-32 md:pb-20 text-center">
-          <MonoMark>~/oyechats · docs</MonoMark>
-          <h1 className="type-display-2 text-ink max-w-3xl mx-auto mt-6">
+          <h1 className="type-display-2 text-ink max-w-3xl mx-auto">
             Everything you need to <GradientText>ship</GradientText>.
           </h1>
           <p className="type-body-lg text-ink-2 mt-6 max-w-2xl mx-auto">

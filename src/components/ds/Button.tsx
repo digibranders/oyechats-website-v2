@@ -12,9 +12,9 @@ const variants: Record<Variant, string> = {
   // Primary, ink fill with subtle inner highlight
   primary:
     'bg-ink text-paper shadow-[inset_0_1px_0_rgba(255,255,255,0.06),0_1px_2px_rgba(11,16,32,0.14)] hover:bg-[#1F1F22] hover:shadow-[inset_0_1px_0_rgba(255,255,255,0.08),0_6px_16px_-4px_rgba(11,16,32,0.28)]',
-  // Volt, bright accent with soft violet glow baked in. Label ALWAYS white.
+  // Volt, bright accent, flat fill with a crisp ring + inner highlight (no glow). Label ALWAYS white.
   volt:
-    '!text-white bg-volt shadow-[0_0_0_1px_rgba(134,25,143,0.5),0_10px_28px_-8px_rgba(162,28,175,0.60),inset_0_1px_0_rgba(255,255,255,0.20)] hover:bg-volt-2 hover:shadow-[0_0_0_1px_rgba(112,26,117,0.65),0_16px_36px_-8px_rgba(162,28,175,0.75),inset_0_1px_0_rgba(255,255,255,0.25)]',
+    '!text-white bg-volt shadow-[0_0_0_1px_rgba(134,25,143,0.5),inset_0_1px_0_rgba(255,255,255,0.20)] hover:bg-volt-2 hover:shadow-[0_0_0_1px_rgba(112,26,117,0.65),inset_0_1px_0_rgba(255,255,255,0.25)]',
   // Ghost, sits on canvas so it always reads; darker border, tinted hover
   ghost:
     'bg-canvas text-ink border border-line-2 shadow-[0_1px_2px_rgba(11,16,32,0.04)] hover:bg-paper hover:border-ink hover:text-ink hover:shadow-[0_4px_12px_-2px_rgba(11,16,32,0.08)]',

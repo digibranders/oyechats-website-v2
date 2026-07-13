@@ -1,6 +1,6 @@
 import type { Metadata } from 'next';
 import Link from 'next/link';
-import { Chip, Container, DottedGrid, MonoMark } from '@/components/ds';
+import { Chip, Container, DottedGrid } from '@/components/ds';
 import { LEGAL_PAGES } from '@/lib/legal';
 
 export const metadata: Metadata = {
@@ -15,8 +15,7 @@ export default function LegalIndex() {
       <section className="relative bg-paper overflow-hidden border-b border-line">
         <DottedGrid />
         <Container className="relative pt-24 pb-16 md:pt-32 md:pb-20">
-          <MonoMark>~/oyechats · legal</MonoMark>
-          <h1 className="type-display-2 text-ink max-w-3xl mt-6">Legal.</h1>
+          <h1 className="type-display-2 text-ink max-w-3xl">Legal.</h1>
           <p className="type-body-lg text-ink-2 mt-6 max-w-2xl">
             Everything you can send to your legal team. Plain language. No hidden clauses.
           </p>

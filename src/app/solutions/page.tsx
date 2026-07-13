@@ -8,7 +8,6 @@ import {
   DottedGrid,
   GradientText,
   HeroGlow,
-  MonoMark,
 } from '@/components/ds';
 import { SOLUTIONS, type Solution } from '@/lib/features';
 
@@ -62,8 +61,7 @@ export default function SolutionsPage() {
         <HeroGlow size="sm" />
         <DottedGrid />
         <Container className="relative pt-24 pb-16 md:pt-32 md:pb-24 text-center">
-          <MonoMark>~/oyechats · solutions</MonoMark>
-          <h1 className="type-display-2 text-ink max-w-3xl mx-auto mt-6">
+          <h1 className="type-display-2 text-ink max-w-3xl mx-auto">
             Workflows that drive <GradientText>real</GradientText> business outcomes.
           </h1>
           <p className="type-body-lg text-ink-2 mt-6 max-w-2xl mx-auto">

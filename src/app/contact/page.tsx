@@ -10,7 +10,6 @@ import {
   Phone,
   FileText,
   ChevronDown,
-  ExternalLink,
 } from 'lucide-react';
 import {
   Button,
@@ -21,12 +20,10 @@ import {
   HeroGlow,
   Input,
   Label,
-  MonoMark,
   Textarea,
 } from '@/components/ds';
 
 const INTENT_OPTIONS = [
-  { value: 'demo', label: 'Book a product demo' },
   { value: 'enterprise', label: 'Enterprise inquiry' },
   { value: 'support', label: 'Technical support' },
   { value: 'partnership', label: 'Partnership / integration' },
@@ -54,7 +51,7 @@ const CONTACT_INFO = [
 ];
 
 export default function ContactPage() {
-  const [form, setForm] = useState({ name: '', email: '', company: '', message: '', intent: 'demo' });
+  const [form, setForm] = useState({ name: '', email: '', company: '', message: '', intent: 'enterprise' });
   const [loading, setLoading] = useState(false);
   const [submitted, setSubmitted] = useState(false);
   const [error, setError] = useState<string | null>(null);
@@ -101,12 +98,11 @@ export default function ContactPage() {
         <HeroGlow size="sm" />
         <DottedGrid />
         <Container className="relative pt-24 pb-16 md:pt-32 md:pb-20 text-center">
-          <MonoMark>~/oyechats · contact</MonoMark>
-          <h1 className="type-display-2 text-ink max-w-3xl mx-auto mt-6">
+          <h1 className="type-display-2 text-ink max-w-3xl mx-auto">
             Let&apos;s <GradientText>talk</GradientText> pipeline.
           </h1>
           <p className="type-body-lg text-ink-2 mt-6 max-w-2xl mx-auto">
-            Whether you want a demo, have an enterprise question, or just want to say hi. We usually respond within one business day.
+            Whether you have an enterprise question, need technical support, or just want to say hi. We usually respond within one business day.
           </p>
         </Container>
       </section>
@@ -139,18 +135,6 @@ export default function ContactPage() {
                   </div>
                 </div>
               ))}
-              <div className="bg-canvas border border-line rounded-[var(--r-3)] p-4">
-                <div className="type-mono-sm text-muted mb-3">Or book directly</div>
-                <Button
-                  href="https://calendly.com/oyechats/demo"
-                  external
-                  variant="ghost"
-                  size="sm"
-                  className="w-full"
-                >
-                  Schedule on Calendly <ExternalLink size={13} />
-                </Button>
-              </div>
             </aside>
 
             {/* Form column */}

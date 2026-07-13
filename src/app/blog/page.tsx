@@ -6,7 +6,6 @@ import {
   DottedGrid,
   GradientText,
   HeroGlow,
-  MonoMark,
   Reveal,
   Section,
 } from '@/components/ds';
@@ -27,8 +26,7 @@ export default function BlogPage() {
         <HeroGlow size="sm" />
         <DottedGrid />
         <Container className="relative pt-24 pb-16 md:pt-32 md:pb-20 text-center">
-          <MonoMark>~/oyechats · blog</MonoMark>
-          <h1 className="type-display-2 text-ink max-w-3xl mx-auto mt-6">
+          <h1 className="type-display-2 text-ink max-w-3xl mx-auto">
             Ideas from the <GradientText>team</GradientText>.
           </h1>
           <p className="type-body-lg text-ink-2 mt-6 max-w-2xl mx-auto">
