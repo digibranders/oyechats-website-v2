@@ -5,11 +5,11 @@ import { Sparkles, FileText, ArrowUpRight } from 'lucide-react';
 import { cn } from '@/lib/cn';
 
 /**
- * "Ask OyeChats" — a scripted, simulated live demo for the home hero.
+ * "Ask OyeChats", a scripted, simulated live demo for the home hero.
  * Auto-plays a realistic exchange when in view, and lets visitors click a
  * suggested question to replay that script. Each script tells the full arc:
  * a question answered from the docs (with a citation), then intent detected,
- * a BANT score ticking up, and the lead routed. No backend — pure animation.
+ * a BANT score ticking up, and the lead routed. No backend, pure animation.
  * Respects prefers-reduced-motion (renders the final state statically) and
  * pauses while off-screen.
  */
@@ -28,7 +28,7 @@ const SCRIPTS: Script[] = [
   {
     chip: 'Webhooks?',
     q: 'Do you support webhooks?',
-    a: 'Yes — five event types (tier transitions, lead captured, handoff, meeting booked, chat closed), all HMAC-signed.',
+    a: 'Yes, five event types (tier transitions, lead captured, handoff, meeting booked, chat closed), all HMAC-signed.',
     source: '/docs/webhooks',
     context: '“We’d need this for ~40 seats, launching next quarter.”',
     score: 84,
@@ -37,7 +37,7 @@ const SCRIPTS: Script[] = [
   {
     chip: 'Cites sources?',
     q: 'Does it cite its sources?',
-    a: 'Every answer links back to the exact doc chunk it came from — hybrid semantic + keyword retrieval over your content.',
+    a: 'Every answer links back to the exact doc chunk it came from, hybrid semantic + keyword retrieval over your content.',
     source: '/docs/rag',
     context: '“Comparing a few tools for our support team.”',
     score: 68,
@@ -55,7 +55,7 @@ const SCRIPTS: Script[] = [
   {
     chip: 'Live handoff?',
     q: 'Can it hand off to a human?',
-    a: 'When the bot reaches its limit it hands off in the same thread — full transcript and BANT context included.',
+    a: 'When the bot reaches its limit it hands off in the same thread, full transcript and BANT context included.',
     source: '/docs/live-chat',
     context: '“Need live agents during business hours.”',
     score: 76,
@@ -236,7 +236,7 @@ export function HeroDemo() {
           </span>
         </div>
 
-        {/* Conversation — fixed height so streaming/phase changes never shift the page */}
+        {/* Conversation, fixed height so streaming/phase changes never shift the page */}
         <div className="p-4 flex flex-col gap-3 h-[360px] overflow-hidden">
           {/* Visitor question */}
           <div className="flex flex-col items-end max-w-[88%] self-end">

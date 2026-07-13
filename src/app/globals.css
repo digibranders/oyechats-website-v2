@@ -17,7 +17,7 @@
   --line: #E7E5DE;
   --line-2: #D4D4D0;
   /* Dark section background: plum-black tuned to the Volt purple accent.
-     Not #000 — reads as intentional next to warm paper, ties to the brand
+     Not #000, reads as intentional next to warm paper, ties to the brand
      hue. Text stays warm off-white; muted lifts to a purple-tinted gray. */
   --ink-invert: #14101E;
   --ink-invert-fg: #F5F1FA;

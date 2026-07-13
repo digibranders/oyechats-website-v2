@@ -65,7 +65,7 @@ export default function SolutionsPage() {
             Built for support, sales, and <GradientText>everything</GradientText> between.
           </h1>
           <p className="type-body-lg text-ink-2 mt-6 max-w-2xl mx-auto">
-            Pick what you need — support, sales, docs, or live chat — and OyeChats handles the
+            Pick what you need (support, sales, docs, or live chat) and OyeChats handles the
             conversations that matter.
           </p>
           <div className="mt-9 flex justify-center gap-3 flex-wrap">

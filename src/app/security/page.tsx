@@ -106,7 +106,7 @@ export default function SecurityPage() {
       </section>
 
       <Section tone="canvas" containerSize="wide">
-        {/* What's in place today — practices, not third-party certifications */}
+        {/* What's in place today, practices, not third-party certifications */}
         <div className="mb-16">
           <div className="max-w-2xl mb-6">
             <h2 className="type-heading-2 text-ink">What&apos;s in place today</h2>

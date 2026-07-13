@@ -2,7 +2,7 @@ import type { Metadata, Viewport } from 'next';
 import { Inter, Geist, Geist_Mono, Fraunces } from 'next/font/google';
 import Navbar from '@/components/site/Navbar';
 import Footer from '@/components/site/Footer';
-// Hidden for now — re-enable (import + render below) when there's an announcement or offer.
+// Hidden for now, re-enable (import + render below) when there's an announcement or offer.
 // import AnnouncementBar from '@/components/site/AnnouncementBar';
 import './globals.css';
 
@@ -76,7 +76,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
       className={`${inter.variable} ${geist.variable} ${geistMono.variable} ${fraunces.variable}`}
     >
       <body>
-        {/* <AnnouncementBar /> — hidden for now; re-enable for announcements/offers */}
+        {/* <AnnouncementBar />, hidden for now; re-enable for announcements/offers */}
         <Navbar />
         <main>{children}</main>
         <Footer />

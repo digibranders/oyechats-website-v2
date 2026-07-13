@@ -9,7 +9,7 @@ type Chrome = { variant: 'signal' | 'alert' | 'danger' | 'mono'; label: string }
 /**
  * Live platform status pill for the footer. Polls the same-origin `/api/status`
  * proxy (which reads api.oyechats.com/health) and reflects the real state.
- * Before the first check resolves — or if the platform can't be reached — it
+ * Before the first check resolves, or if the platform can't be reached, it
  * shows a neutral, non-committal label. It only turns green when the platform
  * actually reports healthy, so the footer can never falsely claim "operational".
  */

@@ -185,7 +185,7 @@ function buildEmailHtml(params: {
 // unthrottled endpoint lets an attacker exhaust the Brevo quota and bomb the
 // support inbox. These are best-effort (serverless instances are ephemeral and
 // horizontally scaled, so the in-memory limiter is per-instance, not a hard
-// global cap) — pair with a WAF / Turnstile for a strict guarantee. The
+// global cap), pair with a WAF / Turnstile for a strict guarantee. The
 // honeypot + length caps are deterministic and catch the common bot floods.
 const RATE_LIMIT_MAX = 5;
 const RATE_LIMIT_WINDOW_MS = 10 * 60 * 1000; // 10 minutes

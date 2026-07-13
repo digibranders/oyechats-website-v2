@@ -44,12 +44,12 @@ const NAV = [
 ];
 
 const RAG_STEPS = [
-  { icon: FileText, label: 'Add your content', desc: 'PDFs, Word files, URLs, or a full website crawl — any content you own.' },
+  { icon: FileText, label: 'Add your content', desc: 'PDFs, Word files, URLs, or a full website crawl, any content you own.' },
   { icon: Scissors, label: 'Prepare it', desc: 'We split your content into clean, searchable pieces and remove duplicates.' },
   { icon: Brain, label: 'Understand it', desc: 'Turns your content into a form the AI can search by meaning, not just exact words.' },
   { icon: Search, label: 'Smart search', desc: 'Meaning-based and keyword search work together, so the right answer surfaces every time.' },
   { icon: Zap, label: 'Write the answer', desc: 'Writes a reply from the right sources, with citations back to your docs.' },
-  { icon: MessageCircle, label: 'Reply in real time', desc: 'The answer streams back word by word as it is written — no waiting.' },
+  { icon: MessageCircle, label: 'Reply in real time', desc: 'The answer streams back word by word as it is written, no waiting.' },
 ];
 
 const BANT_CRITERIA = [
@@ -94,7 +94,7 @@ export default function FeaturesPage() {
           </h1>
           <p className="type-body-lg text-ink-2 mt-6 max-w-2xl mx-auto">
             Grounded answers. Lead scoring. Live chat. Analytics. Webhooks. Integrations. Each one
-            is deep, and they all work together — no bolt-ons.
+            is deep, and they all work together, no bolt-ons.
           </p>
         </Container>
       </section>
@@ -277,7 +277,7 @@ export default function FeaturesPage() {
                   Encrypted in transit and at rest, GDPR-aligned, and we never train models on your
                   data. Want the details?
                 </ChatBubble>
-                <ChatBubble role="visitor">Yes — we&apos;re rolling out to ~40 seats in Q3.</ChatBubble>
+                <ChatBubble role="visitor">Yes, we&apos;re rolling out to ~40 seats in Q3.</ChatBubble>
                 <ChatBubble role="operator">
                   [Handoff, BANT 87] Priya here. I have your context. 15 min tomorrow?
                 </ChatBubble>
@@ -459,7 +459,7 @@ Content-Type: application/json
               </h2>
               <p className="type-body text-ink-2 mb-6">
                 WordPress, Shopify, Webflow, Next.js, React, Vue, HTML, and Framer. Booking via
-                Calendly. Automation via Zapier and Make — plus 5 signed webhook events and a full
+                Calendly. Automation via Zapier and Make, plus 5 signed webhook events and a full
                 REST API.
               </p>
               <Button href="/integrations" variant="ghost">

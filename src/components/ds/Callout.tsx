@@ -5,7 +5,7 @@ import { cn } from '@/lib/cn';
 type Variant = 'info' | 'warn' | 'success' | 'danger';
 
 /**
- * Callout — a quiet inline note.
+ * Callout, a quiet inline note.
  * No tinted background, no coloured left-stripe. Just a small icon,
  * a mono-styled title, and body text. Fits the Voltage Paper aesthetic
  * without turning into a boxed alert. Danger variant is the only one

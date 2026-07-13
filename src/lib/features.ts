@@ -33,7 +33,7 @@ export const FEATURES: Feature[] = [
     title: 'Streaming answers',
     tagline: 'Replies stream in real time.',
     description:
-      'Answers appear word by word as they are written — no spinners, no blank waiting screen. The conversation feels instant.',
+      'Answers appear word by word as they are written, no spinners, no blank waiting screen. The conversation feels instant.',
     anchor: 'feature-rag',
   },
   {
@@ -42,7 +42,7 @@ export const FEATURES: Feature[] = [
     title: 'Grounded answers',
     tagline: 'Answers from your content, with sources.',
     description:
-      'Every answer comes from your own docs and links back to the source — not the model\'s guesses. It refreshes on its own as your content changes.',
+      'Every answer comes from your own docs and links back to the source, not the model\'s guesses. It refreshes on its own as your content changes.',
     anchor: 'feature-rag',
   },
   {
@@ -51,7 +51,7 @@ export const FEATURES: Feature[] = [
     title: 'BANT lead scoring',
     tagline: 'Every conversation, qualified.',
     description:
-      'OyeChats scores each conversation on Budget, Authority, Need, and Timeline — read from the chat itself, so visitors never fill out a form.',
+      'OyeChats scores each conversation on Budget, Authority, Need, and Timeline, read from the chat itself, so visitors never fill out a form.',
     anchor: 'feature-bant',
   },
   {
@@ -60,7 +60,7 @@ export const FEATURES: Feature[] = [
     title: 'Live human handoff',
     tagline: 'A person steps in at the right moment.',
     description:
-      'When a lead heats up, OyeChats hands the chat to a live teammate in the same thread — with the full transcript and score already in hand.',
+      'When a lead heats up, OyeChats hands the chat to a live teammate in the same thread, with the full transcript and score already in hand.',
     anchor: 'feature-live-chat',
   },
   {
@@ -69,7 +69,7 @@ export const FEATURES: Feature[] = [
     title: 'Easy setup',
     tagline: 'One script tag. Any website.',
     description:
-      'Add one line of code and OyeChats goes live — on WordPress, Shopify, Webflow, Next.js, React, Vue, or plain HTML.',
+      'Add one line of code and OyeChats goes live, on WordPress, Shopify, Webflow, Next.js, React, Vue, or plain HTML.',
     anchor: 'feature-integrations',
   },
   {
@@ -78,7 +78,7 @@ export const FEATURES: Feature[] = [
     title: 'Your brand voice',
     tagline: 'Every reply sounds like you.',
     description:
-      'Set the tone, share your FAQs and product docs, and OyeChats answers in your brand voice — not a generic robot.',
+      'Set the tone, share your FAQs and product docs, and OyeChats answers in your brand voice, not a generic robot.',
     anchor: 'feature-rag',
   },
   {
@@ -87,7 +87,7 @@ export const FEATURES: Feature[] = [
     title: 'Built-in security',
     tagline: 'Encrypted in transit and at rest.',
     description:
-      'Encryption in transit and at rest, signed webhooks, prompt-injection guards, and role-based access — built in, not bolted on.',
+      'Encryption in transit and at rest, signed webhooks, prompt-injection guards, and role-based access, built in, not bolted on.',
   },
   {
     slug: 'analytics',
@@ -143,7 +143,7 @@ export const SOLUTIONS: Solution[] = [
       'Automatic ticket deflection with a live human fallback',
       'Post-chat survey with a 1 to 5 rating stored per session',
     ],
-    outcome: { metric: '24/7', label: 'first-line answers from your own docs — no scripts to maintain' },
+    outcome: { metric: '24/7', label: 'first-line answers from your own docs, no scripts to maintain' },
     icon: Headphones,
     accent: 'blue',
   },
@@ -163,7 +163,7 @@ export const SOLUTIONS: Solution[] = [
       'Lead capture with name, email, phone, and company fields',
       'Calendly and CRM webhooks for zero-touch follow up',
     ],
-    outcome: { metric: '0', label: 'form fields — every lead is BANT-scored from the chat itself' },
+    outcome: { metric: '0', label: 'form fields, every lead is BANT-scored from the chat itself' },
     icon: Target,
     accent: 'amber',
   },

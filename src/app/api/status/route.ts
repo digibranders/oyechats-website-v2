@@ -7,7 +7,7 @@ import { API_URL } from '@/lib/site';
  * The browser polls THIS route (same-origin, no CORS dependency) instead of
  * calling api.oyechats.com/health directly. The upstream `/health` does a real
  * DB `SELECT 1` + Redis ping on every hit, so we cache the result at the CDN
- * (s-maxage) and in the fetch data cache — all visitors in a 30s window share a
+ * (s-maxage) and in the fetch data cache, all visitors in a 30s window share a
  * single upstream call rather than each browser touching the database.
  *
  * Health contract (platform api/app/main.py):

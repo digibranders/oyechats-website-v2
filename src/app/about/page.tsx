@@ -74,12 +74,12 @@ export default function AboutPage() {
         <DottedGrid />
         <Container className="relative pt-24 pb-24 md:pt-32 md:pb-32 text-center">
           <h1 className="type-display-2 text-ink max-w-3xl mx-auto">
-            We help teams answer every visitor — and{' '}
+            We help teams answer every visitor, and{' '}
             <GradientText>qualify</GradientText> the ones worth calling.
           </h1>
           <p className="type-body-lg text-ink-2 mt-6 max-w-2xl mx-auto">
             OyeChats turns your knowledge base into a chat assistant that answers questions from your
-            own content, scores each visitor as they chat, and hands the hot ones to your team — all
+            own content, scores each visitor as they chat, and hands the hot ones to your team, all
             in one conversation.
           </p>
 
@@ -103,7 +103,7 @@ export default function AboutPage() {
         tone="canvas"
         eyebrow="Our vision"
         heading={<>One assistant, every customer moment.</>}
-        sub="One assistant that carries full context across the whole customer journey — from the first question, to the qualified lead, to the paying customer."
+        sub="One assistant that carries full context across the whole customer journey, from the first question, to the qualified lead, to the paying customer."
         containerSize="wide"
       >
         <div className="grid md:grid-cols-2 gap-4">

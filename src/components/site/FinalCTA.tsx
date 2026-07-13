@@ -142,7 +142,7 @@ export function FinalCTA() {
 
         <p className="text-center type-body-lg text-ink-invert-muted max-w-[680px] mx-auto mt-6">
           Add OyeChats to your site in under 10 minutes. Your first qualified lead can land the same
-          hour — every visitor scored, routed, and reported.
+          hour, every visitor scored, routed, and reported.
         </p>
 
         <div className="flex justify-center gap-3 flex-wrap mt-9">
@@ -268,7 +268,7 @@ export function FinalCTA() {
 
           {/* Under-console caption */}
           <div className="mt-6 text-center type-mono-sm text-ink-invert-muted">
-            Illustrative sample — not live customer data
+            Illustrative sample, not live customer data
           </div>
         </div>
       </Container>

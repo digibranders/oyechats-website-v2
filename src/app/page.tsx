@@ -42,7 +42,7 @@ export default function Home() {
               </Reveal>
               <Reveal delay={160}>
                 <p className="type-body-lg text-ink-2 mt-6 max-w-[520px]">
-                  OyeChats answers every visitor from your own docs — in real time, with citations —
+                  OyeChats answers every visitor from your own docs (in real time, with citations),
                   scores intent as they chat, and routes the buyers to your team. One script tag,
                   live in 5 minutes.
                 </p>
@@ -116,10 +116,10 @@ export default function Home() {
             <StoryStep
               n="01"
               title="Connect your content"
-              body="Point OyeChats at your docs, help center, and pricing page. It reads them and builds a searchable index in minutes — no engineering required."
+              body="Point OyeChats at your docs, help center, and pricing page. It reads them and builds a searchable index in minutes, no engineering required."
               demo={
                 <TerminalCard title="~/oyechats · setup" showCursor={false}>
-                  <TermCmt>{'// paste one script tag — we crawl and index the rest'}</TermCmt>
+                  <TermCmt>{'// paste one script tag, we crawl and index the rest'}</TermCmt>
                   <div className="mt-2 text-white/70 break-all">
                     {'<script src="cdn.oyechats.com/widget.js" data-bot-key="…">'}
                   </div>
@@ -134,7 +134,7 @@ export default function Home() {
             <StoryStep
               n="02"
               title="Qualify"
-              body="Every chat is scored on Budget, Authority, Need, and Timeline — read from the conversation itself, never a form."
+              body="Every chat is scored on Budget, Authority, Need, and Timeline, read from the conversation itself, never a form."
               demo={
                 <div className="bg-paper border border-line rounded-[var(--r-4)] p-6 flex flex-col gap-4 items-center">
                   <BantScoreRing value={87} size={120} />
@@ -191,7 +191,7 @@ export default function Home() {
           <div className="grid md:grid-cols-4 gap-8 md:gap-12">
             <BigStat n={768} k="Vector dimensions per embedding" />
             <BigStat n={200} k="Free credits, no card required" />
-            <BigStat n={3} k="Doc formats ingested — PDF, DOCX, TXT" />
+            <BigStat n={3} k="Doc formats ingested: PDF, DOCX, TXT" />
             <BigStat n={2} k="Crawl engines, with auto-fallback" />
           </div>
         </Container>
