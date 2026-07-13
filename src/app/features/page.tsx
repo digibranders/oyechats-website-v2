@@ -460,9 +460,9 @@ Content-Type: application/json
                 Ships to your <GradientText>stack</GradientText>.
               </h2>
               <p className="type-body text-ink-2 mb-6">
-                WordPress, Shopify, Webflow, Next.js, React, Vue, HTML, Framer. Analytics via Sentry
-                and Langfuse. Transactional email via Brevo. Meetings via Calendly. Automation via
-                Zapier and Make.
+                WordPress, Shopify, Webflow, Next.js, React, Vue, HTML, and Framer. Meetings via
+                Calendly. Automation via Zapier and Make — plus webhooks (5 event types) and a full
+                REST API.
               </p>
               <Button href="/integrations" variant="ghost">
                 Browse all integrations →
