@@ -124,8 +124,8 @@ export default function FeaturesPage() {
               </h2>
               <p className="type-body text-ink-2 mb-6">
                 OyeChats does not just search your documents, it understands them. Hybrid AI search
-                combines semantic understanding with keyword precision so visitors always get accurate,
-                grounded answers, never hallucinated ones.
+                combines semantic understanding with keyword precision so visitors get accurate,
+                grounded answers backed by citations to your own content.
               </p>
               <ul className="space-y-3">
                 {[

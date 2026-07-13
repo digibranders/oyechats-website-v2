@@ -35,7 +35,7 @@ const VISION_BLOCKS: VisionBlock[] = [
   {
     icon: MessagesSquare,
     title: 'OyeChats for Support',
-    desc: 'Answer questions from your docs, PDFs, and website in real time. Hybrid RAG search picks the right chunk. No hallucinations, just cited answers.',
+    desc: 'Answer questions from your docs, PDFs, and website in real time. Hybrid RAG search picks the right chunk and answers are grounded in your content, with citations.',
     status: 'live',
   },
   {

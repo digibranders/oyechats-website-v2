@@ -88,9 +88,9 @@ export const PRICING_TIERS: PricingTier[] = [
     id: 'standard',
     name: 'Standard',
     tagline: 'Full AI + BANT sales intelligence.',
-    monthlyPrice: 49,
-    annualPrice: 39,
-    annualTotal: 468,
+    monthlyPrice: 39,
+    annualPrice: 31,
+    annualTotal: 372,
     credits: 10000,
     includedSeats: 2,
     extraSeatPriceUsd: 5,
@@ -147,8 +147,8 @@ export const TOPUP_PACKS: TopupPack[] = [
 ];
 
 export const FEATURE_ROWS: PricingFeature[] = [
-  { label: 'Monthly price', free: 'Free', starter: '$19 / month', standard: '$49 / month', enterprise: 'Custom', category: 'usage' },
-  { label: 'Annual price (save ~20%)', free: '-', starter: '$15/mo ($180/yr)', standard: '$39/mo ($468/yr)', enterprise: 'Contact us', category: 'usage' },
+  { label: 'Monthly price', free: 'Free', starter: '$19 / month', standard: '$39 / month', enterprise: 'Custom', category: 'usage' },
+  { label: 'Annual price (save ~20%)', free: '-', starter: '$15/mo ($180/yr)', standard: '$31/mo ($372/yr)', enterprise: 'Contact us', category: 'usage' },
   { label: 'Monthly credits', free: '200', starter: '2,000', standard: '10,000', enterprise: 'Custom', category: 'usage' },
   { label: 'Chatbots included', free: '1', starter: '1 (subscribe again to add more)', standard: '1 (subscribe again to add more)', enterprise: 'Unlimited under one subscription', category: 'usage' },
   { label: 'Operator seats included', free: '-', starter: '1', standard: '2', enterprise: 'Unlimited', category: 'usage' },

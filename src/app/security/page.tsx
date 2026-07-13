@@ -72,11 +72,11 @@ const SECURITY_SECTIONS: { icon: LucideIcon; title: string; items: string[] }[] 
   },
 ];
 
-const CERTIFICATIONS: { badge: LucideIcon; name: string; status: string; tint: string }[] = [
-  { badge: Globe, name: 'GDPR', status: 'Aligned', tint: 'bg-signal-tint text-signal border-signal/30' },
-  { badge: Lock, name: 'HTTPS / TLS', status: 'Active', tint: 'bg-signal-tint text-signal border-signal/30' },
-  { badge: Cloud, name: 'Encrypted at Rest', status: 'Managed cloud', tint: 'bg-volt-tint text-volt-ink border-volt-line' },
-  { badge: ShieldCheck, name: 'Signed Webhooks', status: 'HMAC-SHA256', tint: 'bg-[#FDF4FF] text-[#A21CAF] border-[#F0ABFC]' },
+const SECURITY_HIGHLIGHTS: { badge: LucideIcon; name: string; status: string }[] = [
+  { badge: Globe, name: 'GDPR', status: 'Aligned' },
+  { badge: Lock, name: 'HTTPS / TLS', status: 'Enforced everywhere' },
+  { badge: Cloud, name: 'Encryption at rest', status: 'AES-256, managed cloud' },
+  { badge: ShieldCheck, name: 'Signed webhooks', status: 'HMAC-SHA256' },
 ];
 
 const INFRA_STACK = [
@@ -96,27 +96,42 @@ export default function SecurityPage() {
         <DottedGrid />
         <Container className="relative pt-24 pb-16 md:pt-32 md:pb-24 text-center">
           <h1 className="type-display-2 text-ink max-w-3xl mx-auto">
-            Enterprise-grade <GradientText>security</GradientText>.
+            Security, <GradientText>documented</GradientText>.
           </h1>
           <p className="type-body-lg text-ink-2 mt-6 max-w-2xl mx-auto">
-            Your data and your customers&apos; data is safe with us. Here&apos;s exactly how we protect it.
+            No vague assurances. Here is exactly how we protect your data and your customers&apos;
+            data, the encryption, access controls, and infrastructure behind every conversation.
           </p>
         </Container>
       </section>
 
       <Section tone="canvas" containerSize="wide">
-        {/* Certifications */}
-        <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mb-16">
-          {CERTIFICATIONS.map((cert) => (
-            <div
-              key={cert.name}
-              className={`rounded-[var(--r-4)] border p-5 text-center ${cert.tint}`}
-            >
-              <cert.badge size={28} className="mx-auto mb-2" />
-              <p className="type-body-sm font-semibold">{cert.name}</p>
-              <p className="text-[11px] opacity-70 mt-1">{cert.status}</p>
-            </div>
-          ))}
+        {/* What's in place today — practices, not third-party certifications */}
+        <div className="mb-16">
+          <div className="max-w-2xl mb-6">
+            <h2 className="type-heading-2 text-ink">What&apos;s in place today</h2>
+            <p className="type-body-sm text-muted mt-2">
+              These controls are live in production. OyeChats does not yet hold formal third-party
+              certifications such as SOC&nbsp;2 or ISO&nbsp;27001; our data processing is aligned with
+              the GDPR, and we&apos;re happy to walk enterprise teams through our practices in detail.
+            </p>
+          </div>
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3">
+            {SECURITY_HIGHLIGHTS.map((item) => (
+              <div
+                key={item.name}
+                className="flex items-center gap-3 bg-canvas rounded-[var(--r-3)] p-4 border border-line"
+              >
+                <div className="w-9 h-9 rounded-[var(--r-2)] bg-volt-tint text-volt flex items-center justify-center shrink-0">
+                  <item.badge size={16} />
+                </div>
+                <div className="min-w-0">
+                  <p className="type-body-sm text-ink font-semibold">{item.name}</p>
+                  <p className="type-mono-sm text-muted mt-0.5">{item.status}</p>
+                </div>
+              </div>
+            ))}
+          </div>
         </div>
 
         {/* Security sections */}

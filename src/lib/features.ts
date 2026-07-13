@@ -29,9 +29,9 @@ export const FEATURES: Feature[] = [
     slug: 'streaming-answers',
     icon: Zap,
     title: 'Streaming answers',
-    tagline: 'Zero-latency conversations.',
+    tagline: 'Replies stream in real time.',
     description:
-      'Words appear as they are generated. No spinners. No waiting. Every visitor feels the interaction is instant.',
+      'Words appear as they are generated, token by token. No spinners, no blank waiting screen, so the conversation feels immediate.',
   },
   {
     slug: 'grounded-rag',
@@ -39,7 +39,7 @@ export const FEATURES: Feature[] = [
     title: 'Grounded answers',
     tagline: 'Hybrid semantic + keyword RAG.',
     description:
-      'Answers pull from your docs with citations. Never hallucinated. Refreshes automatically as content updates.',
+      'Answers pull from your docs with inline citations, grounded in your content rather than the model\'s guesses. Refreshes automatically as content updates.',
   },
   {
     slug: 'bant-scoring',

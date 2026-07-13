@@ -37,7 +37,7 @@ const PRODUCT_MENU: MegaColumn[] = [
       { icon: BrainCircuit, label: 'BANT scoring', description: 'Qualify every visitor automatically', href: '/features#bant-scoring' },
       { icon: Search, label: 'Hybrid RAG', description: 'Answers grounded in your docs', href: '/features#grounded-rag' },
       { icon: MessageSquare, label: 'Live handoff', description: 'Escalate to a human, with context', href: '/features#live-handoff' },
-      { icon: Zap, label: 'Streaming answers', description: 'Zero-latency conversations', href: '/features#streaming-answers' },
+      { icon: Zap, label: 'Streaming answers', description: 'Replies stream in real time', href: '/features#streaming-answers' },
     ],
   },
   {

@@ -257,7 +257,7 @@ export default function PricingPage() {
                 Contact sales →
               </Button>
               <Button href={APP_LINKS.register} external variant="outline-invert">
-                Or try Standard free
+                Or start free
               </Button>
             </div>
           </div>
