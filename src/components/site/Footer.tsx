@@ -89,9 +89,8 @@ export default function Footer() {
           </div>
         </div>
 
-        <div className="mt-16 pt-6 border-t border-white/10 flex flex-col md:flex-row justify-between gap-3 text-[12px] text-ink-invert-muted">
-          <div>© {new Date().getFullYear()} OyeChats, a brand of Digibranders Pvt Ltd. All rights reserved.</div>
-          <div className="font-mono">~/oyechats · updated {LAST_UPDATED}</div>
+        <div className="mt-16 pt-6 border-t border-white/10 text-[12px] text-ink-invert-muted">
+          <div>© {new Date().getFullYear()} OyeChats</div>
         </div>
       </div>
 

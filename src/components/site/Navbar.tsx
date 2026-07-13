@@ -117,6 +117,7 @@ export default function Navbar() {
   }, [open]);
 
   return (
+    <>
     <header
       className={cn(
         'sticky top-0 z-50 h-16 flex items-center backdrop-blur-md transition-[border-color,box-shadow,background] duration-200',
@@ -171,8 +172,13 @@ export default function Navbar() {
           {open ? <X size={20} /> : <Menu size={20} />}
         </button>
       </div>
+      </header>
 
-      {/* Mobile drawer */}
+      {/* Mobile drawer — rendered OUTSIDE <header> on purpose. The header has
+          `backdrop-blur` (backdrop-filter), which establishes a containing block
+          for `position: fixed` descendants; keeping the drawer inside would make
+          `top-16 bottom-0` resolve against the 64px header and collapse it.
+          As a header sibling it resolves against the viewport and fills the screen. */}
       <div
         className={cn(
           'lg:hidden fixed inset-x-0 top-16 bottom-0 z-40 bg-paper transition-opacity duration-200 overflow-y-auto',
@@ -200,7 +206,7 @@ export default function Navbar() {
           </div>
         </div>
       </div>
-    </header>
+    </>
   );
 }
 
