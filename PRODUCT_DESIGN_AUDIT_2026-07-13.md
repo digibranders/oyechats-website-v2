@@ -101,10 +101,10 @@ Credit where due: this is **well above** the AI-generated baseline. No default s
 | Stat band | ⚠️ Half the numbers are unverifiable. Keep the real specs, cut the SLA. |
 | Feature bento (6 cards) | ⚠️ Exists because every SaaS has one. Cards end in repeated *"Learn more →"* — the classic filler CTA. |
 | Scroll story (Ingest/Qualify/Route) | ✅ **Best section on the site.** Real narrative, real product concepts — *if* the `npx oyechats init` terminal weren't fictional (§15). |
-| Live stats (dark) | ❌ Four fabricated numbers on a dramatic dark band. High production value, zero substance. |
+| Live stats (dark) | ✅ **FIXED 2026-07-13** — was four fabricated outcome numbers; reframed to *"Numbers you can verify"* with four true stack specs (768 dims / 200 free credits / 3 doc formats / 2 crawl engines). Design retained. |
 | Integrations preview | ⚠️ "30+ platforms" overclaims (§15); most are the same script tag. |
 | Pricing preview | ✅ Grounded and honest — the most trustworthy block. |
-| Final CTA (live console) | ⚠️ Beautiful, fully fabricated. Reads as real telemetry despite the tiny "demo signals" caption. |
+| Final CTA (live console) | ✅ **FIXED 2026-07-13** — was fabricated telemetry reading as live; reframed as an explicit `SAMPLE` / *"Illustrative sample — not live customer data"* (and the false "12 regions" line removed). Design retained. |
 
 **Pattern:** the *honest* sections (pricing, the how-it-works story) are also the *strongest.* The fabricated sections are where craft is spent covering for missing proof. That's the whole thesis in miniature.
 
@@ -191,19 +191,19 @@ This is the section the review was explicitly commissioned for. Each row is cros
 | # | Claim (website) | Location | Reality (platform evidence) | Sev |
 |---|---|---|---|---|
 | 1 | **"Yes to SOC2 (Type II)"** / "Yes, SOC2 Type II." | `page.tsx:68`, `features/page.tsx:281` | **Not certified.** No SOC 2 program in code; `docs/…/multi-tenancy.md:119` marks SOC 2-driven isolation *deferred*, and `rag_service.py:3685` literally instructs the bot **not** to claim certifications. **Also contradicts the site's own `/security` page**, which admits no SOC 2/ISO. | 🔴 |
-| 2 | **"connected · 12 regions"** | `FinalCTA.tsx:264` | Single-node deployment; `docs/…/reliability.md` flags a **single-droplet SPOF**. No multi-region infra. | 🔴 |
+| 2 | **"connected · 12 regions"** | `FinalCTA.tsx:264` | Single-node deployment; `docs/…/reliability.md` flags a **single-droplet SPOF**. No multi-region infra. **✅ FIXED 2026-07-13:** replaced with *"sample data · not live"* during the console reframe. | 🔴→✅ |
 | 3 | **`npx oyechats init`** developer CLI | `page.tsx:145` | **No CLI exists.** Onboarding is a `<script data-bot-key>` tag — per the site's *own* `/docs` page. | 🔴 |
 | 4 | **"Live handoff across 5 channels"** | `AnnouncementBar.tsx` | **Web widget only.** No WhatsApp / Instagram / Messenger / Slack inbound handlers anywhere in `api/app`. "WhatsApp" appears once, in a code *comment*. | 🔴 |
 | 5 | **"Self-hosted is on Enterprise"** | `page.tsx:65-68` | **Not found.** No self-host / on-prem capability in the codebase. | 🔴 |
-| 6 | **"Ships to 30+ platforms" / "30+ integrations"** | `page.tsx:226`, `AnnouncementBar.tsx` | Only **16** are listed; ~8 are the *same script tag* on different site builders. No native CRM, Zapier, Make, or Shopify app — only outbound webhooks + a user-supplied URL. | 🟠 |
-| 7 | **"Uptime SLA 99.9%"** (blanket homepage stat) | `page.tsx:97` | Internal **SLO target only** (`reliability.md:92`), explicitly "input to a *future* SLA," with a known SPOF. Contractual SLA is Enterprise-only per pricing. Presenting it as a headline stat is misleading. | 🟠 |
-| 8 | **"87%" qualified meetings · "3×" fewer · "<2 min"** | `page.tsx:214-217` | No substantiation anywhere in code. Invented. | 🟡 |
+| 6 | **"Ships to 30+ platforms" / "30+ integrations"** | `page.tsx:226`, `AnnouncementBar.tsx` | Only **16** are listed; ~8 are the *same script tag* on different site builders. No native CRM, Zapier, Make, or Shopify app — only outbound webhooks + a user-supplied URL. **✅ FIXED 2026-07-13:** heading → *"Drops into any stack."*, sub reframed to signed-webhooks mechanism, announcement bar → *"Any site, one script tag."* | 🟠→✅ |
+| 7 | **"Uptime SLA 99.9%"** (blanket homepage stat) | `page.tsx:97` | Internal **SLO target only** (`reliability.md:92`), explicitly "input to a *future* SLA," with a known SPOF. Contractual SLA is Enterprise-only per pricing. Presenting it as a headline stat is misleading. **✅ FIXED 2026-07-13:** relabeled to *"Uptime target 99.9%"* (drops the contractual-SLA framing; Enterprise "Custom SLA" copy left intact). | 🟠→✅ |
+| 8 | **"87%" qualified meetings · "3×" fewer · "<2 min"** | `page.tsx:214-217` | No substantiation anywhere in code. Invented. **✅ FIXED 2026-07-13:** dark band reframed *"Numbers that move"* → *"Numbers you can verify"* with four true, verifiable stack specs (768 vector dims, 200 free credits, 3 doc formats, 2 crawl engines). | 🟡→✅ |
 | 9 | **"Up to 60%" deflection · "Up to 3.4x" leads · "<5s" · "<25s"** | `features.ts:138/158/178/198` | No benchmarks or measured numbers in code. | 🟡 |
-| 10 | **Live console feed** (342 quals, fake domains, 87% handoff) | `FinalCTA.tsx` | Fully fabricated. Mitigated by a small "demo signals · anonymized" caption, but visually presents as real telemetry. | 🟠 |
+| 10 | **Live console feed** (342 quals, fake domains, 87% handoff) | `FinalCTA.tsx` | Fully fabricated. Mitigated by a small "demo signals · anonymized" caption, but visually presents as real telemetry. **✅ FIXED 2026-07-13:** reframed as an explicit sample — `live-feed`→`sample-feed`, green `LIVE`→muted `SAMPLE`, `Recent`→`Example qualifications`, `stream · realtime`→`illustrative`, caption→*"Illustrative sample — not live customer data"* (design retained). | 🟠→✅ |
 | 11 | **"All systems operational"** (always green) | `Footer.tsx:42` | Hardcoded chip; no status page or health source behind it. | 🟠 |
 | 12 | **"Data encrypted at rest … (AES-256)"** | `security/page.tsx:78` | Defensible at the *storage* layer (R2/disk-level), but design docs state **"No app-level encryption for stored secrets — TODO."** Framing implies more than exists. | 🟡 |
 | 13 | **"Optional reranking and relevance filtering"** | `features/page.tsx:136` | Reranker exists (`reranker.py`) but is **off by default** and was historically non-functional until a recent fix. | 🟡 |
-| 14 | **Pricing drift** — Free "200 credits", Starter "2,000", Standard "1 chatbot" | `lib/pricing.ts` | Platform config: Free **250**, Starter **3,000**, Standard **2 bots** (`preflight_plan_migration.py:63-73`). Website understates its own product and misstates bot count. | 🟠 |
+| 14 | **Pricing drift** — Standard "$39/mo" · annual "$31/mo ($372/yr)" · top-up "$239" | `lib/pricing.ts` | **Corrected after full migration-chain verification** (the live `plans` table is source-of-truth; the earlier `preflight_plan_migration.py` numbers were stale). Credits & bot counts on the site are actually **CORRECT** (Free 200, Starter 2,000, Standard 1 bot). The real drift is **price**: platform bills **$49/mo** Standard, **$39/mo ($468/yr)** annual, **$249** top-up. Site shows *lower* prices than checkout charges. **Decision (owner, 2026-07-13): HOLD the site — platform pricing will be updated later to match the site.** No website change. | 🟠→⏸ |
 | 15 | Fabricated changelog authors ("Steve · Ingestion", "Priya") | `lib/changelog.ts` | Invented personas on otherwise-real releases. | 🟡 |
 
 ### Claims that are TRUE and safe to keep (affirmed by code — lead with these)
@@ -227,7 +227,7 @@ This is the section the review was explicitly commissioned for. Each row is cros
 |---|---|---|
 | **Remove/repair every 🔴 claim** — SOC 2 lines (hero + features), "12 regions", `npx oyechats init`, "5 channels", "self-hosted". | S | 🔥🔥🔥 Removes legal/trust liability |
 | **Add real product screenshots** — hero widget, one real analytics dashboard, one real BANT timeline. Fill `public/images/`. | M | 🔥🔥🔥 Fixes the #1 authenticity gap |
-| **Fix pricing drift** — sync website credits/bots to platform config. | S | 🔥🔥 Correctness on the page that closes deals |
+| ~~Fix pricing drift~~ — **RESOLVED (no site change).** Credits/bots verified correct. Real drift is price (site $39 < billed $49 Standard); owner elected to update the *platform* to match the site later. | — | ✅ Verified & decided |
 | **Caveat or cut all 🟡 metrics** — attribute ("internal pilot") or delete 87%/3×/60%/3.4x/<5s/<25s. | S | 🔥🔥 Restores numeric credibility |
 | Align the honest `/security` framing across the whole site. | S | 🔥🔥 |
 

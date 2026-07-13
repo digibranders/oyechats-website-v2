@@ -166,13 +166,13 @@ export function FinalCTA() {
                   <span className="w-2.5 h-2.5 rounded-full bg-[#28C840]" />
                 </span>
                 <span className="font-mono text-[11px] text-white/50 tracking-wide">
-                  ~/oyechats · live-feed
+                  ~/oyechats · sample-feed
                 </span>
               </div>
               <div className="flex items-center gap-4">
-                <span className="inline-flex items-center gap-1.5 font-mono text-[11px] text-signal">
-                  <span className="w-1.5 h-1.5 rounded-full bg-signal signal-dot-pulse inline-block" />
-                  LIVE
+                <span className="inline-flex items-center gap-1.5 font-mono text-[11px] text-white/45 tracking-wide">
+                  <span className="w-1.5 h-1.5 rounded-full bg-white/40 inline-block" />
+                  SAMPLE
                 </span>
                 <span className="font-mono text-[11px] text-white/40 tabular-nums">{clock} UTC</span>
               </div>
@@ -185,9 +185,9 @@ export function FinalCTA() {
                 <div className="flex items-center justify-between mb-4">
                   <div className="flex items-center gap-2 font-mono text-[11px] text-white/50 tracking-wide uppercase">
                     <Activity size={12} className="text-volt" />
-                    Recent qualifications
+                    Example qualifications
                   </div>
-                  <span className="font-mono text-[10px] text-white/30">stream · realtime</span>
+                  <span className="font-mono text-[10px] text-white/30">illustrative</span>
                 </div>
                 <ul className="space-y-1.5">
                   {events.map((ev, i) => (
@@ -232,7 +232,7 @@ export function FinalCTA() {
                 <div className="flex items-center justify-between mb-4">
                   <div className="flex items-center gap-2 font-mono text-[11px] text-white/50 tracking-wide uppercase">
                     <Radio size={12} className="text-volt" />
-                    Last 60 minutes
+                    Example · last 60 min
                   </div>
                 </div>
                 <div className="grid grid-cols-2 gap-3">
@@ -260,15 +260,15 @@ export function FinalCTA() {
             <div className="border-t border-white/8 px-5 py-3 flex items-center justify-between font-mono text-[10px] text-white/35">
               <span>oyechats.com / api / v1 / qualify</span>
               <span className="flex items-center gap-2">
-                <span className="w-1 h-1 rounded-full bg-signal signal-dot-pulse inline-block" />
-                connected · 12 regions
+                <span className="w-1 h-1 rounded-full bg-white/40 inline-block" />
+                sample data · not live
               </span>
             </div>
           </div>
 
           {/* Under-console caption */}
           <div className="mt-6 text-center type-mono-sm text-ink-invert-muted">
-            demo signals · anonymized · updated every 2s
+            Illustrative sample — not live customer data
           </div>
         </div>
       </Container>
