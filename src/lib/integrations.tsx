@@ -1,7 +1,6 @@
 import type { ReactNode } from 'react';
 import {
   siWordpress,
-  siShopify,
   siWebflow,
   siNextdotjs,
   siHtml5,
@@ -9,8 +8,6 @@ import {
   siReact,
   siFramer,
   siCalendly,
-  siZapier,
-  siMake,
   type SimpleIcon,
 } from 'simple-icons';
 import { Link as LinkIcon, Wrench } from 'lucide-react';
@@ -58,7 +55,6 @@ function BrandIcon({
 
 export const INTEGRATIONS: Integration[] = [
   { id: 'wordpress', name: 'WordPress', description: 'Paste one script tag', category: 'cms', install: 'Script', available: true, icon: <BrandIcon icon={siWordpress} /> },
-  { id: 'shopify', name: 'Shopify', description: 'Add the script to your theme', category: 'cms', install: 'Embed', available: true, icon: <BrandIcon icon={siShopify} /> },
   { id: 'webflow', name: 'Webflow', description: 'Custom embed code', category: 'cms', install: 'Embed', available: true, icon: <BrandIcon icon={siWebflow} /> },
 
   { id: 'nextjs', name: 'Next.js', description: 'Script component', category: 'website', install: 'Script', available: true, icon: <BrandIcon icon={siNextdotjs} /> },
@@ -69,8 +65,6 @@ export const INTEGRATIONS: Integration[] = [
 
   { id: 'calendly', name: 'Calendly', description: 'In-chat booking', category: 'meetings', install: 'Link', available: true, icon: <BrandIcon icon={siCalendly} /> },
 
-  { id: 'zapier', name: 'Zapier', description: 'Via webhooks', category: 'automation', install: 'Zap', available: true, icon: <BrandIcon icon={siZapier} /> },
-  { id: 'make', name: 'Make', description: 'Via webhooks', category: 'automation', install: 'Scenario', available: true, icon: <BrandIcon icon={siMake} /> },
 
   { id: 'webhooks', name: 'Webhooks', description: '5 event types', category: 'developer', install: 'Webhook', available: true, icon: <LinkIcon className="w-7 h-7 text-volt" strokeWidth={1.5} /> },
   { id: 'rest-api', name: 'REST API', description: 'Full OpenAPI spec', category: 'developer', install: 'HTTP', available: true, icon: <Wrench className="w-7 h-7 text-volt" strokeWidth={1.5} /> },

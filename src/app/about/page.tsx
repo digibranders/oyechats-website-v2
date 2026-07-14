@@ -1,5 +1,5 @@
 import type { Metadata } from 'next';
-import { MessagesSquare, Target, Headphones, ShoppingCart, MapPin, type LucideIcon } from 'lucide-react';
+import { MessagesSquare, Target, Headphones, MapPin, type LucideIcon } from 'lucide-react';
 import {
   Chip,
   Container,
@@ -49,12 +49,6 @@ const VISION_BLOCKS: VisionBlock[] = [
     title: 'OyeChats for Live Chat',
     desc: 'When the bot hits its limit, hand off to a human operator in the same thread. Real-time WebSocket messaging, department routing, canned replies.',
     status: 'live',
-  },
-  {
-    icon: ShoppingCart,
-    title: 'OyeChats for E-commerce',
-    desc: 'Order lookups, product recommendations, and cart recovery, built for Shopify and WooCommerce. Coming in early 2027.',
-    status: 'soon',
   },
 ];
 

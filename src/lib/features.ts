@@ -69,7 +69,7 @@ export const FEATURES: Feature[] = [
     title: 'Easy setup',
     tagline: 'One script tag. Any website.',
     description:
-      'Add one line of code and OyeChats goes live, on WordPress, Shopify, Webflow, Next.js, React, Vue, or plain HTML.',
+      'Add one line of code and OyeChats goes live, on WordPress, Webflow, Next.js, React, Vue, or plain HTML.',
     anchor: 'feature-integrations',
   },
   {
@@ -103,7 +103,7 @@ export const FEATURES: Feature[] = [
     title: 'Webhooks & REST API',
     tagline: 'Send events to your tools.',
     description:
-      'Five HMAC-signed event types wired to Zapier, Make, or your own endpoint. REST API for full control.',
+      'Five HMAC-signed event types wired to your own endpoint. REST API for full control.',
   },
   {
     slug: 'multi-bot',

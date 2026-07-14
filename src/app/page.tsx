@@ -8,7 +8,6 @@ import {
   Container,
   GradientText,
   HeroGlow,
-  NumberTicker,
   Reveal,
   Section,
   TerminalCard,
@@ -32,7 +31,7 @@ export default function Home() {
       <section className="relative bg-paper overflow-hidden">
         <HeroGlow />
         <DottedGrid />
-        <Container className="relative pt-24 pb-32 md:pt-32 md:pb-40">
+        <Container className="relative pt-12 pb-32 md:pt-32 md:pb-40">
           <div className="grid lg:grid-cols-[1.15fr_1fr] gap-16 items-center">
             <div>
               <Reveal delay={80}>
@@ -43,16 +42,15 @@ export default function Home() {
               <Reveal delay={160}>
                 <p className="type-body-lg text-ink-2 mt-6 max-w-[520px]">
                   OyeChats answers every visitor from your own docs (in real time, grounded in your content),
-                  scores intent as they chat, and routes the buyers to your team. One script tag,
-                  live in 5 minutes.
+                  scores intent as they chat, and routes the buyers to your team.
                 </p>
               </Reveal>
               <Reveal delay={240}>
                 <div className="flex gap-3 mt-9 flex-wrap items-center">
-                  <Button href={APP_LINKS.register} external variant="volt" size="lg">
+                  <Button href={APP_LINKS.register} external variant="volt" size="md">
                     Start free <ArrowRight size={16} />
                   </Button>
-                  <Button href="/docs" variant="link" size="lg">
+                  <Button href="/docs" variant="link" size="md">
                     Read the docs →
                   </Button>
                 </div>
@@ -168,41 +166,12 @@ export default function Home() {
         </div>
       </Section>
 
-      {/* ═══════════════════════ LIVE STATS ═══════════════════════ */}
-      <section className="bg-ink-invert text-ink-invert-fg py-24 md:py-32 relative overflow-hidden">
-        <div
-          className="absolute inset-0 opacity-40 pointer-events-none"
-          style={{
-            backgroundImage:
-              'radial-gradient(circle at 20% 30%, rgba(162,28,175,0.24), transparent 45%), radial-gradient(circle at 85% 70%, rgba(162,28,175,0.18), transparent 40%)',
-          }}
-          aria-hidden
-        />
-        <Container className="relative">
-          <div className="text-center mb-14">
-            <div className="type-mono-sm text-ink-invert-muted mb-4 flex items-center gap-2 justify-center">
-              <span className="eyebrow-line" />
-              <span>Under the hood</span>
-            </div>
-            <h2 className="type-display-3 text-ink-invert-fg">
-              Numbers you can <GradientText variant="volt-only">verify</GradientText>.
-            </h2>
-          </div>
-          <div className="grid md:grid-cols-4 gap-8 md:gap-12">
-            <BigStat n={768} k="Vector dimensions per embedding" />
-            <BigStat n={200} k="Free credits, no card required" />
-            <BigStat n={3} k="Doc formats ingested: PDF, DOCX, TXT" />
-            <BigStat n={2} k="Crawl engines, with auto-fallback" />
-          </div>
-        </Container>
-      </section>
-
       {/* ═══════════════════════ INTEGRATIONS PREVIEW ═══════════════════════ */}
       <Section
         tone="paper"
         eyebrow="Integrations"
         heading={<>Drops onto any website.</>}
-        sub="One script tag installs on any site. Every event is sent straight to your CRM, Zapier, or Make with a signed webhook."
+        sub="One script tag installs on any site. Every event is sent straight to your CRM or your own endpoint with a signed webhook."
       >
         <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-3">
           {INTEGRATIONS.slice(0, 12).map((i, idx) => (
@@ -327,23 +296,3 @@ function StoryStep({
   );
 }
 
-function BigStat({
-  n,
-  suffix,
-  prefix,
-  k,
-}: {
-  n: number;
-  suffix?: string;
-  prefix?: string;
-  k: string;
-}) {
-  return (
-    <div>
-      <div className="font-display font-semibold text-[clamp(2.5rem,3vw+1rem,4rem)] leading-none text-ink-invert-fg tabular-nums tracking-[-0.04em]">
-        <NumberTicker value={n} suffix={suffix} prefix={prefix} />
-      </div>
-      <div className="type-mono-sm text-ink-invert-muted mt-3">{k}</div>
-    </div>
-  );
-}

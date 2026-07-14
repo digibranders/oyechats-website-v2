@@ -458,9 +458,8 @@ Content-Type: application/json
                 Fits your existing <GradientText>tools</GradientText>.
               </h2>
               <p className="type-body text-ink-2 mb-6">
-                WordPress, Shopify, Webflow, Next.js, React, Vue, HTML, and Framer. Booking via
-                Calendly. Automation via Zapier and Make, plus 5 signed webhook events and a full
-                REST API.
+                WordPress, Webflow, Next.js, React, Vue, HTML, and Framer. Booking via
+                Calendly. 5 signed webhook events and a full REST API.
               </p>
               <Button href="/integrations" variant="ghost">
                 Browse all integrations →
