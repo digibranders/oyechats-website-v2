@@ -163,14 +163,21 @@ export default function Navbar() {
           </Button>
         </div>
 
-        <button
-          type="button"
-          className="lg:hidden -mr-2 p-2 text-ink"
-          onClick={() => setOpen((v) => !v)}
-          aria-label="Toggle menu"
-        >
-          {open ? <X size={20} /> : <Menu size={20} />}
-        </button>
+        {/* Mobile / tablet: keep the primary CTA visible in the header,
+            not just buried in the drawer. */}
+        <div className="flex items-center gap-1.5 lg:hidden">
+          <Button href={APP_LINKS.register} external variant="volt" size="sm">
+            Start free
+          </Button>
+          <button
+            type="button"
+            className="-mr-2 p-2 text-ink"
+            onClick={() => setOpen((v) => !v)}
+            aria-label="Toggle menu"
+          >
+            {open ? <X size={20} /> : <Menu size={20} />}
+          </button>
+        </div>
       </div>
       </header>
 
