@@ -166,9 +166,13 @@ export default function Navbar() {
         {/* Mobile / tablet: keep the primary CTA visible in the header,
             not just buried in the drawer. */}
         <div className="flex items-center gap-1.5 lg:hidden">
-          <Button href={APP_LINKS.register} external variant="volt" size="sm">
-            Start free
-          </Button>
+          {/* Hidden while the drawer is open — the drawer footer already has
+              its own Start free, so showing both would duplicate the CTA. */}
+          {!open && (
+            <Button href={APP_LINKS.register} external variant="volt" size="sm">
+              Start free
+            </Button>
+          )}
           <button
             type="button"
             className="-mr-2 p-2 text-ink"
