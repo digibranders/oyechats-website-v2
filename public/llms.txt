@@ -1,0 +1,26 @@
+# OyeChats
+
+> AI chatbot that answers visitors from your own docs, scores their intent with BANT, and routes qualified buyers to a live human.
+
+OyeChats is an AI chatbot for websites. It answers visitor questions grounded in your own documentation via retrieval-augmented generation (RAG), so replies stay accurate to your content instead of a model's training data. As each conversation unfolds, OyeChats reads it for Budget, Authority, Need, and Timeline signals and produces a composite BANT lead score from 0 to 100. When a lead heats up, the chat is handed to a live human teammate in the same thread, with the full transcript and score already attached. Installation is a single script tag on any website. Every event is delivered to your CRM or your own endpoint via HMAC-signed webhooks, and live dashboards show what actually converts.
+
+## Key pages
+
+- [Home](https://www.oyechats.com/): Overview of OyeChats, how it works, and headline stats.
+- [Features](https://www.oyechats.com/features): Streaming answers, grounded RAG, BANT scoring, live handoff, security, analytics, and webhooks.
+- [Pricing](https://www.oyechats.com/pricing): Free, Starter, Standard, and Enterprise plans with credit-based usage.
+- [Integrations](https://www.oyechats.com/integrations): One-line install on WordPress, Webflow, Next.js, React, Vue, or plain HTML.
+- [Docs](https://www.oyechats.com/docs): Setup guides, widget configuration, and API reference.
+- [Blog](https://www.oyechats.com/blog): Articles on AI chat, lead qualification, and support automation.
+- [Security](https://www.oyechats.com/security): Encryption, signed webhooks, prompt-injection guards, and access controls.
+- [Contact](https://www.oyechats.com/contact): Get in touch with sales or support.
+
+## Details
+
+- BANT lead score ranges from 0 to 100, read from the conversation itself with no forms to fill.
+- Setup takes under 10 minutes: add one script tag and the widget goes live.
+- Answers are grounded in your own docs via hybrid semantic and keyword retrieval, with scheduled auto-recrawl to stay current.
+- Webhooks send 5 HMAC-signed event types to your own endpoint, alongside a REST API.
+- Live human handoff passes the full transcript, visitor profile, and lead score to an operator.
+- Uptime target is 99.9%.
+- Plans are credit-based: Free (200 credits/mo), Starter ($19/mo), Standard ($39/mo), and Enterprise (custom).

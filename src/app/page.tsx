@@ -24,9 +24,33 @@ import { PRICING_TIERS } from '@/lib/pricing';
 import { INTEGRATIONS } from '@/lib/integrations';
 import { APP_LINKS } from '@/lib/site';
 
+const softwareSchema: Record<string, unknown> = {
+  '@context': 'https://schema.org',
+  '@type': 'SoftwareApplication',
+  name: 'OyeChats',
+  applicationCategory: 'BusinessApplication',
+  operatingSystem: 'Web',
+  description:
+    'AI chatbot that qualifies every visitor with BANT scoring before your sales reps see them. RAG-grounded answers, live handoff, webhooks, and analytics.',
+  url: 'https://www.oyechats.com',
+  offers: PRICING_TIERS.filter(
+    (tier) => tier.id !== 'enterprise' && tier.monthlyPrice !== null,
+  ).map((tier) => ({
+    '@type': 'Offer',
+    name: tier.name,
+    price: String(tier.monthlyPrice),
+    priceCurrency: 'USD',
+  })),
+};
+
 export default function Home() {
   return (
     <>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(softwareSchema) }}
+      />
+
       {/* ═══════════════════════ HERO ═══════════════════════ */}
       <section className="relative bg-paper overflow-hidden">
         <HeroGlow />

@@ -5,7 +5,7 @@ import Footer from '@/components/site/Footer';
 // Hidden for now, re-enable (import + render below) when there's an announcement or offer.
 // import AnnouncementBar from '@/components/site/AnnouncementBar';
 import './globals.css';
-import Script from 'next/script';
+import WidgetLoader from '@/components/site/WidgetLoader';
 
 const inter = Inter({
   subsets: ['latin'],
@@ -42,22 +42,17 @@ export const viewport: Viewport = {
   themeColor: '#FAFAF7',
 };
 
+const SITE_DESCRIPTION =
+  'AI chatbot that qualifies every visitor with BANT scoring before your sales reps see them. RAG-grounded answers, live handoff, webhooks, and analytics.';
+
 export const metadata: Metadata = {
-  metadataBase: new URL('https://oyechats.com'),
+  metadataBase: new URL('https://www.oyechats.com'),
   title: {
     default: 'OyeChats. You only talk to buyers.',
     template: '%s · OyeChats',
   },
-  description:
-    'AI chatbot that qualifies every visitor with BANT scoring before your sales reps see them. RAG-grounded answers, live handoff, webhooks, and analytics.',
-  keywords: [
-    'AI chatbot',
-    'BANT qualification',
-    'RAG chatbot',
-    'live chat',
-    'sales intelligence',
-    'lead qualification',
-  ],
+  description: SITE_DESCRIPTION,
+  alternates: { canonical: '/' },
   openGraph: {
     type: 'website',
     url: '/',
@@ -68,6 +63,25 @@ export const metadata: Metadata = {
   },
   twitter: { card: 'summary_large_image', title: 'OyeChats. You only talk to buyers.' },
   robots: { index: true, follow: true },
+};
+
+const siteSchema: Record<string, unknown> = {
+  '@context': 'https://schema.org',
+  '@graph': [
+    {
+      '@type': 'Organization',
+      name: 'OyeChats',
+      url: 'https://www.oyechats.com',
+      logo: 'https://www.oyechats.com/logo.png',
+      description: SITE_DESCRIPTION,
+      sameAs: [],
+    },
+    {
+      '@type': 'WebSite',
+      name: 'OyeChats',
+      url: 'https://www.oyechats.com',
+    },
+  ],
 };
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
@@ -82,11 +96,12 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         <main>{children}</main>
         <Footer />
 
-        <Script
-          src="https://cdn.oyechats.com/oyechats-widget.js"
-          data-bot-key="bot-9d52d243038c"
-          strategy="lazyOnload"
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(siteSchema) }}
         />
+
+        <WidgetLoader />
       </body>
     </html>
   );

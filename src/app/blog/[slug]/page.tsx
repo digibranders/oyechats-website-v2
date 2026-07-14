@@ -31,8 +31,47 @@ export default async function BlogPostPage({ params }: { params: Promise<Params>
   const post = BLOG_POSTS.find((p) => p.slug === slug);
   if (!post) notFound();
 
+  const SITE_URL = 'https://www.oyechats.com';
+  const canonical = `${SITE_URL}/blog/${post.slug}`;
+  const imageUrl = /^https?:\/\//.test(post.image) ? post.image : `${SITE_URL}${post.image}`;
+
+  const blogPostingSchema = {
+    '@context': 'https://schema.org',
+    '@type': 'BlogPosting',
+    headline: post.title,
+    description: post.description,
+    datePublished: post.dateISO,
+    dateModified: post.dateISO,
+    image: imageUrl,
+    author: { '@type': 'Organization', name: 'OyeChats' },
+    publisher: {
+      '@type': 'Organization',
+      name: 'OyeChats',
+      logo: { '@type': 'ImageObject', url: `${SITE_URL}/logo.png` },
+    },
+    mainEntityOfPage: canonical,
+  } as const;
+
+  const breadcrumbSchema = {
+    '@context': 'https://schema.org',
+    '@type': 'BreadcrumbList',
+    itemListElement: [
+      { '@type': 'ListItem', position: 1, name: 'Home', item: SITE_URL },
+      { '@type': 'ListItem', position: 2, name: 'Blog', item: `${SITE_URL}/blog` },
+      { '@type': 'ListItem', position: 3, name: post.title, item: canonical },
+    ],
+  } as const;
+
   return (
     <article className="bg-canvas">
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(blogPostingSchema) }}
+      />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbSchema) }}
+      />
       <header className="bg-paper border-b border-line pt-16 pb-16 md:pt-24 md:pb-20">
         <Container>
           <Link

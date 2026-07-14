@@ -2,7 +2,7 @@
 
 import { useEffect, useRef, useState } from 'react';
 import { Zap, ArrowUpRight, Activity, Radio } from 'lucide-react';
-import { Button, Chip, Container, NumberTicker } from '@/components/ds';
+import { Button, Container, NumberTicker } from '@/components/ds';
 import { APP_LINKS } from '@/lib/site';
 
 const ROTATING_WORDS = ['workflow', 'pipeline', 'revenue', 'growth', 'quota'];

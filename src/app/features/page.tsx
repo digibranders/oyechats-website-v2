@@ -26,6 +26,17 @@ import {
   Section,
 } from '@/components/ds';
 import { APP_LINKS } from '@/lib/site';
+import { FEATURES } from '@/lib/features';
+
+const SOFTWARE_APPLICATION_SCHEMA = {
+  '@context': 'https://schema.org',
+  '@type': 'SoftwareApplication',
+  name: 'OyeChats',
+  url: 'https://www.oyechats.com/features',
+  applicationCategory: 'BusinessApplication',
+  operatingSystem: 'Web',
+  featureList: FEATURES.map((f) => f.title),
+} as const;
 
 export const metadata: Metadata = {
   title: 'Features',
@@ -85,6 +96,10 @@ const WEBHOOK_EVENTS = [
 export default function FeaturesPage() {
   return (
     <>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(SOFTWARE_APPLICATION_SCHEMA) }}
+      />
       <section className="relative bg-paper overflow-hidden">
         <HeroGlow />
         <DottedGrid />

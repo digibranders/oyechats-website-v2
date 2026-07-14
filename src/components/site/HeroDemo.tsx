@@ -109,6 +109,7 @@ export function HeroDemo() {
   const runId = useRef(0);
   const reducedRef = useRef(false);
   const startIndexRef = useRef(0);
+  const autoAdvancesRef = useRef(0);
   const rootRef = useRef<HTMLDivElement>(null);
 
   const showFinal = useCallback((i: number) => {
@@ -120,6 +121,10 @@ export function HeroDemo() {
     setScore(s.score);
     setPhase('done');
   }, []);
+
+  // Holds the latest `play` so the self-scheduling auto-advance can recurse
+  // through a stable ref instead of referencing the callback before it exists.
+  const playRef = useRef<((i: number) => void) | null>(null);
 
   const play = useCallback(async (i: number) => {
     const s = SCRIPTS[i];
@@ -165,8 +170,19 @@ export function HeroDemo() {
     await sleep(3600);
     if (!alive()) return;
 
-    play((i + 1) % SCRIPTS.length);
+    // Auto-advance through the scripts at most once, then stop. When the next
+    // step would wrap past the last script, leave it rendered in its final
+    // 'routed' state instead of looping back forever (keeps the main thread idle).
+    const next = i + 1;
+    if (next < SCRIPTS.length && autoAdvancesRef.current < SCRIPTS.length - 1) {
+      autoAdvancesRef.current += 1;
+      playRef.current?.(next);
+    }
   }, []);
+
+  useEffect(() => {
+    playRef.current = play;
+  }, [play]);
 
   useEffect(() => {
     reducedRef.current =
@@ -206,6 +222,7 @@ export function HeroDemo() {
     if (reducedRef.current) {
       showFinal(i);
     } else {
+      autoAdvancesRef.current = 0; // fresh manual replay may auto-advance again
       play(i);
     }
   };

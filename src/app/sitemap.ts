@@ -2,10 +2,12 @@ import type { MetadataRoute } from 'next';
 import { LEGAL_PAGES } from '@/lib/legal';
 import { BLOG_POSTS } from '@/lib/blog';
 
-const BASE = 'https://oyechats.com';
+const BASE = 'https://www.oyechats.com';
+
+/** Stable date of the last meaningful content update; avoids telling crawlers every page changed on every build. */
+const LAST_BUILD = new Date('2026-07-14');
 
 export default function sitemap(): MetadataRoute.Sitemap {
-  const now = new Date();
   const routes = [
     '',
     '/about',
@@ -21,7 +23,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     '/legal',
   ].map((path) => ({
     url: `${BASE}${path}`,
-    lastModified: now,
+    lastModified: LAST_BUILD,
     changeFrequency: 'weekly' as const,
     priority: path === '' ? 1 : 0.7,
   }));
