@@ -83,6 +83,9 @@ const TOP_LINKS = [
   { label: 'Resources', href: '/docs', menu: RESOURCES_MENU },
 ] as const;
 
+// Primary mobile nav — kept lean. Secondary pages (Changelog, About,
+// Security) are intentionally omitted here since they're all reachable from
+// the footer; a 10-item drawer buried the primary journey.
 const MOBILE_LINKS = [
   { label: 'Product', href: '/features' },
   { label: 'Solutions', href: '/solutions' },
@@ -90,9 +93,6 @@ const MOBILE_LINKS = [
   { label: 'Pricing', href: '/pricing' },
   { label: 'Docs', href: '/docs' },
   { label: 'Blog', href: '/blog' },
-  { label: 'Changelog', href: '/changelog' },
-  { label: 'About', href: '/about' },
-  { label: 'Security', href: '/security' },
   { label: 'Contact', href: '/contact' },
 ];
 
