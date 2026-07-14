@@ -5,6 +5,7 @@ import Footer from '@/components/site/Footer';
 // Hidden for now, re-enable (import + render below) when there's an announcement or offer.
 // import AnnouncementBar from '@/components/site/AnnouncementBar';
 import './globals.css';
+import Script from 'next/script';
 
 const inter = Inter({
   subsets: ['latin'],
@@ -80,6 +81,12 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         <Navbar />
         <main>{children}</main>
         <Footer />
+
+        <Script
+          src="https://cdn.oyechats.com/oyechats-widget.js"
+          data-bot-key="bot-9d52d243038c"
+          strategy="lazyOnload"
+        />
       </body>
     </html>
   );
