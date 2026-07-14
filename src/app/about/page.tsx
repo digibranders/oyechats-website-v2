@@ -21,7 +21,7 @@ const HERO_STATS = [
   { value: '1', label: 'Script tag to embed' },
   { value: '5 min', label: 'From signup to live bot' },
   { value: '24/7', label: 'Answers from your knowledge base' },
-  { value: 'Cited', label: 'Every answer sourced from your docs' },
+  { value: 'Grounded', label: 'Every answer from your docs, not training data' },
 ];
 
 type VisionBlock = {

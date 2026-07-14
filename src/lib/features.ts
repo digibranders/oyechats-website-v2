@@ -40,7 +40,7 @@ export const FEATURES: Feature[] = [
     slug: 'grounded-rag',
     icon: Search,
     title: 'Grounded answers',
-    tagline: 'Answers from your content, with sources.',
+    tagline: 'Answers retrieved from your own docs.',
     description:
       'Every answer is grounded in your own docs, retrieved via hybrid semantic and keyword search. It refreshes on its own as your content changes.',
     anchor: 'feature-rag',
