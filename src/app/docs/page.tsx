@@ -180,7 +180,7 @@ export default function DocsPage() {
                           {a.required ? (
                             <span className="text-signal font-semibold text-[12px]">Required</span>
                           ) : (
-                            <span className="text-muted-2 text-[12px]">Optional</span>
+                            <span className="text-muted text-[12px]">Optional</span>
                           )}
                         </Td>
                         <Td>{a.desc}</Td>

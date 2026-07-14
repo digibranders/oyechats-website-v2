@@ -33,6 +33,9 @@ const fraunces = Fraunces({
   weight: ['400'],
   style: ['italic'],
   display: 'swap',
+  // Editorial accent used only on blog/about pull-quotes; keep it off the
+  // critical path so it never competes with the LCP font on other pages.
+  preload: false,
   variable: '--font-fraunces',
 });
 

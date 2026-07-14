@@ -29,7 +29,7 @@ const EVENT_POOL: FeedEvent[] = [
 const ROUTE_COLORS: Record<FeedEvent['route'], string> = {
   sales: 'text-signal',
   nurture: 'text-alert',
-  'self-serve': 'text-muted-2',
+  'self-serve': 'text-muted',
 };
 
 const ROUTE_LABELS: Record<FeedEvent['route'], string> = {

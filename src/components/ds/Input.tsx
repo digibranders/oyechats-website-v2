@@ -2,7 +2,7 @@ import type { InputHTMLAttributes, TextareaHTMLAttributes } from 'react';
 import { cn } from '@/lib/cn';
 
 const base =
-  'block w-full bg-canvas border border-line rounded-[var(--r-2)] px-3.5 py-2.5 text-sm text-ink leading-[1.5] transition-[border-color,box-shadow] duration-200 ease-[var(--ease-inout)] placeholder:text-muted-2 focus:outline-none focus:border-volt focus:shadow-[var(--e-focus)]';
+  'block w-full bg-canvas border border-line rounded-[var(--r-2)] px-3.5 py-2.5 text-sm text-ink leading-[1.5] transition-[border-color,box-shadow] duration-200 ease-[var(--ease-inout)] placeholder:text-muted focus:outline-none focus:border-volt focus:shadow-[var(--e-focus)]';
 
 export function Input({ className, ...rest }: InputHTMLAttributes<HTMLInputElement>) {
   return <input className={cn(base, className)} {...rest} />;

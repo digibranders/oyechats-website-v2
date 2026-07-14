@@ -68,7 +68,7 @@ export default function BlogPage() {
               className="block bg-canvas border border-line rounded-[var(--r-3)] p-6 hover:border-volt/40 hover:shadow-[0_20px_40px_-16px_rgba(162,28,175,0.14)] hover:-translate-y-1 transition-all duration-300 no-underline h-full"
             >
               <div className="aspect-[16/10] bg-paper rounded-[var(--r-2)] border border-line mb-5 flex items-center justify-center">
-                <span className="font-mono text-muted-2 text-[12px]">post preview</span>
+                <span className="font-mono text-muted text-[12px]">post preview</span>
               </div>
               <div className="flex gap-2 mb-3">
                 <Chip variant="mono">{p.category}</Chip>

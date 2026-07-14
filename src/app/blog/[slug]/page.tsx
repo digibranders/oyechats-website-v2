@@ -33,7 +33,9 @@ export default async function BlogPostPage({ params }: { params: Promise<Params>
 
   const SITE_URL = 'https://www.oyechats.com';
   const canonical = `${SITE_URL}/blog/${post.slug}`;
-  const imageUrl = /^https?:\/\//.test(post.image) ? post.image : `${SITE_URL}${post.image}`;
+  // Use the generated per-post OG image (1200×630, always exists) for structured
+  // data. The post.image webp paths are placeholders that aren't rendered/shipped.
+  const imageUrl = `${SITE_URL}/blog/${post.slug}/opengraph-image`;
 
   const blogPostingSchema = {
     '@context': 'https://schema.org',
