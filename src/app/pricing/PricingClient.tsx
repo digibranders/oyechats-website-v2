@@ -25,6 +25,10 @@ import {
   CREDIT_COSTS,
   TOPUP_PACKS,
   CATEGORY_LABELS,
+  CURRENCY_SYMBOL,
+  formatPrice,
+  isCurrencyText,
+  type Currency,
   type PricingFeatureCategory,
   type PricingFeatureValue,
 } from '@/lib/pricing';
@@ -32,14 +36,24 @@ import { APP_LINKS } from '@/lib/site';
 
 const CATEGORIES: PricingFeatureCategory[] = ['usage', 'features', 'security'];
 
-function renderCell(v: PricingFeatureValue) {
+function renderCell(v: PricingFeatureValue, currency: Currency) {
   if (v === true) return <Check size={16} className="text-signal inline" />;
   if (v === false) return <X size={16} className="text-muted-2 inline" />;
+  if (isCurrencyText(v)) return <span className="type-body-sm text-ink-2">{v[currency]}</span>;
   return <span className="type-body-sm text-ink-2">{v}</span>;
 }
 
-export default function PricingClient() {
+function perThousand(price: number, credits: number, currency: Currency) {
+  const value = (price / credits) * 1000;
+  return currency === 'USD'
+    ? `$${value.toFixed(2)}`
+    : `₹${Math.round(value).toLocaleString('en-IN')}`;
+}
+
+export default function PricingClient({ currency }: { currency: Currency }) {
   const [annual, setAnnual] = useState(false);
+  const symbol = CURRENCY_SYMBOL[currency];
+  const cardTiers = PRICING_TIERS.filter((t) => t.id !== 'enterprise');
 
   return (
     <>
@@ -75,13 +89,19 @@ export default function PricingClient() {
               <span className="text-[10px] font-mono text-signal">save 20%</span>
             </button>
           </div>
+
+          <p className="type-mono-sm text-muted mt-4">
+            Prices shown in {currency} ({symbol}) for your region.
+          </p>
         </Container>
       </section>
 
       <Section tone="canvas" containerSize="wide">
         <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-4">
-          {PRICING_TIERS.map((tier, i) => {
-            const price = annual ? tier.annualPrice : tier.monthlyPrice;
+          {cardTiers.map((tier, i) => {
+            const money = annual ? tier.annualMonthly : tier.monthly;
+            const price = money ? money[currency] : null;
+            const annualTotal = tier.annualTotal ? tier.annualTotal[currency] : null;
             return (
               <Reveal key={tier.id} delay={i * 80} className="h-full">
                 <div
@@ -107,7 +127,12 @@ export default function PricingClient() {
                       ) : price === 0 ? (
                         'Free'
                       ) : (
-                        <NumberTicker key={annual ? 'annual' : 'monthly'} value={price} prefix="$" duration={900} />
+                        <NumberTicker
+                          key={`${annual ? 'annual' : 'monthly'}-${currency}`}
+                          value={price}
+                          prefix={symbol}
+                          duration={900}
+                        />
                       )}
                     </span>
                     {price !== null && price > 0 && (
@@ -115,8 +140,10 @@ export default function PricingClient() {
                     )}
                   </div>
 
-                  {annual && tier.annualTotal !== null && tier.annualTotal > 0 ? (
-                    <div className="type-mono-sm text-muted mb-1">Billed ${tier.annualTotal}/yr</div>
+                  {annual && annualTotal !== null && annualTotal > 0 ? (
+                    <div className="type-mono-sm text-muted mb-1">
+                      Billed {formatPrice(annualTotal, currency)}/yr
+                    </div>
                   ) : null}
 
                   <p className="type-body-sm text-muted mb-6 mt-1">{tier.tagline}</p>
@@ -180,37 +207,40 @@ export default function PricingClient() {
           <div>
             <h3 className="type-heading-2 text-ink mb-4">Top-up packs</h3>
             <div className="space-y-3">
-              {TOPUP_PACKS.map((p) => (
-                <div
-                  key={p.usd}
-                  className={`flex items-center justify-between bg-canvas rounded-[var(--r-3)] px-5 py-4 ${
-                    p.badge ? 'border-[1.5px] border-volt' : 'border border-line'
-                  }`}
-                >
-                  <div>
-                    <div className="font-display font-semibold text-ink text-[18px] tabular-nums">
-                      ${p.usd}
+              {TOPUP_PACKS.map((p) => {
+                const price = p.price[currency];
+                return (
+                  <div
+                    key={price}
+                    className={`flex items-center justify-between bg-canvas rounded-[var(--r-3)] px-5 py-4 ${
+                      p.badge ? 'border-[1.5px] border-volt' : 'border border-line'
+                    }`}
+                  >
+                    <div>
+                      <div className="font-display font-semibold text-ink text-[18px] tabular-nums">
+                        {formatPrice(price, currency)}
+                      </div>
+                      <div className="type-mono-sm text-muted">
+                        {p.credits.toLocaleString()} credits
+                        {p.bonusPct > 0 && (
+                          <span className="text-signal"> · +{p.bonusPct}% bonus</span>
+                        )}
+                      </div>
                     </div>
-                    <div className="type-mono-sm text-muted">
-                      {p.credits.toLocaleString()} credits
-                      {p.bonusPct > 0 && (
-                        <span className="text-signal"> · +{p.bonusPct}% bonus</span>
+                    <div className="text-right">
+                      <div className="type-mono-sm text-muted">per 1k credits</div>
+                      <div className="font-mono text-[13px] text-ink tabular-nums">
+                        {perThousand(price, p.credits, currency)}
+                      </div>
+                      {p.badge && (
+                        <Chip variant="soft" className="mt-1.5">
+                          {p.badge}
+                        </Chip>
                       )}
                     </div>
                   </div>
-                  <div className="text-right">
-                    <div className="type-mono-sm text-muted">per 1k credits</div>
-                    <div className="font-mono text-[13px] text-ink tabular-nums">
-                      ${p.perThousandUsd.toFixed(2)}
-                    </div>
-                    {p.badge && (
-                      <Chip variant="soft" className="mt-1.5">
-                        {p.badge}
-                      </Chip>
-                    )}
-                  </div>
-                </div>
-              ))}
+                );
+              })}
             </div>
           </div>
         </div>
@@ -234,6 +264,7 @@ export default function PricingClient() {
                     <Th>Free</Th>
                     <Th>Starter</Th>
                     <Th>Standard</Th>
+                    <Th>Professional</Th>
                     <Th>Enterprise</Th>
                   </tr>
                 </thead>
@@ -241,10 +272,11 @@ export default function PricingClient() {
                   {rows.map((r) => (
                     <tr key={r.label}>
                       <Td>{r.label}</Td>
-                      <Td>{renderCell(r.free)}</Td>
-                      <Td>{renderCell(r.starter)}</Td>
-                      <Td>{renderCell(r.standard)}</Td>
-                      <Td>{renderCell(r.enterprise)}</Td>
+                      <Td>{renderCell(r.free, currency)}</Td>
+                      <Td>{renderCell(r.starter, currency)}</Td>
+                      <Td>{renderCell(r.standard, currency)}</Td>
+                      <Td>{renderCell(r.professional, currency)}</Td>
+                      <Td>{renderCell(r.enterprise, currency)}</Td>
                     </tr>
                   ))}
                 </tbody>
@@ -265,8 +297,8 @@ export default function PricingClient() {
               Custom volume. <span className="text-volt">A dedicated manager.</span>
             </h2>
             <p className="type-body-lg text-ink-invert-muted max-w-lg">
-              Unlimited chatbots, unlimited seats, custom SLA, and a dedicated account manager.
-              Everything you need for a company-wide rollout.
+              Unlimited chatbots, unlimited seats, SSO, custom SLA, and a dedicated account
+              manager. Everything you need for a company-wide rollout.
             </p>
           </div>
           <div className="bg-white/5 border border-white/10 rounded-[var(--r-4)] p-6">

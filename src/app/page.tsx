@@ -1,4 +1,5 @@
 import Link from 'next/link';
+import { headers } from 'next/headers';
 import { ArrowRight } from 'lucide-react';
 import { FinalCTA } from '@/components/site/FinalCTA';
 import { HeroDemo } from '@/components/site/HeroDemo';
@@ -20,7 +21,7 @@ import {
   DataFlowLine,
 } from '@/components/ds';
 import { FEATURES } from '@/lib/features';
-import { PRICING_TIERS } from '@/lib/pricing';
+import { PRICING_TIERS, currencyForCountry, CURRENCY_SYMBOL } from '@/lib/pricing';
 import { INTEGRATIONS } from '@/lib/integrations';
 import { APP_LINKS } from '@/lib/site';
 
@@ -34,16 +35,25 @@ const softwareSchema: Record<string, unknown> = {
     'AI chatbot that qualifies every visitor with BANT scoring before your sales reps see them. RAG-grounded answers, live handoff, webhooks, and analytics.',
   url: 'https://www.oyechats.com',
   offers: PRICING_TIERS.filter(
-    (tier) => tier.id !== 'enterprise' && tier.monthlyPrice !== null,
+    (tier) => tier.id !== 'enterprise' && tier.monthly !== null,
   ).map((tier) => ({
     '@type': 'Offer',
     name: tier.name,
-    price: String(tier.monthlyPrice),
+    price: String(tier.monthly?.USD ?? 0),
     priceCurrency: 'USD',
   })),
 };
 
-export default function Home() {
+// The pricing preview is geo-gated (INR for India, USD elsewhere), so the
+// homepage is resolved per-request and must not be statically cached.
+export const dynamic = 'force-dynamic';
+
+export default async function Home() {
+  // Strict geo-gate (same rule as /pricing): India → INR, everyone else → USD.
+  const requestHeaders = await headers();
+  const currency = currencyForCountry(requestHeaders.get('x-vercel-ip-country'));
+  const symbol = CURRENCY_SYMBOL[currency];
+
   return (
     <>
       <script
@@ -224,7 +234,7 @@ export default function Home() {
         heading={<>Simple, credit-based pricing.</>}
         sub="Start free. Scale credits as you grow. Cancel anytime."
       >
-        <div className="grid md:grid-cols-3 gap-4">
+        <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-4">
           {PRICING_TIERS.filter((t) => t.id !== 'enterprise').map((tier, idx) => (
             <Reveal key={tier.id} delay={idx * 100}>
               <div
@@ -242,12 +252,12 @@ export default function Home() {
                 )}
                 <div className="type-mono-sm text-muted mb-3">{tier.name}</div>
                 <div className="font-display font-semibold text-[44px] leading-none text-ink tabular-nums mb-1 tracking-[-0.03em]">
-                  {tier.monthlyPrice === null
+                  {tier.monthly === null
                     ? 'Custom'
-                    : tier.monthlyPrice === 0
+                    : tier.monthly[currency] === 0
                     ? 'Free'
-                    : `$${tier.monthlyPrice}`}
-                  {tier.monthlyPrice !== null && tier.monthlyPrice > 0 && (
+                    : `${symbol}${tier.monthly[currency].toLocaleString()}`}
+                  {tier.monthly !== null && tier.monthly[currency] > 0 && (
                     <span className="text-[14px] text-muted font-normal ml-1">/mo</span>
                   )}
                 </div>
