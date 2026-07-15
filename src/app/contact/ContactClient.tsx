@@ -1,16 +1,7 @@
 'use client';
 
 import { useState, useRef, useEffect, FormEvent } from 'react';
-import {
-  CheckCircle2,
-  Mail,
-  MessageSquare,
-  MapPin,
-  Clock,
-  Phone,
-  FileText,
-  ChevronDown,
-} from 'lucide-react';
+import { CheckCircle2, ChevronDown } from 'lucide-react';
 import {
   Button,
   Callout,
@@ -30,25 +21,6 @@ const INTENT_OPTIONS = [
   { value: 'partnership', label: 'Partnership / integration' },
   { value: 'careers', label: 'Careers inquiry' },
   { value: 'other', label: 'Something else' },
-];
-
-const CONTACT_INFO = [
-  { icon: Mail, label: 'Email', value: 'support@oyechats.com', href: 'mailto:support@oyechats.com' },
-  { icon: Phone, label: 'Phone', value: '+91 789 789 6607', href: 'tel:+917897896607' },
-  {
-    icon: MapPin,
-    label: 'Office',
-    value: (
-      <>
-        Office No. 2617, 26th Floor, Solus Building,<br />
-        Hiranandani Estate, Ghodbunder Road,<br />
-        Thane West, Maharashtra 400607
-      </>
-    ),
-  },
-  { icon: FileText, label: 'GST No.', value: '27AAICD9268J1Z0' },
-  { icon: MessageSquare, label: 'Live chat', value: 'Available on this page' },
-  { icon: Clock, label: 'Response time', value: 'Within 1 business day' },
 ];
 
 export default function ContactClient() {
@@ -110,36 +82,8 @@ export default function ContactClient() {
 
       <div className="bg-canvas py-16 md:py-24 border-t border-line">
         <Container>
-          <div className="grid md:grid-cols-[1fr_1.6fr] gap-12">
-            {/* Contact info column */}
-            <aside className="space-y-3">
-              {CONTACT_INFO.map((c, idx) => (
-                <Reveal
-                  key={c.label}
-                  delay={idx * 60}
-                  className="bg-canvas border border-line rounded-[var(--r-3)] p-4 flex items-start gap-3 hover:border-line-2 transition-colors"
-                >
-                  <div className="w-9 h-9 rounded-[var(--r-2)] bg-volt-tint text-volt flex items-center justify-center shrink-0">
-                    <c.icon size={16} />
-                  </div>
-                  <div className="min-w-0">
-                    <div className="type-mono-sm text-muted">{c.label}</div>
-                    {c.href ? (
-                      <a
-                        href={c.href}
-                        className="type-body-sm text-ink font-medium no-underline hover:text-volt break-words"
-                      >
-                        {c.value}
-                      </a>
-                    ) : (
-                      <div className="type-body-sm text-ink font-medium break-words">{c.value}</div>
-                    )}
-                  </div>
-                </Reveal>
-              ))}
-            </aside>
-
-            {/* Form column */}
+          <div className="max-w-2xl mx-auto">
+            {/* Form */}
             <Reveal delay={80}>
               {submitted ? (
                 <div className="bg-canvas border border-signal/30 rounded-[var(--r-4)] p-12 flex flex-col items-center text-center min-h-[420px] justify-center">

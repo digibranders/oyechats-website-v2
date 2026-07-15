@@ -81,6 +81,7 @@ const TOP_LINKS = [
   { label: 'Integrations', href: '/integrations' },
   { label: 'Pricing', href: '/pricing' },
   { label: 'Resources', href: '/docs', menu: RESOURCES_MENU },
+  { label: 'Contact us', href: '/contact' },
 ] as const;
 
 // Primary mobile nav — kept lean. Secondary pages (Changelog, About,
@@ -93,7 +94,7 @@ const MOBILE_LINKS = [
   { label: 'Pricing', href: '/pricing' },
   { label: 'Docs', href: '/docs' },
   { label: 'Blog', href: '/blog' },
-  { label: 'Contact', href: '/contact' },
+  { label: 'Contact us', href: '/contact' },
 ];
 
 export default function Navbar() {
