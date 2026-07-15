@@ -20,6 +20,7 @@ import {
   HeroGlow,
   Input,
   Label,
+  Reveal,
   Textarea,
 } from '@/components/ds';
 
@@ -112,9 +113,10 @@ export default function ContactClient() {
           <div className="grid md:grid-cols-[1fr_1.6fr] gap-12">
             {/* Contact info column */}
             <aside className="space-y-3">
-              {CONTACT_INFO.map((c) => (
-                <div
+              {CONTACT_INFO.map((c, idx) => (
+                <Reveal
                   key={c.label}
+                  delay={idx * 60}
                   className="bg-canvas border border-line rounded-[var(--r-3)] p-4 flex items-start gap-3 hover:border-line-2 transition-colors"
                 >
                   <div className="w-9 h-9 rounded-[var(--r-2)] bg-volt-tint text-volt flex items-center justify-center shrink-0">
@@ -133,12 +135,12 @@ export default function ContactClient() {
                       <div className="type-body-sm text-ink font-medium break-words">{c.value}</div>
                     )}
                   </div>
-                </div>
+                </Reveal>
               ))}
             </aside>
 
             {/* Form column */}
-            <div>
+            <Reveal delay={80}>
               {submitted ? (
                 <div className="bg-canvas border border-signal/30 rounded-[var(--r-4)] p-12 flex flex-col items-center text-center min-h-[420px] justify-center">
                   <div className="w-14 h-14 rounded-full bg-signal-tint text-signal flex items-center justify-center mb-5">
@@ -206,7 +208,7 @@ export default function ContactClient() {
                     <button
                       type="button"
                       onClick={() => setIntentOpen((v) => !v)}
-                      className="w-full bg-canvas border border-line rounded-[var(--r-2)] px-3.5 py-2.5 text-sm text-ink text-left flex items-center justify-between focus:outline-none focus:border-volt focus:shadow-[var(--e-focus)] transition-all"
+                      className="w-full bg-canvas border border-line rounded-[var(--r-2)] px-3.5 py-3 min-h-11 text-sm text-ink text-left flex items-center justify-between focus:outline-none focus:border-volt focus:shadow-[var(--e-focus)] transition-all"
                       aria-haspopup="listbox"
                       aria-expanded={intentOpen}
                     >
@@ -231,7 +233,7 @@ export default function ContactClient() {
                               setForm({ ...form, intent: o.value });
                               setIntentOpen(false);
                             }}
-                            className={`px-4 py-2.5 text-sm cursor-pointer flex items-center gap-2 transition-colors ${
+                            className={`px-4 py-3 min-h-11 text-sm cursor-pointer flex items-center gap-2 transition-colors ${
                               form.intent === o.value
                                 ? 'text-volt-ink bg-volt-tint'
                                 : 'text-ink-2 hover:text-ink hover:bg-paper'
@@ -271,7 +273,7 @@ export default function ContactClient() {
                   </Button>
                 </form>
               )}
-            </div>
+            </Reveal>
           </div>
         </Container>
       </div>

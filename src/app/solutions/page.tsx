@@ -8,6 +8,7 @@ import {
   DottedGrid,
   GradientText,
   HeroGlow,
+  Reveal,
 } from '@/components/ds';
 import { SOLUTIONS, type Solution } from '@/lib/features';
 
@@ -124,12 +125,12 @@ export default function SolutionsPage() {
           <section
             key={s.slug}
             id={s.slug}
-            className={`scroll-mt-24 py-20 md:py-28 border-t border-line ${
+            className={`scroll-mt-24 py-14 md:py-28 border-t border-line ${
               isEven ? 'bg-canvas' : 'bg-paper'
             }`}
           >
             <Container>
-              <div className="max-w-3xl">
+              <Reveal className="max-w-3xl">
                 <div className="flex items-center gap-3 mb-5">
                   <div
                     className={`flex h-11 w-11 items-center justify-center rounded-[var(--r-3)] bg-canvas border border-line ring-1 ${a.ring} ${a.text}`}
@@ -158,7 +159,7 @@ export default function SolutionsPage() {
                     </li>
                   ))}
                 </ul>
-                <div className="mt-8 inline-flex items-center gap-4 rounded-[var(--r-3)] border border-line bg-canvas px-5 py-4 shadow-[var(--e-1)]">
+                <div className="mt-8 inline-flex flex-wrap items-center gap-x-4 gap-y-2 rounded-[var(--r-3)] border border-line bg-canvas px-5 py-4 shadow-[var(--e-1)]">
                   <div
                     className={`font-display font-semibold text-2xl tracking-tight whitespace-nowrap ${a.text}`}
                   >
@@ -169,7 +170,7 @@ export default function SolutionsPage() {
                     {s.outcome.label}
                   </div>
                 </div>
-              </div>
+              </Reveal>
             </Container>
           </section>
         );
@@ -177,7 +178,7 @@ export default function SolutionsPage() {
 
       <section className="bg-canvas py-24 border-t border-line">
         <Container>
-          <div className="max-w-3xl mx-auto text-center">
+          <Reveal className="max-w-3xl mx-auto text-center">
             <div className="type-mono-sm text-muted mb-4 flex items-center gap-2 justify-center">
               <span className="w-6 h-px bg-volt" />
               <span>Get started</span>
@@ -196,7 +197,7 @@ export default function SolutionsPage() {
                 Read the docs
               </Button>
             </div>
-          </div>
+          </Reveal>
         </Container>
       </section>
     </>

@@ -1,5 +1,5 @@
 import type { Metadata } from 'next';
-import { Chip, Container, DottedGrid, GradientText, HeroGlow } from '@/components/ds';
+import { Chip, Container, DottedGrid, GradientText, HeroGlow, Reveal } from '@/components/ds';
 import { CHANGELOG, type ChangelogEntry } from '@/lib/changelog';
 
 export const metadata: Metadata = {
@@ -42,11 +42,11 @@ export default function ChangelogPage() {
               aria-hidden
             />
             <div className="space-y-10">
-              {CHANGELOG.map((entry) => {
+              {CHANGELOG.map((entry, i) => {
                 const a = ACCENT_STYLES[entry.accent];
                 return (
+                  <Reveal key={entry.id} delay={i * 60}>
                   <article
-                    key={entry.id}
                     id={entry.id}
                     className="relative pl-14 md:pl-20"
                   >
@@ -86,6 +86,7 @@ export default function ChangelogPage() {
                       </div>
                     </div>
                   </article>
+                  </Reveal>
                 );
               })}
             </div>

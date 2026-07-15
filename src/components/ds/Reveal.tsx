@@ -1,11 +1,12 @@
-'use client';
-
-import { useEffect, useRef, useState, type ReactNode } from 'react';
+import type { ReactNode } from 'react';
 import { cn } from '@/lib/cn';
 
 /**
- * Reveal, fades a child in from below when it enters the viewport.
- * Only runs once; respects prefers-reduced-motion.
+ * Reveal, marks a block for the global ScrollReveal provider to fade in from
+ * below as it scrolls into view. Purely presentational — no hooks, no observer.
+ * The single provider mounted in the root layout drives every `[data-reveal]`
+ * block, so this stays a server component and adds nothing to the JS bundle.
+ * Content is visible by default (JS-gated hide); respects prefers-reduced-motion.
  */
 export function Reveal({
   children,
@@ -16,38 +17,11 @@ export function Reveal({
   delay?: number;
   className?: string;
 }) {
-  const [visible, setVisible] = useState(false);
-  const ref = useRef<HTMLDivElement | null>(null);
-
-  useEffect(() => {
-    const el = ref.current;
-    if (!el) return;
-    const reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-    if (reduced) {
-      setVisible(true);
-      return;
-    }
-    const io = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((entry) => {
-          if (entry.isIntersecting) {
-            setVisible(true);
-            io.unobserve(entry.target);
-          }
-        });
-      },
-      { threshold: 0.15 }
-    );
-    io.observe(el);
-    return () => io.disconnect();
-  }, []);
-
   return (
     <div
-      ref={ref}
       data-reveal
-      className={cn(visible && 'is-visible', className)}
-      style={{ animationDelay: `${delay}ms` }}
+      className={cn(className)}
+      style={delay ? { animationDelay: `${delay}ms` } : undefined}
     >
       {children}
     </div>

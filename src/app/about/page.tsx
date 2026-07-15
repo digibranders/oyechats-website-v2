@@ -7,6 +7,7 @@ import {
   GradientText,
   HeroGlow,
   PullQuote,
+  Reveal,
   Section,
 } from '@/components/ds';
 
@@ -101,11 +102,9 @@ export default function AboutPage() {
         containerSize="wide"
       >
         <div className="grid md:grid-cols-2 gap-4">
-          {VISION_BLOCKS.map((block) => (
-            <div
-              key={block.title}
-              className="bg-canvas border border-line rounded-[var(--r-4)] p-8 hover:border-volt/40 hover:shadow-[0_20px_40px_-16px_rgba(162,28,175,0.14)] hover:-translate-y-1 transition-all duration-300"
-            >
+          {VISION_BLOCKS.map((block, i) => (
+            <Reveal key={block.title} delay={i * 60}>
+              <div className="bg-canvas border border-line rounded-[var(--r-4)] p-8 hover:border-volt/40 hover:shadow-[0_20px_40px_-16px_rgba(162,28,175,0.14)] hover:-translate-y-1 transition-all duration-300">
               <div className="flex items-start gap-5">
                 <div className="shrink-0 w-11 h-11 rounded-[var(--r-3)] border border-line bg-volt-tint text-volt flex items-center justify-center">
                   <block.icon size={20} />
@@ -127,16 +126,19 @@ export default function AboutPage() {
                   <p className="type-body-sm text-ink-2">{block.desc}</p>
                 </div>
               </div>
-            </div>
+              </div>
+            </Reveal>
           ))}
         </div>
       </Section>
 
       <Section tone="paper">
-        <PullQuote
-          quote="Every visitor is trying to tell you something. Forms interrupt the message. Chat, done right, listens for it."
-          cite="OyeChats Team"
-        />
+        <Reveal>
+          <PullQuote
+            quote="Every visitor is trying to tell you something. Forms interrupt the message. Chat, done right, listens for it."
+            cite="OyeChats Team"
+          />
+        </Reveal>
       </Section>
 
       <Section
@@ -147,11 +149,9 @@ export default function AboutPage() {
         containerSize="wide"
       >
         <div className="grid grid-cols-1 gap-5 max-w-md mx-auto">
-          {OFFICES.map((office) => (
-            <div
-              key={office.city}
-              className="bg-canvas border border-line rounded-[var(--r-4)] p-8"
-            >
+          {OFFICES.map((office, i) => (
+            <Reveal key={office.city} delay={i * 60}>
+              <div className="bg-canvas border border-line rounded-[var(--r-4)] p-8">
               <div className="flex items-start gap-4 mb-4">
                 <div className="shrink-0 w-10 h-10 rounded-[var(--r-2)] border border-line bg-volt-tint text-volt flex items-center justify-center">
                   <MapPin size={18} />
@@ -162,7 +162,8 @@ export default function AboutPage() {
                 </div>
               </div>
               <p className="type-body-sm text-ink-2">{office.detail}</p>
-            </div>
+              </div>
+            </Reveal>
           ))}
         </div>
       </Section>

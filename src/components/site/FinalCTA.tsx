@@ -181,7 +181,7 @@ export function FinalCTA() {
             {/* Body: left activity, right stats */}
             <div className="grid md:grid-cols-[1.15fr_1fr]">
               {/* ─── Activity feed ─── */}
-              <div className="p-6 md:border-r md:border-white/8">
+              <div className="p-4 md:p-6 md:border-r md:border-white/8">
                 <div className="flex items-center justify-between mb-4">
                   <div className="flex items-center gap-2 font-mono text-[11px] text-white/50 tracking-wide uppercase">
                     <Activity size={12} className="text-volt" />
@@ -228,7 +228,7 @@ export function FinalCTA() {
               </div>
 
               {/* ─── Stat tickers ─── */}
-              <div className="p-6">
+              <div className="p-4 md:p-6">
                 <div className="flex items-center justify-between mb-4">
                   <div className="flex items-center gap-2 font-mono text-[11px] text-white/50 tracking-wide uppercase">
                     <Radio size={12} className="text-volt" />

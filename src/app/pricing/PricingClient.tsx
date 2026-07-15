@@ -58,7 +58,7 @@ export default function PricingClient() {
             <button
               type="button"
               onClick={() => setAnnual(false)}
-              className={`px-4 py-1.5 rounded-[var(--r-full)] text-[13px] font-medium transition-colors ${
+              className={`px-4 py-2.5 min-h-11 inline-flex items-center justify-center rounded-[var(--r-full)] text-[13px] font-medium transition-colors ${
                 !annual ? 'bg-ink text-paper' : 'text-ink-2 hover:text-ink'
               }`}
             >
@@ -67,7 +67,7 @@ export default function PricingClient() {
             <button
               type="button"
               onClick={() => setAnnual(true)}
-              className={`px-4 py-1.5 rounded-[var(--r-full)] text-[13px] font-medium transition-colors inline-flex items-center gap-2 ${
+              className={`px-4 py-2.5 min-h-11 rounded-[var(--r-full)] text-[13px] font-medium transition-colors inline-flex items-center justify-center gap-2 ${
                 annual ? 'bg-ink text-paper' : 'text-ink-2 hover:text-ink'
               }`}
             >

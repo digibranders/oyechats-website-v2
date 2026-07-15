@@ -19,6 +19,7 @@ import {
   DottedGrid,
   GradientText,
   HeroGlow,
+  Reveal,
   Section,
 } from '@/components/ds';
 
@@ -107,7 +108,8 @@ export default function SecurityPage() {
 
       <Section tone="canvas" containerSize="wide">
         {/* What's in place today, practices, not third-party certifications */}
-        <div className="mb-16">
+        <Reveal delay={80} className="mb-16">
+        <div>
           <div className="max-w-2xl mb-6">
             <h2 className="type-heading-2 text-ink">What&apos;s in place today</h2>
             <p className="type-body-sm text-muted mt-2">
@@ -117,10 +119,10 @@ export default function SecurityPage() {
             </p>
           </div>
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3">
-            {SECURITY_HIGHLIGHTS.map((item) => (
+            {SECURITY_HIGHLIGHTS.map((item, i) => (
+              <Reveal key={item.name} delay={i * 60} className="h-full">
               <div
-                key={item.name}
-                className="flex items-center gap-3 bg-canvas rounded-[var(--r-3)] p-4 border border-line"
+                className="flex h-full items-center gap-3 bg-canvas rounded-[var(--r-3)] p-4 border border-line"
               >
                 <div className="w-9 h-9 rounded-[var(--r-2)] bg-volt-tint text-volt flex items-center justify-center shrink-0">
                   <item.badge size={16} />
@@ -130,16 +132,18 @@ export default function SecurityPage() {
                   <p className="type-mono-sm text-muted mt-0.5">{item.status}</p>
                 </div>
               </div>
+              </Reveal>
             ))}
           </div>
         </div>
+        </Reveal>
 
         {/* Security sections */}
         <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-16">
-          {SECURITY_SECTIONS.map((section) => (
+          {SECURITY_SECTIONS.map((section, i) => (
+            <Reveal key={section.title} delay={i * 60} className="h-full">
             <div
-              key={section.title}
-              className="bg-canvas border border-line rounded-[var(--r-3)] p-6"
+              className="h-full bg-canvas border border-line rounded-[var(--r-3)] p-6"
             >
               <div className="flex items-center gap-3 mb-5">
                 <div className="w-10 h-10 rounded-[var(--r-2)] bg-volt-tint text-volt flex items-center justify-center">
@@ -156,33 +160,38 @@ export default function SecurityPage() {
                 ))}
               </ul>
             </div>
+            </Reveal>
           ))}
         </div>
 
         {/* Infrastructure grid */}
+        <Reveal>
         <div className="bg-paper border border-line rounded-[var(--r-4)] p-8">
           <h3 className="type-heading-2 text-ink mb-6 text-center">
             Infrastructure at a glance
           </h3>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-3">
-            {INFRA_STACK.map((item) => (
+            {INFRA_STACK.map((item, i) => (
+              <Reveal key={item.name} delay={i * 60} className="h-full">
               <div
-                key={item.name}
-                className="flex items-center gap-3 bg-canvas rounded-[var(--r-3)] p-4 border border-line"
+                className="flex h-full items-center gap-3 bg-canvas rounded-[var(--r-3)] p-4 border border-line"
               >
                 <div className="w-9 h-9 rounded-[var(--r-2)] bg-volt-tint text-volt flex items-center justify-center shrink-0">
                   <item.icon size={16} />
                 </div>
-                <div>
+                <div className="min-w-0">
                   <p className="type-body-sm text-ink font-semibold">{item.name}</p>
                   <p className="type-mono-sm text-muted mt-0.5">{item.role}</p>
                 </div>
               </div>
+              </Reveal>
             ))}
           </div>
         </div>
+        </Reveal>
 
         {/* Responsible disclosure */}
+        <Reveal>
         <div className="mt-12 text-center">
           <p className="type-body text-ink-2 mb-3">
             Found a vulnerability? We have a responsible disclosure program.
@@ -194,6 +203,7 @@ export default function SecurityPage() {
             support@oyechats.com
           </a>
         </div>
+        </Reveal>
       </Section>
     </>
   );

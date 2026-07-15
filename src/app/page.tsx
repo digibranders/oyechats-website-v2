@@ -55,8 +55,8 @@ export default function Home() {
       <section className="relative bg-paper overflow-hidden">
         <HeroGlow />
         <DottedGrid />
-        <Container className="relative pt-12 pb-32 md:pt-32 md:pb-40">
-          <div className="grid lg:grid-cols-[1.15fr_1fr] gap-16 items-center">
+        <Container className="relative pt-12 pb-16 md:pt-32 md:pb-40">
+          <div className="grid lg:grid-cols-[1.15fr_1fr] gap-8 lg:gap-16 items-center">
             <div>
               <Reveal delay={80}>
                 <h1 className="type-display-1 text-ink">
@@ -116,7 +116,7 @@ export default function Home() {
                 <p className="type-body text-ink-2">{f.description}</p>
                 <Link
                   href={f.anchor ? `/features#${f.anchor}` : '/features'}
-                  className="inline-flex items-center gap-1 mt-4 text-[13px] text-volt no-underline hover:underline hover:decoration-2 underline-offset-4"
+                  className="inline-flex items-center gap-1 mt-2 py-2 min-h-11 text-[13px] text-volt no-underline hover:underline hover:decoration-2 underline-offset-4"
                 >
                   See how it works <ArrowRight size={13} />
                 </Link>
