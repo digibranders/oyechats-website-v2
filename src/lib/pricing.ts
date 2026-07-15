@@ -162,7 +162,6 @@ export const CREDIT_COSTS: CreditCost[] = [
   { action: '1 AI chat reply', credits: 1 },
   { action: '1 web page crawled and added to your knowledge base', credits: 5 },
   { action: '1 document uploaded to your knowledge base', credits: 3 },
-  { action: '1 customer-facing email (lead alert / summary)', credits: 1 },
 ];
 
 export type TopupPack = {
@@ -261,7 +260,7 @@ export const CATEGORY_LABELS: Record<PricingFeatureCategory, string> = {
 };
 
 export const PRICING_FAQ = [
-  { q: "What's a credit?", a: 'Credits are how OyeChats measures usage. Each AI chat reply uses 1 credit, each web page we crawl and add to your knowledge base uses 5 credits, each document upload uses 3 credits, and each customer-facing email (lead alerts, conversation summaries) uses 1 credit. System emails and live-chat operator messages are always free.' },
+  { q: "What's a credit?", a: 'Credits are how OyeChats measures usage. Each AI chat reply uses 1 credit, each web page we crawl and add to your knowledge base uses 5 credits, and each document upload uses 3 credits. System emails and live-chat operator messages are always free.' },
   { q: 'Which currency will I be billed in?', a: 'Pricing is shown in your local currency. Customers in India are billed in INR (₹); international customers are billed in USD ($). You always see a single currency based on your location.' },
   { q: 'How do I pay?', a: 'Indian customers pay via Razorpay — UPI, cards, NetBanking, and wallets are all supported. International customers pay by card in USD. You can switch payment methods any time from the Billing page.' },
   { q: 'Is there a free trial?', a: 'Yes. Paid plans include a free trial with full access to all features, no credit card required. And the Free plan runs a working grounded bot at no cost, forever.' },
