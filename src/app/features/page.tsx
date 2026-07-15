@@ -23,6 +23,7 @@ import {
   DottedGrid,
   GradientText,
   HeroGlow,
+  Reveal,
   Section,
 } from '@/components/ds';
 import { APP_LINKS } from '@/lib/site';
@@ -124,10 +125,10 @@ export default function FeaturesPage() {
         </Container>
       </div>
 
-      <section id="feature-rag" className="scroll-mt-32 py-24 md:py-32 bg-paper border-t border-line">
+      <section id="feature-rag" className="scroll-mt-32 py-16 md:py-32 bg-paper border-t border-line">
         <Container>
           <div className="grid lg:grid-cols-2 gap-16 items-center">
-            <div>
+            <Reveal>
               <div className="type-mono-sm text-volt mb-3">Grounded answers</div>
               <h2 className="type-display-3 text-ink mb-5">
                 Answers that actually <GradientText>understand</GradientText> the question.
@@ -151,14 +152,12 @@ export default function FeaturesPage() {
                   </li>
                 ))}
               </ul>
-            </div>
+            </Reveal>
 
             <div className="flex flex-col gap-3">
               {RAG_STEPS.map((s, i) => (
-                <div
-                  key={s.label}
-                  className="flex items-center gap-4 bg-canvas border border-line rounded-[var(--r-3)] p-4 shadow-[var(--e-1)] group hover:border-volt/40 transition-colors"
-                >
+                <Reveal key={s.label} delay={i * 60}>
+                  <div className="flex items-center gap-4 bg-canvas border border-line rounded-[var(--r-3)] p-4 shadow-[var(--e-1)] group hover:border-volt/40 transition-colors">
                   <div className="w-11 h-11 rounded-[var(--r-2)] bg-volt-tint text-volt flex items-center justify-center shrink-0 group-hover:bg-volt group-hover:text-white transition-colors">
                     <s.icon size={18} />
                   </div>
@@ -170,16 +169,19 @@ export default function FeaturesPage() {
                     <div className="type-mono-sm text-muted mt-0.5">{s.desc}</div>
                   </div>
                 </div>
+                </Reveal>
               ))}
             </div>
           </div>
         </Container>
       </section>
 
-      <section id="feature-bant" className="scroll-mt-32 py-24 md:py-32 bg-canvas border-t border-line">
+      <section id="feature-bant" className="scroll-mt-32 py-16 md:py-32 bg-canvas border-t border-line">
         <Container>
           <div className="grid lg:grid-cols-[1fr_1.1fr] gap-16 items-start">
-            <div className="flex flex-col items-center gap-8">
+            {/* Visual moves below the heading on mobile so the section leads
+                with its explanation, not a context-free score ring. */}
+            <Reveal className="order-2 lg:order-1 flex flex-col items-center gap-8">
               <div className="bg-paper border border-line rounded-[var(--r-4)] p-8 w-full flex flex-col items-center shadow-[var(--e-1)]">
                 <BantScoreRing value={84} size={160} label="BANT" />
                 <p className="mt-4 type-mono-sm text-muted">Composite BANT Score</p>
@@ -204,9 +206,9 @@ export default function FeaturesPage() {
                   </div>
                 ))}
               </div>
-            </div>
+            </Reveal>
 
-            <div>
+            <Reveal className="order-1 lg:order-2" delay={80}>
               <div className="type-mono-sm text-volt mb-3">BANT Scoring</div>
               <h2 className="type-display-3 text-ink mb-5">
                 Qualify every lead <GradientText>automatically</GradientText>.
@@ -236,15 +238,15 @@ export default function FeaturesPage() {
                   </div>
                 ))}
               </div>
-            </div>
+            </Reveal>
           </div>
         </Container>
       </section>
 
-      <section id="feature-live-chat" className="scroll-mt-32 py-24 md:py-32 bg-paper border-t border-line">
+      <section id="feature-live-chat" className="scroll-mt-32 py-16 md:py-32 bg-paper border-t border-line">
         <Container>
           <div className="grid lg:grid-cols-2 gap-16 items-center">
-            <div>
+            <Reveal>
               <div className="type-mono-sm text-volt mb-3">Live Chat</div>
               <h2 className="type-display-3 text-ink mb-5">
                 A real human, exactly <GradientText>when</GradientText> it matters.
@@ -268,9 +270,9 @@ export default function FeaturesPage() {
                   </li>
                 ))}
               </ul>
-            </div>
+            </Reveal>
 
-            <div className="bg-canvas border border-line rounded-[var(--r-4)] p-6 shadow-[var(--e-1)]">
+            <Reveal className="bg-canvas border border-line rounded-[var(--r-4)] p-6 shadow-[var(--e-1)]" delay={80}>
               <div className="flex items-center justify-between mb-4 pb-4 border-b border-line">
                 <div className="flex items-center gap-3">
                   <div className="w-9 h-9 rounded-full bg-volt-tint border border-volt-line flex items-center justify-center font-mono font-semibold text-[12px] text-volt-ink">
@@ -297,15 +299,15 @@ export default function FeaturesPage() {
                   [Handoff, BANT 87] Priya here. I have your context. 15 min tomorrow?
                 </ChatBubble>
               </ChatStack>
-            </div>
+            </Reveal>
           </div>
         </Container>
       </section>
 
-      <section id="feature-analytics" className="scroll-mt-32 py-24 md:py-32 bg-canvas border-t border-line">
+      <section id="feature-analytics" className="scroll-mt-32 py-16 md:py-32 bg-canvas border-t border-line">
         <Container>
           <div className="grid lg:grid-cols-[1.1fr_1fr] gap-16 items-center">
-            <div className="bg-paper border border-line rounded-[var(--r-4)] p-6 shadow-[var(--e-1)]">
+            <Reveal className="bg-paper border border-line rounded-[var(--r-4)] p-6 shadow-[var(--e-1)]">
               <div className="flex items-center justify-between mb-6 pb-4 border-b border-line">
                 <div className="flex items-center gap-2">
                   <BarChart3 size={16} className="text-volt" />
@@ -353,9 +355,9 @@ export default function FeaturesPage() {
                   />
                 </svg>
               </div>
-            </div>
+            </Reveal>
 
-            <div>
+            <Reveal delay={80}>
               <div className="type-mono-sm text-volt mb-3">Analytics</div>
               <h2 className="type-display-3 text-ink mb-5">
                 See what actually <GradientText>converts</GradientText>.
@@ -378,15 +380,15 @@ export default function FeaturesPage() {
                   </li>
                 ))}
               </ul>
-            </div>
+            </Reveal>
           </div>
         </Container>
       </section>
 
-      <section id="feature-webhooks" className="scroll-mt-32 py-24 md:py-32 bg-paper border-t border-line">
+      <section id="feature-webhooks" className="scroll-mt-32 py-16 md:py-32 bg-paper border-t border-line">
         <Container>
           <div className="grid lg:grid-cols-2 gap-16 items-start">
-            <div>
+            <Reveal>
               <div className="type-mono-sm text-volt mb-3">Webhooks and REST API</div>
               <h2 className="type-display-3 text-ink mb-5">
                 Send every event to your own <GradientText>tools</GradientText>.
@@ -417,9 +419,9 @@ export default function FeaturesPage() {
                   before processing to block replay attacks.
                 </Callout>
               </div>
-            </div>
+            </Reveal>
 
-            <div>
+            <Reveal delay={80}>
               <div className="rounded-[var(--r-4)] border border-white/8 overflow-hidden bg-ink-invert shadow-[var(--e-2)]">
                 <div className="h-9 px-4 flex items-center justify-between border-b border-white/8">
                   <div className="flex gap-1.5">
@@ -459,15 +461,15 @@ Content-Type: application/json
                   Full webhook docs <ArrowRight size={13} />
                 </Link>
               </div>
-            </div>
+            </Reveal>
           </div>
         </Container>
       </section>
 
-      <section id="feature-integrations" className="scroll-mt-32 py-24 md:py-32 bg-canvas border-t border-line">
+      <section id="feature-integrations" className="scroll-mt-32 py-16 md:py-32 bg-canvas border-t border-line">
         <Container>
           <div className="grid lg:grid-cols-2 gap-16 items-center">
-            <div>
+            <Reveal>
               <div className="type-mono-sm text-volt mb-3">Integrations</div>
               <h2 className="type-display-3 text-ink mb-5">
                 Fits your existing <GradientText>tools</GradientText>.
@@ -479,40 +481,41 @@ Content-Type: application/json
               <Button href="/integrations" variant="ghost">
                 Browse all integrations →
               </Button>
-            </div>
+            </Reveal>
 
             <div className="grid grid-cols-3 gap-3">
-              {['WP', 'Sh', 'Wf', 'Nx', 'Vu', 'Re', 'Fr', 'Br', 'Ca', 'La', 'Se', 'Za'].map((sym) => (
-                <div
-                  key={sym}
-                  className="aspect-square bg-canvas border border-line rounded-[var(--r-3)] flex items-center justify-center shadow-[var(--e-1)]"
-                >
+              {['WP', 'Sh', 'Wf', 'Nx', 'Vu', 'Re', 'Fr', 'Br', 'Ca', 'La', 'Se', 'Za'].map((sym, i) => (
+                <Reveal key={sym} delay={i * 60}>
+                  <div className="aspect-square bg-canvas border border-line rounded-[var(--r-3)] flex items-center justify-center shadow-[var(--e-1)]">
                   <span className="font-display font-semibold text-[15px] text-ink tracking-tight">
                     {sym}
                   </span>
                 </div>
+                </Reveal>
               ))}
             </div>
           </div>
         </Container>
       </section>
 
-      <Section
-        tone="paper"
-        eyebrow="Ready to go live?"
-        heading={<>Try every feature. <GradientText>Free.</GradientText></>}
-        sub="Every OyeChats bot starts free. Add your docs, paste one script tag, and go live in under five minutes."
-        actions={
-          <>
-            <Button href={APP_LINKS.register} external variant="volt" size="lg">
-              Start free →
-            </Button>
-            <Button href="/pricing" variant="ghost" size="lg">
-              See pricing
-            </Button>
-          </>
-        }
-      />
+      <Reveal>
+        <Section
+          tone="paper"
+          eyebrow="Ready to go live?"
+          heading={<>Try every feature. <GradientText>Free.</GradientText></>}
+          sub="Every OyeChats bot starts free. Add your docs, paste one script tag, and go live in under five minutes."
+          actions={
+            <>
+              <Button href={APP_LINKS.register} external variant="volt" size="lg">
+                Start free →
+              </Button>
+              <Button href="/pricing" variant="ghost" size="lg">
+                See pricing
+              </Button>
+            </>
+          }
+        />
+      </Reveal>
     </>
   );
 }

@@ -12,6 +12,7 @@ export const APP_LINKS = {
   register: `${APP_URL}/register`,
   registerStarter: `${APP_URL}/register?plan=starter`,
   registerStandard: `${APP_URL}/register?plan=standard`,
+  registerProfessional: `${APP_URL}/register?plan=professional`,
   login: `${APP_URL}/login`,
   home: APP_URL,
 } as const;

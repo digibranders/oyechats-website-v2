@@ -1,16 +1,7 @@
 'use client';
 
 import { useState, useRef, useEffect, FormEvent } from 'react';
-import {
-  CheckCircle2,
-  Mail,
-  MessageSquare,
-  MapPin,
-  Clock,
-  Phone,
-  FileText,
-  ChevronDown,
-} from 'lucide-react';
+import { CheckCircle2, ChevronDown } from 'lucide-react';
 import {
   Button,
   Callout,
@@ -20,6 +11,7 @@ import {
   HeroGlow,
   Input,
   Label,
+  Reveal,
   Textarea,
 } from '@/components/ds';
 
@@ -29,25 +21,6 @@ const INTENT_OPTIONS = [
   { value: 'partnership', label: 'Partnership / integration' },
   { value: 'careers', label: 'Careers inquiry' },
   { value: 'other', label: 'Something else' },
-];
-
-const CONTACT_INFO = [
-  { icon: Mail, label: 'Email', value: 'support@oyechats.com', href: 'mailto:support@oyechats.com' },
-  { icon: Phone, label: 'Phone', value: '+91 789 789 6607', href: 'tel:+917897896607' },
-  {
-    icon: MapPin,
-    label: 'Office',
-    value: (
-      <>
-        Office No. 2617, 26th Floor, Solus Building,<br />
-        Hiranandani Estate, Ghodbunder Road,<br />
-        Thane West, Maharashtra 400607
-      </>
-    ),
-  },
-  { icon: FileText, label: 'GST No.', value: '27AAICD9268J1Z0' },
-  { icon: MessageSquare, label: 'Live chat', value: 'Available on this page' },
-  { icon: Clock, label: 'Response time', value: 'Within 1 business day' },
 ];
 
 export default function ContactClient() {
@@ -109,36 +82,9 @@ export default function ContactClient() {
 
       <div className="bg-canvas py-16 md:py-24 border-t border-line">
         <Container>
-          <div className="grid md:grid-cols-[1fr_1.6fr] gap-12">
-            {/* Contact info column */}
-            <aside className="space-y-3">
-              {CONTACT_INFO.map((c) => (
-                <div
-                  key={c.label}
-                  className="bg-canvas border border-line rounded-[var(--r-3)] p-4 flex items-start gap-3 hover:border-line-2 transition-colors"
-                >
-                  <div className="w-9 h-9 rounded-[var(--r-2)] bg-volt-tint text-volt flex items-center justify-center shrink-0">
-                    <c.icon size={16} />
-                  </div>
-                  <div className="min-w-0">
-                    <div className="type-mono-sm text-muted">{c.label}</div>
-                    {c.href ? (
-                      <a
-                        href={c.href}
-                        className="type-body-sm text-ink font-medium no-underline hover:text-volt break-words"
-                      >
-                        {c.value}
-                      </a>
-                    ) : (
-                      <div className="type-body-sm text-ink font-medium break-words">{c.value}</div>
-                    )}
-                  </div>
-                </div>
-              ))}
-            </aside>
-
-            {/* Form column */}
-            <div>
+          <div className="max-w-2xl mx-auto">
+            {/* Form */}
+            <Reveal delay={80}>
               {submitted ? (
                 <div className="bg-canvas border border-signal/30 rounded-[var(--r-4)] p-12 flex flex-col items-center text-center min-h-[420px] justify-center">
                   <div className="w-14 h-14 rounded-full bg-signal-tint text-signal flex items-center justify-center mb-5">
@@ -206,7 +152,7 @@ export default function ContactClient() {
                     <button
                       type="button"
                       onClick={() => setIntentOpen((v) => !v)}
-                      className="w-full bg-canvas border border-line rounded-[var(--r-2)] px-3.5 py-2.5 text-sm text-ink text-left flex items-center justify-between focus:outline-none focus:border-volt focus:shadow-[var(--e-focus)] transition-all"
+                      className="w-full bg-canvas border border-line rounded-[var(--r-2)] px-3.5 py-3 min-h-11 text-sm text-ink text-left flex items-center justify-between focus:outline-none focus:border-volt focus:shadow-[var(--e-focus)] transition-all"
                       aria-haspopup="listbox"
                       aria-expanded={intentOpen}
                     >
@@ -231,7 +177,7 @@ export default function ContactClient() {
                               setForm({ ...form, intent: o.value });
                               setIntentOpen(false);
                             }}
-                            className={`px-4 py-2.5 text-sm cursor-pointer flex items-center gap-2 transition-colors ${
+                            className={`px-4 py-3 min-h-11 text-sm cursor-pointer flex items-center gap-2 transition-colors ${
                               form.intent === o.value
                                 ? 'text-volt-ink bg-volt-tint'
                                 : 'text-ink-2 hover:text-ink hover:bg-paper'
@@ -271,7 +217,7 @@ export default function ContactClient() {
                   </Button>
                 </form>
               )}
-            </div>
+            </Reveal>
           </div>
         </Container>
       </div>

@@ -24,6 +24,19 @@ type IdleWindow = Window & {
 
 export default function WidgetLoader(): null {
   useEffect(() => {
+    // The widget's settings API validates the request origin against the bot's
+    // allowed domains, so it can only succeed on real deployments. On localhost
+    // it always fails with "Failed to fetch chatbot settings" — skip loading it
+    // in local dev to keep the console clean. Every real host still loads it.
+    const host = window.location.hostname;
+    const isLocalHost =
+      host === 'localhost' ||
+      host === '127.0.0.1' ||
+      host === '0.0.0.0' ||
+      host === '[::1]' ||
+      host.endsWith('.local');
+    if (isLocalHost) return;
+
     let loaded = false;
     const interactionEvents = ['scroll', 'pointerdown', 'touchstart', 'keydown'] as const;
 

@@ -1,11 +1,16 @@
 'use client';
 
-import { useEffect, useRef, useState, type ReactNode } from 'react';
-import { cn } from '@/lib/cn';
+import type { ReactNode } from 'react';
+import { FadeUp } from '@/components/ui/FadeUp';
 
 /**
- * Reveal, fades a child in from below when it enters the viewport.
- * Only runs once; respects prefers-reduced-motion.
+ * Reveal, fades a block up as it scrolls into view. Thin wrapper over FadeUp
+ * (motion/react, whileInView): SSR-safe and bfcache-safe — content is visible
+ * by default and only below-the-fold blocks arm the entrance animation, so the
+ * hero/LCP text never paints at opacity 0. Respects prefers-reduced-motion.
+ *
+ * The `delay` prop is in MILLISECONDS (staggering across a grid reads naturally
+ * as `delay={i * 60}`); it is converted to the seconds FadeUp expects.
  */
 export function Reveal({
   children,
@@ -16,40 +21,9 @@ export function Reveal({
   delay?: number;
   className?: string;
 }) {
-  const [visible, setVisible] = useState(false);
-  const ref = useRef<HTMLDivElement | null>(null);
-
-  useEffect(() => {
-    const el = ref.current;
-    if (!el) return;
-    const reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-    if (reduced) {
-      setVisible(true);
-      return;
-    }
-    const io = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((entry) => {
-          if (entry.isIntersecting) {
-            setVisible(true);
-            io.unobserve(entry.target);
-          }
-        });
-      },
-      { threshold: 0.15 }
-    );
-    io.observe(el);
-    return () => io.disconnect();
-  }, []);
-
   return (
-    <div
-      ref={ref}
-      data-reveal
-      className={cn(visible && 'is-visible', className)}
-      style={{ animationDelay: `${delay}ms` }}
-    >
+    <FadeUp delay={delay / 1000} className={className}>
       {children}
-    </div>
+    </FadeUp>
   );
 }

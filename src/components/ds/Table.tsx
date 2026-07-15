@@ -5,11 +5,17 @@ export function Table({ children, className }: { children: ReactNode; className?
   return (
     <div
       className={cn(
-        'border border-line rounded-[var(--r-3)] overflow-hidden bg-canvas overflow-x-auto',
+        'border border-line rounded-[var(--r-3)] overflow-hidden bg-canvas',
         className
       )}
     >
-      <table className="w-full border-collapse text-left">{children}</table>
+      {/* Inner scroll container: `min-w` on the table forces horizontal scroll
+          on narrow viewports instead of crushing columns to min-content.
+          The rounded frame (overflow-hidden) is kept on the outer element so
+          the two overflow axes don't fight on one node. */}
+      <div className="overflow-x-auto">
+        <table className="w-full min-w-[640px] border-collapse text-left">{children}</table>
+      </div>
     </div>
   );
 }

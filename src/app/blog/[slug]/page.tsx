@@ -2,7 +2,7 @@ import type { Metadata } from 'next';
 import { notFound } from 'next/navigation';
 import Link from 'next/link';
 import { ArrowLeft } from 'lucide-react';
-import { Chip, Container, MonoMark, PullQuote } from '@/components/ds';
+import { Chip, Container, MonoMark, PullQuote, Reveal } from '@/components/ds';
 import { BLOG_POSTS } from '@/lib/blog';
 
 type Params = { slug: string };
@@ -33,7 +33,9 @@ export default async function BlogPostPage({ params }: { params: Promise<Params>
 
   const SITE_URL = 'https://www.oyechats.com';
   const canonical = `${SITE_URL}/blog/${post.slug}`;
-  const imageUrl = /^https?:\/\//.test(post.image) ? post.image : `${SITE_URL}${post.image}`;
+  // Use the generated per-post OG image (1200×630, always exists) for structured
+  // data. The post.image webp paths are placeholders that aren't rendered/shipped.
+  const imageUrl = `${SITE_URL}/blog/${post.slug}/opengraph-image`;
 
   const blogPostingSchema = {
     '@context': 'https://schema.org',
@@ -86,7 +88,7 @@ export default async function BlogPostPage({ params }: { params: Promise<Params>
           </div>
           <h1 className="type-display-2 text-ink max-w-3xl">{post.title}</h1>
           <p className="type-body-lg text-ink-2 mt-6 max-w-2xl">{post.description}</p>
-          <div className="mt-8 flex items-center gap-3">
+          <Reveal className="mt-8 flex items-center gap-3">
             <div className="w-9 h-9 rounded-full bg-volt-tint border border-volt-line flex items-center justify-center font-mono font-semibold text-[12px] text-volt-ink">
               {post.author.initials}
             </div>
@@ -96,13 +98,13 @@ export default async function BlogPostPage({ params }: { params: Promise<Params>
                 {post.author.role} · {post.date}
               </div>
             </div>
-          </div>
+          </Reveal>
         </Container>
       </header>
 
       <div className="py-16 md:py-24">
         <Container>
-          <div className="prose">
+          <Reveal className="prose" delay={80}>
             {post.content.map((block, i) => {
               if (block.type === 'p') return <p key={i}>{block.text}</p>;
               if (block.type === 'h2') return <h2 key={i}>{block.text}</h2>;
@@ -140,7 +142,7 @@ export default async function BlogPostPage({ params }: { params: Promise<Params>
                 );
               return null;
             })}
-          </div>
+          </Reveal>
         </Container>
       </div>
     </article>

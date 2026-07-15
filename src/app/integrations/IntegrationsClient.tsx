@@ -10,6 +10,7 @@ import {
   GradientText,
   HeroGlow,
   Input,
+  Reveal,
   Section,
 } from '@/components/ds';
 import {
@@ -102,7 +103,7 @@ export default function IntegrationsClient() {
                 type="button"
                 key={c.id}
                 onClick={() => setCat(c.id)}
-                className={`shrink-0 px-3.5 py-1.5 rounded-[var(--r-full)] type-mono-sm border transition-colors ${
+                className={`shrink-0 inline-flex items-center px-3.5 py-2 min-h-10 rounded-[var(--r-full)] type-mono-sm border transition-colors ${
                   cat === c.id
                     ? 'bg-ink text-paper border-ink'
                     : 'bg-canvas text-muted border-line hover:border-line-2 hover:text-ink'
@@ -123,9 +124,10 @@ export default function IntegrationsClient() {
           </div>
         ) : (
           <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-4">
-            {filtered.map((i) => (
-              <div
+            {filtered.map((i, idx) => (
+              <Reveal
                 key={i.id}
+                delay={idx * 60}
                 className="bg-canvas border border-line rounded-[var(--r-3)] p-5 flex flex-col items-start hover:border-volt/40 hover:-translate-y-0.5 hover:shadow-[0_12px_28px_-12px_rgba(162,28,175,0.18)] transition-all duration-300"
               >
                 <div className="w-12 h-12 rounded-[var(--r-2)] bg-paper border border-line flex items-center justify-center mb-4">
@@ -136,7 +138,7 @@ export default function IntegrationsClient() {
                 <div className="mt-auto flex gap-2 items-center flex-wrap">
                   <Chip variant="mono">{i.install}</Chip>
                 </div>
-              </div>
+              </Reveal>
             ))}
           </div>
         )}
@@ -151,21 +153,24 @@ export default function IntegrationsClient() {
         containerSize="wide"
       >
         <div className="grid md:grid-cols-3 gap-4 mb-12">
-          {WEBHOOK_STEPS.map((s) => (
-            <div
+          {WEBHOOK_STEPS.map((s, idx) => (
+            <Reveal
               key={s.n}
+              delay={idx * 60}
               className="bg-canvas border border-line rounded-[var(--r-4)] p-6 shadow-[var(--e-1)]"
             >
               <div className="type-mono-sm text-volt mb-3">{s.n}</div>
               <h3 className="type-heading-3 text-ink mb-2">{s.title}</h3>
               <p className="type-body-sm text-ink-2">{s.desc}</p>
-            </div>
+            </Reveal>
           ))}
         </div>
 
         {/* Data flow diagram */}
         <div className="mb-10 bg-canvas border border-line rounded-[var(--r-4)] p-8 shadow-[var(--e-1)]">
-          <div className="flex items-center justify-between gap-4 flex-wrap">
+          {/* Stacks vertically on mobile — the connecting arrows are row-only
+              (flex-1 horizontal rules) so they're hidden below md. */}
+          <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-4">
             <FlowNode icon={<MessageSquare size={18} />} label="Chat event" />
             <FlowArrow />
             <FlowNode icon={<Zap size={18} />} label="OyeChats API" />
@@ -222,7 +227,7 @@ function FlowNode({ icon, label }: { icon: React.ReactNode; label: string }) {
 function FlowArrow() {
   return (
     <div
-      className="flex-1 h-0.5 relative min-w-[24px]"
+      className="hidden md:block flex-1 h-0.5 relative min-w-[24px]"
       style={{
         backgroundImage: 'linear-gradient(90deg, var(--volt) 50%, transparent 50%)',
         backgroundSize: '10px 2px',

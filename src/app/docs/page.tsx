@@ -7,6 +7,7 @@ import {
   DottedGrid,
   GradientText,
   HeroGlow,
+  Reveal,
   Table,
   Th,
   Td,
@@ -90,6 +91,7 @@ export default function DocsPage() {
             </aside>
 
             <div className="min-w-0 space-y-24">
+              <Reveal delay={80}>
               <section id="quick-start" className="scroll-mt-28">
                 <div className="type-mono-sm text-volt mb-3">Getting started</div>
                 <h2 className="type-heading-1 text-ink mb-3">Quick start</h2>
@@ -98,11 +100,11 @@ export default function DocsPage() {
                 </p>
 
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                  {QUICK_START.map((s) => (
+                  {QUICK_START.map((s, i) => (
+                    <Reveal key={s.step} delay={i * 60}>
                     <a
-                      key={s.step}
                       href={s.anchor}
-                      className="group bg-canvas border border-line rounded-[var(--r-3)] p-5 hover:border-volt/40 hover:shadow-[0_12px_28px_-12px_rgba(162,28,175,0.18)] hover:-translate-y-0.5 transition-all no-underline"
+                      className="group bg-canvas border border-line rounded-[var(--r-3)] p-5 hover:border-volt/40 hover:shadow-[0_12px_28px_-12px_rgba(162,28,175,0.18)] hover:-translate-y-0.5 transition-all no-underline block h-full"
                     >
                       <div className="flex items-center gap-3 mb-3">
                         <div className="w-9 h-9 rounded-[var(--r-2)] border border-line bg-volt-tint text-volt flex items-center justify-center">
@@ -115,10 +117,13 @@ export default function DocsPage() {
                       </p>
                       <p className="type-body-sm text-ink-2">{s.desc}</p>
                     </a>
+                    </Reveal>
                   ))}
                 </div>
               </section>
+              </Reveal>
 
+              <Reveal delay={160}>
               <section id="widget" className="scroll-mt-28">
                 <div className="type-mono-sm text-volt mb-3">Widget setup</div>
                 <h2 className="type-heading-1 text-ink mb-3">Add the chat widget</h2>
@@ -180,7 +185,7 @@ export default function DocsPage() {
                           {a.required ? (
                             <span className="text-signal font-semibold text-[12px]">Required</span>
                           ) : (
-                            <span className="text-muted-2 text-[12px]">Optional</span>
+                            <span className="text-muted text-[12px]">Optional</span>
                           )}
                         </Td>
                         <Td>{a.desc}</Td>
@@ -189,7 +194,9 @@ export default function DocsPage() {
                   </tbody>
                 </Table>
               </section>
+              </Reveal>
 
+              <Reveal delay={240}>
               <section id="webhooks" className="scroll-mt-28">
                 <div className="type-mono-sm text-volt mb-3">Webhooks</div>
                 <h2 className="type-heading-1 text-ink mb-3">Receive real-time events</h2>
@@ -198,9 +205,9 @@ export default function DocsPage() {
                 </p>
 
                 <div className="space-y-2.5 mb-10">
-                  {WEBHOOK_EVENTS.map((e) => (
+                  {WEBHOOK_EVENTS.map((e, i) => (
+                    <Reveal key={e.event} delay={i * 60}>
                     <div
-                      key={e.event}
                       className="flex items-start gap-4 bg-canvas border border-line rounded-[var(--r-3)] px-5 py-4"
                     >
                       <code className="font-mono text-[12px] text-volt bg-volt-tint border border-volt-line px-2.5 py-1 rounded-[var(--r-2)] shrink-0">
@@ -208,6 +215,7 @@ export default function DocsPage() {
                       </code>
                       <p className="type-body-sm text-ink-2">{e.desc}</p>
                     </div>
+                    </Reveal>
                   ))}
                 </div>
 
@@ -251,7 +259,9 @@ export default function DocsPage() {
                   </Callout>
                 </div>
               </section>
+              </Reveal>
 
+              <Reveal delay={320}>
               <section id="api" className="scroll-mt-28">
                 <div className="type-mono-sm text-volt mb-3">REST API</div>
                 <h2 className="type-heading-1 text-ink mb-3">Endpoints</h2>
@@ -314,6 +324,7 @@ export default function DocsPage() {
                   </Callout>
                 </div>
               </section>
+              </Reveal>
             </div>
           </div>
         </Container>
@@ -321,6 +332,7 @@ export default function DocsPage() {
 
       <section className="bg-paper py-16 border-t border-line">
         <Container>
+          <Reveal>
           <div className="bg-canvas border border-line rounded-[var(--r-4)] px-8 py-10 flex flex-col md:flex-row items-center justify-between gap-6 shadow-[var(--e-1)]">
             <div>
               <div className="type-heading-2 text-ink mb-1">Need help integrating?</div>
@@ -337,6 +349,7 @@ export default function DocsPage() {
               </Button>
             </div>
           </div>
+          </Reveal>
         </Container>
       </section>
     </>

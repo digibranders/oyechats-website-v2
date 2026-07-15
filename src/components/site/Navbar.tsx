@@ -81,6 +81,7 @@ const TOP_LINKS = [
   { label: 'Integrations', href: '/integrations' },
   { label: 'Pricing', href: '/pricing' },
   { label: 'Resources', href: '/docs', menu: RESOURCES_MENU },
+  { label: 'Contact us', href: '/contact' },
 ] as const;
 
 // Primary mobile nav — kept lean. Secondary pages (Changelog, About,
@@ -93,7 +94,7 @@ const MOBILE_LINKS = [
   { label: 'Pricing', href: '/pricing' },
   { label: 'Docs', href: '/docs' },
   { label: 'Blog', href: '/blog' },
-  { label: 'Contact', href: '/contact' },
+  { label: 'Contact us', href: '/contact' },
 ];
 
 export default function Navbar() {
@@ -169,15 +170,16 @@ export default function Navbar() {
           {/* Hidden while the drawer is open — the drawer footer already has
               its own Start free, so showing both would duplicate the CTA. */}
           {!open && (
-            <Button href={APP_LINKS.register} external variant="volt" size="sm">
+            <Button href={APP_LINKS.register} external variant="volt" size="md">
               Start free
             </Button>
           )}
           <button
             type="button"
-            className="-mr-2 p-2 text-ink"
+            className="-mr-1 p-2.5 min-h-11 min-w-11 flex items-center justify-center text-ink"
             onClick={() => setOpen((v) => !v)}
             aria-label="Toggle menu"
+            aria-expanded={open}
           >
             {open ? <X size={20} /> : <Menu size={20} />}
           </button>
@@ -191,6 +193,10 @@ export default function Navbar() {
           `top-16 bottom-0` resolve against the 64px header and collapse it.
           As a header sibling it resolves against the viewport and fills the screen. */}
       <div
+        // `inert` when closed removes the off-screen drawer links from the tab
+        // order and the accessibility tree (pointer-events alone leaves them
+        // keyboard-focusable). Opacity transition is preserved.
+        inert={!open ? true : undefined}
         className={cn(
           'lg:hidden fixed inset-x-0 top-16 bottom-0 z-40 bg-paper transition-opacity duration-200 overflow-y-auto',
           open ? 'opacity-100 pointer-events-auto' : 'opacity-0 pointer-events-none'

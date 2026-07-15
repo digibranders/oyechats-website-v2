@@ -72,12 +72,12 @@ export default function Footer() {
             {FOOTER_COLUMNS.map((col) => (
               <div key={col.title}>
                 <h4 className="type-mono-sm text-ink-invert-muted mb-4">{col.title}</h4>
-                <ul className="flex flex-col gap-2.5">
+                <ul className="flex flex-col gap-1">
                   {col.links.map((l) => (
                     <li key={l.href}>
                       <Link
                         href={l.href}
-                        className="text-[13px] text-paper no-underline hover:text-volt-light"
+                        className="inline-block py-1.5 text-[13px] text-paper no-underline hover:text-volt-light"
                       >
                         {l.label}
                       </Link>

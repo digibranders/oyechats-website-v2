@@ -244,8 +244,10 @@ export function HeroDemo() {
           </span>
         </div>
 
-        {/* Conversation, fixed height so streaming/phase changes never shift the page */}
-        <div className="p-4 flex flex-col gap-3 h-[360px] overflow-hidden">
+        {/* Conversation. Fixed height on sm+ so streaming/phase changes never
+            shift the page. On mobile the pane grows (min-h) instead of clipping,
+            since narrower bubbles wrap to more lines than 360px can hold. */}
+        <div className="p-4 flex flex-col gap-3 min-h-[360px] sm:h-[360px] overflow-hidden">
           {/* Visitor question */}
           <div className="flex flex-col items-end max-w-[88%] self-end">
             <span className="type-mono-sm text-muted mb-1">visitor</span>
@@ -296,7 +298,7 @@ export function HeroDemo() {
               onClick={() => onChip(i)}
               aria-pressed={current === i}
               className={cn(
-                'px-3 py-1.5 rounded-[var(--r-full)] type-mono-sm border transition-colors',
+                'inline-flex items-center px-3.5 py-2 min-h-11 rounded-[var(--r-full)] type-mono-sm border transition-colors',
                 current === i
                   ? 'bg-ink text-paper border-ink'
                   : 'bg-canvas text-muted border-line hover:border-line-2 hover:text-ink'
