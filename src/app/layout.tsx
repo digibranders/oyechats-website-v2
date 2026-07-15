@@ -6,7 +6,6 @@ import Footer from '@/components/site/Footer';
 // import AnnouncementBar from '@/components/site/AnnouncementBar';
 import './globals.css';
 import WidgetLoader from '@/components/site/WidgetLoader';
-import { ScrollReveal } from '@/components/site/ScrollReveal';
 
 const inter = Inter({
   subsets: ['latin'],
@@ -105,7 +104,6 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
           dangerouslySetInnerHTML={{ __html: JSON.stringify(siteSchema) }}
         />
 
-        <ScrollReveal />
         <WidgetLoader />
       </body>
     </html>

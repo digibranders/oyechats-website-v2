@@ -1,12 +1,16 @@
+'use client';
+
 import type { ReactNode } from 'react';
-import { cn } from '@/lib/cn';
+import { FadeUp } from '@/components/ui/FadeUp';
 
 /**
- * Reveal, marks a block for the global ScrollReveal provider to fade in from
- * below as it scrolls into view. Purely presentational — no hooks, no observer.
- * The single provider mounted in the root layout drives every `[data-reveal]`
- * block, so this stays a server component and adds nothing to the JS bundle.
- * Content is visible by default (JS-gated hide); respects prefers-reduced-motion.
+ * Reveal, fades a block up as it scrolls into view. Thin wrapper over FadeUp
+ * (motion/react, whileInView): SSR-safe and bfcache-safe — content is visible
+ * by default and only below-the-fold blocks arm the entrance animation, so the
+ * hero/LCP text never paints at opacity 0. Respects prefers-reduced-motion.
+ *
+ * The `delay` prop is in MILLISECONDS (staggering across a grid reads naturally
+ * as `delay={i * 60}`); it is converted to the seconds FadeUp expects.
  */
 export function Reveal({
   children,
@@ -18,12 +22,8 @@ export function Reveal({
   className?: string;
 }) {
   return (
-    <div
-      data-reveal
-      className={cn(className)}
-      style={delay ? { animationDelay: `${delay}ms` } : undefined}
-    >
+    <FadeUp delay={delay / 1000} className={className}>
       {children}
-    </div>
+    </FadeUp>
   );
 }

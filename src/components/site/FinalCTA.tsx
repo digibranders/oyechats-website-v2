@@ -1,42 +1,65 @@
 'use client';
 
 import { useEffect, useRef, useState } from 'react';
-import { Zap, ArrowUpRight, Activity, Radio } from 'lucide-react';
+import { Zap, Activity, Radio } from 'lucide-react';
 import { Button, Container, NumberTicker } from '@/components/ds';
 import { APP_LINKS } from '@/lib/site';
-
-const ROTATING_WORDS = ['workflow', 'pipeline', 'revenue', 'growth', 'quota'];
 
 type FeedEvent = {
   time: string;
   domain: string;
   score: number;
-  route: 'sales' | 'nurture' | 'self-serve';
 };
 
-/** Base pool of events; the ticker cycles + shuffles time to feel live. */
+/** Base pool of events; the ticker cycles + shuffles time to feel live. Tier is
+ *  derived from the BANT score, exactly like the real dashboard (see tierFor). */
 const EVENT_POOL: FeedEvent[] = [
-  { time: '00:52', domain: 'acme.com', score: 87, route: 'sales' },
-  { time: '00:48', domain: 'quill.dev', score: 34, route: 'self-serve' },
-  { time: '00:45', domain: 'northwind.io', score: 92, route: 'sales' },
-  { time: '00:41', domain: 'fabrikam.com', score: 71, route: 'sales' },
-  { time: '00:38', domain: 'contoso.co', score: 58, route: 'nurture' },
-  { time: '00:33', domain: 'wayfair.dev', score: 79, route: 'sales' },
-  { time: '00:29', domain: 'stratus.io', score: 41, route: 'self-serve' },
-  { time: '00:24', domain: 'lambda.co', score: 88, route: 'sales' },
+  { time: '00:52', domain: 'acme.com', score: 87 }, // SQL
+  { time: '00:48', domain: 'fabrikam.com', score: 63 }, // SAL
+  { time: '00:45', domain: 'wayfair.dev', score: 44 }, // MQL
+  { time: '00:41', domain: 'quill.dev', score: 19 }, // Unqualified
+  { time: '00:38', domain: 'northwind.io', score: 92 }, // SQL
+  { time: '00:33', domain: 'contoso.co', score: 55 }, // SAL
+  { time: '00:29', domain: 'stratus.io', score: 38 }, // MQL
+  { time: '00:24', domain: 'lambda.co', score: 81 }, // SQL
 ];
 
-const ROUTE_COLORS: Record<FeedEvent['route'], string> = {
-  sales: 'text-signal',
-  nurture: 'text-alert',
-  'self-serve': 'text-muted',
-};
+type TierStyle = { tier: string; scoreClass: string; dotClass: string; labelClass: string };
 
-const ROUTE_LABELS: Record<FeedEvent['route'], string> = {
-  sales: 'routed to sales',
-  nurture: 'nurture sequence',
-  'self-serve': 'self-serve',
-};
+/**
+ * Maps a BANT score to its lead tier, mirroring the live OyeChats dashboard:
+ * Unqualified → MQL → SAL → SQL, with the same score bands (≥75 / ≥50 / ≥25)
+ * and colour family (grey → magenta → amber → green) as the product's score gauge.
+ */
+function tierFor(score: number): TierStyle {
+  if (score >= 75)
+    return {
+      tier: 'SQL',
+      scoreClass: 'bg-signal/12 text-signal border border-signal/25',
+      dotClass: 'bg-signal',
+      labelClass: 'text-signal',
+    };
+  if (score >= 50)
+    return {
+      tier: 'SAL',
+      scoreClass: 'bg-alert/12 text-alert border border-alert/25',
+      dotClass: 'bg-alert',
+      labelClass: 'text-alert',
+    };
+  if (score >= 25)
+    return {
+      tier: 'MQL',
+      scoreClass: 'bg-volt/15 text-volt border border-volt/30',
+      dotClass: 'bg-volt',
+      labelClass: 'text-volt',
+    };
+  return {
+    tier: 'Unqualified',
+    scoreClass: 'bg-white/5 text-white/40 border border-white/10',
+    dotClass: 'bg-white/40',
+    labelClass: 'text-white/45',
+  };
+}
 
 /** World-map style constellation of ping nodes; positions are hand-picked. */
 const NODES = [
@@ -51,20 +74,14 @@ const NODES = [
 ];
 
 export function FinalCTA() {
-  const [wordIdx, setWordIdx] = useState(0);
   const [events, setEvents] = useState<FeedEvent[]>(EVENT_POOL.slice(0, 5));
   const [clock, setClock] = useState('12:34:52');
-  const wordTimer = useRef<number | null>(null);
   const eventTimer = useRef<number | null>(null);
   const clockTimer = useRef<number | null>(null);
 
   useEffect(() => {
     const reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
     if (reduced) return;
-
-    wordTimer.current = window.setInterval(() => {
-      setWordIdx((i) => (i + 1) % ROTATING_WORDS.length);
-    }, 2400);
 
     let cursor = 5;
     eventTimer.current = window.setInterval(() => {
@@ -85,7 +102,6 @@ export function FinalCTA() {
     }, 1000);
 
     return () => {
-      if (wordTimer.current) clearInterval(wordTimer.current);
       if (eventTimer.current) clearInterval(eventTimer.current);
       if (clockTimer.current) clearInterval(clockTimer.current);
     };
@@ -123,21 +139,13 @@ export function FinalCTA() {
           <span>Go live in 10 minutes · every minute a lead</span>
         </div>
 
-        {/* Rotating headline */}
+        {/* Headline */}
         <h2 className="type-display-2 text-ink-invert-fg text-center max-w-4xl mx-auto">
           Every chat.<br />
           Every buyer.<br />
-          <span className="inline-flex items-baseline gap-2">
-            <span>One</span>
-            <span
-              key={wordIdx}
-              className="gradient-volt-only inline-block"
-              style={{ animation: 'word-in .6s cubic-bezier(.16,1,.3,1) forwards' }}
-            >
-              {ROTATING_WORDS[wordIdx]}
-            </span>
-            <span>.</span>
-          </span>
+          <span>One </span>
+          <span className="gradient-volt-only">pipeline</span>
+          <span>.</span>
         </h2>
 
         <p className="text-center type-body-lg text-ink-invert-muted max-w-[680px] mx-auto mt-6">
@@ -146,10 +154,21 @@ export function FinalCTA() {
         </p>
 
         <div className="flex justify-center gap-3 flex-wrap mt-9">
-          <Button href={APP_LINKS.register} external variant="volt" size="lg">
-            Start free <Zap size={16} />
+          <Button
+            href={APP_LINKS.register}
+            external
+            variant="volt"
+            size="lg"
+            className="px-5 py-2.5 min-h-11"
+          >
+            Start free <Zap size={15} />
           </Button>
-          <Button href="/contact" variant="outline-invert" size="lg">
+          <Button
+            href="/contact"
+            variant="outline-invert"
+            size="lg"
+            className="px-5 py-2.5 min-h-11"
+          >
             Talk to sales
           </Button>
         </div>
@@ -185,45 +204,42 @@ export function FinalCTA() {
                 <div className="flex items-center justify-between mb-4">
                   <div className="flex items-center gap-2 font-mono text-[11px] text-white/50 tracking-wide uppercase">
                     <Activity size={12} className="text-volt" />
-                    Example qualifications
+                    Recent leads
                   </div>
                   <span className="font-mono text-[10px] text-white/30">illustrative</span>
                 </div>
                 <ul className="space-y-1.5">
-                  {events.map((ev, i) => (
-                    <li
-                      key={`${ev.domain}-${ev.time}-${i}`}
-                      className="grid grid-cols-[auto_1fr_auto_auto] gap-3 items-center px-3 py-2.5 rounded-[var(--r-2)] bg-white/[0.02] border border-white/5 hover:border-volt/40 hover:bg-white/[0.05] transition-colors"
-                      style={{
-                        animation: i === 0 ? 'event-in .5s cubic-bezier(.16,1,.3,1) forwards' : undefined,
-                        opacity: i === 0 ? 0 : 1,
-                      }}
-                    >
-                      <span className="font-mono text-[10px] text-white/35 tabular-nums">
-                        {ev.time}
-                      </span>
-                      <span className="font-mono text-[12px] text-white/85 truncate">
-                        {ev.domain}
-                      </span>
-                      <span
-                        className={`inline-flex items-center gap-1.5 rounded-[var(--r-1)] px-2 py-0.5 font-mono text-[11px] font-semibold tabular-nums ${
-                          ev.score >= 65
-                            ? 'bg-volt/12 text-volt border border-volt/25'
-                            : ev.score >= 45
-                            ? 'bg-alert/12 text-alert border border-alert/25'
-                            : 'bg-white/5 text-white/40 border border-white/10'
-                        }`}
+                  {events.map((ev, i) => {
+                    const t = tierFor(ev.score);
+                    return (
+                      <li
+                        key={`${ev.domain}-${ev.time}-${i}`}
+                        className="grid grid-cols-[auto_1fr_auto_auto] gap-3 items-center px-3 py-2.5 rounded-[var(--r-2)] bg-white/[0.02] border border-white/5 hover:border-volt/40 hover:bg-white/[0.05] transition-colors"
+                        style={{
+                          animation: i === 0 ? 'event-in .5s cubic-bezier(.16,1,.3,1) forwards' : undefined,
+                          opacity: i === 0 ? 0 : 1,
+                        }}
                       >
-                        {ev.score}
-                      </span>
-                      <span
-                        className={`inline-flex items-center gap-1 font-mono text-[10px] ${ROUTE_COLORS[ev.route]}`}
-                      >
-                        <ArrowUpRight size={11} />
-                        {ROUTE_LABELS[ev.route]}
-                      </span>
-                    </li>
-                  ))}
+                        <span className="font-mono text-[10px] text-white/35 tabular-nums">
+                          {ev.time}
+                        </span>
+                        <span className="font-mono text-[12px] text-white/85 truncate">
+                          {ev.domain}
+                        </span>
+                        <span
+                          className={`inline-flex items-center gap-1.5 rounded-[var(--r-1)] px-2 py-0.5 font-mono text-[11px] font-semibold tabular-nums ${t.scoreClass}`}
+                        >
+                          {ev.score}
+                        </span>
+                        <span
+                          className={`inline-flex items-center gap-1.5 font-mono text-[10px] uppercase tracking-wide ${t.labelClass}`}
+                        >
+                          <span className={`w-1.5 h-1.5 rounded-full inline-block ${t.dotClass}`} />
+                          {t.tier}
+                        </span>
+                      </li>
+                    );
+                  })}
                 </ul>
               </div>
 
@@ -232,14 +248,14 @@ export function FinalCTA() {
                 <div className="flex items-center justify-between mb-4">
                   <div className="flex items-center gap-2 font-mono text-[11px] text-white/50 tracking-wide uppercase">
                     <Radio size={12} className="text-volt" />
-                    Example · last 60 min
+                    Pipeline · last 60 min
                   </div>
                 </div>
                 <div className="grid grid-cols-2 gap-3">
-                  <ConsoleTicker value={342} label="qualifications" />
-                  <ConsoleTicker value={87} suffix="%" label="handoff success" />
+                  <ConsoleTicker value={128} label="leads" />
+                  <ConsoleTicker value={41} label="SQL" />
                   <ConsoleTicker value={73} label="avg BANT" delay={200} />
-                  <ConsoleTicker value={112} suffix="s" prefix="~" label="time to route" delay={300} />
+                  <ConsoleTicker value={87} suffix="%" label="resolution rate" delay={300} />
                 </div>
 
                 {/* mini sparkline */}
