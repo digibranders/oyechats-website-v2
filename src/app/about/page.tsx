@@ -67,7 +67,7 @@ export default function AboutPage() {
       <section className="relative bg-paper overflow-hidden">
         <HeroGlow />
         <DottedGrid />
-        <Container className="relative pt-24 pb-24 md:pt-32 md:pb-32 text-center">
+        <Container className="relative pt-24 pb-24 md:pt-20 md:pb-20 text-center">
           <h1 className="type-display-2 text-ink max-w-3xl mx-auto">
             We help teams answer every visitor, and{' '}
             <GradientText>qualify</GradientText> the ones worth calling.

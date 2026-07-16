@@ -108,7 +108,7 @@ export function FinalCTA() {
   }, []);
 
   return (
-    <section className="relative bg-ink-invert text-ink-invert-fg overflow-hidden py-24 md:py-32">
+    <section className="relative bg-ink-invert text-ink-invert-fg overflow-hidden py-24 md:py-20">
       {/* Background: grid + aurora + constellation */}
       <div className="absolute inset-0 console-grid opacity-70" aria-hidden />
       <div className="console-aurora" aria-hidden />

@@ -68,7 +68,7 @@ export default function DocsPage() {
       <section className="relative bg-paper overflow-hidden border-b border-line">
         <HeroGlow size="sm" />
         <DottedGrid />
-        <Container className="relative pt-24 pb-16 md:pt-32 md:pb-20 text-center">
+        <Container className="relative pt-24 pb-16 md:pt-20 md:pb-20 text-center">
           <h1 className="type-display-2 text-ink max-w-3xl mx-auto">
             Everything you need to <GradientText>go live</GradientText>.
           </h1>
@@ -78,7 +78,7 @@ export default function DocsPage() {
         </Container>
       </section>
 
-      <div className="bg-canvas py-16 md:py-24">
+      <div className="bg-canvas py-16 md:py-16">
         <Container className="max-w-[1200px]">
           <div className="lg:grid lg:grid-cols-[220px_1fr] lg:gap-16">
             <aside className="hidden lg:block">

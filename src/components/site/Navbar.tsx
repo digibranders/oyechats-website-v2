@@ -6,17 +6,8 @@ import {
   Menu,
   X,
   Sparkles,
-  Headphones,
-  Target,
   BookOpen,
-  MessageCircle,
-  Zap,
-  Search,
-  BrainCircuit,
-  MessageSquare,
-  Code,
   ShieldCheck,
-  Webhook,
   LineChart,
   ChevronDown,
 } from 'lucide-react';
@@ -29,39 +20,6 @@ type MegaColumn = {
   title: string;
   items: { icon: React.ComponentType<{ size?: number; className?: string }>; label: string; description: string; href: string }[];
 };
-
-const PRODUCT_MENU: MegaColumn[] = [
-  {
-    title: 'What it does',
-    items: [
-      { icon: BrainCircuit, label: 'BANT scoring', description: 'Qualify every visitor automatically', href: '/features#feature-bant' },
-      { icon: Search, label: 'Grounded answers', description: 'Answers pulled from your own docs', href: '/features#feature-rag' },
-      { icon: MessageSquare, label: 'Live handoff', description: 'Hand off to a human, with context', href: '/features#feature-live-chat' },
-      { icon: Zap, label: 'Streaming answers', description: 'Replies stream in real time', href: '/features#feature-rag' },
-    ],
-  },
-  {
-    title: 'Set up and grow',
-    items: [
-      { icon: Code, label: 'Easy setup', description: 'One script tag, any website', href: '/features#feature-integrations' },
-      { icon: Webhook, label: 'Webhooks and REST API', description: 'Push events to your own tools', href: '/docs#webhooks' },
-      { icon: LineChart, label: 'Deep analytics', description: 'See what actually converts', href: '/features#feature-analytics' },
-      { icon: ShieldCheck, label: 'Security', description: 'GDPR, HMAC signing, RBAC', href: '/security' },
-    ],
-  },
-];
-
-const SOLUTIONS_MENU: MegaColumn[] = [
-  {
-    title: 'By team',
-    items: [
-      { icon: Headphones, label: 'Customer Support', description: 'Cut ticket volume, keep quality', href: '/solutions#customer-support' },
-      { icon: Target, label: 'Sales and Lead Gen', description: 'Qualify every visitor', href: '/solutions#sales-lead-gen' },
-      { icon: BookOpen, label: 'Docs Assistant', description: 'Grounded answers from your knowledge base', href: '/solutions#docs-assistant' },
-      { icon: MessageCircle, label: 'Live Chat Handoff', description: 'Bot first, human second', href: '/solutions#live-chat-handoff' },
-    ],
-  },
-];
 
 const RESOURCES_MENU: MegaColumn[] = [
   {
@@ -76,8 +34,8 @@ const RESOURCES_MENU: MegaColumn[] = [
 ];
 
 const TOP_LINKS = [
-  { label: 'Product', href: '/features', menu: PRODUCT_MENU },
-  { label: 'Solutions', href: '/solutions', menu: SOLUTIONS_MENU },
+  { label: 'Features', href: '/features' },
+  { label: 'Solutions', href: '/solutions' },
   { label: 'Integrations', href: '/integrations' },
   { label: 'Pricing', href: '/pricing' },
   { label: 'Resources', href: '/docs', menu: RESOURCES_MENU },
@@ -88,7 +46,7 @@ const TOP_LINKS = [
 // Security) are intentionally omitted here since they're all reachable from
 // the footer; a 10-item drawer buried the primary journey.
 const MOBILE_LINKS = [
-  { label: 'Product', href: '/features' },
+  { label: 'Features', href: '/features' },
   { label: 'Solutions', href: '/solutions' },
   { label: 'Integrations', href: '/integrations' },
   { label: 'Pricing', href: '/pricing' },
@@ -140,7 +98,7 @@ export default function Navbar() {
             >
               <Link
                 href={l.href}
-                className="text-[13px] font-medium text-ink-2 hover:text-ink no-underline px-3 py-2 rounded-[var(--r-2)] hover:bg-canvas transition-colors inline-flex items-center gap-1"
+                className="text-[15px] font-medium text-ink-2 hover:text-ink no-underline px-3 py-2 rounded-[var(--r-2)] hover:bg-canvas transition-colors inline-flex items-center gap-1"
               >
                 {l.label}
                 {'menu' in l && <ChevronDown size={12} className="text-muted-2" />}

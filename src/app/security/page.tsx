@@ -95,7 +95,7 @@ export default function SecurityPage() {
       <section className="relative bg-paper overflow-hidden">
         <HeroGlow size="sm" />
         <DottedGrid />
-        <Container className="relative pt-24 pb-16 md:pt-32 md:pb-24 text-center">
+        <Container className="relative pt-24 pb-16 md:pt-20 md:pb-16 text-center">
           <h1 className="type-display-2 text-ink max-w-3xl mx-auto">
             Security, <GradientText>documented</GradientText>.
           </h1>

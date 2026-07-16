@@ -36,7 +36,7 @@ export function Section({
     <section
       id={id}
       className={cn(
-        'py-16 md:py-32 border-b',
+        'py-16 md:py-20 border-b',
         tone === 'ink-invert' ? 'border-transparent' : 'border-line',
         tones[tone],
         className
@@ -44,7 +44,7 @@ export function Section({
     >
       <Container size={containerSize}>
         {(eyebrow || heading || sub || actions) && (
-          <div className="mb-12 md:mb-16 max-w-3xl">
+          <div className="mb-8 md:mb-12 max-w-3xl">
             {eyebrow && (
               <div
                 className={cn(

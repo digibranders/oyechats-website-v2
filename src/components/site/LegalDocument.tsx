@@ -38,7 +38,7 @@ function renderBody(body: string[]): ReactNode {
 export function LegalDocument({ page }: { page: LegalPage }) {
   return (
     <>
-      <section className="bg-paper border-b border-line pt-16 pb-12 md:pt-24 md:pb-16">
+      <section className="bg-paper border-b border-line pt-16 pb-12 md:pt-16 md:pb-16">
         <Container>
           <h1 className="type-display-3 text-ink max-w-3xl">{page.title}</h1>
           <p className="type-body-lg text-ink-2 mt-4 max-w-2xl">{page.description}</p>
@@ -49,7 +49,7 @@ export function LegalDocument({ page }: { page: LegalPage }) {
         </Container>
       </section>
 
-      <div className="bg-canvas py-16 md:py-24">
+      <div className="bg-canvas py-16 md:py-16">
         <Container>
           <div className="grid lg:grid-cols-[1fr_240px] gap-16">
             <div className="prose">

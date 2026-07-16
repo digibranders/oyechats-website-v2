@@ -14,7 +14,7 @@ export default function LegalIndex() {
     <>
       <section className="relative bg-paper overflow-hidden border-b border-line">
         <DottedGrid />
-        <Container className="relative pt-24 pb-16 md:pt-32 md:pb-20">
+        <Container className="relative pt-24 pb-16 md:pt-20 md:pb-20">
           <h1 className="type-display-2 text-ink max-w-3xl">Legal.</h1>
           <p className="type-body-lg text-ink-2 mt-6 max-w-2xl">
             Everything you can send to your legal team. Plain language. No hidden clauses.
@@ -22,7 +22,7 @@ export default function LegalIndex() {
         </Container>
       </section>
 
-      <div className="bg-canvas py-16 md:py-24">
+      <div className="bg-canvas py-16 md:py-16">
         <Container>
           <div className="grid md:grid-cols-2 gap-4">
             {LEGAL_PAGES.map((p) => (

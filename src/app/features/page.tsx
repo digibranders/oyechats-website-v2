@@ -28,6 +28,7 @@ import {
 } from '@/components/ds';
 import { APP_LINKS } from '@/lib/site';
 import { FEATURES } from '@/lib/features';
+import { INTEGRATIONS } from '@/lib/integrations';
 
 const SOFTWARE_APPLICATION_SCHEMA = {
   '@context': 'https://schema.org',
@@ -104,7 +105,7 @@ export default function FeaturesPage() {
       <section className="relative bg-paper overflow-hidden">
         <HeroGlow />
         <DottedGrid />
-        <Container className="relative pt-24 pb-16 md:pt-32 md:pb-20 text-center">
+        <Container className="relative pt-24 pb-16 md:pt-20 md:pb-20 text-center">
           <h1 className="type-display-2 text-ink max-w-3xl mx-auto">
             Everything you need, <GradientText>built in</GradientText>.
           </h1>
@@ -125,7 +126,7 @@ export default function FeaturesPage() {
         </Container>
       </div>
 
-      <section id="feature-rag" className="scroll-mt-32 py-16 md:py-32 bg-paper border-t border-line">
+      <section id="feature-rag" className="scroll-mt-32 py-16 md:py-20 bg-paper border-t border-line">
         <Container>
           <div className="grid lg:grid-cols-2 gap-16 items-center">
             <Reveal>
@@ -176,7 +177,7 @@ export default function FeaturesPage() {
         </Container>
       </section>
 
-      <section id="feature-bant" className="scroll-mt-32 py-16 md:py-32 bg-canvas border-t border-line">
+      <section id="feature-bant" className="scroll-mt-32 py-16 md:py-20 bg-canvas border-t border-line">
         <Container>
           <div className="grid lg:grid-cols-[1fr_1.1fr] gap-16 items-start">
             {/* Visual moves below the heading on mobile so the section leads
@@ -243,7 +244,7 @@ export default function FeaturesPage() {
         </Container>
       </section>
 
-      <section id="feature-live-chat" className="scroll-mt-32 py-16 md:py-32 bg-paper border-t border-line">
+      <section id="feature-live-chat" className="scroll-mt-32 py-16 md:py-20 bg-paper border-t border-line">
         <Container>
           <div className="grid lg:grid-cols-2 gap-16 items-center">
             <Reveal>
@@ -304,7 +305,7 @@ export default function FeaturesPage() {
         </Container>
       </section>
 
-      <section id="feature-analytics" className="scroll-mt-32 py-16 md:py-32 bg-canvas border-t border-line">
+      <section id="feature-analytics" className="scroll-mt-32 py-16 md:py-20 bg-canvas border-t border-line">
         <Container>
           <div className="grid lg:grid-cols-[1.1fr_1fr] gap-16 items-center">
             <Reveal className="bg-paper border border-line rounded-[var(--r-4)] p-6 shadow-[var(--e-1)]">
@@ -385,7 +386,7 @@ export default function FeaturesPage() {
         </Container>
       </section>
 
-      <section id="feature-webhooks" className="scroll-mt-32 py-16 md:py-32 bg-paper border-t border-line">
+      <section id="feature-webhooks" className="scroll-mt-32 py-16 md:py-20 bg-paper border-t border-line">
         <Container>
           <div className="grid lg:grid-cols-2 gap-16 items-start">
             <Reveal>
@@ -466,7 +467,7 @@ Content-Type: application/json
         </Container>
       </section>
 
-      <section id="feature-integrations" className="scroll-mt-32 py-16 md:py-32 bg-canvas border-t border-line">
+      <section id="feature-integrations" className="scroll-mt-32 py-16 md:py-20 bg-canvas border-t border-line">
         <Container>
           <div className="grid lg:grid-cols-2 gap-16 items-center">
             <Reveal>
@@ -483,14 +484,17 @@ Content-Type: application/json
               </Button>
             </Reveal>
 
-            <div className="grid grid-cols-3 gap-3">
-              {['WP', 'Sh', 'Wf', 'Nx', 'Vu', 'Re', 'Fr', 'Br', 'Ca', 'La', 'Se', 'Za'].map((sym, i) => (
-                <Reveal key={sym} delay={i * 60}>
-                  <div className="aspect-square bg-canvas border border-line rounded-[var(--r-3)] flex items-center justify-center shadow-[var(--e-1)]">
-                  <span className="font-display font-semibold text-[15px] text-ink tracking-tight">
-                    {sym}
-                  </span>
-                </div>
+            <div className="grid grid-cols-2 gap-3">
+              {INTEGRATIONS.filter((int) => int.category !== 'developer').map((int, i) => (
+                <Reveal key={int.id} delay={i * 60}>
+                  <div className="bg-canvas border border-line rounded-[var(--r-3)] p-4 flex items-center gap-3 shadow-[var(--e-1)] hover:border-volt/40 hover:-translate-y-0.5 transition-all duration-300 h-full">
+                    <div className="w-11 h-11 rounded-[var(--r-2)] bg-paper border border-line flex items-center justify-center shrink-0">
+                      {int.icon}
+                    </div>
+                    <span className="type-body-sm text-ink font-medium leading-tight">
+                      {int.name}
+                    </span>
+                  </div>
                 </Reveal>
               ))}
             </div>
