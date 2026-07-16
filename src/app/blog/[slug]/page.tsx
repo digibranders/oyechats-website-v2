@@ -74,7 +74,7 @@ export default async function BlogPostPage({ params }: { params: Promise<Params>
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbSchema) }}
       />
-      <header className="bg-paper border-b border-line pt-16 pb-16 md:pt-24 md:pb-20">
+      <header className="bg-paper border-b border-line pt-16 pb-16 md:pt-16 md:pb-20">
         <Container>
           <Link
             href="/blog"
@@ -102,7 +102,7 @@ export default async function BlogPostPage({ params }: { params: Promise<Params>
         </Container>
       </header>
 
-      <div className="py-16 md:py-24">
+      <div className="py-16 md:py-16">
         <Container>
           <Reveal className="prose" delay={80}>
             {post.content.map((block, i) => {

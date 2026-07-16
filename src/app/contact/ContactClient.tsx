@@ -70,7 +70,7 @@ export default function ContactClient() {
       <section className="relative bg-paper overflow-hidden">
         <HeroGlow size="sm" />
         <DottedGrid />
-        <Container className="relative pt-24 pb-16 md:pt-32 md:pb-20 text-center">
+        <Container className="relative pt-24 pb-16 md:pt-20 md:pb-20 text-center">
           <h1 className="type-display-2 text-ink max-w-3xl mx-auto">
             Let&apos;s <GradientText>talk</GradientText>.
           </h1>
@@ -80,7 +80,7 @@ export default function ContactClient() {
         </Container>
       </section>
 
-      <div className="bg-canvas py-16 md:py-24 border-t border-line">
+      <div className="bg-canvas py-16 md:py-16 border-t border-line">
         <Container>
           <div className="max-w-2xl mx-auto">
             {/* Form */}

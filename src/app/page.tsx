@@ -65,7 +65,7 @@ export default async function Home() {
       <section className="relative bg-paper overflow-hidden">
         <HeroGlow />
         <DottedGrid />
-        <Container className="relative pt-8 pb-16 md:pt-10 md:pb-40">
+        <Container className="relative pt-8 pb-16 md:pt-10 md:pb-16">
           <div className="grid lg:grid-cols-[1.15fr_1fr] gap-8 lg:gap-16 items-center">
             <div>
               <Reveal delay={80}>

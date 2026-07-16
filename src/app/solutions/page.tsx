@@ -61,7 +61,7 @@ export default function SolutionsPage() {
       <section className="relative bg-paper overflow-hidden">
         <HeroGlow size="sm" />
         <DottedGrid />
-        <Container className="relative pt-24 pb-16 md:pt-32 md:pb-24 text-center">
+        <Container className="relative pt-24 pb-16 md:pt-20 md:pb-16 text-center">
           <h1 className="type-display-2 text-ink max-w-3xl mx-auto">
             Built for support, sales, and <GradientText>everything</GradientText> between.
           </h1>
@@ -125,7 +125,7 @@ export default function SolutionsPage() {
           <section
             key={s.slug}
             id={s.slug}
-            className={`scroll-mt-24 py-14 md:py-28 border-t border-line ${
+            className={`scroll-mt-24 py-14 md:py-20 border-t border-line ${
               isEven ? 'bg-canvas' : 'bg-paper'
             }`}
           >

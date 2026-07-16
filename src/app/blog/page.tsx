@@ -25,7 +25,7 @@ export default function BlogPage() {
       <section className="relative bg-paper overflow-hidden">
         <HeroGlow size="sm" />
         <DottedGrid />
-        <Container className="relative pt-24 pb-16 md:pt-32 md:pb-20 text-center">
+        <Container className="relative pt-24 pb-16 md:pt-20 md:pb-20 text-center">
           <h1 className="type-display-2 text-ink max-w-3xl mx-auto">
             Ideas from the <GradientText>team</GradientText>.
           </h1>
