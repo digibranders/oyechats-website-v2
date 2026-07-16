@@ -8,7 +8,7 @@ OyeChats is an AI chatbot for websites. It answers visitor questions grounded in
 
 - [Home](https://www.oyechats.com/): Overview of OyeChats, how it works, and headline stats.
 - [Features](https://www.oyechats.com/features): Streaming answers, grounded RAG, BANT scoring, live handoff, security, analytics, and webhooks.
-- [Pricing](https://www.oyechats.com/pricing): Free, Starter, Standard, and Enterprise plans with credit-based usage.
+- [Pricing](https://www.oyechats.com/pricing): Free, Starter, Standard, Professional, and Enterprise plans with credit-based usage.
 - [Integrations](https://www.oyechats.com/integrations): One-line install on WordPress, Webflow, Next.js, React, Vue, or plain HTML.
 - [Docs](https://www.oyechats.com/docs): Setup guides, widget configuration, and API reference.
 - [Blog](https://www.oyechats.com/blog): Articles on AI chat, lead qualification, and support automation.
@@ -23,4 +23,4 @@ OyeChats is an AI chatbot for websites. It answers visitor questions grounded in
 - Webhooks send 5 HMAC-signed event types to your own endpoint, alongside a REST API.
 - Live human handoff passes the full transcript, visitor profile, and lead score to an operator.
 - Uptime target is 99.9%.
-- Plans are credit-based: Free (200 credits/mo), Starter ($19/mo), Standard ($39/mo), and Enterprise (custom).
+- Plans are credit-based. International (USD) pricing: Free, Starter ($9/mo), Standard ($19/mo), Professional ($39/mo), and Enterprise (custom). Visitors in India are billed in INR (₹449 / ₹949 / ₹1,399 per month for Starter / Standard / Professional).

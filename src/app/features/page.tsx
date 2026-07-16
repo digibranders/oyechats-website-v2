@@ -1,4 +1,5 @@
 import type { Metadata } from 'next';
+import { pageMeta } from '@/lib/seo';
 import Link from 'next/link';
 import { ScrollSpyToc } from '@/components/site/ScrollSpyToc';
 import {
@@ -40,12 +41,12 @@ const SOFTWARE_APPLICATION_SCHEMA = {
   featureList: FEATURES.map((f) => f.title),
 } as const;
 
-export const metadata: Metadata = {
+export const metadata: Metadata = pageMeta({
   title: 'Features',
   description:
     'Every OyeChats feature: hybrid RAG, BANT scoring, live handoff, analytics, webhooks, integrations. One AI chatbot with full sales intelligence.',
-  alternates: { canonical: '/features' },
-};
+  path: '/features',
+});
 
 const NAV = [
   { id: 'rag', label: 'Grounded answers' },

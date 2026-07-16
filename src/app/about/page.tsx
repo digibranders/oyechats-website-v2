@@ -1,4 +1,5 @@
 import type { Metadata } from 'next';
+import { pageMeta } from '@/lib/seo';
 import { MessagesSquare, Target, Headphones, MapPin, type LucideIcon } from 'lucide-react';
 import {
   Chip,
@@ -11,12 +12,12 @@ import {
   Section,
 } from '@/components/ds';
 
-export const metadata: Metadata = {
+export const metadata: Metadata = pageMeta({
   title: 'About Us',
   description:
     'OyeChats is the RAG-powered AI chat platform for support, sales, and live conversations. Meet the team defining how businesses answer their customers.',
-  alternates: { canonical: '/about' },
-};
+  path: '/about',
+});
 
 const HERO_STATS = [
   { value: '1', label: 'Script tag to embed' },

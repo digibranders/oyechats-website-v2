@@ -1,4 +1,5 @@
 import type { Metadata } from 'next';
+import { pageMeta } from '@/lib/seo';
 import { Package, KeyRound, Brain, Zap, Lightbulb, ExternalLink } from 'lucide-react';
 import {
   Button,
@@ -14,12 +15,12 @@ import {
 } from '@/components/ds';
 import { ScrollSpyToc } from '@/components/site/ScrollSpyToc';
 
-export const metadata: Metadata = {
+export const metadata: Metadata = pageMeta({
   title: 'Documentation',
   description:
     'Everything you need to add and configure OyeChats on your website. Install, configure, and connect webhooks.',
-  alternates: { canonical: '/docs' },
-};
+  path: '/docs',
+});
 
 const QUICK_START = [
   { icon: Package, step: '1', title: 'Install the widget', desc: 'Add a single script tag to your site and the chat widget appears instantly.', anchor: '#widget' },

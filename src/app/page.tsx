@@ -1,3 +1,4 @@
+import type { Metadata } from 'next';
 import Link from 'next/link';
 import { headers } from 'next/headers';
 import { ArrowRight } from 'lucide-react';
@@ -24,6 +25,19 @@ import { FEATURES } from '@/lib/features';
 import { PRICING_TIERS, currencyForCountry, CURRENCY_SYMBOL } from '@/lib/pricing';
 import { INTEGRATIONS } from '@/lib/integrations';
 import { APP_LINKS } from '@/lib/site';
+
+// Homepage sets its own complete openGraph (with url). A page-level openGraph
+// replaces the layout's entirely, so every field the homepage needs is listed here.
+export const metadata: Metadata = {
+  openGraph: {
+    type: 'website',
+    url: '/',
+    title: 'OyeChats. You only talk to buyers.',
+    description:
+      'AI chatbot that qualifies every visitor with BANT scoring before your sales reps see them.',
+    siteName: 'OyeChats',
+  },
+};
 
 const softwareSchema: Record<string, unknown> = {
   '@context': 'https://schema.org',

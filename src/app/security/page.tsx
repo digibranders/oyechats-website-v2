@@ -1,4 +1,5 @@
 import type { Metadata } from 'next';
+import { pageMeta } from '@/lib/seo';
 import {
   Lock,
   Shield,
@@ -23,12 +24,12 @@ import {
   Section,
 } from '@/components/ds';
 
-export const metadata: Metadata = {
+export const metadata: Metadata = pageMeta({
   title: 'Security',
   description:
     'OyeChats security practices: encryption in transit and at rest, GDPR-aligned data handling, access controls, signed webhooks, and infrastructure details.',
-  alternates: { canonical: '/security' },
-};
+  path: '/security',
+});
 
 const SECURITY_SECTIONS: { icon: LucideIcon; title: string; items: string[] }[] = [
   {

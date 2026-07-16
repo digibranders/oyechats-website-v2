@@ -4,7 +4,7 @@ import Link from 'next/link';
 import { useEffect, useState } from 'react';
 import { cn } from '@/lib/cn';
 
-export type TocItem = { id: string; label: string };
+export type TocItem = { id: string; label: string; level?: 2 | 3 };
 
 /**
  * Scroll-spy table of contents. Watches the target sections via
@@ -86,7 +86,8 @@ export function ScrollSpyToc({
                 href={`#${it.id}`}
                 aria-current={active ? 'true' : undefined}
                 className={cn(
-                  'type-body-sm no-underline block border-l-2 pl-3 py-1 transition-colors',
+                  'type-body-sm no-underline block border-l-2 py-1 transition-colors',
+                  it.level === 3 ? 'pl-6' : 'pl-3',
                   active
                     ? 'border-volt text-volt font-medium'
                     : 'border-transparent text-ink-2 hover:text-ink hover:border-line-2'

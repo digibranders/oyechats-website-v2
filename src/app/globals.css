@@ -431,14 +431,25 @@ img { max-width: 100%; display: block; }
 
 /* ═══════════════════════ PROSE ═══════════════════════ */
 
-.prose { max-width: 680px; color: var(--ink-2); font-size: 1rem; line-height: 1.7; }
-.prose > * + * { margin-top: 1em; }
-.prose h2 { font-family: var(--font-geist); font-weight: 600; font-size: 1.5rem; letter-spacing: -0.02em; color: var(--ink); margin-top: 2em; margin-bottom: .5em; }
-.prose h3 { font-family: var(--font-geist); font-weight: 600; font-size: 1.25rem; letter-spacing: -0.015em; color: var(--ink); margin-top: 1.6em; margin-bottom: .3em; }
-.prose p { margin: 0.85em 0; }
-.prose ul, .prose ol { padding-left: 1.4em; margin: 0.85em 0; }
-.prose li { margin: 0.35em 0; }
-.prose a { color: var(--volt); text-decoration: underline; text-underline-offset: 3px; }
+.prose { max-width: 720px; color: var(--ink-2); font-size: 1.0625rem; line-height: 1.75; }
+/* Headings own their own top margin; body/list elements share a single rhythm
+   step so spacing never doubles up against a heading's margin. */
+.prose > * { margin: 0; }
+.prose > * + * { margin-top: 1.15em; }
+.prose h2 { font-family: var(--font-geist); font-weight: 600; font-size: 1.625rem; letter-spacing: -0.02em; line-height: 1.25; color: var(--ink); margin-top: 2.2em; margin-bottom: -0.15em; }
+.prose h3 { font-family: var(--font-geist); font-weight: 600; font-size: 1.25rem; letter-spacing: -0.015em; line-height: 1.3; color: var(--ink); margin-top: 1.8em; margin-bottom: -0.2em; }
+.prose h2 + *, .prose h3 + * { margin-top: 0.7em; }
+/* Lead paragraph: the first paragraph reads a touch larger. */
+.prose > p:first-of-type { font-size: 1.1875rem; line-height: 1.65; color: var(--ink); }
+.prose ul, .prose ol { padding-left: 1.3em; }
+.prose ul { list-style: none; }
+.prose ul > li { position: relative; padding-left: 1.1em; }
+.prose ul > li::before { content: ""; position: absolute; left: 0; top: 0.72em; width: 6px; height: 6px; border-radius: 2px; background: var(--volt); }
+.prose ol { list-style: decimal; }
+.prose ol > li::marker { color: var(--volt); font-family: var(--font-geist-mono); font-weight: 600; }
+.prose li { margin: 0.4em 0; padding-left: 0.2em; }
+.prose a { color: var(--volt); text-decoration: underline; text-underline-offset: 3px; text-decoration-thickness: 1px; }
+.prose a:hover { text-decoration-thickness: 2px; }
 .prose code { font-family: var(--font-geist-mono); font-size: 0.86em; background: var(--canvas); border: 1px solid var(--line); border-radius: var(--r-1); padding: 1px 6px; color: var(--ink); }
 .prose strong { color: var(--ink); font-weight: 600; }
 .prose blockquote { border-left: 3px solid var(--volt); padding: 0 0 0 20px; margin: 1.5em 0; color: var(--ink-2); font-style: normal; }

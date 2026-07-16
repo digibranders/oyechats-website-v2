@@ -58,7 +58,9 @@ export const metadata: Metadata = {
   alternates: { canonical: '/' },
   openGraph: {
     type: 'website',
-    url: '/',
+    // No `url` here: it is the homepage's own value, but is silently inherited by
+    // any page lacking its own openGraph, pointing their og:url at '/'. The home
+    // page sets its own url in app/page.tsx; other pages set theirs via pageMeta.
     title: 'OyeChats. You only talk to buyers.',
     description:
       'AI chatbot that qualifies every visitor with BANT scoring before your sales reps see them.',

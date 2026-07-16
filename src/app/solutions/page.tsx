@@ -1,4 +1,5 @@
 import type { Metadata } from 'next';
+import { pageMeta } from '@/lib/seo';
 import Link from 'next/link';
 import { ArrowRight } from 'lucide-react';
 import {
@@ -12,12 +13,12 @@ import {
 } from '@/components/ds';
 import { SOLUTIONS, type Solution } from '@/lib/features';
 
-export const metadata: Metadata = {
+export const metadata: Metadata = pageMeta({
   title: 'Solutions',
   description:
     'Solutions for the teams and workflows OyeChats was built for. Customer support, sales lead gen, docs assistants, and live chat handoff.',
-  alternates: { canonical: '/solutions' },
-};
+  path: '/solutions',
+});
 
 const ACCENT: Record<
   Solution['accent'],

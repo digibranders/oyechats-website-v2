@@ -1,13 +1,14 @@
 import type { Metadata } from 'next';
+import { pageMeta } from '@/lib/seo';
 import { Chip, Container, DottedGrid, GradientText, HeroGlow, Reveal } from '@/components/ds';
 import { CHANGELOG, type ChangelogEntry } from '@/lib/changelog';
 
-export const metadata: Metadata = {
+export const metadata: Metadata = pageMeta({
   title: 'Changelog',
   description:
     'OyeChats product updates and release notes: new features, improvements, and fixes as they ship.',
-  alternates: { canonical: '/changelog' },
-};
+  path: '/changelog',
+});
 
 const ACCENT_STYLES: Record<ChangelogEntry['accent'], { pill: string; dot: string }> = {
   blue: { pill: 'bg-[#FDF4FF] border-[#F0ABFC] text-[#A21CAF]', dot: 'bg-[#A21CAF]' },
