@@ -14,7 +14,9 @@ export function Table({ children, className }: { children: ReactNode; className?
           The rounded frame (overflow-hidden) is kept on the outer element so
           the two overflow axes don't fight on one node. */}
       <div className="overflow-x-auto">
-        <table className="w-full min-w-[640px] border-collapse text-left">{children}</table>
+        <table className="w-full min-w-[640px] border-collapse text-left [&_tbody_tr:last-child_td]:border-b-0">
+          {children}
+        </table>
       </div>
     </div>
   );
@@ -45,7 +47,7 @@ export function Td({
   return (
     <td
       className={cn(
-        'px-4 py-3.5 text-sm text-ink-2 border-b border-line last:border-b-0',
+        'px-4 py-3.5 text-sm text-ink-2 border-b border-line',
         num && 'font-mono text-ink text-right tabular-nums',
         className
       )}

@@ -32,7 +32,6 @@ import {
   type PricingFeatureCategory,
   type PricingFeatureValue,
 } from '@/lib/pricing';
-import { APP_LINKS } from '@/lib/site';
 
 const CATEGORIES: PricingFeatureCategory[] = ['usage', 'features', 'security'];
 
@@ -52,6 +51,9 @@ function perThousand(price: number, credits: number, currency: Currency) {
 
 export default function PricingClient({ currency }: { currency: Currency }) {
   const [annual, setAnnual] = useState(false);
+  // Single shared "open FAQ" across both columns so only one is open at a time.
+  const [openFaq, setOpenFaq] = useState<string | null>(PRICING_FAQ[0]?.q ?? null);
+  const toggleFaq = (q: string) => setOpenFaq((prev) => (prev === q ? null : q));
   const symbol = CURRENCY_SYMBOL[currency];
   const cardTiers = PRICING_TIERS.filter((t) => t.id !== 'enterprise');
 
@@ -265,7 +267,6 @@ export default function PricingClient({ currency }: { currency: Currency }) {
                     <Th>Starter</Th>
                     <Th>Standard</Th>
                     <Th>Professional</Th>
-                    <Th>Enterprise</Th>
                   </tr>
                 </thead>
                 <tbody>
@@ -276,7 +277,6 @@ export default function PricingClient({ currency }: { currency: Currency }) {
                       <Td>{renderCell(r.starter, currency)}</Td>
                       <Td>{renderCell(r.standard, currency)}</Td>
                       <Td>{renderCell(r.professional, currency)}</Td>
-                      <Td>{renderCell(r.enterprise, currency)}</Td>
                     </tr>
                   ))}
                 </tbody>
@@ -286,37 +286,18 @@ export default function PricingClient({ currency }: { currency: Currency }) {
         })}
       </Section>
 
-      <Section tone="ink-invert" containerSize="wide">
-        <div className="grid md:grid-cols-[1.4fr_1fr] gap-10 items-center">
-          <div>
-            <div className="type-mono-sm text-ink-invert-muted mb-4 flex items-center gap-2">
-              <span className="w-6 h-px bg-volt" />
-              <span>Enterprise</span>
-            </div>
-            <h2 className="type-display-3 text-ink-invert-fg mb-4">
-              Custom volume. <span className="text-volt">A dedicated manager.</span>
-            </h2>
-            <p className="type-body-lg text-ink-invert-muted max-w-lg">
-              Unlimited chatbots, unlimited seats, SSO, custom SLA, and a dedicated account
-              manager. Everything you need for a company-wide rollout.
-            </p>
-          </div>
-          <div className="bg-white/5 border border-white/10 rounded-[var(--r-4)] p-6">
-            <div className="flex flex-col gap-3">
-              <Button href="/contact?intent=enterprise" variant="volt">
-                Contact sales →
-              </Button>
-              <Button href={APP_LINKS.register} external variant="outline-invert">
-                Or start free
-              </Button>
-            </div>
-          </div>
-        </div>
-      </Section>
-
       <Section tone="paper" eyebrow="FAQ" heading={<>Common questions.</>} containerSize="wide">
-        <div className="max-w-3xl">
-          <Accordion items={PRICING_FAQ} />
+        <div className="grid md:grid-cols-2 gap-x-10 items-start">
+          <Accordion
+            items={PRICING_FAQ.slice(0, Math.ceil(PRICING_FAQ.length / 2))}
+            activeKey={openFaq}
+            onToggle={toggleFaq}
+          />
+          <Accordion
+            items={PRICING_FAQ.slice(Math.ceil(PRICING_FAQ.length / 2))}
+            activeKey={openFaq}
+            onToggle={toggleFaq}
+          />
         </div>
       </Section>
     </>

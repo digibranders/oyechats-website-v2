@@ -28,6 +28,7 @@ import {
 } from '@/components/ds';
 import { APP_LINKS } from '@/lib/site';
 import { FEATURES } from '@/lib/features';
+import { INTEGRATIONS } from '@/lib/integrations';
 
 const SOFTWARE_APPLICATION_SCHEMA = {
   '@context': 'https://schema.org',
@@ -483,14 +484,17 @@ Content-Type: application/json
               </Button>
             </Reveal>
 
-            <div className="grid grid-cols-3 gap-3">
-              {['WP', 'Sh', 'Wf', 'Nx', 'Vu', 'Re', 'Fr', 'Br', 'Ca', 'La', 'Se', 'Za'].map((sym, i) => (
-                <Reveal key={sym} delay={i * 60}>
-                  <div className="aspect-square bg-canvas border border-line rounded-[var(--r-3)] flex items-center justify-center shadow-[var(--e-1)]">
-                  <span className="font-display font-semibold text-[15px] text-ink tracking-tight">
-                    {sym}
-                  </span>
-                </div>
+            <div className="grid grid-cols-2 gap-3">
+              {INTEGRATIONS.filter((int) => int.category !== 'developer').map((int, i) => (
+                <Reveal key={int.id} delay={i * 60}>
+                  <div className="bg-canvas border border-line rounded-[var(--r-3)] p-4 flex items-center gap-3 shadow-[var(--e-1)] hover:border-volt/40 hover:-translate-y-0.5 transition-all duration-300 h-full">
+                    <div className="w-11 h-11 rounded-[var(--r-2)] bg-paper border border-line flex items-center justify-center shrink-0">
+                      {int.icon}
+                    </div>
+                    <span className="type-body-sm text-ink font-medium leading-tight">
+                      {int.name}
+                    </span>
+                  </div>
                 </Reveal>
               ))}
             </div>
