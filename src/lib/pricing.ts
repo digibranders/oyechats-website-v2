@@ -87,7 +87,7 @@ export const PRICING_TIERS: PricingTier[] = [
       '30-day chat history',
       'Email support',
     ],
-    cta: 'Start free trial',
+    cta: 'Get started',
     ctaHref: APP_LINKS.registerStarter,
   },
   {
@@ -111,7 +111,7 @@ export const PRICING_TIERS: PricingTier[] = [
       'Webhooks + REST API + CLI',
       '90-day history · priority support',
     ],
-    cta: 'Get started',
+    cta: 'Start 7-day trial',
     ctaHref: APP_LINKS.registerStandard,
   },
   {
@@ -263,7 +263,7 @@ export const PRICING_FAQ = [
   { q: "What's a credit?", a: 'Credits are how OyeChats measures usage. Each AI chat reply uses 1 credit, each web page we crawl and add to your knowledge base uses 5 credits, and each document upload uses 3 credits. System emails and live-chat operator messages are always free.' },
   { q: 'Which currency will I be billed in?', a: 'Pricing is shown in your local currency. Customers in India are billed in INR (₹); international customers are billed in USD ($). You always see a single currency based on your location.' },
   { q: 'How do I pay?', a: 'Indian customers pay via Razorpay — UPI, cards, NetBanking, and wallets are all supported. International customers pay by card in USD. You can switch payment methods any time from the Billing page.' },
-  { q: 'Is there a free trial?', a: 'Yes. Paid plans include a free trial with full access to all features, no credit card required. And the Free plan runs a working grounded bot at no cost, forever.' },
+  { q: 'Is there a free trial?', a: 'Yes. New accounts can start a 7-day free trial of the Standard plan — the full Standard feature set, no credit card required. And the Free plan runs a working grounded bot at no cost, forever.' },
   { q: 'What happens when I run out of credits?', a: 'Your bot pauses new conversations until your monthly credits reset, or you can buy a top-up pack any time from the Billing page. We hard-cap at zero — costs never run away — with a friendly message to visitors.' },
   { q: 'Do unused credits roll over?', a: 'Plan credits reset at the start of each billing cycle (use-it-or-lose-it). Top-up credits roll over for 12 months from purchase, oldest first.' },
   { q: 'Can I add more operator seats?', a: 'Yes. Extra seats are ₹499 (or $5 for international customers) per month each, added or removed with one click from the Billing page.' },
