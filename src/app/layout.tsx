@@ -6,9 +6,6 @@ import Footer from '@/components/site/Footer';
 // import AnnouncementBar from '@/components/site/AnnouncementBar';
 import './globals.css';
 import WidgetLoader from '@/components/site/WidgetLoader';
-// Official Zoho SalesIQ widget, loaded alongside the OyeChats widget for a live
-// side-by-side bake-off. Gated by NEXT_PUBLIC_ENABLE_SALESIQ_TEST (default on).
-import ZohoSalesIQLoader from '@/components/site/ZohoSalesIQLoader';
 
 const inter = Inter({
   subsets: ['latin'],
@@ -108,7 +105,6 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         />
 
         <WidgetLoader />
-        <ZohoSalesIQLoader />
       </body>
     </html>
   );
