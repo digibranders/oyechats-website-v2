@@ -87,7 +87,7 @@ export default function SolutionsPage() {
             </div>
             <nav
               aria-label="Workflow anchor navigation"
-              className="inline-flex flex-col sm:flex-row overflow-hidden rounded-[var(--r-full)] border border-line bg-canvas shadow-[var(--e-1)]"
+              className="flex flex-col sm:inline-flex sm:flex-row overflow-hidden rounded-[var(--r-4)] sm:rounded-[var(--r-full)] border border-line bg-canvas shadow-[var(--e-1)]"
             >
               {SOLUTIONS.map((s, i) => {
                 const a = ACCENT[s.accent];

@@ -122,12 +122,13 @@ export default function FeaturesPage() {
           <ScrollSpyToc
             variant="pills"
             className="py-4"
+            offsetTop={140}
             items={NAV.map((n) => ({ id: `feature-${n.id}`, label: n.label }))}
           />
         </Container>
       </div>
 
-      <section id="feature-rag" className="scroll-mt-32 py-16 md:py-20 bg-paper border-t border-line">
+      <section id="feature-rag" className="scroll-mt-36 py-16 md:py-20 bg-paper border-t border-line">
         <Container>
           <div className="grid lg:grid-cols-2 gap-16 items-center">
             <Reveal>
@@ -178,7 +179,7 @@ export default function FeaturesPage() {
         </Container>
       </section>
 
-      <section id="feature-bant" className="scroll-mt-32 py-16 md:py-20 bg-canvas border-t border-line">
+      <section id="feature-bant" className="scroll-mt-36 py-16 md:py-20 bg-canvas border-t border-line">
         <Container>
           <div className="grid lg:grid-cols-[1fr_1.1fr] gap-16 items-start">
             {/* Visual moves below the heading on mobile so the section leads
@@ -245,7 +246,7 @@ export default function FeaturesPage() {
         </Container>
       </section>
 
-      <section id="feature-live-chat" className="scroll-mt-32 py-16 md:py-20 bg-paper border-t border-line">
+      <section id="feature-live-chat" className="scroll-mt-36 py-16 md:py-20 bg-paper border-t border-line">
         <Container>
           <div className="grid lg:grid-cols-2 gap-16 items-center">
             <Reveal>
@@ -306,7 +307,7 @@ export default function FeaturesPage() {
         </Container>
       </section>
 
-      <section id="feature-analytics" className="scroll-mt-32 py-16 md:py-20 bg-canvas border-t border-line">
+      <section id="feature-analytics" className="scroll-mt-36 py-16 md:py-20 bg-canvas border-t border-line">
         <Container>
           <div className="grid lg:grid-cols-[1.1fr_1fr] gap-16 items-center">
             <Reveal className="bg-paper border border-line rounded-[var(--r-4)] p-6 shadow-[var(--e-1)]">
@@ -387,7 +388,7 @@ export default function FeaturesPage() {
         </Container>
       </section>
 
-      <section id="feature-webhooks" className="scroll-mt-32 py-16 md:py-20 bg-paper border-t border-line">
+      <section id="feature-webhooks" className="scroll-mt-36 py-16 md:py-20 bg-paper border-t border-line">
         <Container>
           <div className="grid lg:grid-cols-2 gap-16 items-start">
             <Reveal>
@@ -468,7 +469,7 @@ Content-Type: application/json
         </Container>
       </section>
 
-      <section id="feature-integrations" className="scroll-mt-32 py-16 md:py-20 bg-canvas border-t border-line">
+      <section id="feature-integrations" className="scroll-mt-36 py-16 md:py-20 bg-canvas border-t border-line">
         <Container>
           <div className="grid lg:grid-cols-2 gap-16 items-center">
             <Reveal>
