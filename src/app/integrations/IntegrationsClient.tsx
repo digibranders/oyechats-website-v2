@@ -1,7 +1,8 @@
 'use client';
 
-import { useMemo, useState } from 'react';
+import { useId, useMemo, useState } from 'react';
 import { Search, MessageSquare, ArrowRight, Zap } from 'lucide-react';
+import { PillHighlight, useCenteredTabs } from '@/components/site/pill-tabs';
 import {
   Callout,
   Chip,
@@ -61,6 +62,18 @@ const WEBHOOK_PAYLOAD = `{
 export default function IntegrationsClient() {
   const [cat, setCat] = useState<IntegrationCategory | 'all'>('all');
   const [q, setQ] = useState('');
+  const highlightId = useId();
+  const tabsRef = useCenteredTabs<HTMLDivElement>(cat);
+
+  // Only show categories that actually have integrations (plus "All"), so an
+  // empty filter can never be selected.
+  const categories = useMemo(
+    () =>
+      INTEGRATION_CATEGORIES.filter(
+        (c) => c.id === 'all' || INTEGRATIONS.some((i) => i.category === c.id)
+      ),
+    []
+  );
 
   const filtered = useMemo(() => {
     return INTEGRATIONS.filter((i) => {
@@ -95,23 +108,29 @@ export default function IntegrationsClient() {
         </Container>
       </section>
 
-      <div className="sticky top-16 z-30 bg-canvas/90 backdrop-blur-md border-y border-line">
+      <div className="border-b border-line bg-canvas">
         <Container>
-          <div className="flex gap-2 py-4 overflow-x-auto">
-            {INTEGRATION_CATEGORIES.map((c) => (
-              <button
-                type="button"
-                key={c.id}
-                onClick={() => setCat(c.id)}
-                className={`shrink-0 inline-flex items-center px-3.5 py-2 min-h-10 rounded-[var(--r-full)] type-mono-sm border transition-colors ${
-                  cat === c.id
-                    ? 'bg-ink text-paper border-ink'
-                    : 'bg-canvas text-muted border-line hover:border-line-2 hover:text-ink'
-                }`}
-              >
-                {c.label}
-              </button>
-            ))}
+          <div ref={tabsRef} className="flex gap-2 py-4 overflow-x-auto">
+            {categories.map((c) => {
+              const active = cat === c.id;
+              return (
+                <button
+                  type="button"
+                  key={c.id}
+                  onClick={() => setCat(c.id)}
+                  data-active={active || undefined}
+                  aria-pressed={active}
+                  className={`relative shrink-0 inline-flex items-center px-3.5 py-2 min-h-10 rounded-[var(--r-full)] type-mono-sm border transition-colors ${
+                    active
+                      ? 'text-paper border-transparent'
+                      : 'bg-canvas text-muted border-line hover:border-line-2 hover:text-ink'
+                  }`}
+                >
+                  {active && <PillHighlight layoutId={highlightId} />}
+                  <span className="relative z-10">{c.label}</span>
+                </button>
+              );
+            })}
           </div>
         </Container>
       </div>

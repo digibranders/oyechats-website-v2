@@ -160,8 +160,8 @@ export type CreditCost = { action: string; credits: number };
 
 export const CREDIT_COSTS: CreditCost[] = [
   { action: '1 AI chat reply', credits: 1 },
-  { action: '1 web page crawled and added to your knowledge base', credits: 5 },
   { action: '1 document uploaded to your knowledge base', credits: 3 },
+  { action: '1 web page crawled and added to your knowledge base', credits: 5 },
 ];
 
 export type TopupPack = {
