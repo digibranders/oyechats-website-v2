@@ -25,10 +25,10 @@ const ACCENT: Record<
   { pill: string; dot: string; text: string; ring: string }
 > = {
   blue: {
-    pill: 'bg-[#FDF4FF] border-[#F0ABFC] text-[#A21CAF]',
-    dot: 'bg-[#A21CAF]',
-    text: 'text-[#A21CAF]',
-    ring: 'ring-[#A21CAF]/30',
+    pill: 'bg-[#FDF4FF] border-[#DDD6FE] text-[#7C3AED]',
+    dot: 'bg-[#7C3AED]',
+    text: 'text-[#7C3AED]',
+    ring: 'ring-[#7C3AED]/30',
   },
   violet: {
     pill: 'bg-volt-tint border-volt-line text-volt-ink',

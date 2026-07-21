@@ -4,7 +4,7 @@ const BREVO_API_URL = 'https://api.brevo.com/v3/smtp/email';
 
 // ── Design tokens (matches platform email_service.py) ──────────────────────
 const FONT_STACK = "-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Helvetica,Arial,sans-serif";
-const BRAND_PRIMARY = '#A21CAF';
+const BRAND_PRIMARY = '#7C3AED';
 const INK_900 = '#0f0f1a';
 const INK_700 = '#1f2937';
 const INK_400 = '#6b7280';
@@ -54,7 +54,7 @@ function buildEmailHtml(params: {
 
   const detailsTable = `
     <table role="presentation" cellpadding="0" cellspacing="0" border="0" width="100%"
-      style="background-color:#FDF4FF;border:1px solid #F0ABFC;border-radius:14px;margin-bottom:20px;">
+      style="background-color:#FDF4FF;border:1px solid #DDD6FE;border-radius:14px;margin-bottom:20px;">
       <tr><td style="padding:10px 20px 6px 20px;">
         <table role="presentation" cellpadding="0" cellspacing="0" border="0" width="100%">
           ${infoRow('Name', esc(params.name))}

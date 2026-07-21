@@ -11,7 +11,7 @@ export const metadata: Metadata = pageMeta({
 });
 
 const ACCENT_STYLES: Record<ChangelogEntry['accent'], { pill: string; dot: string }> = {
-  blue: { pill: 'bg-[#FDF4FF] border-[#F0ABFC] text-[#A21CAF]', dot: 'bg-[#A21CAF]' },
+  blue: { pill: 'bg-[#FDF4FF] border-[#DDD6FE] text-[#7C3AED]', dot: 'bg-[#7C3AED]' },
   violet: { pill: 'bg-volt-tint border-volt-line text-volt-ink', dot: 'bg-volt' },
   emerald: { pill: 'bg-signal-tint border-[#A6E4C1] text-signal', dot: 'bg-signal' },
   amber: { pill: 'bg-alert-tint border-[#F4CD8A] text-alert', dot: 'bg-alert' },

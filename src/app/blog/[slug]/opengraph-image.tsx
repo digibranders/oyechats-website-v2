@@ -12,7 +12,7 @@ export function generateStaticParams(): { slug: string }[] {
 const PAPER = '#FAFAF7';
 const INK = '#1A1A1A';
 const SUBTLE = '#4A4A4A';
-const MAGENTA = '#A21CAF';
+const MAGENTA = '#7C3AED';
 
 export default async function BlogOpenGraphImage({
   params,
