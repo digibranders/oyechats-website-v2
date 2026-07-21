@@ -6,7 +6,7 @@ export const contentType = 'image/png';
 
 const PAPER = '#FAFAF7';
 const INK = '#1A1A1A';
-const MAGENTA = '#A21CAF';
+const MAGENTA = '#7C3AED';
 
 export default async function OpenGraphImage(): Promise<ImageResponse> {
   return new ImageResponse(
