@@ -6,6 +6,7 @@ import Footer from '@/components/site/Footer';
 // import AnnouncementBar from '@/components/site/AnnouncementBar';
 import './globals.css';
 import WidgetLoader from '@/components/site/WidgetLoader';
+import Script from 'next/script';
 
 const inter = Inter({
   subsets: ['latin'],
@@ -105,8 +106,13 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(siteSchema) }}
         />
+        <Script
+          src="http://localhost:4173/oyechats-widget.js"
+          data-bot-key="bot-d3574fdd8e89"
+          strategy="lazyOnload"
+        />
 
-        <WidgetLoader />
+        {/* <WidgetLoader /> */}
       </body>
     </html>
   );
