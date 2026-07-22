@@ -63,7 +63,7 @@ export const LEGAL_PAGES: LegalPage[] = [
       { id: 'data-retention', heading: 'Data Retention', body: [
         'We retain personal information only as long as needed for the purposes described in this policy:',
         '- Account data: Retained for the life of the account and deleted (or anonymized) within 30 days of account closure, except where longer retention is required by law.',
-        '- Conversation history: Retained according to your plan, 7 days on Free, 30 days on Starter, 90 days on Standard, and unlimited on Enterprise, unless a shorter custom retention period is configured in your dashboard settings.',
+        '- Conversation history: Retained according to your plan, 7 days on Free, 30 days on Starter, 90 days on Standard, and 365 days on Professional, unless a shorter custom retention period is configured in your dashboard settings.',
         '- Knowledge base content: Retained until you delete it or close your account.',
         '- Diagnostic and error logs: Retained for up to 90 days.',
         '- Audit logs of administrative actions: Retained for up to 12 months.',
@@ -262,7 +262,7 @@ export const LEGAL_PAGES: LegalPage[] = [
         'A "sub-processor" is a third party we engage to process Customer Data on our behalf in order to deliver the OyeChats Services. Each one is engaged under a written agreement that requires data protection terms at least as protective as those in our Privacy Policy and Data Processing Addendum.',
       ]},
       { id: 'infrastructure', heading: 'Infrastructure and Hosting', body: [
-        '- DigitalOcean: Primary application servers and managed PostgreSQL database hosting. (United States, Bangalore region for Enterprise)',
+        '- DigitalOcean: Primary application servers and managed PostgreSQL database hosting. (United States)',
         '- Cloudflare: Object storage for uploaded knowledge base files via R2, and CDN delivery of the embeddable widget bundle. (Global edge network)',
         '- Vercel: Hosting for the marketing site (oyechats.com) and customer dashboard front-end (app.oyechats.com). (United States)',
       ]},

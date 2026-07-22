@@ -24,13 +24,13 @@ export function formatPrice(amount: number, currency: Currency): string {
 /** A value expressed in both billing currencies. */
 export type Money = Record<Currency, number>;
 
-export type TierId = 'free' | 'starter' | 'standard' | 'professional' | 'enterprise';
+export type TierId = 'free' | 'starter' | 'standard' | 'professional';
 
 export type PricingTier = {
   id: TierId;
   name: string;
   tagline: string;
-  /** Per-month, billed monthly. `null` = custom (Enterprise). */
+  /** Per-month, billed monthly. */
   monthly: Money | null;
   /** Effective per-month when billed annually (~20% off). */
   annualMonthly: Money | null;
@@ -135,25 +135,6 @@ export const PRICING_TIERS: PricingTier[] = [
     cta: 'Get started',
     ctaHref: APP_LINKS.registerProfessional,
   },
-  {
-    id: 'enterprise',
-    name: 'Enterprise',
-    tagline: 'Custom volume, SSO, and a dedicated account manager.',
-    monthly: null,
-    annualMonthly: null,
-    annualTotal: null,
-    credits: null,
-    includedSeats: null,
-    features: [
-      'Custom credit allocation',
-      'Unlimited chatbots & operator seats',
-      'All qualification frameworks',
-      'SSO · custom SLA · dedicated CSM',
-      'Region / on-prem deployment',
-    ],
-    cta: 'Contact sales',
-    ctaHref: '/contact?intent=enterprise',
-  },
 ];
 
 export type CreditCost = { action: string; credits: number };
@@ -188,7 +169,6 @@ export type PricingFeature = {
   starter: PricingFeatureValue;
   standard: PricingFeatureValue;
   professional: PricingFeatureValue;
-  enterprise: PricingFeatureValue;
   category: PricingFeatureCategory;
 };
 
@@ -203,7 +183,6 @@ export const FEATURE_ROWS: PricingFeature[] = [
     starter: { INR: '₹449 / mo', USD: '$9 / mo' },
     standard: { INR: '₹949 / mo', USD: '$19 / mo' },
     professional: { INR: '₹1,399 / mo', USD: '$39 / mo' },
-    enterprise: 'Custom',
     category: 'usage',
   },
   {
@@ -212,45 +191,42 @@ export const FEATURE_ROWS: PricingFeature[] = [
     starter: { INR: '₹359/mo (₹4,308/yr)', USD: '$7/mo ($84/yr)' },
     standard: { INR: '₹759/mo (₹9,108/yr)', USD: '$15/mo ($180/yr)' },
     professional: { INR: '₹1,119/mo (₹13,428/yr)', USD: '$31/mo ($372/yr)' },
-    enterprise: 'Contact us',
     category: 'usage',
   },
-  { label: 'Monthly credits', free: '200', starter: '2,000', standard: '6,000', professional: '10,000', enterprise: 'Custom', category: 'usage' },
-  { label: 'Chatbots', free: '1', starter: '1', standard: '1', professional: '1', enterprise: 'Unlimited', category: 'usage' },
-  { label: 'Operator seats included', free: '1', starter: '1', standard: '2', professional: '3', enterprise: 'Unlimited', category: 'usage' },
+  { label: 'Monthly credits', free: '200', starter: '2,000', standard: '6,000', professional: '10,000', category: 'usage' },
+  { label: 'Chatbots', free: '1', starter: '1', standard: '1', professional: '1', category: 'usage' },
+  { label: 'Operator seats included', free: '1', starter: '1', standard: '2', professional: '3', category: 'usage' },
   {
     label: 'Extra operator seats',
     free: '-',
     starter: { INR: '₹499/mo each', USD: '$5/mo each' },
     standard: { INR: '₹499/mo each', USD: '$5/mo each' },
     professional: { INR: '₹499/mo each', USD: '$5/mo each' },
-    enterprise: 'Custom',
     category: 'usage',
   },
-  { label: 'Crawl pages / doc uploads per month', free: '20 / 3', starter: '500 / 20', standard: '2,000 / 50', professional: '5,000 / 150', enterprise: 'Unlimited', category: 'usage' },
-  { label: 'Chat history retention', free: '7 days', starter: '30 days', standard: '90 days', professional: '1 year', enterprise: 'Unlimited', category: 'usage' },
-  { label: 'Credit top-ups / overage', free: false, starter: true, standard: true, professional: true, enterprise: true, category: 'usage' },
+  { label: 'Crawl pages / doc uploads per month', free: '20 / 3', starter: '500 / 20', standard: '2,000 / 50', professional: '5,000 / 150', category: 'usage' },
+  { label: 'Chat history retention', free: '7 days', starter: '30 days', standard: '90 days', professional: '1 year', category: 'usage' },
+  { label: 'Credit top-ups / overage', free: false, starter: true, standard: true, professional: true, category: 'usage' },
 
-  { label: 'Grounded AI answers (cited, streamed)', free: true, starter: true, standard: true, professional: true, enterprise: true, category: 'features' },
-  { label: 'Hallucination guardrails', free: 'Sampled', starter: true, standard: 'Full', professional: 'Full', enterprise: 'Full', category: 'features' },
-  { label: 'Website crawl + file upload', free: true, starter: true, standard: true, professional: true, enterprise: true, category: 'features' },
-  { label: 'Auto-recrawl (weekly refresh)', free: false, starter: false, standard: true, professional: true, enterprise: true, category: 'features' },
-  { label: 'Proactive triggers + meeting booking', free: false, starter: true, standard: true, professional: true, enterprise: true, category: 'features' },
-  { label: 'Live chat / human handoff', free: false, starter: true, standard: true, professional: true, enterprise: true, category: 'features' },
-  { label: 'Routing + departments', free: false, starter: false, standard: true, professional: true, enterprise: true, category: 'features' },
-  { label: 'BANT lead qualification', free: false, starter: false, standard: true, professional: true, enterprise: true, category: 'features' },
-  { label: 'MEDDIC / CHAMP / custom frameworks', free: false, starter: false, standard: false, professional: true, enterprise: true, category: 'features' },
-  { label: 'Qualification funnel analytics', free: false, starter: false, standard: true, professional: true, enterprise: true, category: 'features' },
-  { label: 'Visitor + behavioral tracking, UTM', free: 'Basic', starter: 'Basic', standard: true, professional: true, enterprise: true, category: 'features' },
-  { label: 'Webhooks (5 events) + REST API + CLI', free: false, starter: false, standard: true, professional: true, enterprise: true, category: 'features' },
-  { label: 'Remove OyeChats branding', free: false, starter: false, standard: true, professional: true, enterprise: true, category: 'features' },
-  { label: 'White-label custom domain', free: false, starter: false, standard: false, professional: true, enterprise: true, category: 'features' },
+  { label: 'Grounded AI answers (cited, streamed)', free: true, starter: true, standard: true, professional: true, category: 'features' },
+  { label: 'Hallucination guardrails', free: 'Sampled', starter: true, standard: 'Full', professional: 'Full', category: 'features' },
+  { label: 'Website crawl + file upload', free: true, starter: true, standard: true, professional: true, category: 'features' },
+  { label: 'Auto-recrawl (weekly refresh)', free: false, starter: false, standard: true, professional: true, category: 'features' },
+  { label: 'Proactive triggers + meeting booking', free: false, starter: true, standard: true, professional: true, category: 'features' },
+  { label: 'Live chat / human handoff', free: false, starter: true, standard: true, professional: true, category: 'features' },
+  { label: 'Routing + departments', free: false, starter: false, standard: true, professional: true, category: 'features' },
+  { label: 'BANT lead qualification', free: false, starter: false, standard: true, professional: true, category: 'features' },
+  { label: 'MEDDIC / CHAMP / custom frameworks', free: false, starter: false, standard: false, professional: true, category: 'features' },
+  { label: 'Qualification funnel analytics', free: false, starter: false, standard: true, professional: true, category: 'features' },
+  { label: 'Visitor + behavioral tracking, UTM', free: 'Basic', starter: 'Basic', standard: true, professional: true, category: 'features' },
+  { label: 'Webhooks (5 events) + REST API + CLI', free: false, starter: false, standard: true, professional: true, category: 'features' },
+  { label: 'Remove OyeChats branding', free: false, starter: false, standard: true, professional: true, category: 'features' },
+  { label: 'White-label custom domain', free: false, starter: false, standard: false, professional: true, category: 'features' },
 
-  { label: 'Roles & permissions (RBAC)', free: 'Owner', starter: true, standard: true, professional: true, enterprise: true, category: 'security' },
-  { label: 'Domain allowlist security', free: true, starter: true, standard: true, professional: true, enterprise: true, category: 'security' },
-  { label: 'Audit logs', free: false, starter: false, standard: false, professional: true, enterprise: true, category: 'security' },
-  { label: 'SSO · dedicated CSM · custom SLA', free: false, starter: false, standard: false, professional: false, enterprise: true, category: 'security' },
-  { label: 'Support', free: 'Community', starter: 'Email', standard: 'Priority', professional: 'Priority chat', enterprise: 'CSM + SLA', category: 'security' },
+  { label: 'Roles & permissions (RBAC)', free: 'Owner', starter: true, standard: true, professional: true, category: 'security' },
+  { label: 'Domain allowlist security', free: true, starter: true, standard: true, professional: true, category: 'security' },
+  { label: 'Audit logs', free: false, starter: false, standard: false, professional: true, category: 'security' },
+  { label: 'Support', free: 'Community', starter: 'Email', standard: 'Priority', professional: 'Priority chat', category: 'security' },
 ];
 
 export const CATEGORY_LABELS: Record<PricingFeatureCategory, string> = {

@@ -16129,7 +16129,7 @@
           "plan_slug"
         ],
         "title": "StartTrialRequest",
-        "description": "Body for ``POST /subscriptions/start-trial``.\n\nThe slug is the public plan identifier the pricing page renders against\n(``starter`` / ``standard``). The slug must point at an active plan with\n``trial_days > 0`` \u2014 the free plan and enterprise tier are intentionally\nexcluded."
+        "description": "Body for ``POST /subscriptions/start-trial``.\n\nThe slug is the public plan identifier the pricing page renders against\n(``starter`` / ``standard``). The slug must point at an active plan with\n``trial_days > 0`` \u2014 the free plan is intentionally excluded."
       },
       "SubmitOfflineMessageRequest": {
         "properties": {

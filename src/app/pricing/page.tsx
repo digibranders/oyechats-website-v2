@@ -36,11 +36,9 @@ const faqSchema = {
   })),
 };
 
-// Paid, non-enterprise tiers with a USD price. Google crawls from the US, so the
+// Paid tiers with a USD price. Google crawls from the US, so the
 // offer schema is expressed in USD to stay consistent with the homepage schema.
-const priceableTiers = PRICING_TIERS.filter(
-  (tier) => tier.id !== 'enterprise' && tier.monthly !== null,
-);
+const priceableTiers = PRICING_TIERS.filter((tier) => tier.monthly !== null);
 const usdPrices = priceableTiers.map((tier) => tier.monthly?.USD ?? 0);
 
 const offerSchema = {

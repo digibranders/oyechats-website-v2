@@ -55,7 +55,7 @@ export default function PricingClient({ currency }: { currency: Currency }) {
   const [openFaq, setOpenFaq] = useState<string | null>(PRICING_FAQ[0]?.q ?? null);
   const toggleFaq = (q: string) => setOpenFaq((prev) => (prev === q ? null : q));
   const symbol = CURRENCY_SYMBOL[currency];
-  const cardTiers = PRICING_TIERS.filter((t) => t.id !== 'enterprise');
+  const cardTiers = PRICING_TIERS;
 
   return (
     <>

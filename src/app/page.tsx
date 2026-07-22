@@ -48,9 +48,7 @@ const softwareSchema: Record<string, unknown> = {
   description:
     'AI chatbot that qualifies every visitor with BANT scoring before your sales reps see them. RAG-grounded answers, live handoff, webhooks, and analytics.',
   url: 'https://www.oyechats.com',
-  offers: PRICING_TIERS.filter(
-    (tier) => tier.id !== 'enterprise' && tier.monthly !== null,
-  ).map((tier) => ({
+  offers: PRICING_TIERS.filter((tier) => tier.monthly !== null).map((tier) => ({
     '@type': 'Offer',
     name: tier.name,
     price: String(tier.monthly?.USD ?? 0),
@@ -249,7 +247,7 @@ export default async function Home() {
         sub="Start free. Scale credits as you grow. Cancel anytime."
       >
         <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-4">
-          {PRICING_TIERS.filter((t) => t.id !== 'enterprise').map((tier, idx) => (
+          {PRICING_TIERS.map((tier, idx) => (
             <Reveal key={tier.id} delay={idx * 100}>
               <div
                 className={`group relative h-full flex flex-col rounded-[var(--r-4)] p-7 bg-canvas transition-[transform,box-shadow,border-color] duration-300 ${

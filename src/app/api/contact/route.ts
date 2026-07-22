@@ -16,7 +16,7 @@ const RULE = '#e8eaf0';
 
 const INTENT_LABELS: Record<string, string> = {
   demo: 'Book a product demo',
-  enterprise: 'Enterprise inquiry',
+  sales: 'Sales inquiry',
   support: 'Technical support',
   partnership: 'Partnership / integration',
   careers: 'Careers inquiry',

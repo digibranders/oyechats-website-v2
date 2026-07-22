@@ -16,7 +16,7 @@ import {
 } from '@/components/ds';
 
 const INTENT_OPTIONS = [
-  { value: 'enterprise', label: 'Enterprise inquiry' },
+  { value: 'sales', label: 'Sales inquiry' },
   { value: 'support', label: 'Technical support' },
   { value: 'partnership', label: 'Partnership / integration' },
   { value: 'careers', label: 'Careers inquiry' },
@@ -24,7 +24,7 @@ const INTENT_OPTIONS = [
 ];
 
 export default function ContactClient() {
-  const [form, setForm] = useState({ name: '', email: '', company: '', message: '', intent: 'enterprise' });
+  const [form, setForm] = useState({ name: '', email: '', company: '', message: '', intent: 'sales' });
   const [loading, setLoading] = useState(false);
   const [submitted, setSubmitted] = useState(false);
   const [error, setError] = useState<string | null>(null);
@@ -75,7 +75,7 @@ export default function ContactClient() {
             Let&apos;s <GradientText>talk</GradientText>.
           </h1>
           <p className="type-body-lg text-ink-2 mt-6 max-w-2xl mx-auto">
-            Have an enterprise question, need support, or just want to say hi? We usually reply within one business day.
+            Have a sales question, need support, or just want to say hi? We usually reply within one business day.
           </p>
         </Container>
       </section>

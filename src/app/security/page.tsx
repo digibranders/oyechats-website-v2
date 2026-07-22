@@ -85,7 +85,7 @@ const INFRA_STACK = [
   { icon: Server, name: 'Managed Postgres', role: 'Primary application datastore' },
   { icon: Zap, name: 'Background job queue', role: 'Async tasks via ARQ + Redis' },
   { icon: Bug, name: 'Error monitoring', role: 'Incident alerting via Sentry' },
-  { icon: Eye, name: 'AI observability', role: 'Trace logging via Langfuse (Enterprise)' },
+  { icon: Eye, name: 'AI observability', role: 'Trace logging via Langfuse' },
   { icon: Cloud, name: 'Cloud object storage', role: 'Documents and media via Cloudflare R2' },
   { icon: Mail, name: 'Transactional email', role: 'Notifications and summaries via Brevo' },
 ];
