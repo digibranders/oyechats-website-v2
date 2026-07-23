@@ -19,6 +19,21 @@ export const metadata: Metadata = pageMeta({
   path: '/about',
 });
 
+const aboutSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'AboutPage',
+  name: 'About OyeChats',
+  description:
+    'OyeChats is the RAG-powered AI chat platform for support, sales, and live conversations.',
+  url: 'https://www.oyechats.com/about',
+  mainEntity: {
+    '@type': 'Organization',
+    name: 'OyeChats',
+    url: 'https://www.oyechats.com',
+    logo: 'https://www.oyechats.com/logo.png',
+  },
+};
+
 const HERO_STATS = [
   { value: '1', label: 'Script tag to embed' },
   { value: '5 min', label: 'From signup to live bot' },
@@ -65,6 +80,10 @@ const OFFICES = [
 export default function AboutPage() {
   return (
     <>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(aboutSchema) }}
+      />
       <section className="relative bg-paper overflow-hidden">
         <HeroGlow />
         <DottedGrid />

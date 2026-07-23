@@ -22,6 +22,19 @@ export const metadata: Metadata = pageMeta({
   path: '/docs',
 });
 
+const techArticleSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'TechArticle',
+  headline: 'OyeChats Integration Documentation',
+  description:
+    'Everything you need to add and configure OyeChats on your website. Install, configure, and connect webhooks.',
+  url: 'https://www.oyechats.com/docs',
+  author: {
+    '@type': 'Organization',
+    name: 'OyeChats',
+  },
+};
+
 const QUICK_START = [
   { icon: Package, step: '1', title: 'Install the widget', desc: 'Add a single script tag to your site and the chat widget appears instantly.', anchor: '#widget' },
   { icon: KeyRound, step: '2', title: 'Get your bot key', desc: 'Find your unique bot key in the dashboard under Settings, Widget.', anchor: '#widget' },
@@ -66,6 +79,10 @@ const TOC = [
 export default function DocsPage() {
   return (
     <>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(techArticleSchema) }}
+      />
       <section className="relative bg-paper overflow-hidden border-b border-line">
         <HeroGlow size="sm" />
         <DottedGrid />

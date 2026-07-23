@@ -11,6 +11,26 @@ export const metadata: Metadata = pageMeta({
   path: '/blog',
 });
 
+const SITE_URL = 'https://www.oyechats.com';
+
+const blogSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'CollectionPage',
+  name: 'OyeChats Blog',
+  description:
+    'Practical guides on AI customer support, conversational lead qualification, and shipping chatbots that actually convert.',
+  url: `${SITE_URL}/blog`,
+};
+
+const breadcrumbSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'BreadcrumbList',
+  itemListElement: [
+    { '@type': 'ListItem', position: 1, name: 'Home', item: SITE_URL },
+    { '@type': 'ListItem', position: 2, name: 'Blog', item: `${SITE_URL}/blog` },
+  ],
+};
+
 export default function BlogPage() {
   // Slim projection: the client list never needs the full post `content`.
   const posts: BlogCardData[] = BLOG_POSTS.map((p) => ({
@@ -26,6 +46,14 @@ export default function BlogPage() {
 
   return (
     <>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(blogSchema) }}
+      />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbSchema) }}
+      />
       <section className="relative overflow-hidden bg-paper">
         <HeroGlow size="sm" />
         <DottedGrid />

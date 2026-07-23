@@ -1,13 +1,14 @@
 import type { Metadata } from 'next';
+import { pageMeta } from '@/lib/seo';
 import Link from 'next/link';
 import { Chip, Container, DottedGrid } from '@/components/ds';
 import { LEGAL_PAGES } from '@/lib/legal';
 
-export const metadata: Metadata = {
+export const metadata: Metadata = pageMeta({
   title: 'Legal',
   description: 'Privacy, terms, DPA, sub-processors, and other OyeChats legal documents.',
-  alternates: { canonical: '/legal' },
-};
+  path: '/legal',
+});
 
 export default function LegalIndex() {
   return (

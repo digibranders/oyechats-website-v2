@@ -1,4 +1,3 @@
-import Link from 'next/link';
 import { Button, Chip, Container, DottedGrid, GradientText, HeroGlow } from '@/components/ds';
 
 export default function NotFound() {

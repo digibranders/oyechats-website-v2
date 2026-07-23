@@ -1,4 +1,5 @@
 import type { Metadata } from 'next';
+import { pageMeta } from '@/lib/seo';
 import { notFound } from 'next/navigation';
 import { LegalDocument } from '@/components/site/LegalDocument';
 import { LEGAL_PAGES } from '@/lib/legal';
@@ -6,11 +7,11 @@ import { LEGAL_PAGES } from '@/lib/legal';
 const SLUG = 'cancellation';
 const page = LEGAL_PAGES.find((p) => p.slug === SLUG)!;
 
-export const metadata: Metadata = {
+export const metadata: Metadata = pageMeta({
   title: page.title,
   description: page.description,
-  alternates: { canonical: `/legal/${SLUG}` },
-};
+  path: `/legal/${SLUG}`,
+});
 
 export default function Page() {
   if (!page) notFound();

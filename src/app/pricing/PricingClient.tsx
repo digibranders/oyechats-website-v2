@@ -1,6 +1,6 @@
 'use client';
 
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { Check, X } from 'lucide-react';
 import {
   Accordion,
@@ -49,8 +49,25 @@ function perThousand(price: number, credits: number, currency: Currency) {
     : `₹${Math.round(value).toLocaleString('en-IN')}`;
 }
 
-export default function PricingClient({ currency }: { currency: Currency }) {
+export default function PricingClient({
+  initialCurrency = 'USD',
+}: {
+  initialCurrency?: Currency;
+}) {
+  const [currency, setCurrency] = useState<Currency>(initialCurrency);
   const [annual, setAnnual] = useState(false);
+
+  useEffect(() => {
+    try {
+      const tz = Intl.DateTimeFormat().resolvedOptions().timeZone;
+      if (tz && (tz.includes('Kolkata') || tz.includes('Calcutta') || tz.includes('Asia/Kolkata'))) {
+        requestAnimationFrame(() => setCurrency('INR'));
+      }
+    } catch {
+      // fallback to initial currency
+    }
+  }, []);
+
   // Single shared "open FAQ" across both columns so only one is open at a time.
   const [openFaq, setOpenFaq] = useState<string | null>(PRICING_FAQ[0]?.q ?? null);
   const toggleFaq = (q: string) => setOpenFaq((prev) => (prev === q ? null : q));
@@ -70,26 +87,49 @@ export default function PricingClient({ currency }: { currency: Currency }) {
             Start free. Scale as you grow. Cancel anytime.
           </p>
 
-          <div className="mt-10 inline-flex items-center gap-1 p-1 rounded-[var(--r-full)] border border-line bg-canvas shadow-[var(--e-1)]">
-            <button
-              type="button"
-              onClick={() => setAnnual(false)}
-              className={`px-4 py-2.5 min-h-11 inline-flex items-center justify-center rounded-[var(--r-full)] text-[13px] font-medium transition-colors ${
-                !annual ? 'bg-ink text-paper' : 'text-ink-2 hover:text-ink'
-              }`}
-            >
-              Monthly
-            </button>
-            <button
-              type="button"
-              onClick={() => setAnnual(true)}
-              className={`px-4 py-2.5 min-h-11 rounded-[var(--r-full)] text-[13px] font-medium transition-colors inline-flex items-center justify-center gap-2 ${
-                annual ? 'bg-ink text-paper' : 'text-ink-2 hover:text-ink'
-              }`}
-            >
-              Annual
-              <span className="text-[10px] font-mono text-signal">save 20%</span>
-            </button>
+          <div className="mt-10 flex flex-wrap items-center justify-center gap-4">
+            <div className="inline-flex items-center gap-1 p-1 rounded-[var(--r-full)] border border-line bg-canvas shadow-[var(--e-1)]">
+              <button
+                type="button"
+                onClick={() => setAnnual(false)}
+                className={`px-4 py-2.5 min-h-11 inline-flex items-center justify-center rounded-[var(--r-full)] text-[13px] font-medium transition-colors ${
+                  !annual ? 'bg-ink text-paper' : 'text-ink-2 hover:text-ink'
+                }`}
+              >
+                Monthly
+              </button>
+              <button
+                type="button"
+                onClick={() => setAnnual(true)}
+                className={`px-4 py-2.5 min-h-11 rounded-[var(--r-full)] text-[13px] font-medium transition-colors inline-flex items-center justify-center gap-2 ${
+                  annual ? 'bg-ink text-paper' : 'text-ink-2 hover:text-ink'
+                }`}
+              >
+                Annual
+                <span className="text-[10px] font-mono text-signal">save 20%</span>
+              </button>
+            </div>
+
+            <div className="inline-flex items-center gap-1 p-1 rounded-[var(--r-full)] border border-line bg-canvas shadow-[var(--e-1)]">
+              <button
+                type="button"
+                onClick={() => setCurrency('USD')}
+                className={`px-3.5 py-2 min-h-9 inline-flex items-center justify-center rounded-[var(--r-full)] text-[12px] font-medium transition-colors ${
+                  currency === 'USD' ? 'bg-volt text-volt-fg' : 'text-ink-2 hover:text-ink'
+                }`}
+              >
+                USD ($)
+              </button>
+              <button
+                type="button"
+                onClick={() => setCurrency('INR')}
+                className={`px-3.5 py-2 min-h-9 inline-flex items-center justify-center rounded-[var(--r-full)] text-[12px] font-medium transition-colors ${
+                  currency === 'INR' ? 'bg-volt text-volt-fg' : 'text-ink-2 hover:text-ink'
+                }`}
+              >
+                INR (₹)
+              </button>
+            </div>
           </div>
 
           <p className="type-mono-sm text-muted mt-4">

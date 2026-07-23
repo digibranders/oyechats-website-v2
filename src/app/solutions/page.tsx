@@ -20,6 +20,32 @@ export const metadata: Metadata = pageMeta({
   path: '/solutions',
 });
 
+const serviceSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'Service',
+  name: 'OyeChats AI Solutions',
+  provider: {
+    '@type': 'Organization',
+    name: 'OyeChats',
+    url: 'https://www.oyechats.com',
+  },
+  description:
+    'RAG-grounded AI chatbot solutions for customer support, sales lead qualification, and live agent handoff.',
+  url: 'https://www.oyechats.com/solutions',
+  hasOfferCatalog: {
+    '@type': 'OfferCatalog',
+    name: 'OyeChats Core Workflows',
+    itemListElement: SOLUTIONS.map((s) => ({
+      '@type': 'Offer',
+      itemOffered: {
+        '@type': 'Service',
+        name: s.title,
+        description: s.intro,
+      },
+    })),
+  },
+};
+
 const ACCENT: Record<
   Solution['accent'],
   { pill: string; dot: string; text: string; ring: string }
@@ -59,6 +85,10 @@ const ACCENT: Record<
 export default function SolutionsPage() {
   return (
     <>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(serviceSchema) }}
+      />
       <section className="relative bg-paper overflow-hidden">
         <HeroGlow size="sm" />
         <DottedGrid />

@@ -29,7 +29,7 @@ export function NumberTicker({
     if (!el) return;
     const reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
     if (reduced) {
-      setDisplay(value);
+      requestAnimationFrame(() => setDisplay(value));
       return;
     }
     const io = new IntersectionObserver(

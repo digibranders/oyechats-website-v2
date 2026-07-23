@@ -211,8 +211,9 @@ export function HeroDemo() {
     );
     io.observe(el);
 
+    const activeRunId = runId;
     return () => {
-      runId.current++; // cancel on unmount
+      activeRunId.current++; // cancel on unmount
       io.disconnect();
     };
   }, [play, showFinal]);

@@ -1,6 +1,5 @@
 import type { Metadata } from 'next';
 import Link from 'next/link';
-import { headers } from 'next/headers';
 import { ArrowRight } from 'lucide-react';
 import { FinalCTA } from '@/components/site/FinalCTA';
 import { HeroDemo } from '@/components/site/HeroDemo';
@@ -22,7 +21,7 @@ import {
   DataFlowLine,
 } from '@/components/ds';
 import { FEATURES } from '@/lib/features';
-import { PRICING_TIERS, currencyForCountry, CURRENCY_SYMBOL } from '@/lib/pricing';
+import { PRICING_TIERS, CURRENCY_SYMBOL, type Currency } from '@/lib/pricing';
 import { INTEGRATIONS } from '@/lib/integrations';
 import { APP_LINKS } from '@/lib/site';
 
@@ -56,14 +55,8 @@ const softwareSchema: Record<string, unknown> = {
   })),
 };
 
-// The pricing preview is geo-gated (INR for India, USD elsewhere), so the
-// homepage is resolved per-request and must not be statically cached.
-export const dynamic = 'force-dynamic';
-
-export default async function Home() {
-  // Strict geo-gate (same rule as /pricing): India → INR, everyone else → USD.
-  const requestHeaders = await headers();
-  const currency = currencyForCountry(requestHeaders.get('x-vercel-ip-country'));
+export default function Home() {
+  const currency: Currency = 'USD';
   const symbol = CURRENCY_SYMBOL[currency];
 
   return (
