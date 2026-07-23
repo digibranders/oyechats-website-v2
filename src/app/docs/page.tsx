@@ -36,7 +36,7 @@ const WIDGET_ATTRS = [
 const WEBHOOK_EVENTS = [
   { event: 'tier_transition', desc: 'Fires when a visitor crosses a qualification tier, e.g. becomes a hot lead.' },
   { event: 'lead_captured', desc: 'Fires when a visitor submits name and email via the lead form.' },
-  { event: 'handoff_requested', desc: 'Fires when the visitor asks to speak with a human operator.' },
+  { event: 'handoff_requested', desc: 'Fires when the visitor asks to speak with an operator.' },
   { event: 'meeting_booked', desc: 'Fires when a visitor books a meeting via Calendly or Zcal.' },
   { event: 'chat_closed', desc: 'Fires when a chat session is closed.' },
 ];

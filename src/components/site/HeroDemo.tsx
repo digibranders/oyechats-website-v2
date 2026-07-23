@@ -52,7 +52,7 @@ const SCRIPTS: Script[] = [
     chip: 'Live handoff?',
     q: 'Can it hand off to a human?',
     a: 'When the bot reaches its limit it hands off in the same thread, full transcript and BANT context included.',
-    context: '”Need live agents during business hours.”',
+    context: '”Need operators during business hours.”',
     score: 76,
     routed: 'routed to sales',
   },

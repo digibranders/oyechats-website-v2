@@ -198,7 +198,7 @@ export default async function Home() {
             <StoryStep
               n="03"
               title="Hand off"
-              body="When a lead is ready, OyeChats passes the chat to a teammate with the full transcript. Sales picks up with context, and the visitor never repeats themselves."
+              body="When a lead is ready, OyeChats passes the chat to an operator with the full transcript. Sales picks up with context, and the visitor never repeats themselves."
               demo={
                 <ChatStack className="mt-2">
                   <ChatBubble role="operator">

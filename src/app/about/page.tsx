@@ -49,7 +49,7 @@ const VISION_BLOCKS: VisionBlock[] = [
   {
     icon: Headphones,
     title: 'OyeChats for Live Chat',
-    desc: 'When the bot hits its limit, hand off to a human operator in the same thread. Real-time WebSocket messaging, department routing, canned replies.',
+    desc: 'When the bot hits its limit, hand off to an operator in the same thread. Real-time WebSocket messaging, department routing, canned replies.',
     status: 'live',
   },
 ];

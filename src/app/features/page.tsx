@@ -91,7 +91,7 @@ const ANALYTICS_METRICS = [
 const WEBHOOK_EVENTS = [
   { event: 'tier_transition', desc: 'Visitor crosses a qualification tier (warm to hot, etc.).' },
   { event: 'lead_captured', desc: 'Visitor submitted name and email via the lead form.' },
-  { event: 'handoff_requested', desc: 'Visitor asked to speak with a human operator.' },
+  { event: 'handoff_requested', desc: 'Visitor asked to speak with an operator.' },
   { event: 'meeting_booked', desc: 'Visitor booked a meeting via Calendly or Zcal.' },
   { event: 'chat_closed', desc: 'Chat session ended with optional rating.' },
 ];
