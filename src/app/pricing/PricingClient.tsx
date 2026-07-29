@@ -11,7 +11,7 @@ import {
   DottedGrid,
   GradientText,
   HeroGlow,
-  NumberTicker,
+  PricingPrice,
   Reveal,
   Section,
   Table,
@@ -169,11 +169,10 @@ export default function PricingClient({
                       ) : price === 0 ? (
                         'Free'
                       ) : (
-                        <NumberTicker
+                        <PricingPrice
                           key={`${annual ? 'annual' : 'monthly'}-${currency}`}
                           value={price}
-                          prefix={symbol}
-                          duration={900}
+                          currency={currency}
                         />
                       )}
                     </span>

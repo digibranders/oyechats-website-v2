@@ -94,18 +94,24 @@ check('P-1 no $0 placeholder prices', () => {
   return zeros.length ? [`/pricing renders ${zeros.length} "$0" price(s)`] : [];
 });
 
-// ── P-2: both billing currencies must be present in static HTML ─────────────
-// Must match an actual PRICE, not merely the ₹ glyph — the currency toggle
-// button is labelled "INR (₹)", so a bare `includes('₹')` passes even when no
-// rupee price is rendered anywhere. That false pass is exactly the class of bug
-// this harness exists to catch.
-check('P-2 INR prices present on /pricing', () => {
+// ── P-2: both billing currencies must be discoverable ──────────────────────
+// The page renders one currency at a time by design, and duplicating prices as
+// hidden DOM text risks reading as cloaking. Alternate-currency pricing belongs
+// in structured data, so assert on the Offer nodes instead.
+//
+// Note this deliberately does NOT match the bare ₹ glyph: the currency toggle is
+// labelled "INR (₹)", so `includes('₹')` reports green while no rupee price
+// exists anywhere. That false pass is the exact class of bug this harness exists
+// to catch, and it fooled an earlier revision of this very check.
+check('P-2 INR offers present in structured data', () => {
   const pricing = P.find((p) => p.route === '/pricing');
   if (!pricing) return ['/pricing not built'];
-  const figures = pricing.html.match(/₹\s*<!-- -->?\s*[\d,]{3,}/g) ?? [];
-  return figures.length >= 3
-    ? []
-    : [`/pricing renders ${figures.length} INR price figure(s); expected one per paid tier`];
+  const inr = (pricing.html.match(/"priceCurrency":"INR"/g) ?? []).length;
+  const usd = (pricing.html.match(/"priceCurrency":"USD"/g) ?? []).length;
+  const bad = [];
+  if (inr < 3) bad.push(`only ${inr} INR Offer(s) in JSON-LD; expected one per tier`);
+  if (usd < 3) bad.push(`only ${usd} USD Offer(s) in JSON-LD; expected one per tier`);
+  return bad;
 });
 
 // ── T-2: title budget. Brand suffix is " · OyeChats" (11 chars). ─────────────
