@@ -1,7 +1,16 @@
 export type LegalPage = {
   slug: string;
+  /** Visible H1 on the document page, and the card heading on /legal. */
   title: string;
+  /** Visible card body on /legal. Never used as the meta description — several
+   *  are far shorter than a SERP snippet wants, and lengthening them would
+   *  change on-page content. */
   description: string;
+  /** `<title>` only. `title` alone yields e.g. "Cookie Policy · OyeChats" at 24
+   *  characters against a ~60 character budget. */
+  metaTitle: string;
+  /** `<meta name="description">` only. Kept separate from the visible card copy. */
+  metaDescription: string;
   lastUpdated: string;
   sections: { id: string; heading: string; body: string[] }[];
 };
@@ -9,6 +18,9 @@ export type LegalPage = {
 export const LEGAL_PAGES: LegalPage[] = [
   {
     slug: 'privacy',
+    metaTitle: 'Privacy Policy — How OyeChats Handles Your Data',
+    metaDescription:
+      'How OyeChats collects, uses, stores, shares and protects your data, including visitor chat transcripts, retention periods and your rights as a data subject.',
     title: 'Privacy Policy',
     description: 'OyeChats Privacy Policy, how we collect, use, store, share, and protect your data.',
     lastUpdated: '2026-04-16',
@@ -111,6 +123,9 @@ export const LEGAL_PAGES: LegalPage[] = [
   },
   {
     slug: 'terms',
+    metaTitle: 'Terms of Service — Platform Agreement',
+    metaDescription:
+      'The legal agreement governing your use of the OyeChats platform: account terms, acceptable use, billing, liability, and termination.',
     title: 'Terms of Service',
     description: 'OyeChats Terms of Service, the legal agreement governing your use of the platform.',
     lastUpdated: '2026-04-16',
@@ -192,6 +207,9 @@ export const LEGAL_PAGES: LegalPage[] = [
   },
   {
     slug: 'dpa',
+    metaTitle: 'Data Processing Addendum (DPA) for Customers',
+    metaDescription:
+      'The OyeChats Data Processing Addendum governing how we process personal data on behalf of our customers, including sub-processors and security measures.',
     title: 'Data Processing Addendum',
     description: 'The OyeChats Data Processing Addendum governing how we process personal data on behalf of our customers.',
     lastUpdated: '2026-07-07',
@@ -254,6 +272,9 @@ export const LEGAL_PAGES: LegalPage[] = [
   },
   {
     slug: 'subprocessors',
+    metaTitle: 'Sub-processors — Third Parties We Engage',
+    metaDescription:
+      'The current list of third-party sub-processors OyeChats engages to deliver the service, what each one does, and where they process data.',
     title: 'Subprocessors List',
     description: 'The current list of third-party sub-processors OyeChats engages to deliver the Services.',
     lastUpdated: '2026-04-16',
@@ -295,6 +316,9 @@ export const LEGAL_PAGES: LegalPage[] = [
   },
   {
     slug: 'cookies',
+    metaTitle: 'Cookie Policy — Cookies and Similar Technologies',
+    metaDescription:
+      'How OyeChats uses cookies and similar technologies across the website and the chat widget, what each category does, and how to control them.',
     title: 'Cookie Policy',
     description: 'How OyeChats uses cookies and similar technologies.',
     lastUpdated: '2026-04-16',
@@ -334,6 +358,9 @@ export const LEGAL_PAGES: LegalPage[] = [
   },
   {
     slug: 'refund',
+    metaTitle: 'Refund Policy — When Refunds Apply',
+    metaDescription:
+      'When OyeChats refunds apply, what is and is not eligible, how to request one, and how long refunds take to process for INR and USD customers.',
     title: 'Refund Policy',
     description: 'OyeChats Refund Policy, when refunds apply and how to request one.',
     lastUpdated: '2026-06-25',
@@ -377,6 +404,9 @@ export const LEGAL_PAGES: LegalPage[] = [
   },
   {
     slug: 'cancellation',
+    metaTitle: 'Cancellation Policy — How to Cancel',
+    metaDescription:
+      'How to cancel your OyeChats subscription, when the cancellation takes effect, what happens to your bots and data, and how final billing is handled.',
     title: 'Cancellation Policy',
     description: 'OyeChats Cancellation Policy, how to cancel your subscription and what happens next.',
     lastUpdated: '2026-06-25',

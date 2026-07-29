@@ -3,9 +3,9 @@ import { pageMeta } from '@/lib/seo';
 import { PRICING_FAQ, PRICING_TIERS } from '@/lib/pricing';
 import PricingClient from './PricingClient';
 
-const title = 'Pricing';
+const title = 'AI Chatbot Pricing — Plans from Free';
 const description =
-  'Simple, credit-based pricing for OyeChats. Start free with a grounded AI bot, then scale on Starter, Standard, or Professional. Live chat, BANT scoring, and top-up packs included.';
+  'Credit-based pricing for OyeChats. Start free, then scale on Starter, Standard, or Professional. Live chat, BANT scoring, and top-up packs included.';
 
 export const metadata: Metadata = pageMeta({
   title,

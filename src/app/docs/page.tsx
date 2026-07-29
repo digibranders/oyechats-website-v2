@@ -16,7 +16,7 @@ import {
 import { ScrollSpyToc } from '@/components/site/ScrollSpyToc';
 
 export const metadata: Metadata = pageMeta({
-  title: 'Documentation',
+  title: 'Documentation — Install, Configure, Webhooks',
   description:
     'Everything you need to add and configure OyeChats on your website. Install, configure, and connect webhooks.',
   path: '/docs',

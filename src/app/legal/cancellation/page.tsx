@@ -8,8 +8,8 @@ const SLUG = 'cancellation';
 const page = LEGAL_PAGES.find((p) => p.slug === SLUG)!;
 
 export const metadata: Metadata = pageMeta({
-  title: page.title,
-  description: page.description,
+  title: page.metaTitle,
+  description: page.metaDescription,
   path: `/legal/${SLUG}`,
 });
 

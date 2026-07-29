@@ -42,7 +42,7 @@ const SOFTWARE_APPLICATION_SCHEMA = {
 } as const;
 
 export const metadata: Metadata = pageMeta({
-  title: 'Features',
+  title: 'Features — RAG Answers & BANT Lead Scoring',
   description:
     'Every OyeChats feature: hybrid RAG, BANT scoring, live handoff, analytics, webhooks, integrations. One AI chatbot with full sales intelligence.',
   path: '/features',

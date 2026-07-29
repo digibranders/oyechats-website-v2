@@ -14,7 +14,7 @@ import {
 import { SOLUTIONS, type Solution } from '@/lib/features';
 
 export const metadata: Metadata = pageMeta({
-  title: 'Solutions',
+  title: 'Solutions for Support, Sales & Live Chat',
   description:
     'Solutions for the teams and workflows OyeChats was built for. Customer support, sales lead gen, docs assistants, and live chat handoff.',
   path: '/solutions',

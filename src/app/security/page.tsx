@@ -25,7 +25,7 @@ import {
 } from '@/components/ds';
 
 export const metadata: Metadata = pageMeta({
-  title: 'Security',
+  title: 'Security — Encryption, GDPR & Signed Webhooks',
   description:
     'OyeChats security practices: encryption in transit and at rest, GDPR-aligned data handling, access controls, signed webhooks, and infrastructure details.',
   path: '/security',

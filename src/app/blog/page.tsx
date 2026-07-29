@@ -5,7 +5,7 @@ import { BLOG_POSTS } from '@/lib/blog';
 import { pageMeta } from '@/lib/seo';
 
 export const metadata: Metadata = pageMeta({
-  title: 'Blog',
+  title: 'Blog — AI Chat, Lead Qualification & RAG',
   description:
     'Practical guides on AI customer support, conversational lead qualification, and shipping chatbots that actually convert — from the OyeChats team.',
   path: '/blog',
