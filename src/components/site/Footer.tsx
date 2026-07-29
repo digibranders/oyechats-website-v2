@@ -1,16 +1,18 @@
 import Link from 'next/link';
-import { Linkedin, Instagram, Twitter, Github } from 'lucide-react';
-import { FOOTER_COLUMNS } from '@/lib/site';
+import { Linkedin, Instagram, Twitter, Github, type LucideIcon } from 'lucide-react';
+import { FOOTER_COLUMNS, SOCIAL_LINKS } from '@/lib/site';
 import { CHANGELOG } from '@/lib/changelog';
 import { Logo } from './Logo';
 import { SystemStatus } from './SystemStatus';
 
-const SOCIAL_LINKS = [
-  { label: 'LinkedIn', href: 'https://www.linkedin.com/company/oyechats', icon: Linkedin },
-  { label: 'Instagram', href: 'https://www.instagram.com/oyechats', icon: Instagram },
-  { label: 'Twitter', href: 'https://twitter.com/oyechats', icon: Twitter },
-  { label: 'GitHub', href: 'https://github.com/digibranders', icon: Github },
-];
+/** Icon per profile. The URLs themselves live in `site.ts` so the footer and the
+ *  Organization `sameAs` schema can never disagree about which profiles exist. */
+const SOCIAL_ICONS: Record<string, LucideIcon> = {
+  LinkedIn: Linkedin,
+  Instagram: Instagram,
+  X: Twitter,
+  GitHub: Github,
+};
 
 const LAST_UPDATED = CHANGELOG[0].date;
 
@@ -52,26 +54,31 @@ export default function Footer() {
             </div>
 
             <div className="mt-6 flex items-center gap-1.5">
-              {SOCIAL_LINKS.map((s) => (
-                <a
-                  key={s.href}
-                  href={s.href}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  aria-label={s.label}
-                  className="w-9 h-9 rounded-[var(--r-2)] border border-white/10 bg-white/5 flex items-center justify-center text-ink-invert-fg hover:bg-white/10 hover:border-white/25 hover:text-volt-light transition-colors"
-                >
-                  <s.icon size={14} />
-                </a>
-              ))}
+              {SOCIAL_LINKS.map((s) => {
+                const Icon = SOCIAL_ICONS[s.label];
+                return (
+                  <a
+                    key={s.href}
+                    href={s.href}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    aria-label={s.label}
+                    className="w-9 h-9 rounded-[var(--r-2)] border border-white/10 bg-white/5 flex items-center justify-center text-ink-invert-fg hover:bg-white/10 hover:border-white/25 hover:text-volt-light transition-colors"
+                  >
+                    {Icon ? <Icon size={14} aria-hidden="true" /> : null}
+                  </a>
+                );
+              })}
             </div>
           </div>
 
-          {/* Link columns */}
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-8">
+          {/* Link columns. `h4` here produced an h2 -> h4 skip on every page whose
+              deepest heading was an h2 (/solutions, /changelog, /legal/*), so the
+              column titles are plain text and the group is a labelled landmark. */}
+          <nav aria-label="Footer" className="grid grid-cols-2 md:grid-cols-4 gap-8">
             {FOOTER_COLUMNS.map((col) => (
               <div key={col.title}>
-                <h4 className="type-mono-sm text-ink-invert-muted mb-4">{col.title}</h4>
+                <div className="type-mono-sm text-ink-invert-muted mb-4">{col.title}</div>
                 <ul className="flex flex-col gap-1">
                   {col.links.map((l) => (
                     <li key={l.href}>
@@ -86,7 +93,7 @@ export default function Footer() {
                 </ul>
               </div>
             ))}
-          </div>
+          </nav>
         </div>
 
         <div className="mt-16 pt-6 border-t border-white/10 text-[12px] text-ink-invert-muted">

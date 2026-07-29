@@ -240,7 +240,7 @@ export function HeroDemo() {
             <span className="type-mono-sm text-ink font-medium">Ask OyeChats</span>
           </div>
           <span className="inline-flex items-center gap-1.5 type-mono-sm text-muted">
-            <span className="w-1.5 h-1.5 rounded-full bg-signal signal-dot-pulse inline-block" />
+            <span className="w-1.5 h-1.5 rounded-full bg-signal-graphic signal-dot-pulse inline-block" />
             demo
           </span>
         </div>

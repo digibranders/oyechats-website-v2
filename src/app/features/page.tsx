@@ -284,7 +284,7 @@ export default function FeaturesPage() {
                   <div>
                     <div className="type-body-sm text-ink font-semibold">Priya M</div>
                     <div className="type-mono-sm text-signal flex items-center gap-1.5">
-                      <span className="w-1.5 h-1.5 rounded-full bg-signal signal-dot-pulse inline-block" />
+                      <span className="w-1.5 h-1.5 rounded-full bg-signal-graphic signal-dot-pulse inline-block" />
                       Online · Sales
                     </div>
                   </div>

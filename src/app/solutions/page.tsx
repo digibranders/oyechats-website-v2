@@ -64,7 +64,7 @@ const ACCENT: Record<
   },
   emerald: {
     pill: 'bg-signal-tint border-[#A6E4C1] text-signal',
-    dot: 'bg-signal',
+    dot: 'bg-signal-graphic',
     text: 'text-signal',
     ring: 'ring-signal/30',
   },
