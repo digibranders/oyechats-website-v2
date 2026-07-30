@@ -36,8 +36,24 @@ import {
 const CATEGORIES: PricingFeatureCategory[] = ['usage', 'features', 'security'];
 
 function renderCell(v: PricingFeatureValue, currency: Currency) {
-  if (v === true) return <Check size={16} className="text-signal inline" />;
-  if (v === false) return <X size={16} className="text-muted-2 inline" />;
+  // lucide icons carry no ARIA of their own, so a bare Check/X left every
+  // boolean cell in all three comparison tables completely unannounced — the
+  // icon was the only carrier of meaning (WCAG 1.1.1). sr-only text is
+  // invisible and changes nothing on screen.
+  if (v === true)
+    return (
+      <>
+        <Check size={16} aria-hidden="true" className="text-signal inline" />
+        <span className="sr-only">Included</span>
+      </>
+    );
+  if (v === false)
+    return (
+      <>
+        <X size={16} aria-hidden="true" className="text-muted-2 inline" />
+        <span className="sr-only">Not included</span>
+      </>
+    );
   if (isCurrencyText(v)) return <span className="type-body-sm text-ink-2">{v[currency]}</span>;
   return <span className="type-body-sm text-ink-2">{v}</span>;
 }
@@ -88,9 +104,16 @@ export default function PricingClient({
           </p>
 
           <div className="mt-10 flex flex-wrap items-center justify-center gap-4">
-            <div className="inline-flex items-center gap-1 p-1 rounded-[var(--r-full)] border border-line bg-canvas shadow-[var(--e-1)]">
+            {/* Selection was signalled by background colour alone (WCAG 1.4.1)
+                and exposed no state to assistive tech. role/aria are invisible. */}
+            <div
+              role="group"
+              aria-label="Billing period"
+              className="inline-flex items-center gap-1 p-1 rounded-[var(--r-full)] border border-line bg-canvas shadow-[var(--e-1)]"
+            >
               <button
                 type="button"
+                aria-pressed={!annual}
                 onClick={() => setAnnual(false)}
                 className={`px-4 py-2.5 min-h-11 inline-flex items-center justify-center rounded-[var(--r-full)] text-[13px] font-medium transition-colors ${
                   !annual ? 'bg-ink text-paper' : 'text-ink-2 hover:text-ink'
@@ -100,6 +123,7 @@ export default function PricingClient({
               </button>
               <button
                 type="button"
+                aria-pressed={annual}
                 onClick={() => setAnnual(true)}
                 className={`px-4 py-2.5 min-h-11 rounded-[var(--r-full)] text-[13px] font-medium transition-colors inline-flex items-center justify-center gap-2 ${
                   annual ? 'bg-ink text-paper' : 'text-ink-2 hover:text-ink'
@@ -110,9 +134,14 @@ export default function PricingClient({
               </button>
             </div>
 
-            <div className="inline-flex items-center gap-1 p-1 rounded-[var(--r-full)] border border-line bg-canvas shadow-[var(--e-1)]">
+            <div
+              role="group"
+              aria-label="Currency"
+              className="inline-flex items-center gap-1 p-1 rounded-[var(--r-full)] border border-line bg-canvas shadow-[var(--e-1)]"
+            >
               <button
                 type="button"
+                aria-pressed={currency === 'USD'}
                 onClick={() => setCurrency('USD')}
                 className={`px-3.5 py-2 min-h-9 inline-flex items-center justify-center rounded-[var(--r-full)] text-[12px] font-medium transition-colors ${
                   currency === 'USD' ? 'bg-volt text-volt-fg' : 'text-ink-2 hover:text-ink'
@@ -122,6 +151,7 @@ export default function PricingClient({
               </button>
               <button
                 type="button"
+                aria-pressed={currency === 'INR'}
                 onClick={() => setCurrency('INR')}
                 className={`px-3.5 py-2 min-h-9 inline-flex items-center justify-center rounded-[var(--r-full)] text-[12px] font-medium transition-colors ${
                   currency === 'INR' ? 'bg-volt text-volt-fg' : 'text-ink-2 hover:text-ink'
@@ -311,7 +341,7 @@ export default function PricingClient({
                 <tbody>
                   {rows.map((r) => (
                     <tr key={r.label}>
-                      <Td>{r.label}</Td>
+                      <Th scope="row">{r.label}</Th>
                       <Td>{renderCell(r.free, currency)}</Td>
                       <Td>{renderCell(r.starter, currency)}</Td>
                       <Td>{renderCell(r.standard, currency)}</Td>

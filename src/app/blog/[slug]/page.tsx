@@ -157,7 +157,7 @@ export default async function BlogPostPage({ params }: { params: Promise<Params>
             <div>
               <div className="type-body-sm font-medium text-ink">{post.author.name}</div>
               <div className="type-mono-sm text-muted">
-                {post.author.role} · {post.date}
+                {post.author.role} · <time dateTime={post.dateISO}>{post.date}</time>
               </div>
             </div>
           </div>
@@ -301,7 +301,7 @@ export default async function BlogPostPage({ params }: { params: Promise<Params>
                   </h3>
                   <p className="type-body-sm mt-2 line-clamp-2 text-ink-2">{p.description}</p>
                   <div className="mt-auto pt-4 type-mono-sm text-muted">
-                    {p.date} · {p.readMinutes} min
+                    <time dateTime={p.dateISO}>{p.date}</time> · {p.readMinutes} min
                   </div>
                 </Link>
               ))}

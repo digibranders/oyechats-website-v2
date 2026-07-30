@@ -98,7 +98,11 @@ export default function IntegrationsClient() {
           </p>
           <div className="mt-8 max-w-md mx-auto relative">
             <Search size={16} className="absolute left-4 top-1/2 -translate-y-1/2 text-muted-2" aria-hidden />
+            {/* A placeholder is an accessible-name fallback, not a label, and it
+                disappears the moment the user types. aria-label is invisible. */}
             <Input
+              type="search"
+              aria-label="Search integrations"
               placeholder="Search integrations…"
               value={q}
               onChange={(e) => setQ(e.target.value)}

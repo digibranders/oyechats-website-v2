@@ -416,12 +416,25 @@ export function getToc(content: BlogBlock[]): TocEntry[] {
   return toc;
 }
 
-/** Related posts: same category first, then most recent, excluding the current post. */
+/**
+ * Related posts: same category first, then by tag overlap, then most recent.
+ *
+ * The previous implementation appended `rest` in declaration order. With seven
+ * distinct categories across eight posts, six posts therefore surfaced the exact
+ * same first three entries, and four posts were never selected by any other post
+ * — leaving them with a single inbound link (the /blog index) and effectively
+ * orphaning them. Scoring by tag overlap makes the module reciprocal without
+ * changing how it looks or how many cards it renders.
+ */
 export function getRelatedPosts(slug: string, limit = 3): BlogPost[] {
   const current = getPostBySlug(slug);
   if (!current) return BLOG_POSTS.slice(0, limit);
-  const others = BLOG_POSTS.filter((p) => p.slug !== slug);
-  const sameCategory = others.filter((p) => p.category === current.category);
-  const rest = others.filter((p) => p.category !== current.category);
-  return [...sameCategory, ...rest].slice(0, limit);
+  const tags = new Set(current.tags);
+  const score = (p: BlogPost) =>
+    (p.category === current.category ? 100 : 0) +
+    p.tags.filter((t) => tags.has(t)).length * 10;
+
+  return BLOG_POSTS.filter((p) => p.slug !== slug)
+    .sort((a, b) => score(b) - score(a) || b.dateISO.localeCompare(a.dateISO))
+    .slice(0, limit);
 }

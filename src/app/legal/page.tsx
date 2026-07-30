@@ -42,7 +42,7 @@ export default function LegalIndex() {
               >
                 <div className="flex justify-between items-start gap-4 mb-3">
                   <h2 className="type-heading-2 text-ink">{p.title}</h2>
-                  <Chip variant="outline">{p.lastUpdated}</Chip>
+                  <Chip variant="outline"><time dateTime={p.lastUpdated}>{p.lastUpdated}</time></Chip>
                 </div>
                 <p className="type-body-sm text-ink-2">{p.description}</p>
               </Link>

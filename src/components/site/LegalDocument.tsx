@@ -62,7 +62,7 @@ export function LegalDocument({ page }: { page: LegalPage }) {
           <h1 className="type-display-3 text-ink max-w-3xl">{page.title}</h1>
           <p className="type-body-lg text-ink-2 mt-4 max-w-2xl">{page.description}</p>
           <div className="mt-6 flex gap-2 flex-wrap">
-            <Chip variant="outline">Last updated · {page.lastUpdated}</Chip>
+            <Chip variant="outline">Last updated · <time dateTime={page.lastUpdated}>{page.lastUpdated}</time></Chip>
             <Chip variant="mono">v1.0</Chip>
           </div>
         </Container>

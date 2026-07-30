@@ -78,7 +78,7 @@ export default function ChangelogPage() {
                             {tag}
                           </Chip>
                         ))}
-                        <span className="type-mono-sm text-muted ml-auto">{entry.date}</span>
+                        <time dateTime={entry.dateISO} className="type-mono-sm text-muted ml-auto">{entry.date}</time>
                       </div>
                       <h2 className="type-heading-1 text-ink mb-3">{entry.title}</h2>
                       <p className="type-body text-ink-2 mb-6">{entry.description}</p>

@@ -206,13 +206,26 @@ export default function ContactClient() {
                     />
                   </div>
 
+                  {/* role="alert" so the failure is announced; previously the
+                      message appeared silently for screen-reader users. */}
                   {error && (
-                    <Callout variant="danger" title="Couldn't send">
-                      {error}
-                    </Callout>
+                    <div role="alert">
+                      <Callout variant="danger" title="Couldn't send">
+                        {error}
+                      </Callout>
+                    </div>
                   )}
 
-                  <Button variant="volt" size="lg" className="w-full">
+                  {/* The button was never disabled, so a double-click posted
+                      twice to /api/contact and sent two emails. */}
+                  <Button
+                    type="submit"
+                    variant="volt"
+                    size="lg"
+                    className="w-full"
+                    disabled={loading}
+                    aria-busy={loading}
+                  >
                     {loading ? 'Sending…' : 'Send message'}
                   </Button>
                 </form>

@@ -45,6 +45,7 @@ export default function BlogPage() {
     description: p.description,
     category: p.category,
     date: p.date,
+    dateISO: p.dateISO,
     readMinutes: p.readMinutes,
     accent: p.accent,
     author: { name: p.author.name, initials: p.author.initials },

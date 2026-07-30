@@ -15,6 +15,7 @@ const SOCIAL_ICONS: Record<string, LucideIcon> = {
 };
 
 const LAST_UPDATED = CHANGELOG[0].date;
+const LAST_UPDATED_ISO = CHANGELOG[0].dateISO;
 
 export default function Footer() {
   return (
@@ -49,7 +50,7 @@ export default function Footer() {
               >
                 <span>What&apos;s new</span>
                 <span>·</span>
-                <span>{LAST_UPDATED}</span>
+                <time dateTime={LAST_UPDATED_ISO}>{LAST_UPDATED}</time>
               </Link>
             </div>
 
