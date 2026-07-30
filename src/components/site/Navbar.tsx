@@ -62,10 +62,23 @@ export default function Navbar() {
   const toggleRef = useRef<HTMLButtonElement>(null);
 
   useEffect(() => {
-    const onScroll = () => setScrolled(window.scrollY > 8);
-    onScroll();
+    // rAF-coalesced, matching ReadingProgress. React bails out when the boolean
+    // is unchanged, so this was never a re-render problem — but it did invoke a
+    // callback on every scroll event on every page.
+    let raf = 0;
+    const update = () => {
+      raf = 0;
+      setScrolled(window.scrollY > 8);
+    };
+    const onScroll = () => {
+      if (!raf) raf = window.requestAnimationFrame(update);
+    };
+    update();
     window.addEventListener('scroll', onScroll, { passive: true });
-    return () => window.removeEventListener('scroll', onScroll);
+    return () => {
+      window.removeEventListener('scroll', onScroll);
+      if (raf) cancelAnimationFrame(raf);
+    };
   }, []);
 
   // Escape must dismiss both the mega menu and the drawer. Neither had any key
@@ -104,7 +117,7 @@ export default function Navbar() {
       onMouseLeave={() => setOpenMenu(null)}
     >
       <div className="mx-auto w-full max-w-[1360px] px-6 md:px-12 flex items-center justify-between">
-        <Logo />
+        <Logo priority />
 
         <nav aria-label="Primary" className="hidden lg:flex items-center gap-1">
           {TOP_LINKS.map((l) => (

@@ -118,7 +118,7 @@ function buildEmailHtml(params: {
       <td style="background-color:${SURFACE_FOOTER};border-top:1px solid ${RULE};
         border-radius:0 0 20px 20px;padding:26px 40px;text-align:center;">
         <p style="margin:0 0 10px 0;font-family:${FONT_STACK};font-size:12px;color:${INK_400};line-height:1.5;">
-          <a href="https://oyechats.com" style="color:${INK_400};text-decoration:none;font-weight:600;">OyeChats</a>
+          <a href="https://www.oyechats.com" style="color:${INK_400};text-decoration:none;font-weight:600;">OyeChats</a>
           &nbsp;&middot;&nbsp;
           <a href="mailto:support@oyechats.com" style="color:${INK_400};text-decoration:none;font-weight:600;">support@oyechats.com</a>
         </p>
@@ -132,7 +132,7 @@ function buildEmailHtml(params: {
     <tr>
       <td style="background-color:${SURFACE_CARD};border-radius:20px 20px 0 0;
         padding:28px 40px 24px 40px;text-align:center;">
-        <a href="https://oyechats.com" style="text-decoration:none;display:inline-block;line-height:1;">
+        <a href="https://www.oyechats.com" style="text-decoration:none;display:inline-block;line-height:1;">
           <span style="font-family:${FONT_STACK};font-size:22px;font-weight:800;
             letter-spacing:-0.5px;line-height:1;color:${INK_900};">
             Oye<span style="color:${BRAND_PRIMARY};">Chats</span>

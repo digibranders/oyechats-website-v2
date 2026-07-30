@@ -75,8 +75,10 @@ export function Button(props: ButtonAsLink | ButtonAsButton) {
 
   const { variant: _v, size: _s, className: _c, children: _ch, ...btnRest } = props as ButtonAsButton;
   void _v; void _s; void _c; void _ch;
+  // Defaults to "button": any future Button with onClick inside a <form> would
+  // otherwise submit it. The contact form passes type="submit" explicitly.
   return (
-    <button className={classes} {...btnRest}>
+    <button type="button" className={classes} {...btnRest}>
       <span className="relative z-10 inline-flex items-center gap-2">{children}</span>
     </button>
   );
