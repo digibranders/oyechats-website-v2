@@ -1,6 +1,6 @@
 'use client';
 
-import { useEffect, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import Link from 'next/link';
 import {
   Menu,
@@ -59,6 +59,7 @@ export default function Navbar() {
   const [scrolled, setScrolled] = useState(false);
   const [open, setOpen] = useState(false);
   const [openMenu, setOpenMenu] = useState<string | null>(null);
+  const toggleRef = useRef<HTMLButtonElement>(null);
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 8);
@@ -66,6 +67,22 @@ export default function Navbar() {
     window.addEventListener('scroll', onScroll, { passive: true });
     return () => window.removeEventListener('scroll', onScroll);
   }, []);
+
+  // Escape must dismiss both the mega menu and the drawer. Neither had any key
+  // handling, so a keyboard user who opened one could not close it.
+  useEffect(() => {
+    if (!open && !openMenu) return;
+    const onKey = (e: KeyboardEvent) => {
+      if (e.key !== 'Escape') return;
+      setOpenMenu(null);
+      if (open) {
+        setOpen(false);
+        toggleRef.current?.focus();
+      }
+    };
+    window.addEventListener('keydown', onKey);
+    return () => window.removeEventListener('keydown', onKey);
+  }, [open, openMenu]);
 
   useEffect(() => {
     if (open) document.body.style.overflow = 'hidden';
@@ -89,23 +106,41 @@ export default function Navbar() {
       <div className="mx-auto w-full max-w-[1360px] px-6 md:px-12 flex items-center justify-between">
         <Logo />
 
-        <nav className="hidden lg:flex items-center gap-1">
+        <nav aria-label="Primary" className="hidden lg:flex items-center gap-1">
           {TOP_LINKS.map((l) => (
             <div
               key={l.href}
               onMouseEnter={() => 'menu' in l && setOpenMenu(l.label)}
+              onFocus={() => 'menu' in l && setOpenMenu(l.label)}
               className="relative"
             >
               <Link
                 href={l.href}
+                aria-expanded={'menu' in l ? openMenu === l.label : undefined}
+                aria-controls={'menu' in l ? `megamenu-${l.label}` : undefined}
                 className="text-[15px] font-medium text-ink-2 hover:text-ink no-underline px-3 py-2 rounded-[var(--r-2)] hover:bg-canvas transition-colors inline-flex items-center gap-1"
               >
                 {l.label}
-                {'menu' in l && <ChevronDown size={12} className="text-muted-2" />}
+                {'menu' in l && <ChevronDown size={12} className="text-muted-2" aria-hidden="true" />}
               </Link>
 
-              {'menu' in l && openMenu === l.label && (
-                <div className="absolute left-0 top-full pt-2 z-50">
+              {/* Rendered unconditionally and hidden with CSS + `inert`, mirroring
+                  the mobile drawer below. Conditional rendering kept Docs,
+                  Changelog, Blog and Security out of the served HTML entirely —
+                  the header contributed no link equity to them — and made them
+                  unreachable by keyboard, since the panel only ever existed
+                  while the mouse was over it. `onFocus` on the wrapper opens it
+                  when the trigger is tabbed to. Visually identical: closed state
+                  is opacity-0 + pointer-events-none, exactly as before. */}
+              {'menu' in l && (
+                <div
+                  id={`megamenu-${l.label}`}
+                  inert={openMenu !== l.label ? true : undefined}
+                  className={cn(
+                    'absolute left-0 top-full pt-2 z-50 transition-opacity duration-150',
+                    openMenu === l.label ? 'opacity-100' : 'opacity-0 pointer-events-none',
+                  )}
+                >
                   <MegaMenu columns={l.menu} onNavigate={() => setOpenMenu(null)} />
                 </div>
               )}
@@ -133,11 +168,13 @@ export default function Navbar() {
             </Button>
           )}
           <button
+            ref={toggleRef}
             type="button"
             className="-mr-1 p-2.5 min-h-11 min-w-11 flex items-center justify-center text-ink"
             onClick={() => setOpen((v) => !v)}
-            aria-label="Toggle menu"
+            aria-label={open ? 'Close menu' : 'Open menu'}
             aria-expanded={open}
+            aria-controls="mobile-menu"
           >
             {open ? <X size={20} /> : <Menu size={20} />}
           </button>
@@ -151,6 +188,7 @@ export default function Navbar() {
           `top-16 bottom-0` resolve against the 64px header and collapse it.
           As a header sibling it resolves against the viewport and fills the screen. */}
       <div
+        id="mobile-menu"
         // `inert` when closed removes the off-screen drawer links from the tab
         // order and the accessibility tree (pointer-events alone leaves them
         // keyboard-focusable). Opacity transition is preserved.
