@@ -10,8 +10,16 @@ import {
 } from '@/lib/consent';
 
 type ConsentContextValue = {
-  /** `null` means undecided. */
+  /** The visitor's explicit choice. `null` means they have not made one. */
   consent: ConsentValue | null;
+  /**
+   * What analytics is actually doing right now, which is NOT the same as
+   * `consent`: outside the restricted regions the bootstrap grants analytics by
+   * default, so an undecided visitor is being measured. Any UI reporting state
+   * to the visitor must read this, never `consent` — showing "Off" while GA is
+   * running misrepresents the processing.
+   */
+  effectiveConsent: ConsentValue;
   isRestricted: boolean;
   /** False until the mount effect has read cookie, GPC and timezone. */
   isReady: boolean;
@@ -99,9 +107,16 @@ export default function ConsentProvider({
   const openPreferences = useCallback((): void => setIsPanelOpen(true), []);
   const closePreferences = useCallback((): void => setIsPanelOpen(false), []);
 
+  // Mirrors the bootstrap's own resolution: an explicit choice wins, otherwise
+  // restricted regions are denied and everyone else is granted by default. This
+  // must stay in step with `consent-bootstrap.ts` — if the two disagree, the
+  // banner reports one thing while GA does another.
+  const effectiveConsent: ConsentValue = consent ?? (isRestricted ? 'denied' : 'granted');
+
   const value = useMemo<ConsentContextValue>(
     () => ({
       consent,
+      effectiveConsent,
       isRestricted,
       isReady,
       isPanelOpen,
@@ -109,7 +124,16 @@ export default function ConsentProvider({
       openPreferences,
       closePreferences,
     }),
-    [consent, isRestricted, isReady, isPanelOpen, decide, openPreferences, closePreferences]
+    [
+      consent,
+      effectiveConsent,
+      isRestricted,
+      isReady,
+      isPanelOpen,
+      decide,
+      openPreferences,
+      closePreferences,
+    ]
   );
 
   return <ConsentContext.Provider value={value}>{children}</ConsentContext.Provider>;
