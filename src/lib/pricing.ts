@@ -1,11 +1,20 @@
 import { APP_LINKS } from './site';
 
 /**
- * Pricing is geo-gated: visitors in India (country code `IN`) are shown INR
- * only; everyone else is shown USD only. The currency is resolved server-side
- * from the request's IP country (see `app/pricing/page.tsx`) and passed down —
- * a visitor never sees both currencies. USD is a deliberate international
- * geo-price, not an FX conversion of the INR price.
+ * Pricing is geo-gated: visitors in India are shown INR only, everyone else
+ * USD only. There is no manual currency switch — a visitor never sees both.
+ * USD is a deliberate international geo-price, not an FX conversion of the INR
+ * price.
+ *
+ * Resolution happens before render, never in the browser. `src/middleware.ts`
+ * reads Vercel's `x-vercel-ip-country`, passes it through
+ * `currencyForCountry` below, and rewrites Indian traffic from `/pricing` to
+ * the `/pricing/in` variant. Both routes are statically generated, so the
+ * correct currency is already in the cached HTML: no hydration flip, no
+ * per-request render, and the CDN still serves the page.
+ *
+ * Off Vercel — local dev, or any other host — the header is absent and every
+ * request resolves to USD.
  */
 export type Currency = 'INR' | 'USD';
 

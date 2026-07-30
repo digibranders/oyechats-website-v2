@@ -1,6 +1,6 @@
 'use client';
 
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 import { Check, X } from 'lucide-react';
 import {
   Accordion,
@@ -65,24 +65,15 @@ function perThousand(price: number, credits: number, currency: Currency) {
     : `₹${Math.round(value).toLocaleString('en-IN')}`;
 }
 
-export default function PricingClient({
-  initialCurrency = 'USD',
-}: {
-  initialCurrency?: Currency;
-}) {
-  const [currency, setCurrency] = useState<Currency>(initialCurrency);
+/**
+ * `currency` is resolved before render and never changes on the client. There
+ * is no manual switch and no post-mount correction: `src/middleware.ts` routes
+ * Indian traffic to the INR variant, so the price in the static HTML is already
+ * the right one. Nothing here should reintroduce a client-side currency swap —
+ * that would put the flicker back.
+ */
+export default function PricingClient({ currency }: { currency: Currency }) {
   const [annual, setAnnual] = useState(false);
-
-  useEffect(() => {
-    try {
-      const tz = Intl.DateTimeFormat().resolvedOptions().timeZone;
-      if (tz && (tz.includes('Kolkata') || tz.includes('Calcutta') || tz.includes('Asia/Kolkata'))) {
-        requestAnimationFrame(() => setCurrency('INR'));
-      }
-    } catch {
-      // fallback to initial currency
-    }
-  }, []);
 
   // Single shared "open FAQ" across both columns so only one is open at a time.
   const [openFaq, setOpenFaq] = useState<string | null>(PRICING_FAQ[0]?.q ?? null);
@@ -103,7 +94,7 @@ export default function PricingClient({
             Start free. Scale as you grow. Cancel anytime.
           </p>
 
-          <div className="mt-10 flex flex-wrap items-center justify-center gap-4">
+          <div className="mt-10 flex justify-center">
             {/* Selection was signalled by background colour alone (WCAG 1.4.1)
                 and exposed no state to assistive tech. role/aria are invisible. */}
             <div
@@ -131,33 +122,6 @@ export default function PricingClient({
               >
                 Annual
                 <span className="text-[10px] font-mono text-signal">save 20%</span>
-              </button>
-            </div>
-
-            <div
-              role="group"
-              aria-label="Currency"
-              className="inline-flex items-center gap-1 p-1 rounded-[var(--r-full)] border border-line bg-canvas shadow-[var(--e-1)]"
-            >
-              <button
-                type="button"
-                aria-pressed={currency === 'USD'}
-                onClick={() => setCurrency('USD')}
-                className={`px-3.5 py-2 min-h-9 inline-flex items-center justify-center rounded-[var(--r-full)] text-[12px] font-medium transition-colors ${
-                  currency === 'USD' ? 'bg-volt text-volt-fg' : 'text-ink-2 hover:text-ink'
-                }`}
-              >
-                USD ($)
-              </button>
-              <button
-                type="button"
-                aria-pressed={currency === 'INR'}
-                onClick={() => setCurrency('INR')}
-                className={`px-3.5 py-2 min-h-9 inline-flex items-center justify-center rounded-[var(--r-full)] text-[12px] font-medium transition-colors ${
-                  currency === 'INR' ? 'bg-volt text-volt-fg' : 'text-ink-2 hover:text-ink'
-                }`}
-              >
-                INR (₹)
               </button>
             </div>
           </div>

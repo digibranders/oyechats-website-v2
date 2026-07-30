@@ -12,3 +12,7 @@ npm-debug.log*
 next-env.d.ts
 tsconfig.tsbuildinfo
 *.tsbuildinfo
+
+# Device-specific: the dev port here (3002) is chosen to avoid other projects
+# already bound to 3000/3001 on this machine, so it should not be shared.
+.claude/launch.json

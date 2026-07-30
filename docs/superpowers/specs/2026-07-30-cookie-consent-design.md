@@ -48,7 +48,7 @@ Order is the core correctness property of this design.
 | 1 | Consent bootstrap | top of `<head>`, inline | blocking | ~700 B |
 | 2 | `preconnect` + `dns-prefetch` | `<head>` | — | — |
 | 3 | Metadata: charset, viewport, title, canonical, OG, JSON-LD | `<head>` | — | — |
-| 4 | GTM container | end of `<head>` | `beforeInteractive` | ~40 KB |
+| 4 | GTM container | top of `<body>` (see note) | `beforeInteractive` | ~40 KB |
 | 5 | GA4 tag | inside GTM | consent-gated | — |
 | 6 | Banner UI | React tree | hydration | — |
 
@@ -62,11 +62,26 @@ The `preconnect` and `dns-prefetch` hints to `www.googletagmanager.com` start
 DNS resolution and the TLS handshake early and in parallel, typically 100-300 ms
 that the container would otherwise spend on a cold connection.
 
-GTM loads in `<head>` rather than after hydration. The container snippet is
-`async`, so it does not block the parser; the cost is bandwidth contention
-during hydration, which is modest and bounded. Metadata still parses first, so
-crawlers reach the canonical, OG, and JSON-LD blocks before any third-party
-JavaScript. See "Placement research" below for the evidence behind this.
+**Correction, verified against production 2026-07-30.** The bootstrap does not
+land inside `<head>`. `next/script` with `beforeInteractive` emits it 1,283
+characters into `<body>` — the first thing after `</head>`. The `<link>` hints
+*do* reach `<head>`, because React hoists `link` elements; it does not hoist
+inline scripts.
+
+App Router provides no supported way to inline a script inside `<head>`;
+top-of-`<body>` is what `beforeInteractive` does by design. Every functional
+property survives: the bootstrap still runs before it injects GTM, still
+executes before hydration and before any app bundle, and the parser reaches it
+microseconds after `</head>`. What is lost is only the literal placement.
+
+The available workaround — moving the bootstrap to a file in `public/` loaded
+as `<script async src>`, which React *would* hoist into `<head>` — is rejected:
+`async` plus a network round-trip would set consent defaults *later* than they
+are set now, trading a real property for a cosmetic one.
+
+The container snippet is `async`, so it does not block the parser. Metadata
+still parses first, so crawlers reach the canonical, OG, and JSON-LD blocks
+before any third-party JavaScript. See "Placement research" below.
 
 The GTM `<noscript>` iframe is intentionally omitted. It reaches only
 JS-disabled visitors, who cannot be meaningfully measured anyway, and it has no
