@@ -321,7 +321,7 @@ export const LEGAL_PAGES: LegalPage[] = [
       'How OyeChats uses cookies and similar technologies across the website and the chat widget, what each category does, and how to control them.',
     title: 'Cookie Policy',
     description: 'How OyeChats uses cookies and similar technologies.',
-    lastUpdated: '2026-04-16',
+    lastUpdated: '2026-07-30',
     sections: [
       { id: 'introduction', heading: 'Introduction', body: [
         'This Cookie Policy explains how OyeChats uses cookies and similar technologies on our marketing site at oyechats.com, the customer dashboard at app.oyechats.com, and the embeddable chat widget our customers deploy on their own websites.',
@@ -330,10 +330,14 @@ export const LEGAL_PAGES: LegalPage[] = [
         'Cookies are small text files a website places on your device so it can remember you between visits. "Similar technologies" covers anything that does roughly the same job: localStorage and sessionStorage in the browser, the IndexedDB API, pixel tags in emails, and software development kits (SDKs).',
       ]},
       { id: 'cookies-we-use', heading: 'Cookies on our marketing site and dashboard', body: [
-        'We use a small number of strictly-necessary first-party cookies. We do not run advertising cookies or cross-site tracking pixels on our own properties.',
+        'We use a small number of strictly-necessary first-party cookies, plus one analytics category that runs only with your permission where consent is required. We do not run advertising cookies or cross-site advertising pixels on our own properties.',
         '- oyechats_session: Keeps you signed in to the customer dashboard between page loads and protects against session fixation. (Session, cleared on logout)',
         '- oyechats_csrf: Protects state-changing requests from cross-site request forgery attacks. (Session)',
         '- oyechats_consent: Remembers your cookie banner choice on the marketing site. (6 months)',
+        'Analytics cookies, set by Google Analytics via Google Tag Manager on oyechats.com only:',
+        '- _ga: Distinguishes one browser from another so we can count returning visitors. (2 years)',
+        '- _ga_E5ZZ461R8T: Holds the session state for our Google Analytics property. (2 years)',
+        'Visitors in the EEA, the UK, and Switzerland are asked to consent before either analytics cookie is set, and neither is set if you decline. Elsewhere they are set by default and you can turn them off at any time from "Cookie preferences" in the footer. We also treat a Global Privacy Control signal as a decline.',
       ]},
       { id: 'widget', heading: 'The embeddable chat widget', body: [
         'The OyeChats chat widget that customers embed on their own websites does not set cookies. To keep a conversation continuous within the same browser, the widget stores a single anonymous session identifier in localStorage under the key oyechats_session_id.',

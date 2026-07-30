@@ -4,6 +4,7 @@ import { FOOTER_COLUMNS, SOCIAL_LINKS } from '@/lib/site';
 import { CHANGELOG } from '@/lib/changelog';
 import { Logo } from './Logo';
 import { SystemStatus } from './SystemStatus';
+import CookiePreferencesButton from './CookiePreferencesButton';
 
 /** Icon per profile. The URLs themselves live in `site.ts` so the footer and the
  *  Organization `sameAs` schema can never disagree about which profiles exist. */
@@ -98,7 +99,10 @@ export default function Footer() {
         </div>
 
         <div className="mt-16 pt-6 border-t border-white/10 text-[12px] text-ink-invert-muted">
-          <div>© {new Date().getFullYear()} OyeChats</div>
+          <div className="flex flex-wrap items-center gap-x-4 gap-y-2">
+            <span>© {new Date().getFullYear()} OyeChats</span>
+            <CookiePreferencesButton />
+          </div>
         </div>
       </div>
 

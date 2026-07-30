@@ -503,3 +503,11 @@ img { max-width: 100%; display: block; }
 .prose code { font-family: var(--font-geist-mono); font-size: 0.86em; background: var(--canvas); border: 1px solid var(--line); border-radius: var(--r-1); padding: 1px 6px; color: var(--ink); }
 .prose strong { color: var(--ink); font-weight: 600; }
 .prose blockquote { border-left: 3px solid var(--volt); padding: 0 0 0 20px; margin: 1.5em 0; color: var(--ink-2); font-style: normal; }
+
+/* Consent card entry. The global prefers-reduced-motion block above already
+   collapses animation-duration to 0.01ms, so this needs no separate guard. */
+@keyframes consent-in {
+  from { opacity: 0; transform: translateY(12px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+.consent-card { animation: consent-in 240ms var(--ease-out) both; }
