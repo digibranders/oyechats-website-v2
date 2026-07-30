@@ -45,25 +45,68 @@ Order is the core correctness property of this design.
 
 | # | What | Where | Strategy | Size |
 |---|---|---|---|---|
-| 1 | Consent bootstrap | `<head>`, inline | blocking | ~700 B |
-| 2 | GTM container | `<body>` | `afterInteractive` | ~40 KB |
-| 3 | GA4 tag | inside GTM | consent-gated | — |
-| 4 | Banner UI | React tree | hydration | — |
+| 1 | Consent bootstrap | top of `<head>`, inline | blocking | ~700 B |
+| 2 | `preconnect` + `dns-prefetch` | `<head>` | — | — |
+| 3 | Metadata: charset, viewport, title, canonical, OG, JSON-LD | `<head>` | — | — |
+| 4 | GTM container | end of `<head>` | `beforeInteractive` | ~40 KB |
+| 5 | GA4 tag | inside GTM | consent-gated | — |
+| 6 | Banner UI | React tree | hydration | — |
 
 Step 1 is inline and synchronous, so it cannot be raced. It runs before GTM
 exists, which means no tag in the container can set a cookie ahead of a consent
-decision.
+decision. **Step 1 is what makes step 4 safe**: head-loading GTM without the
+bootstrap ahead of it is how sites set `_ga` on EEA visitors before the banner
+has rendered.
 
-GTM is deliberately **not** in `<head>`. It is ~40 KB of third-party JavaScript
-that cannot legally act until step 1 has spoken, so head-loading it would delay
-LCP for zero measurement benefit. This is consistent with existing performance
-work in the repo (`WidgetLoader`'s interaction-gated loading, `preload: false`
-on the Fraunces font).
+The `preconnect` and `dns-prefetch` hints to `www.googletagmanager.com` start
+DNS resolution and the TLS handshake early and in parallel, typically 100-300 ms
+that the container would otherwise spend on a cold connection.
+
+GTM loads in `<head>` rather than after hydration. The container snippet is
+`async`, so it does not block the parser; the cost is bandwidth contention
+during hydration, which is modest and bounded. Metadata still parses first, so
+crawlers reach the canonical, OG, and JSON-LD blocks before any third-party
+JavaScript. See "Placement research" below for the evidence behind this.
 
 The GTM `<noscript>` iframe is intentionally omitted. It reaches only
 JS-disabled visitors, who cannot be meaningfully measured anyway, and it has no
 mechanism to check consent state — it would place an ungated tracking iframe in
 front of precisely the EEA visitors this system exists to protect.
+
+## Placement research
+
+Investigated 2026-07-30 after the question was raised of whether the tag must be
+the first thing in `<head>`.
+
+**Google's official wording** is "paste it as high in the `<head>` tag as
+possible" — not "first". The qualifier is deliberate.
+
+**Consent ordering is mandatory**, and is the one hard constraint here: "The
+order of the code here is vital. If your consent code is called out of order,
+consent defaults won't work."
+
+**Next.js** defaults `GoogleTagManager` to loading after hydration, and
+separately recommends configuring GA4 inside GTM rather than as a second
+component — independent confirmation of the tag architecture chosen above.
+
+**Reference implementation.** `theseocentral.com`, cited as a well-built
+technical-SEO site, places its GTM snippet 1,955 characters into a 2,961
+character `<head>` — 66% of the way through, after charset, viewport,
+stylesheet, title, meta description, canonical, robots, six OG/Twitter tags, two
+JSON-LD blocks, and the RSS link. Its actual pattern is metadata first, tags
+last in head. It also runs GTM and a direct `gtag.js` config simultaneously, and
+contains no consent or cookie handling at all, so it is not a reference for the
+consent portion of this work.
+
+**The realtime claim is unfounded.** GA4's Realtime report covers the last 30
+minutes; tag position cannot move a visitor in or out of that window. The
+legitimate adjacent concern is capturing visitors who bounce before the script
+executes, which head placement does help.
+
+Sources:
+- <https://support.google.com/tagmanager/answer/14847097>
+- <https://developers.google.com/tag-platform/security/guides/consent>
+- <https://nextjs.org/docs/app/guides/third-party-libraries>
 
 ## Consent resolution
 
@@ -132,8 +175,33 @@ did not legally require one is harmless; the reverse is not.
 - **`src/components/site/CookieConsent.tsx`** — the corner card. Preferences
   expand the card in place rather than opening a modal, avoiding a layer stacked
   over an already-floating surface.
-- **`src/components/site/Analytics.tsx`** — renders `GoogleTagManager` from
-  `@next/third-parties/google`, retaining the canonical-host gate.
+- **`src/components/site/Analytics.tsx`** — renders a single `next/script`
+  with `strategy="beforeInteractive"` plus the `preconnect` hints.
+
+### Why not `@next/third-parties`
+
+The package was installed during exploration and is **removed** by this work.
+Its `GoogleTagManager` component wraps `next/script` with no `strategy` prop, so
+it is permanently `afterInteractive` and cannot produce head placement. Its only
+other contribution, `sendGTMEvent`, is a one-line `dataLayer.push`. Keeping a
+dependency that cannot do the thing it was added for would be dead weight in a
+repo with an otherwise minimal dependency list.
+
+### The bootstrap is a single script
+
+Everything that must be ordered lives in **one** inline script, because ordering
+within a script is guaranteed by definition, whereas the relative order of two
+separate `beforeInteractive` tags is not something to stake correctness on:
+
+1. initialise `dataLayer` and define `gtag()`
+2. resolve consent and emit `gtag('consent', 'default', …)`
+3. check `location.hostname`, and only then inject the `gtm.js` loader
+
+Step 3 also resolves what would otherwise be a contradiction: host gating needs
+`location.hostname`, which is client-side, while `beforeInteractive` renders on
+the server. Self-gating inside the script satisfies both — and the stock GTM
+snippet already works by injecting its own `<script>` tag, so this is the
+snippet's native shape rather than a workaround.
 - **`src/components/site/Footer.tsx`** — adds "Cookie preferences" to the Legal
   column.
 - **`src/lib/legal.ts`** — Cookie Policy corrections (see below).
