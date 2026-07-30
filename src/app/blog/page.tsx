@@ -2,13 +2,39 @@ import type { Metadata } from 'next';
 import { Container, DottedGrid, GradientText, HeroGlow, Section } from '@/components/ds';
 import { BlogList, type BlogCardData } from '@/components/site/BlogList';
 import { BLOG_POSTS } from '@/lib/blog';
-import { pageMeta } from '@/lib/seo';
+import { SITE_URL, buildGraph, jsonLd, pageMeta } from '@/lib/seo';
 
 export const metadata: Metadata = pageMeta({
-  title: 'Blog',
+  title: 'Blog — AI Chat, Lead Qualification & RAG',
   description:
     'Practical guides on AI customer support, conversational lead qualification, and shipping chatbots that actually convert — from the OyeChats team.',
   path: '/blog',
+});
+
+// CollectionPage previously enumerated nothing — eight posts rendered on the
+// page and not one was declared. For an AI crawler that is the difference
+// between "OyeChats has a blog" and knowing what it has published.
+const graph = buildGraph({
+  path: '/blog',
+  name: 'OyeChats Blog',
+  description:
+    'Practical guides on AI customer support, conversational lead qualification, and shipping chatbots that actually convert.',
+  type: 'CollectionPage',
+  crumbs: [{ name: 'Home', path: '/' }, { name: 'Blog' }],
+  nodes: [
+    {
+      '@type': 'ItemList',
+      '@id': `${SITE_URL}/blog#list`,
+      itemListOrder: 'https://schema.org/ItemListOrderDescending',
+      numberOfItems: BLOG_POSTS.length,
+      itemListElement: BLOG_POSTS.map((p, i) => ({
+        '@type': 'ListItem',
+        position: i + 1,
+        url: `${SITE_URL}/blog/${p.slug}`,
+        name: p.title,
+      })),
+    },
+  ],
 });
 
 export default function BlogPage() {
@@ -19,6 +45,7 @@ export default function BlogPage() {
     description: p.description,
     category: p.category,
     date: p.date,
+    dateISO: p.dateISO,
     readMinutes: p.readMinutes,
     accent: p.accent,
     author: { name: p.author.name, initials: p.author.initials },
@@ -26,6 +53,7 @@ export default function BlogPage() {
 
   return (
     <>
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: jsonLd(graph) }} />
       <section className="relative overflow-hidden bg-paper">
         <HeroGlow size="sm" />
         <DottedGrid />

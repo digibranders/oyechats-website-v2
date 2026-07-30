@@ -95,7 +95,7 @@ export const CHANGELOG: ChangelogEntry[] = [
     date: 'March 30, 2026',
     dateISO: '2026-03-30',
     title: 'BANT scoring, built into every conversation',
-    description: 'OyeChats now scores every conversation on Budget, Authority, Need, and Timing, automatically. Combined with visitor context (pages viewed, return visits, UTM, device), sales sees a qualified lead the moment intent shows up, without asking a single form question.',
+    description: 'OyeChats now scores every conversation on Budget, Authority, Need, and Timeline, automatically. Combined with visitor context (pages viewed, return visits, UTM, device), sales sees a qualified lead the moment intent shows up, without asking a single form question.',
     tags: ['New feature', 'Analytics'],
     author: { name: 'OyeChats Team', initials: 'OC' },
     accent: 'amber',

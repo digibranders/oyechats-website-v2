@@ -1,6 +1,6 @@
 'use client';
 
-import { useState, useRef, useEffect, FormEvent } from 'react';
+import { useState, useRef, useEffect, type FormEvent, type KeyboardEvent } from 'react';
 import { CheckCircle2, ChevronDown } from 'lucide-react';
 import {
   Button,
@@ -16,7 +16,7 @@ import {
 } from '@/components/ds';
 
 const INTENT_OPTIONS = [
-  { value: 'enterprise', label: 'Enterprise inquiry' },
+  { value: 'sales', label: 'Sales inquiry' },
   { value: 'support', label: 'Technical support' },
   { value: 'partnership', label: 'Partnership / integration' },
   { value: 'careers', label: 'Careers inquiry' },
@@ -24,11 +24,12 @@ const INTENT_OPTIONS = [
 ];
 
 export default function ContactClient() {
-  const [form, setForm] = useState({ name: '', email: '', company: '', message: '', intent: 'enterprise' });
+  const [form, setForm] = useState({ name: '', email: '', company: '', message: '', intent: 'sales' });
   const [loading, setLoading] = useState(false);
   const [submitted, setSubmitted] = useState(false);
   const [error, setError] = useState<string | null>(null);
   const [intentOpen, setIntentOpen] = useState(false);
+  const [activeIntent, setActiveIntent] = useState(0);
   const intentRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
@@ -65,6 +66,61 @@ export default function ContactClient() {
 
   const currentIntent = INTENT_OPTIONS.find((o) => o.value === form.intent);
 
+  const selectIntent = (index: number) => {
+    const option = INTENT_OPTIONS[index];
+    if (!option) return;
+    setForm((prev) => ({ ...prev, intent: option.value }));
+    setActiveIntent(index);
+    setIntentOpen(false);
+  };
+
+  /** Full listbox keyboard contract: the markup claimed one and implemented none. */
+  const onIntentKeyDown = (e: KeyboardEvent<HTMLButtonElement>) => {
+    const last = INTENT_OPTIONS.length - 1;
+    switch (e.key) {
+      case 'ArrowDown':
+      case 'ArrowUp': {
+        e.preventDefault();
+        if (!intentOpen) {
+          setIntentOpen(true);
+          return;
+        }
+        const delta = e.key === 'ArrowDown' ? 1 : -1;
+        setActiveIntent((i) => Math.min(last, Math.max(0, i + delta)));
+        return;
+      }
+      case 'Home':
+        if (intentOpen) {
+          e.preventDefault();
+          setActiveIntent(0);
+        }
+        return;
+      case 'End':
+        if (intentOpen) {
+          e.preventDefault();
+          setActiveIntent(last);
+        }
+        return;
+      case 'Enter':
+      case ' ':
+        e.preventDefault();
+        if (intentOpen) selectIntent(activeIntent);
+        else setIntentOpen(true);
+        return;
+      case 'Escape':
+        if (intentOpen) {
+          e.preventDefault();
+          setIntentOpen(false);
+        }
+        return;
+      case 'Tab':
+        setIntentOpen(false);
+        return;
+      default:
+        return;
+    }
+  };
+
   return (
     <>
       <section className="relative bg-paper overflow-hidden">
@@ -75,7 +131,7 @@ export default function ContactClient() {
             Let&apos;s <GradientText>talk</GradientText>.
           </h1>
           <p className="type-body-lg text-ink-2 mt-6 max-w-2xl mx-auto">
-            Have an enterprise question, need support, or just want to say hi? We usually reply within one business day.
+            Have a sales question, need support, or just want to say hi? We usually reply within one business day.
           </p>
         </Container>
       </section>
@@ -115,6 +171,7 @@ export default function ContactClient() {
                       <Label htmlFor="name">Name *</Label>
                       <Input
                         id="name"
+                        autoComplete="name"
                         required
                         maxLength={200}
                         value={form.name}
@@ -126,6 +183,7 @@ export default function ContactClient() {
                       <Label htmlFor="email">Work email *</Label>
                       <Input
                         id="email"
+                        autoComplete="email"
                         type="email"
                         required
                         maxLength={320}
@@ -140,6 +198,7 @@ export default function ContactClient() {
                     <Label htmlFor="company">Company</Label>
                     <Input
                       id="company"
+                      autoComplete="organization"
                       maxLength={200}
                       value={form.company}
                       onChange={(e) => setForm({ ...form, company: e.target.value })}
@@ -147,36 +206,51 @@ export default function ContactClient() {
                     />
                   </div>
 
+                  {/* Keyboard support. Previously the options were <li role="option">
+                      with onClick only — no keydown handling anywhere — so a
+                      keyboard user could open the menu and never choose a value
+                      (WCAG 2.1.1 Level A), and it silently blocked lead capture.
+                      Kept as a custom listbox rather than a native <select> so the
+                      control looks exactly as it does today; the fix is the
+                      missing ARIA wiring and key handlers, not a redesign. */}
                   <div ref={intentRef} className="relative">
-                    <Label>I&apos;m reaching out about</Label>
+                    <Label id="intent-label">I&apos;m reaching out about</Label>
                     <button
                       type="button"
+                      id="intent-trigger"
+                      role="combobox"
                       onClick={() => setIntentOpen((v) => !v)}
+                      onKeyDown={onIntentKeyDown}
                       className="w-full bg-canvas border border-line rounded-[var(--r-2)] px-3.5 py-3 min-h-11 text-sm text-ink text-left flex items-center justify-between focus:outline-none focus:border-volt focus:shadow-[var(--e-focus)] transition-all"
                       aria-haspopup="listbox"
                       aria-expanded={intentOpen}
+                      aria-controls="intent-listbox"
+                      aria-labelledby="intent-label intent-trigger"
+                      aria-activedescendant={intentOpen ? `intent-opt-${activeIntent}` : undefined}
                     >
                       <span>{currentIntent?.label}</span>
                       <ChevronDown
                         size={16}
+                        aria-hidden="true"
                         className="text-muted shrink-0 transition-transform"
                         style={{ transform: intentOpen ? 'rotate(180deg)' : 'rotate(0deg)' }}
                       />
                     </button>
                     {intentOpen && (
                       <ul
+                        id="intent-listbox"
                         role="listbox"
+                        aria-labelledby="intent-label"
                         className="absolute z-50 mt-1.5 w-full bg-canvas border border-line rounded-[var(--r-2)] overflow-hidden shadow-[var(--e-3)]"
                       >
-                        {INTENT_OPTIONS.map((o) => (
+                        {INTENT_OPTIONS.map((o, oi) => (
                           <li
                             key={o.value}
+                            id={`intent-opt-${oi}`}
                             role="option"
                             aria-selected={form.intent === o.value}
-                            onClick={() => {
-                              setForm({ ...form, intent: o.value });
-                              setIntentOpen(false);
-                            }}
+                            onMouseEnter={() => setActiveIntent(oi)}
+                            onClick={() => selectIntent(oi)}
                             className={`px-4 py-3 min-h-11 text-sm cursor-pointer flex items-center gap-2 transition-colors ${
                               form.intent === o.value
                                 ? 'text-volt-ink bg-volt-tint'
@@ -206,13 +280,26 @@ export default function ContactClient() {
                     />
                   </div>
 
+                  {/* role="alert" so the failure is announced; previously the
+                      message appeared silently for screen-reader users. */}
                   {error && (
-                    <Callout variant="danger" title="Couldn't send">
-                      {error}
-                    </Callout>
+                    <div role="alert">
+                      <Callout variant="danger" title="Couldn't send">
+                        {error}
+                      </Callout>
+                    </div>
                   )}
 
-                  <Button variant="volt" size="lg" className="w-full">
+                  {/* The button was never disabled, so a double-click posted
+                      twice to /api/contact and sent two emails. */}
+                  <Button
+                    type="submit"
+                    variant="volt"
+                    size="lg"
+                    className="w-full"
+                    disabled={loading}
+                    aria-busy={loading}
+                  >
                     {loading ? 'Sending…' : 'Send message'}
                   </Button>
                 </form>

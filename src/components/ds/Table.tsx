@@ -22,9 +22,22 @@ export function Table({ children, className }: { children: ReactNode; className?
   );
 }
 
-export function Th({ children, align = 'left' }: { children: ReactNode; align?: 'left' | 'right' }) {
+/** `scope` defaults to "col". Pass "row" for the leading cell of a data row —
+ *  without a row header a screen reader reading the pricing matrix cell by cell
+ *  has no idea which feature a checkmark belongs to. It also materially improves
+ *  table extraction by AI answer engines. Purely semantic: no visual effect. */
+export function Th({
+  children,
+  align = 'left',
+  scope = 'col',
+}: {
+  children: ReactNode;
+  align?: 'left' | 'right';
+  scope?: 'col' | 'row';
+}) {
   return (
     <th
+      scope={scope}
       className={cn(
         'bg-paper type-mono-sm text-muted px-4 py-3 border-b border-line font-medium',
         align === 'right' && 'text-right'

@@ -1,5 +1,5 @@
 import type { Metadata } from 'next';
-import { pageMeta } from '@/lib/seo';
+import { buildGraph, jsonLd, pageMeta } from '@/lib/seo';
 import Link from 'next/link';
 import { ScrollSpyToc } from '@/components/site/ScrollSpyToc';
 import {
@@ -31,18 +31,19 @@ import { APP_LINKS } from '@/lib/site';
 import { FEATURES } from '@/lib/features';
 import { INTEGRATIONS } from '@/lib/integrations';
 
-const SOFTWARE_APPLICATION_SCHEMA = {
-  '@context': 'https://schema.org',
-  '@type': 'SoftwareApplication',
-  name: 'OyeChats',
-  url: 'https://www.oyechats.com/features',
-  applicationCategory: 'BusinessApplication',
-  operatingSystem: 'Web',
-  featureList: FEATURES.map((f) => f.title),
-} as const;
+// Was a second full SoftwareApplication with url=/features and no offers,
+// rivalling the homepage's copy. The canonical node now lives once in the site
+// graph; this page just references it.
+const graph = buildGraph({
+  path: '/features',
+  name: 'OyeChats Features',
+  description:
+    'Every OyeChats feature: hybrid RAG, BANT scoring, live handoff, analytics, webhooks, integrations. One AI chatbot with full sales intelligence.',
+  crumbs: [{ name: 'Home', path: '/' }, { name: 'Features' }],
+});
 
 export const metadata: Metadata = pageMeta({
-  title: 'Features',
+  title: 'Features — RAG Answers & BANT Lead Scoring',
   description:
     'Every OyeChats feature: hybrid RAG, BANT scoring, live handoff, analytics, webhooks, integrations. One AI chatbot with full sales intelligence.',
   path: '/features',
@@ -91,7 +92,7 @@ const ANALYTICS_METRICS = [
 const WEBHOOK_EVENTS = [
   { event: 'tier_transition', desc: 'Visitor crosses a qualification tier (warm to hot, etc.).' },
   { event: 'lead_captured', desc: 'Visitor submitted name and email via the lead form.' },
-  { event: 'handoff_requested', desc: 'Visitor asked to speak with a human operator.' },
+  { event: 'handoff_requested', desc: 'Visitor asked to speak with an operator.' },
   { event: 'meeting_booked', desc: 'Visitor booked a meeting via Calendly or Zcal.' },
   { event: 'chat_closed', desc: 'Chat session ended with optional rating.' },
 ];
@@ -101,7 +102,7 @@ export default function FeaturesPage() {
     <>
       <script
         type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(SOFTWARE_APPLICATION_SCHEMA) }}
+        dangerouslySetInnerHTML={{ __html: jsonLd(graph) }}
       />
       <section className="relative bg-paper overflow-hidden">
         <HeroGlow />
@@ -284,7 +285,7 @@ export default function FeaturesPage() {
                   <div>
                     <div className="type-body-sm text-ink font-semibold">Priya M</div>
                     <div className="type-mono-sm text-signal flex items-center gap-1.5">
-                      <span className="w-1.5 h-1.5 rounded-full bg-signal signal-dot-pulse inline-block" />
+                      <span className="w-1.5 h-1.5 rounded-full bg-signal-graphic signal-dot-pulse inline-block" />
                       Online · Sales
                     </div>
                   </div>

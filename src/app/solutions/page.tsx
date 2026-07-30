@@ -1,5 +1,5 @@
 import type { Metadata } from 'next';
-import { pageMeta } from '@/lib/seo';
+import { ID, SITE_URL, buildGraph, jsonLd, pageMeta } from '@/lib/seo';
 import Link from 'next/link';
 import { ArrowRight } from 'lucide-react';
 import {
@@ -14,10 +14,45 @@ import {
 import { SOLUTIONS, type Solution } from '@/lib/features';
 
 export const metadata: Metadata = pageMeta({
-  title: 'Solutions',
+  title: 'Solutions for Support, Sales & Live Chat',
   description:
     'Solutions for the teams and workflows OyeChats was built for. Customer support, sales lead gen, docs assistants, and live chat handoff.',
   path: '/solutions',
+});
+
+// The Service node keeps its OfferCatalog but now names the canonical
+// Organization as provider by @id (it was the fourth unlinked copy) and gains
+// areaServed/serviceType, which Google recommends for Service.
+const graph = buildGraph({
+  path: '/solutions',
+  name: 'OyeChats AI Solutions',
+  description:
+    'RAG-grounded AI chatbot solutions for customer support, sales lead qualification, and live agent handoff.',
+  crumbs: [{ name: 'Home', path: '/' }, { name: 'Solutions' }],
+  nodes: [
+    {
+      '@type': 'Service',
+      '@id': `${SITE_URL}/solutions#service`,
+      name: 'OyeChats AI Solutions',
+      description:
+        'RAG-grounded AI chatbot solutions for customer support, sales lead qualification, and live agent handoff.',
+      serviceType: 'Conversational AI for support and sales',
+      provider: { '@id': ID.organization },
+      areaServed: 'Worldwide',
+      hasOfferCatalog: {
+        '@type': 'OfferCatalog',
+        name: 'OyeChats Core Workflows',
+        itemListElement: SOLUTIONS.map((sol) => ({
+          '@type': 'Offer',
+          itemOffered: {
+            '@type': 'Service',
+            name: sol.title,
+            description: sol.intro,
+          },
+        })),
+      },
+    },
+  ],
 });
 
 const ACCENT: Record<
@@ -38,7 +73,7 @@ const ACCENT: Record<
   },
   emerald: {
     pill: 'bg-signal-tint border-[#A6E4C1] text-signal',
-    dot: 'bg-signal',
+    dot: 'bg-signal-graphic',
     text: 'text-signal',
     ring: 'ring-signal/30',
   },
@@ -59,6 +94,10 @@ const ACCENT: Record<
 export default function SolutionsPage() {
   return (
     <>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: jsonLd(graph) }}
+      />
       <section className="relative bg-paper overflow-hidden">
         <HeroGlow size="sm" />
         <DottedGrid />

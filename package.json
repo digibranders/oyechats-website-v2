@@ -8,7 +8,9 @@
     "build": "next build",
     "start": "next start",
     "lint": "eslint .",
-    "typecheck": "tsc --noEmit"
+    "typecheck": "tsc --noEmit",
+    "verify:html": "node scripts/verify-html.mjs",
+    "verify": "npm run lint && npm run typecheck && npm run build && npm run verify:html"
   },
   "dependencies": {
     "clsx": "^2.1.1",

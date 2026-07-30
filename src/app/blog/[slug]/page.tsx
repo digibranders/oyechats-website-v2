@@ -13,6 +13,7 @@ import {
   getToc,
 } from '@/lib/blog';
 import { renderRichText } from '@/lib/richtext';
+import { ID, buildGraph, jsonLd } from '@/lib/seo';
 import { APP_LINKS } from '@/lib/site';
 
 type Params = { slug: string };
@@ -68,72 +69,71 @@ export default async function BlogPostPage({ params }: { params: Promise<Params>
   const toc = getToc(post.content);
   const related = getRelatedPosts(post.slug, 3);
 
-  const blogPostingSchema = {
-    '@context': 'https://schema.org',
-    '@type': 'BlogPosting',
-    headline: post.title,
+  const wordCount = post.content
+    .flatMap((b) =>
+      b.type === 'ul' || b.type === 'ol' ? (b.items ?? []) : 'text' in b ? [b.text] : [],
+    )
+    .join(' ')
+    .split(/\s+/)
+    .filter(Boolean).length;
+
+  // dateModified previously mirrored datePublished on every post, which gives
+  // crawlers and answer engines no freshness signal ever. `updatedISO` is
+  // optional and falls back, so posts that genuinely have not changed are
+  // unaffected while edited ones can now say so.
+  const graph = buildGraph({
+    path: `/blog/${post.slug}`,
+    name: post.title,
     description: post.description,
-    datePublished: post.dateISO,
-    dateModified: post.dateISO,
-    image: imageUrl,
-    keywords: post.tags.join(', '),
-    articleSection: post.category,
-    wordCount: post.content
-      .flatMap((b) =>
-        b.type === 'ul' || b.type === 'ol' ? (b.items ?? []) : 'text' in b ? [b.text] : [],
-      )
-      .join(' ')
-      .split(/\s+/)
-      .filter(Boolean).length,
-    author: { '@type': 'Organization', name: 'OyeChats' },
-    publisher: {
-      '@type': 'Organization',
-      name: 'OyeChats',
-      logo: { '@type': 'ImageObject', url: `${SITE_URL}/logo.png` },
-    },
-    mainEntityOfPage: canonical,
-  } as const;
-
-  const breadcrumbSchema = {
-    '@context': 'https://schema.org',
-    '@type': 'BreadcrumbList',
-    itemListElement: [
-      { '@type': 'ListItem', position: 1, name: 'Home', item: SITE_URL },
-      { '@type': 'ListItem', position: 2, name: 'Blog', item: `${SITE_URL}/blog` },
-      { '@type': 'ListItem', position: 3, name: post.title, item: canonical },
+    dateModified: post.updatedISO ?? post.dateISO,
+    crumbs: [
+      { name: 'Home', path: '/' },
+      { name: 'Blog', path: '/blog' },
+      { name: post.title },
     ],
-  } as const;
-
-  const faqSchema =
-    post.faq && post.faq.length
-      ? {
-          '@context': 'https://schema.org',
-          '@type': 'FAQPage',
-          mainEntity: post.faq.map((f) => ({
-            '@type': 'Question',
-            name: f.q,
-            acceptedAnswer: { '@type': 'Answer', text: f.a },
-          })),
-        }
-      : null;
+    nodes: [
+      {
+        '@type': 'BlogPosting',
+        '@id': ID.article(`/blog/${post.slug}`),
+        headline: post.title,
+        description: post.description,
+        datePublished: post.dateISO,
+        dateModified: post.updatedISO ?? post.dateISO,
+        image: {
+          '@type': 'ImageObject',
+          url: imageUrl,
+          width: 1200,
+          height: 630,
+        },
+        keywords: post.tags.join(', '),
+        articleSection: post.category,
+        wordCount,
+        inLanguage: 'en',
+        isPartOf: { '@id': ID.website },
+        author: { '@id': ID.organization },
+        publisher: { '@id': ID.organization },
+        mainEntityOfPage: { '@id': ID.webPage(`/blog/${post.slug}`) },
+      },
+      ...(post.faq && post.faq.length
+        ? [
+            {
+              '@type': 'FAQPage',
+              '@id': `${canonical}#faq`,
+              mainEntity: post.faq.map((f) => ({
+                '@type': 'Question',
+                name: f.q,
+                acceptedAnswer: { '@type': 'Answer', text: f.a },
+              })),
+            },
+          ]
+        : []),
+    ],
+  });
 
   return (
     <article className="bg-canvas">
       <ReadingProgress />
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(blogPostingSchema) }}
-      />
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbSchema) }}
-      />
-      {faqSchema && (
-        <script
-          type="application/ld+json"
-          dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }}
-        />
-      )}
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: jsonLd(graph) }} />
 
       {/* ═══════════ HEADER ═══════════ */}
       <header className="border-b border-line bg-paper pt-14 pb-10 md:pt-16 md:pb-12">
@@ -157,7 +157,7 @@ export default async function BlogPostPage({ params }: { params: Promise<Params>
             <div>
               <div className="type-body-sm font-medium text-ink">{post.author.name}</div>
               <div className="type-mono-sm text-muted">
-                {post.author.role} · {post.date}
+                {post.author.role} · <time dateTime={post.dateISO}>{post.date}</time>
               </div>
             </div>
           </div>
@@ -301,7 +301,7 @@ export default async function BlogPostPage({ params }: { params: Promise<Params>
                   </h3>
                   <p className="type-body-sm mt-2 line-clamp-2 text-ink-2">{p.description}</p>
                   <div className="mt-auto pt-4 type-mono-sm text-muted">
-                    {p.date} · {p.readMinutes} min
+                    <time dateTime={p.dateISO}>{p.date}</time> · {p.readMinutes} min
                   </div>
                 </Link>
               ))}

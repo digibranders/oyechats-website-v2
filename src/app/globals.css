@@ -31,8 +31,14 @@
   --volt-line: #DDD6FE;
   --volt-ink: #5B21B6;
 
-  /* ── Functional ── */
-  --signal: #0F9D58;
+  /* ── Functional ──
+     `--signal` is the TEXT green: #0F9D58 measured 3.51:1 on canvas and 3.18:1
+     on its own tint, failing AA 4.5:1 everywhere it was used at 10-12px (status
+     chips, "save 20%", GET badges, trend deltas). #0B7A45 clears 4.5:1 on both.
+     `--signal-graphic` keeps the original brighter green for dots, rings and
+     borders, where the 3:1 non-text threshold applies instead. */
+  --signal: #0B7A45;
+  --signal-graphic: #0F9D58;
   --signal-tint: #EAF7EF;
   --alert: #B45309;
   --alert-tint: #FDF3E7;
@@ -78,8 +84,13 @@
   --color-volt-tint: var(--volt-tint);
   --color-volt-line: var(--volt-line);
   --color-volt-ink: var(--volt-ink);
+  /* Foreground for text sitting ON --volt. `text-volt-fg` was already in use on
+     the pricing currency pills but had never been declared, so the class matched
+     no rule and the label fell back to --ink: 3.47:1 on violet. */
+  --color-volt-fg: #FFFFFF;
 
   --color-signal: var(--signal);
+  --color-signal-graphic: var(--signal-graphic);
   --color-signal-tint: var(--signal-tint);
   --color-alert: var(--alert);
   --color-alert-tint: var(--alert-tint);
@@ -245,10 +256,59 @@ body {
   }
 }
 
+/* Focus indicator.
+   The previous rule used `outline: none` + a translucent box-shadow, which
+   (a) measured 2.23:1 against paper, below the 3:1 required by WCAG 1.4.11,
+   (b) vanished entirely under forced-colors / Windows High Contrast, which
+       discards author box-shadows, and
+   (c) was clipped by every `overflow` ancestor — the pill scrollers and tables.
+   A real outline is drawn outside the box and survives all three. --volt-2 is
+   7.10:1 on canvas. */
 :focus-visible {
+  outline: 3px solid var(--volt-2);
+  outline-offset: 2px;
+}
+
+@media (forced-colors: active) {
+  :focus-visible {
+    outline: 3px solid Highlight;
+  }
+}
+
+/* Tailwind v4's CSS-first config ships no sr-only utility. */
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip-path: inset(50%);
+  white-space: nowrap;
+  border: 0;
+}
+
+.skip-link {
+  position: absolute;
+  left: -9999px;
+  top: 0;
+  z-index: 100;
+  padding: 12px 20px;
+  background: var(--ink);
+  color: var(--paper);
+  font-size: 14px;
+  font-weight: 500;
+  text-decoration: none;
+  border-radius: 0 0 var(--r-2) 0;
+}
+.skip-link:focus {
+  left: 0;
+}
+
+/* The skip target is programmatically focused; it must not paint a ring. */
+main:focus,
+main:focus-visible {
   outline: none;
-  box-shadow: var(--e-focus);
-  border-radius: var(--r-2);
 }
 
 img { max-width: 100%; display: block; }
@@ -352,12 +412,27 @@ img { max-width: 100%; display: block; }
   pointer-events: none;
 }
 
-/* Marquee ticker used in the announcement bar + logo cloud */
+/* Marquee ticker used by the announcement bar (currently disabled in layout.tsx).
+   No `will-change: transform`: on a permanently-running animation it pins a
+   compositor layer that is never released. The transform animation promotes the
+   layer for its own duration anyway. */
 .marquee-track {
   display: inline-flex;
   gap: 48px;
   animation: marquee 40s linear infinite;
-  will-change: transform;
+}
+
+/* 2.2.2 Pause, Stop, Hide: the marquee auto-starts and never ends, so give it a
+   hover/focus pause and drop it to a static list under reduced motion. Both are
+   required before re-enabling <AnnouncementBar />. */
+.marquee-track:hover,
+.marquee-track:focus-within {
+  animation-play-state: paused;
+}
+@media (prefers-reduced-motion: reduce) {
+  .marquee-track {
+    animation: none;
+  }
 }
 .marquee-mask {
   -webkit-mask-image: linear-gradient(90deg, transparent 0%, black 8%, black 92%, transparent 100%);
@@ -366,31 +441,6 @@ img { max-width: 100%; display: block; }
 
 /* Scroll fade-up is handled by the <Reveal> / FadeUp component (motion/react,
    whileInView), not CSS — SSR-safe and bfcache-safe with no flash-of-hidden. */
-
-/* Border beam, subtle animated outline for the featured pricing card */
-.border-beam {
-  position: relative;
-  overflow: hidden;
-}
-.border-beam::before {
-  content: '';
-  position: absolute; inset: 0;
-  border-radius: inherit;
-  padding: 1.5px;
-  background: linear-gradient(120deg,
-    var(--volt) 0%,
-    rgba(124,58,237,0) 30%,
-    rgba(124,58,237,0) 70%,
-    var(--volt) 100%);
-  background-size: 200% 100%;
-  animation: shimmer-line 4s ease-in-out infinite;
-  -webkit-mask:
-    linear-gradient(#000 0 0) content-box,
-    linear-gradient(#000 0 0);
-  -webkit-mask-composite: xor;
-          mask-composite: exclude;
-  pointer-events: none;
-}
 
 /* ═══════════════════════ TYPOGRAPHY ═══════════════════════ */
 
@@ -453,3 +503,11 @@ img { max-width: 100%; display: block; }
 .prose code { font-family: var(--font-geist-mono); font-size: 0.86em; background: var(--canvas); border: 1px solid var(--line); border-radius: var(--r-1); padding: 1px 6px; color: var(--ink); }
 .prose strong { color: var(--ink); font-weight: 600; }
 .prose blockquote { border-left: 3px solid var(--volt); padding: 0 0 0 20px; margin: 1.5em 0; color: var(--ink-2); font-style: normal; }
+
+/* Consent card entry. The global prefers-reduced-motion block above already
+   collapses animation-duration to 0.01ms, so this needs no separate guard. */
+@keyframes consent-in {
+  from { opacity: 0; transform: translateY(12px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+.consent-card { animation: consent-in 240ms var(--ease-out) both; }

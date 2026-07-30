@@ -1,6 +1,5 @@
 import type { Metadata } from 'next';
 import Link from 'next/link';
-import { headers } from 'next/headers';
 import { ArrowRight } from 'lucide-react';
 import { FinalCTA } from '@/components/site/FinalCTA';
 import { HeroDemo } from '@/components/site/HeroDemo';
@@ -22,9 +21,10 @@ import {
   DataFlowLine,
 } from '@/components/ds';
 import { FEATURES } from '@/lib/features';
-import { PRICING_TIERS, currencyForCountry, CURRENCY_SYMBOL } from '@/lib/pricing';
+import { PRICING_TIERS, CURRENCY_SYMBOL, type Currency } from '@/lib/pricing';
 import { INTEGRATIONS } from '@/lib/integrations';
 import { APP_LINKS } from '@/lib/site';
+import { buildGraph, jsonLd } from '@/lib/seo';
 
 // Homepage sets its own complete openGraph (with url). A page-level openGraph
 // replaces the layout's entirely, so every field the homepage needs is listed here.
@@ -39,40 +39,28 @@ export const metadata: Metadata = {
   },
 };
 
-const softwareSchema: Record<string, unknown> = {
-  '@context': 'https://schema.org',
-  '@type': 'SoftwareApplication',
-  name: 'OyeChats',
-  applicationCategory: 'BusinessApplication',
-  operatingSystem: 'Web',
+// The SoftwareApplication itself lives once in the site graph (src/lib/seo.ts)
+// with a stable @id and the full offers list. This page previously declared a
+// SECOND full copy with a different url, and /features declared a third, so
+// search engines saw multiple rival products all named OyeChats. buildGraph's
+// default `about` points this WebPage at the canonical one.
+const graph = buildGraph({
+  path: '/',
+  name: 'OyeChats. You only talk to buyers.',
   description:
     'AI chatbot that qualifies every visitor with BANT scoring before your sales reps see them. RAG-grounded answers, live handoff, webhooks, and analytics.',
-  url: 'https://www.oyechats.com',
-  offers: PRICING_TIERS.filter(
-    (tier) => tier.id !== 'enterprise' && tier.monthly !== null,
-  ).map((tier) => ({
-    '@type': 'Offer',
-    name: tier.name,
-    price: String(tier.monthly?.USD ?? 0),
-    priceCurrency: 'USD',
-  })),
-};
+  crumbs: [{ name: 'Home' }],
+});
 
-// The pricing preview is geo-gated (INR for India, USD elsewhere), so the
-// homepage is resolved per-request and must not be statically cached.
-export const dynamic = 'force-dynamic';
-
-export default async function Home() {
-  // Strict geo-gate (same rule as /pricing): India → INR, everyone else → USD.
-  const requestHeaders = await headers();
-  const currency = currencyForCountry(requestHeaders.get('x-vercel-ip-country'));
+export default function Home() {
+  const currency: Currency = 'USD';
   const symbol = CURRENCY_SYMBOL[currency];
 
   return (
     <>
       <script
         type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(softwareSchema) }}
+        dangerouslySetInnerHTML={{ __html: jsonLd(graph) }}
       />
 
       {/* ═══════════════════════ HERO ═══════════════════════ */}
@@ -200,7 +188,7 @@ export default async function Home() {
             <StoryStep
               n="03"
               title="Hand off"
-              body="When a lead is ready, OyeChats passes the chat to a teammate with the full transcript. Sales picks up with context, and the visitor never repeats themselves."
+              body="When a lead is ready, OyeChats passes the chat to an operator with the full transcript. Sales picks up with context, and the visitor never repeats themselves."
               demo={
                 <ChatStack className="mt-2">
                   <ChatBubble role="operator">
@@ -249,7 +237,7 @@ export default async function Home() {
         sub="Start free. Scale credits as you grow. Cancel anytime."
       >
         <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-4">
-          {PRICING_TIERS.filter((t) => t.id !== 'enterprise').map((tier, idx) => (
+          {PRICING_TIERS.map((tier, idx) => (
             <Reveal key={tier.id} delay={idx * 100}>
               <div
                 className={`group relative h-full flex flex-col rounded-[var(--r-4)] p-7 bg-canvas transition-[transform,box-shadow,border-color] duration-300 ${

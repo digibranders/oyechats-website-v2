@@ -17,6 +17,7 @@ export { PullQuote } from './PullQuote';
 export { LogoCloud } from './LogoCloud';
 export { Marquee } from './Marquee';
 export { NumberTicker } from './NumberTicker';
+export { PricingPrice } from './PricingPrice';
 export { HeroGlow } from './HeroGlow';
 export { Reveal } from './Reveal';
 export { GradientText } from './GradientText';

@@ -1,10 +1,10 @@
 import type { Metadata } from 'next';
-import { pageMeta } from '@/lib/seo';
+import { buildGraph, jsonLd, pageMeta } from '@/lib/seo';
 import { Chip, Container, DottedGrid, GradientText, HeroGlow, Reveal } from '@/components/ds';
 import { CHANGELOG, type ChangelogEntry } from '@/lib/changelog';
 
 export const metadata: Metadata = pageMeta({
-  title: 'Changelog',
+  title: 'Changelog — Product Updates & Release Notes',
   description:
     'OyeChats product updates and release notes: new features, improvements, and fixes as they ship.',
   path: '/changelog',
@@ -18,9 +18,22 @@ const ACCENT_STYLES: Record<ChangelogEntry['accent'], { pill: string; dot: strin
   rose: { pill: 'bg-danger-tint border-[#F4B0B0] text-danger', dot: 'bg-danger' },
 };
 
+// Release notes are a freshness signal; dateModified comes from the newest
+// entry rather than build time so it reflects real content changes.
+const graph = buildGraph({
+  path: '/changelog',
+  name: 'OyeChats Changelog',
+  description:
+    'OyeChats product updates and release notes: new features, improvements, and fixes as they ship.',
+  type: 'CollectionPage',
+  dateModified: CHANGELOG[0]?.dateISO,
+  crumbs: [{ name: 'Home', path: '/' }, { name: 'Changelog' }],
+});
+
 export default function ChangelogPage() {
   return (
     <>
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: jsonLd(graph) }} />
       <section className="relative bg-paper overflow-hidden border-b border-line">
         <HeroGlow size="sm" />
         <DottedGrid />
@@ -65,7 +78,7 @@ export default function ChangelogPage() {
                             {tag}
                           </Chip>
                         ))}
-                        <span className="type-mono-sm text-muted ml-auto">{entry.date}</span>
+                        <time dateTime={entry.dateISO} className="type-mono-sm text-muted ml-auto">{entry.date}</time>
                       </div>
                       <h2 className="type-heading-1 text-ink mb-3">{entry.title}</h2>
                       <p className="type-body text-ink-2 mb-6">{entry.description}</p>

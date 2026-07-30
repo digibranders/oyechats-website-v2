@@ -12,11 +12,15 @@ export function Logo({
   subtitle,
   invert = false,
   size = 28,
+  priority = false,
 }: {
   className?: string;
   subtitle?: string;
   invert?: boolean;
   size?: number;
+  /** Only the header instance is above the fold. `priority` was hardcoded, so
+   *  the footer logo also loaded eagerly and competed with real LCP resources. */
+  priority?: boolean;
 }) {
   return (
     <Link href="/" className={cn('flex items-center gap-2.5 no-underline', className)}>
@@ -34,7 +38,8 @@ export function Logo({
             'block h-full w-full',
             invert && 'invert brightness-110'
           )}
-          priority
+          priority={priority}
+          loading={priority ? undefined : 'lazy'}
         />
       </span>
       <span

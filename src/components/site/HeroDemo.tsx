@@ -52,7 +52,7 @@ const SCRIPTS: Script[] = [
     chip: 'Live handoff?',
     q: 'Can it hand off to a human?',
     a: 'When the bot reaches its limit it hands off in the same thread, full transcript and BANT context included.',
-    context: '”Need live agents during business hours.”',
+    context: '”Need operators during business hours.”',
     score: 76,
     routed: 'routed to sales',
   },
@@ -211,8 +211,9 @@ export function HeroDemo() {
     );
     io.observe(el);
 
+    const activeRunId = runId;
     return () => {
-      runId.current++; // cancel on unmount
+      activeRunId.current++; // cancel on unmount
       io.disconnect();
     };
   }, [play, showFinal]);
@@ -239,7 +240,7 @@ export function HeroDemo() {
             <span className="type-mono-sm text-ink font-medium">Ask OyeChats</span>
           </div>
           <span className="inline-flex items-center gap-1.5 type-mono-sm text-muted">
-            <span className="w-1.5 h-1.5 rounded-full bg-signal signal-dot-pulse inline-block" />
+            <span className="w-1.5 h-1.5 rounded-full bg-signal-graphic signal-dot-pulse inline-block" />
             demo
           </span>
         </div>

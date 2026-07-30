@@ -1,5 +1,14 @@
-import Link from 'next/link';
+import type { Metadata } from 'next';
 import { Button, Chip, Container, DottedGrid, GradientText, HeroGlow } from '@/components/ds';
+
+// Without its own metadata this page inherits the root layout's, so the 404
+// shipped the homepage title AND description verbatim.
+export const metadata: Metadata = {
+  title: 'Page Not Found',
+  description:
+    'That page moved, was renamed, or never existed. Browse the OyeChats documentation, pricing, and product pages instead.',
+  robots: { index: false, follow: true },
+};
 
 export default function NotFound() {
   return (

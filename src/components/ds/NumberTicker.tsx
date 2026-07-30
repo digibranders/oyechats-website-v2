@@ -6,6 +6,12 @@ import { cn } from '@/lib/cn';
 /**
  * NumberTicker, animates a number counting up when scrolled into view.
  * Restrained duration (1.4s) and easing to feel like a real live-data update.
+ *
+ * Seeds `display` with the real value so the SERVER renders the true number and
+ * the count-up is purely post-hydration. Initialising to 0 instead put "$0" in
+ * the static HTML for every paid pricing tier while the page's own Offer schema
+ * declared the real prices — a visible-content-vs-markup mismatch, and non-JS AI
+ * crawlers read the 0 as fact. Keep this seeding if you reuse the component.
  */
 export function NumberTicker({
   value,
@@ -20,7 +26,7 @@ export function NumberTicker({
   duration?: number;
   className?: string;
 }) {
-  const [display, setDisplay] = useState(0);
+  const [display, setDisplay] = useState(value);
   const ref = useRef<HTMLSpanElement | null>(null);
   const started = useRef(false);
 

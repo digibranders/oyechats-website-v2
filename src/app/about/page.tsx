@@ -1,5 +1,5 @@
 import type { Metadata } from 'next';
-import { pageMeta } from '@/lib/seo';
+import { ID, buildGraph, jsonLd, pageMeta } from '@/lib/seo';
 import { MessagesSquare, Target, Headphones, MapPin, type LucideIcon } from 'lucide-react';
 import {
   Chip,
@@ -13,10 +13,22 @@ import {
 } from '@/components/ds';
 
 export const metadata: Metadata = pageMeta({
-  title: 'About Us',
+  title: 'About OyeChats — The RAG AI Chat Platform',
   description:
     'OyeChats is the RAG-powered AI chat platform for support, sales, and live conversations. Meet the team defining how businesses answer their customers.',
   path: '/about',
+});
+
+// Was the third of five unlinked Organization nodes. Now references the single
+// canonical one by @id instead of redefining it.
+const graph = buildGraph({
+  path: '/about',
+  name: 'About OyeChats',
+  description:
+    'OyeChats is the RAG-powered AI chat platform for support, sales, and live conversations.',
+  type: 'AboutPage',
+  about: ID.organization,
+  crumbs: [{ name: 'Home', path: '/' }, { name: 'About' }],
 });
 
 const HERO_STATS = [
@@ -49,7 +61,7 @@ const VISION_BLOCKS: VisionBlock[] = [
   {
     icon: Headphones,
     title: 'OyeChats for Live Chat',
-    desc: 'When the bot hits its limit, hand off to a human operator in the same thread. Real-time WebSocket messaging, department routing, canned replies.',
+    desc: 'When the bot hits its limit, hand off to an operator in the same thread. Real-time WebSocket messaging, department routing, canned replies.',
     status: 'live',
   },
 ];
@@ -65,6 +77,10 @@ const OFFICES = [
 export default function AboutPage() {
   return (
     <>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: jsonLd(graph) }}
+      />
       <section className="relative bg-paper overflow-hidden">
         <HeroGlow />
         <DottedGrid />

@@ -31,7 +31,7 @@ export function Chip({
     >
       {variant === 'signal' && (
         <span
-          className="w-1.5 h-1.5 rounded-full bg-signal inline-block signal-dot-pulse"
+          className="w-1.5 h-1.5 rounded-full bg-signal-graphic inline-block signal-dot-pulse"
           aria-hidden
         />
       )}

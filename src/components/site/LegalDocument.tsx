@@ -4,6 +4,7 @@ import { Chip, Container } from '@/components/ds';
 import { ScrollSpyToc } from './ScrollSpyToc';
 import { LEGAL_PAGES } from '@/lib/legal';
 import type { LegalPage } from '@/lib/legal';
+import { ID, buildGraph, jsonLd } from '@/lib/seo';
 
 /** Convert a section body into paragraphs plus contiguous "- " lines rendered as <ul>. */
 function renderBody(body: string[]): ReactNode {
@@ -36,14 +37,32 @@ function renderBody(body: string[]): ReactNode {
 }
 
 export function LegalDocument({ page }: { page: LegalPage }) {
+  // The /legal/* cluster is the one genuine three-level hierarchy on the site
+  // (Home > Legal > Privacy Policy) and previously carried no schema at all.
+  // `about` is the Organization, not the product: a privacy policy describes
+  // the company's obligations, not the software.
+  const graph = buildGraph({
+    path: `/legal/${page.slug}`,
+    name: `${page.title} · OyeChats`,
+    description: page.metaDescription,
+    dateModified: page.lastUpdated,
+    about: ID.organization,
+    crumbs: [
+      { name: 'Home', path: '/' },
+      { name: 'Legal', path: '/legal' },
+      { name: page.title },
+    ],
+  });
+
   return (
     <>
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: jsonLd(graph) }} />
       <section className="bg-paper border-b border-line pt-16 pb-12 md:pt-16 md:pb-16">
         <Container>
           <h1 className="type-display-3 text-ink max-w-3xl">{page.title}</h1>
           <p className="type-body-lg text-ink-2 mt-4 max-w-2xl">{page.description}</p>
           <div className="mt-6 flex gap-2 flex-wrap">
-            <Chip variant="outline">Last updated · {page.lastUpdated}</Chip>
+            <Chip variant="outline">Last updated · <time dateTime={page.lastUpdated}>{page.lastUpdated}</time></Chip>
             <Chip variant="mono">v1.0</Chip>
           </div>
         </Container>

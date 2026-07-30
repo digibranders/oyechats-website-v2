@@ -17,12 +17,19 @@ export const APP_LINKS = {
   home: APP_URL,
 } as const;
 
-export const NAV_LINKS = [
-  { label: 'Product', href: '/features' },
-  { label: 'Solutions', href: '/solutions' },
-  { label: 'Integrations', href: '/integrations' },
-  { label: 'Pricing', href: '/pricing' },
-  { label: 'Docs', href: '/docs' },
+/** Public support inbox. Also the `contactPoint` email in the Organization schema. */
+export const SUPPORT_EMAIL = 'support@oyechats.com';
+
+/**
+ * Official profiles. Rendered in the footer AND used verbatim as
+ * `Organization.sameAs` — keeping one source means the entity signal can never
+ * drift from the links users actually see.
+ */
+export const SOCIAL_LINKS = [
+  { label: 'LinkedIn', href: 'https://www.linkedin.com/company/oyechats' },
+  { label: 'Instagram', href: 'https://www.instagram.com/oyechats' },
+  { label: 'X', href: 'https://x.com/oyechats' },
+  { label: 'GitHub', href: 'https://github.com/digibranders' },
 ] as const;
 
 export const FOOTER_COLUMNS = [
@@ -56,6 +63,9 @@ export const FOOTER_COLUMNS = [
   {
     title: 'Legal',
     links: [
+      // The hub is listed first on purpose: without it /legal had zero inbound
+      // links from anywhere on the site and was reachable only via sitemap.xml.
+      { label: 'All legal docs', href: '/legal' },
       { label: 'Privacy', href: '/legal/privacy' },
       { label: 'Terms', href: '/legal/terms' },
       { label: 'DPA', href: '/legal/dpa' },

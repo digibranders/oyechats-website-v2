@@ -21,15 +21,20 @@ export function Textarea({
 export function Label({
   children,
   htmlFor,
+  id,
   className,
 }: {
   children: React.ReactNode;
   htmlFor?: string;
+  /** For controls that cannot use `htmlFor` — e.g. a custom combobox built on a
+   *  button — so the label can be referenced via `aria-labelledby` instead. */
+  id?: string;
   className?: string;
 }) {
   return (
     <label
       htmlFor={htmlFor}
+      id={id}
       className={cn('block type-body-sm text-muted mb-1.5', className)}
     >
       {children}

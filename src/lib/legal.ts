@@ -1,7 +1,16 @@
 export type LegalPage = {
   slug: string;
+  /** Visible H1 on the document page, and the card heading on /legal. */
   title: string;
+  /** Visible card body on /legal. Never used as the meta description — several
+   *  are far shorter than a SERP snippet wants, and lengthening them would
+   *  change on-page content. */
   description: string;
+  /** `<title>` only. `title` alone yields e.g. "Cookie Policy · OyeChats" at 24
+   *  characters against a ~60 character budget. */
+  metaTitle: string;
+  /** `<meta name="description">` only. Kept separate from the visible card copy. */
+  metaDescription: string;
   lastUpdated: string;
   sections: { id: string; heading: string; body: string[] }[];
 };
@@ -9,6 +18,9 @@ export type LegalPage = {
 export const LEGAL_PAGES: LegalPage[] = [
   {
     slug: 'privacy',
+    metaTitle: 'Privacy Policy — How OyeChats Handles Your Data',
+    metaDescription:
+      'How OyeChats collects, uses, stores, shares and protects your data, including visitor chat transcripts, retention periods and your rights as a data subject.',
     title: 'Privacy Policy',
     description: 'OyeChats Privacy Policy, how we collect, use, store, share, and protect your data.',
     lastUpdated: '2026-04-16',
@@ -63,7 +75,7 @@ export const LEGAL_PAGES: LegalPage[] = [
       { id: 'data-retention', heading: 'Data Retention', body: [
         'We retain personal information only as long as needed for the purposes described in this policy:',
         '- Account data: Retained for the life of the account and deleted (or anonymized) within 30 days of account closure, except where longer retention is required by law.',
-        '- Conversation history: Retained according to your plan, 7 days on Free, 30 days on Starter, 90 days on Standard, and unlimited on Enterprise, unless a shorter custom retention period is configured in your dashboard settings.',
+        '- Conversation history: Retained according to your plan, 7 days on Free, 30 days on Starter, 90 days on Standard, and 365 days on Professional, unless a shorter custom retention period is configured in your dashboard settings.',
         '- Knowledge base content: Retained until you delete it or close your account.',
         '- Diagnostic and error logs: Retained for up to 90 days.',
         '- Audit logs of administrative actions: Retained for up to 12 months.',
@@ -111,6 +123,9 @@ export const LEGAL_PAGES: LegalPage[] = [
   },
   {
     slug: 'terms',
+    metaTitle: 'Terms of Service — Platform Agreement',
+    metaDescription:
+      'The legal agreement governing your use of the OyeChats platform: account terms, acceptable use, billing, liability, and termination.',
     title: 'Terms of Service',
     description: 'OyeChats Terms of Service, the legal agreement governing your use of the platform.',
     lastUpdated: '2026-04-16',
@@ -192,6 +207,9 @@ export const LEGAL_PAGES: LegalPage[] = [
   },
   {
     slug: 'dpa',
+    metaTitle: 'Data Processing Addendum (DPA) for Customers',
+    metaDescription:
+      'The OyeChats Data Processing Addendum governing how we process personal data on behalf of our customers, including sub-processors and security measures.',
     title: 'Data Processing Addendum',
     description: 'The OyeChats Data Processing Addendum governing how we process personal data on behalf of our customers.',
     lastUpdated: '2026-07-07',
@@ -254,6 +272,9 @@ export const LEGAL_PAGES: LegalPage[] = [
   },
   {
     slug: 'subprocessors',
+    metaTitle: 'Sub-processors — Third Parties We Engage',
+    metaDescription:
+      'The current list of third-party sub-processors OyeChats engages to deliver the service, what each one does, and where they process data.',
     title: 'Subprocessors List',
     description: 'The current list of third-party sub-processors OyeChats engages to deliver the Services.',
     lastUpdated: '2026-04-16',
@@ -262,7 +283,7 @@ export const LEGAL_PAGES: LegalPage[] = [
         'A "sub-processor" is a third party we engage to process Customer Data on our behalf in order to deliver the OyeChats Services. Each one is engaged under a written agreement that requires data protection terms at least as protective as those in our Privacy Policy and Data Processing Addendum.',
       ]},
       { id: 'infrastructure', heading: 'Infrastructure and Hosting', body: [
-        '- DigitalOcean: Primary application servers and managed PostgreSQL database hosting. (United States, Bangalore region for Enterprise)',
+        '- DigitalOcean: Primary application servers and managed PostgreSQL database hosting. (United States)',
         '- Cloudflare: Object storage for uploaded knowledge base files via R2, and CDN delivery of the embeddable widget bundle. (Global edge network)',
         '- Vercel: Hosting for the marketing site (oyechats.com) and customer dashboard front-end (app.oyechats.com). (United States)',
       ]},
@@ -295,9 +316,12 @@ export const LEGAL_PAGES: LegalPage[] = [
   },
   {
     slug: 'cookies',
+    metaTitle: 'Cookie Policy — Cookies and Similar Technologies',
+    metaDescription:
+      'How OyeChats uses cookies and similar technologies across the website and the chat widget, what each category does, and how to control them.',
     title: 'Cookie Policy',
     description: 'How OyeChats uses cookies and similar technologies.',
-    lastUpdated: '2026-04-16',
+    lastUpdated: '2026-07-30',
     sections: [
       { id: 'introduction', heading: 'Introduction', body: [
         'This Cookie Policy explains how OyeChats uses cookies and similar technologies on our marketing site at oyechats.com, the customer dashboard at app.oyechats.com, and the embeddable chat widget our customers deploy on their own websites.',
@@ -306,10 +330,14 @@ export const LEGAL_PAGES: LegalPage[] = [
         'Cookies are small text files a website places on your device so it can remember you between visits. "Similar technologies" covers anything that does roughly the same job: localStorage and sessionStorage in the browser, the IndexedDB API, pixel tags in emails, and software development kits (SDKs).',
       ]},
       { id: 'cookies-we-use', heading: 'Cookies on our marketing site and dashboard', body: [
-        'We use a small number of strictly-necessary first-party cookies. We do not run advertising cookies or cross-site tracking pixels on our own properties.',
+        'We use a small number of strictly-necessary first-party cookies, plus one analytics category that runs only with your permission where consent is required. We do not run advertising cookies or cross-site advertising pixels on our own properties.',
         '- oyechats_session: Keeps you signed in to the customer dashboard between page loads and protects against session fixation. (Session, cleared on logout)',
         '- oyechats_csrf: Protects state-changing requests from cross-site request forgery attacks. (Session)',
         '- oyechats_consent: Remembers your cookie banner choice on the marketing site. (6 months)',
+        'Analytics cookies, set by Google Analytics via Google Tag Manager on oyechats.com only:',
+        '- _ga: Distinguishes one browser from another so we can count returning visitors. (2 years)',
+        '- _ga_E5ZZ461R8T: Holds the session state for our Google Analytics property. (2 years)',
+        'Visitors in the EEA, the UK, and Switzerland are asked to consent before either analytics cookie is set, and neither is set if you decline. Elsewhere they are set by default and you can turn them off at any time from "Cookie preferences" in the footer. We also treat a Global Privacy Control signal as a decline.',
       ]},
       { id: 'widget', heading: 'The embeddable chat widget', body: [
         'The OyeChats chat widget that customers embed on their own websites does not set cookies. To keep a conversation continuous within the same browser, the widget stores a single anonymous session identifier in localStorage under the key oyechats_session_id.',
@@ -334,6 +362,9 @@ export const LEGAL_PAGES: LegalPage[] = [
   },
   {
     slug: 'refund',
+    metaTitle: 'Refund Policy — When Refunds Apply',
+    metaDescription:
+      'When OyeChats refunds apply, what is and is not eligible, how to request one, and how long refunds take to process for INR and USD customers.',
     title: 'Refund Policy',
     description: 'OyeChats Refund Policy, when refunds apply and how to request one.',
     lastUpdated: '2026-06-25',
@@ -377,6 +408,9 @@ export const LEGAL_PAGES: LegalPage[] = [
   },
   {
     slug: 'cancellation',
+    metaTitle: 'Cancellation Policy — How to Cancel',
+    metaDescription:
+      'How to cancel your OyeChats subscription, when the cancellation takes effect, what happens to your bots and data, and how final billing is handled.',
     title: 'Cancellation Policy',
     description: 'OyeChats Cancellation Policy, how to cancel your subscription and what happens next.',
     lastUpdated: '2026-06-25',

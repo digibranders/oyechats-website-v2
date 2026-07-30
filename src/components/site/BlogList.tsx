@@ -13,6 +13,8 @@ export type BlogCardData = {
   description: string;
   category: string;
   date: string;
+  /** Machine-readable form of `date`, for <time datetime>. */
+  dateISO: string;
   readMinutes: number;
   accent: BlogAccent;
   author: { name: string; initials: string };
@@ -27,7 +29,7 @@ function AuthorMeta({ post }: { post: BlogCardData }) {
         {post.author.initials}
       </span>
       <span className="type-mono-sm text-muted">
-        {post.date} · {post.readMinutes} min
+        <time dateTime={post.dateISO}>{post.date}</time> · {post.readMinutes} min
       </span>
     </div>
   );
@@ -70,15 +72,18 @@ export function BlogList({ posts }: { posts: BlogCardData[] }) {
   return (
     <div>
       {/* Category filter */}
-      <div className="mb-10 flex flex-wrap gap-2" role="tablist" aria-label="Filter posts by category">
+      {/* role="tablist" was declared with no tabpanel, no aria-controls, no ids,
+          no roving tabIndex and no arrow-key handler — it promised a keyboard
+          contract that did not exist. aria-pressed on a plain button group is
+          the honest pattern, and is what IntegrationsClient already uses. */}
+      <div className="mb-10 flex flex-wrap gap-2" role="group" aria-label="Filter posts by category">
         {categories.map((cat) => {
           const isActive = cat === active;
           return (
             <button
               key={cat}
               type="button"
-              role="tab"
-              aria-selected={isActive}
+              aria-pressed={isActive}
               onClick={() => setActive(cat)}
               className={cn(
                 'rounded-[var(--r-full)] border px-3.5 py-1.5 type-mono-sm transition-colors',

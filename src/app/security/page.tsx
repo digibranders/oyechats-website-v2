@@ -1,5 +1,5 @@
 import type { Metadata } from 'next';
-import { pageMeta } from '@/lib/seo';
+import { buildGraph, jsonLd, pageMeta } from '@/lib/seo';
 import {
   Lock,
   Shield,
@@ -25,7 +25,7 @@ import {
 } from '@/components/ds';
 
 export const metadata: Metadata = pageMeta({
-  title: 'Security',
+  title: 'Security — Encryption, GDPR & Signed Webhooks',
   description:
     'OyeChats security practices: encryption in transit and at rest, GDPR-aligned data handling, access controls, signed webhooks, and infrastructure details.',
   path: '/security',
@@ -85,14 +85,25 @@ const INFRA_STACK = [
   { icon: Server, name: 'Managed Postgres', role: 'Primary application datastore' },
   { icon: Zap, name: 'Background job queue', role: 'Async tasks via ARQ + Redis' },
   { icon: Bug, name: 'Error monitoring', role: 'Incident alerting via Sentry' },
-  { icon: Eye, name: 'AI observability', role: 'Trace logging via Langfuse (Enterprise)' },
+  { icon: Eye, name: 'AI observability', role: 'Trace logging via Langfuse' },
   { icon: Cloud, name: 'Cloud object storage', role: 'Documents and media via Cloudflare R2' },
   { icon: Mail, name: 'Transactional email', role: 'Notifications and summaries via Brevo' },
 ];
 
+// /security emitted no page-level schema at all. Buyers reach it during
+// procurement, so it is worth an addressable WebPage node with breadcrumbs.
+const graph = buildGraph({
+  path: '/security',
+  name: 'OyeChats Security',
+  description:
+    'OyeChats security practices: encryption in transit and at rest, GDPR-aligned data handling, access controls, signed webhooks, and infrastructure details.',
+  crumbs: [{ name: 'Home', path: '/' }, { name: 'Security' }],
+});
+
 export default function SecurityPage() {
   return (
     <>
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: jsonLd(graph) }} />
       <section className="relative bg-paper overflow-hidden">
         <HeroGlow size="sm" />
         <DottedGrid />

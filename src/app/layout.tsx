@@ -6,6 +6,11 @@ import Footer from '@/components/site/Footer';
 // import AnnouncementBar from '@/components/site/AnnouncementBar';
 import './globals.css';
 import WidgetLoader from '@/components/site/WidgetLoader';
+import Analytics from '@/components/site/Analytics';
+import ConsentProvider from '@/components/site/ConsentProvider';
+import CookieConsent from '@/components/site/CookieConsent';
+import { jsonLd, siteGraph } from '@/lib/seo';
+import { FEATURES } from '@/lib/features';
 
 const inter = Inter({
   subsets: ['latin'],
@@ -70,24 +75,11 @@ export const metadata: Metadata = {
   robots: { index: true, follow: true },
 };
 
-const siteSchema: Record<string, unknown> = {
-  '@context': 'https://schema.org',
-  '@graph': [
-    {
-      '@type': 'Organization',
-      name: 'OyeChats',
-      url: 'https://www.oyechats.com',
-      logo: 'https://www.oyechats.com/logo.png',
-      description: SITE_DESCRIPTION,
-      sameAs: [],
-    },
-    {
-      '@type': 'WebSite',
-      name: 'OyeChats',
-      url: 'https://www.oyechats.com',
-    },
-  ],
-};
+// One connected entity graph for the whole site: Organization, WebSite, logo and
+// SoftwareApplication, each with a stable @id that per-page graphs reference.
+// Replaces five unlinked Organization nodes and two rival SoftwareApplication
+// nodes that search engines had to guess were the same entity.
+const siteSchema = siteGraph(FEATURES.map((f) => f.title));
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
@@ -95,18 +87,29 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
       lang="en"
       className={`${inter.variable} ${geist.variable} ${geistMono.variable} ${fraunces.variable}`}
     >
+      <Analytics />
       <body>
-        {/* <AnnouncementBar />, hidden for now; re-enable for announcements/offers */}
-        <Navbar />
-        <main>{children}</main>
-        <Footer />
+        <ConsentProvider>
+          {/* Keyboard users otherwise tab through the logo, six nav links and two
+              CTAs on every page before reaching content (WCAG 2.4.1). */}
+          <a href="#main" className="skip-link">
+            Skip to content
+          </a>
+          {/* <AnnouncementBar />, hidden for now; re-enable for announcements/offers */}
+          <Navbar />
+          <main id="main" tabIndex={-1}>
+            {children}
+          </main>
+          <Footer />
 
-        <script
-          type="application/ld+json"
-          dangerouslySetInnerHTML={{ __html: JSON.stringify(siteSchema) }}
-        />
+          <script
+            type="application/ld+json"
+            dangerouslySetInnerHTML={{ __html: jsonLd(siteSchema) }}
+          />
 
-        <WidgetLoader />
+          <WidgetLoader />
+          <CookieConsent />
+        </ConsentProvider>
       </body>
     </html>
   );

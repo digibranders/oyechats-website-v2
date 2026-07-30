@@ -60,7 +60,7 @@ export const FEATURES: Feature[] = [
     title: 'Live human handoff',
     tagline: 'A person steps in at the right moment.',
     description:
-      'When a lead heats up, OyeChats hands the chat to a live teammate in the same thread, with the full transcript and score already in hand.',
+      'When a lead heats up, OyeChats hands the chat to an operator in the same thread, with the full transcript and score already in hand.',
     anchor: 'feature-live-chat',
   },
   {
@@ -152,10 +152,10 @@ export const SOLUTIONS: Solution[] = [
     category: 'Sales and Lead Gen',
     title: 'Qualify every visitor, without a single form question',
     intro:
-      'OyeChats scores each conversation on Budget, Authority, Need, and Timing, so your sales team only talks to leads worth talking to.',
+      'OyeChats scores each conversation on Budget, Authority, Need, and Timeline, so your sales team only talks to leads worth talking to.',
     body: [
       'Instead of hiding behind a contact form, meet the visitor in a chat that already sounds like a discovery call. The bot listens for BANT signals inside the natural conversation and grades the lead in the background.',
-      'A hot lead is routed to a live rep the moment intent shows up. A warm lead lands in a nurture sequence with a follow up email and a calendar link. A cold visitor keeps chatting, and every message adds to the profile.',
+      'A hot lead is routed to an operator the moment intent shows up. A warm lead lands in a nurture sequence with a follow up email and a calendar link. A cold visitor keeps chatting, and every message adds to the profile.',
     ],
     bullets: [
       'Automatic BANT scoring across every session',

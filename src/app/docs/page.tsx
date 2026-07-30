@@ -1,5 +1,5 @@
 import type { Metadata } from 'next';
-import { pageMeta } from '@/lib/seo';
+import { ID, SITE_URL, buildGraph, jsonLd, pageMeta } from '@/lib/seo';
 import { Package, KeyRound, Brain, Zap, Lightbulb, ExternalLink } from 'lucide-react';
 import {
   Button,
@@ -16,11 +16,48 @@ import {
 import { ScrollSpyToc } from '@/components/site/ScrollSpyToc';
 
 export const metadata: Metadata = pageMeta({
-  title: 'Documentation',
+  title: 'Documentation — Install, Configure, Webhooks',
   description:
     'Everything you need to add and configure OyeChats on your website. Install, configure, and connect webhooks.',
   path: '/docs',
 });
+
+/** Wired to real edit dates, never `new Date()` — a build-time clock would tell
+ *  crawlers the docs change on every deploy. Update when the content changes. */
+const DOCS_PUBLISHED = '2026-07-14';
+const DOCS_LAST_UPDATED = '2026-07-14';
+
+// TechArticle previously carried only headline/description/url/author. Google
+// treats dateModified as effectively required for the Article family, and
+// undated, unattributed technical content is deprioritised for citation — which
+// matters because this is the highest-intent technical page on the site.
+const graph = buildGraph({
+  path: '/docs',
+  name: 'OyeChats Documentation',
+  description:
+    'Everything you need to add and configure OyeChats on your website. Install, configure, and connect webhooks.',
+  dateModified: DOCS_LAST_UPDATED,
+  crumbs: [{ name: 'Home', path: '/' }, { name: 'Documentation' }],
+  nodes: [
+    {
+      '@type': 'TechArticle',
+      '@id': ID.article('/docs'),
+      headline: 'OyeChats Integration Documentation',
+      description:
+        'Everything you need to add and configure OyeChats on your website. Install, configure, and connect webhooks.',
+      mainEntityOfPage: { '@id': ID.webPage('/docs') },
+      datePublished: DOCS_PUBLISHED,
+      dateModified: DOCS_LAST_UPDATED,
+      inLanguage: 'en',
+      author: { '@id': ID.organization },
+      publisher: { '@id': ID.organization },
+      image: `${SITE_URL}/opengraph-image`,
+      proficiencyLevel: 'Beginner',
+      about: { '@id': ID.software },
+    },
+  ],
+});
+
 
 const QUICK_START = [
   { icon: Package, step: '1', title: 'Install the widget', desc: 'Add a single script tag to your site and the chat widget appears instantly.', anchor: '#widget' },
@@ -36,7 +73,7 @@ const WIDGET_ATTRS = [
 const WEBHOOK_EVENTS = [
   { event: 'tier_transition', desc: 'Fires when a visitor crosses a qualification tier, e.g. becomes a hot lead.' },
   { event: 'lead_captured', desc: 'Fires when a visitor submits name and email via the lead form.' },
-  { event: 'handoff_requested', desc: 'Fires when the visitor asks to speak with a human operator.' },
+  { event: 'handoff_requested', desc: 'Fires when the visitor asks to speak with an operator.' },
   { event: 'meeting_booked', desc: 'Fires when a visitor books a meeting via Calendly or Zcal.' },
   { event: 'chat_closed', desc: 'Fires when a chat session is closed.' },
 ];
@@ -66,6 +103,10 @@ const TOC = [
 export default function DocsPage() {
   return (
     <>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: jsonLd(graph) }}
+      />
       <section className="relative bg-paper overflow-hidden border-b border-line">
         <HeroGlow size="sm" />
         <DottedGrid />
