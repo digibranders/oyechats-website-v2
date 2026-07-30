@@ -24,6 +24,7 @@ import { FEATURES } from '@/lib/features';
 import { PRICING_TIERS, CURRENCY_SYMBOL, type Currency } from '@/lib/pricing';
 import { INTEGRATIONS } from '@/lib/integrations';
 import { APP_LINKS } from '@/lib/site';
+import { buildGraph, jsonLd } from '@/lib/seo';
 
 // Homepage sets its own complete openGraph (with url). A page-level openGraph
 // replaces the layout's entirely, so every field the homepage needs is listed here.
@@ -38,22 +39,18 @@ export const metadata: Metadata = {
   },
 };
 
-const softwareSchema: Record<string, unknown> = {
-  '@context': 'https://schema.org',
-  '@type': 'SoftwareApplication',
-  name: 'OyeChats',
-  applicationCategory: 'BusinessApplication',
-  operatingSystem: 'Web',
+// The SoftwareApplication itself lives once in the site graph (src/lib/seo.ts)
+// with a stable @id and the full offers list. This page previously declared a
+// SECOND full copy with a different url, and /features declared a third, so
+// search engines saw multiple rival products all named OyeChats. buildGraph's
+// default `about` points this WebPage at the canonical one.
+const graph = buildGraph({
+  path: '/',
+  name: 'OyeChats. You only talk to buyers.',
   description:
     'AI chatbot that qualifies every visitor with BANT scoring before your sales reps see them. RAG-grounded answers, live handoff, webhooks, and analytics.',
-  url: 'https://www.oyechats.com',
-  offers: PRICING_TIERS.filter((tier) => tier.monthly !== null).map((tier) => ({
-    '@type': 'Offer',
-    name: tier.name,
-    price: String(tier.monthly?.USD ?? 0),
-    priceCurrency: 'USD',
-  })),
-};
+  crumbs: [{ name: 'Home' }],
+});
 
 export default function Home() {
   const currency: Currency = 'USD';
@@ -63,7 +60,7 @@ export default function Home() {
     <>
       <script
         type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(softwareSchema) }}
+        dangerouslySetInnerHTML={{ __html: jsonLd(graph) }}
       />
 
       {/* ═══════════════════════ HERO ═══════════════════════ */}

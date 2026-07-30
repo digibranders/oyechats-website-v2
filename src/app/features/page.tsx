@@ -1,5 +1,5 @@
 import type { Metadata } from 'next';
-import { pageMeta } from '@/lib/seo';
+import { buildGraph, jsonLd, pageMeta } from '@/lib/seo';
 import Link from 'next/link';
 import { ScrollSpyToc } from '@/components/site/ScrollSpyToc';
 import {
@@ -31,15 +31,16 @@ import { APP_LINKS } from '@/lib/site';
 import { FEATURES } from '@/lib/features';
 import { INTEGRATIONS } from '@/lib/integrations';
 
-const SOFTWARE_APPLICATION_SCHEMA = {
-  '@context': 'https://schema.org',
-  '@type': 'SoftwareApplication',
-  name: 'OyeChats',
-  url: 'https://www.oyechats.com/features',
-  applicationCategory: 'BusinessApplication',
-  operatingSystem: 'Web',
-  featureList: FEATURES.map((f) => f.title),
-} as const;
+// Was a second full SoftwareApplication with url=/features and no offers,
+// rivalling the homepage's copy. The canonical node now lives once in the site
+// graph; this page just references it.
+const graph = buildGraph({
+  path: '/features',
+  name: 'OyeChats Features',
+  description:
+    'Every OyeChats feature: hybrid RAG, BANT scoring, live handoff, analytics, webhooks, integrations. One AI chatbot with full sales intelligence.',
+  crumbs: [{ name: 'Home', path: '/' }, { name: 'Features' }],
+});
 
 export const metadata: Metadata = pageMeta({
   title: 'Features — RAG Answers & BANT Lead Scoring',
@@ -101,7 +102,7 @@ export default function FeaturesPage() {
     <>
       <script
         type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(SOFTWARE_APPLICATION_SCHEMA) }}
+        dangerouslySetInnerHTML={{ __html: jsonLd(graph) }}
       />
       <section className="relative bg-paper overflow-hidden">
         <HeroGlow />

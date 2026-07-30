@@ -1,5 +1,5 @@
 import type { Metadata } from 'next';
-import { pageMeta } from '@/lib/seo';
+import { buildGraph, jsonLd, pageMeta } from '@/lib/seo';
 import { Chip, Container, DottedGrid, GradientText, HeroGlow, Reveal } from '@/components/ds';
 import { CHANGELOG, type ChangelogEntry } from '@/lib/changelog';
 
@@ -18,9 +18,22 @@ const ACCENT_STYLES: Record<ChangelogEntry['accent'], { pill: string; dot: strin
   rose: { pill: 'bg-danger-tint border-[#F4B0B0] text-danger', dot: 'bg-danger' },
 };
 
+// Release notes are a freshness signal; dateModified comes from the newest
+// entry rather than build time so it reflects real content changes.
+const graph = buildGraph({
+  path: '/changelog',
+  name: 'OyeChats Changelog',
+  description:
+    'OyeChats product updates and release notes: new features, improvements, and fixes as they ship.',
+  type: 'CollectionPage',
+  dateModified: CHANGELOG[0]?.dateISO,
+  crumbs: [{ name: 'Home', path: '/' }, { name: 'Changelog' }],
+});
+
 export default function ChangelogPage() {
   return (
     <>
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: jsonLd(graph) }} />
       <section className="relative bg-paper overflow-hidden border-b border-line">
         <HeroGlow size="sm" />
         <DottedGrid />

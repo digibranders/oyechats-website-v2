@@ -1,5 +1,5 @@
 import type { Metadata } from 'next';
-import { pageMeta } from '@/lib/seo';
+import { ID, buildGraph, jsonLd, pageMeta } from '@/lib/seo';
 import ContactClient from './ContactClient';
 
 const title = 'Contact Sales & Support';
@@ -12,27 +12,22 @@ export const metadata: Metadata = pageMeta({
   path: '/contact',
 });
 
-const contactSchema = {
-  '@context': 'https://schema.org',
-  '@type': 'ContactPage',
+// `mainEntity` points at the Organization, not a ContactPoint. A ContactPoint is
+// a property OF an organization, not a thing a page can be "about" — and the
+// contact details now live on the single Organization node in the site graph.
+const graph = buildGraph({
+  path: '/contact',
   name: 'Contact OyeChats',
   description,
-  url: 'https://www.oyechats.com/contact',
-  mainEntity: {
-    '@type': 'ContactPoint',
-    contactType: 'customer support',
-    email: 'support@oyechats.com',
-    url: 'https://www.oyechats.com/contact',
-  },
-};
+  type: 'ContactPage',
+  about: ID.organization,
+  crumbs: [{ name: 'Home', path: '/' }, { name: 'Contact' }],
+});
 
 export default function ContactPage() {
   return (
     <>
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(contactSchema) }}
-      />
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: jsonLd(graph) }} />
       <ContactClient />
     </>
   );

@@ -1,5 +1,5 @@
 import type { Metadata } from 'next';
-import { pageMeta } from '@/lib/seo';
+import { buildGraph, jsonLd, pageMeta } from '@/lib/seo';
 import Link from 'next/link';
 import { Chip, Container, DottedGrid } from '@/components/ds';
 import { LEGAL_PAGES } from '@/lib/legal';
@@ -10,9 +10,17 @@ export const metadata: Metadata = pageMeta({
   path: '/legal',
 });
 
+const graph = buildGraph({
+  path: '/legal',
+  name: 'OyeChats Legal',
+  description: 'Privacy, terms, DPA, sub-processors, and other OyeChats legal documents.',
+  crumbs: [{ name: 'Home', path: '/' }, { name: 'Legal' }],
+});
+
 export default function LegalIndex() {
   return (
     <>
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: jsonLd(graph) }} />
       <section className="relative bg-paper overflow-hidden border-b border-line">
         <DottedGrid />
         <Container className="relative pt-24 pb-16 md:pt-20 md:pb-20">

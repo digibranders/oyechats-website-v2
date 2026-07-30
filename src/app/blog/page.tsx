@@ -2,7 +2,7 @@ import type { Metadata } from 'next';
 import { Container, DottedGrid, GradientText, HeroGlow, Section } from '@/components/ds';
 import { BlogList, type BlogCardData } from '@/components/site/BlogList';
 import { BLOG_POSTS } from '@/lib/blog';
-import { pageMeta } from '@/lib/seo';
+import { SITE_URL, buildGraph, jsonLd, pageMeta } from '@/lib/seo';
 
 export const metadata: Metadata = pageMeta({
   title: 'Blog — AI Chat, Lead Qualification & RAG',
@@ -11,25 +11,31 @@ export const metadata: Metadata = pageMeta({
   path: '/blog',
 });
 
-const SITE_URL = 'https://www.oyechats.com';
-
-const blogSchema = {
-  '@context': 'https://schema.org',
-  '@type': 'CollectionPage',
+// CollectionPage previously enumerated nothing — eight posts rendered on the
+// page and not one was declared. For an AI crawler that is the difference
+// between "OyeChats has a blog" and knowing what it has published.
+const graph = buildGraph({
+  path: '/blog',
   name: 'OyeChats Blog',
   description:
     'Practical guides on AI customer support, conversational lead qualification, and shipping chatbots that actually convert.',
-  url: `${SITE_URL}/blog`,
-};
-
-const breadcrumbSchema = {
-  '@context': 'https://schema.org',
-  '@type': 'BreadcrumbList',
-  itemListElement: [
-    { '@type': 'ListItem', position: 1, name: 'Home', item: SITE_URL },
-    { '@type': 'ListItem', position: 2, name: 'Blog', item: `${SITE_URL}/blog` },
+  type: 'CollectionPage',
+  crumbs: [{ name: 'Home', path: '/' }, { name: 'Blog' }],
+  nodes: [
+    {
+      '@type': 'ItemList',
+      '@id': `${SITE_URL}/blog#list`,
+      itemListOrder: 'https://schema.org/ItemListOrderDescending',
+      numberOfItems: BLOG_POSTS.length,
+      itemListElement: BLOG_POSTS.map((p, i) => ({
+        '@type': 'ListItem',
+        position: i + 1,
+        url: `${SITE_URL}/blog/${p.slug}`,
+        name: p.title,
+      })),
+    },
   ],
-};
+});
 
 export default function BlogPage() {
   // Slim projection: the client list never needs the full post `content`.
@@ -46,14 +52,7 @@ export default function BlogPage() {
 
   return (
     <>
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(blogSchema) }}
-      />
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbSchema) }}
-      />
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: jsonLd(graph) }} />
       <section className="relative overflow-hidden bg-paper">
         <HeroGlow size="sm" />
         <DottedGrid />

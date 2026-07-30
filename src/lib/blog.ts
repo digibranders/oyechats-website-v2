@@ -16,6 +16,11 @@ export type BlogPost = {
   category: string;
   date: string;
   dateISO: string;
+  /** ISO date of the last substantive edit. Optional; falls back to `dateISO`.
+   *  Emitting dateModified === datePublished on every post forever gave crawlers
+   *  and answer engines no freshness signal at all — posts dated months back
+   *  read as permanently stale. Set this when a post is meaningfully revised. */
+  updatedISO?: string;
   readMinutes: number;
   author: { name: string; initials: string; role: string };
   accent: BlogAccent;

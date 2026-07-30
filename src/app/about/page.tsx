@@ -1,5 +1,5 @@
 import type { Metadata } from 'next';
-import { pageMeta } from '@/lib/seo';
+import { ID, buildGraph, jsonLd, pageMeta } from '@/lib/seo';
 import { MessagesSquare, Target, Headphones, MapPin, type LucideIcon } from 'lucide-react';
 import {
   Chip,
@@ -19,20 +19,17 @@ export const metadata: Metadata = pageMeta({
   path: '/about',
 });
 
-const aboutSchema = {
-  '@context': 'https://schema.org',
-  '@type': 'AboutPage',
+// Was the third of five unlinked Organization nodes. Now references the single
+// canonical one by @id instead of redefining it.
+const graph = buildGraph({
+  path: '/about',
   name: 'About OyeChats',
   description:
     'OyeChats is the RAG-powered AI chat platform for support, sales, and live conversations.',
-  url: 'https://www.oyechats.com/about',
-  mainEntity: {
-    '@type': 'Organization',
-    name: 'OyeChats',
-    url: 'https://www.oyechats.com',
-    logo: 'https://www.oyechats.com/logo.png',
-  },
-};
+  type: 'AboutPage',
+  about: ID.organization,
+  crumbs: [{ name: 'Home', path: '/' }, { name: 'About' }],
+});
 
 const HERO_STATS = [
   { value: '1', label: 'Script tag to embed' },
@@ -82,7 +79,7 @@ export default function AboutPage() {
     <>
       <script
         type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(aboutSchema) }}
+        dangerouslySetInnerHTML={{ __html: jsonLd(graph) }}
       />
       <section className="relative bg-paper overflow-hidden">
         <HeroGlow />

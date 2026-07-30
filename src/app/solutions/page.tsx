@@ -1,5 +1,5 @@
 import type { Metadata } from 'next';
-import { pageMeta } from '@/lib/seo';
+import { ID, SITE_URL, buildGraph, jsonLd, pageMeta } from '@/lib/seo';
 import Link from 'next/link';
 import { ArrowRight } from 'lucide-react';
 import {
@@ -20,31 +20,40 @@ export const metadata: Metadata = pageMeta({
   path: '/solutions',
 });
 
-const serviceSchema = {
-  '@context': 'https://schema.org',
-  '@type': 'Service',
+// The Service node keeps its OfferCatalog but now names the canonical
+// Organization as provider by @id (it was the fourth unlinked copy) and gains
+// areaServed/serviceType, which Google recommends for Service.
+const graph = buildGraph({
+  path: '/solutions',
   name: 'OyeChats AI Solutions',
-  provider: {
-    '@type': 'Organization',
-    name: 'OyeChats',
-    url: 'https://www.oyechats.com',
-  },
   description:
     'RAG-grounded AI chatbot solutions for customer support, sales lead qualification, and live agent handoff.',
-  url: 'https://www.oyechats.com/solutions',
-  hasOfferCatalog: {
-    '@type': 'OfferCatalog',
-    name: 'OyeChats Core Workflows',
-    itemListElement: SOLUTIONS.map((s) => ({
-      '@type': 'Offer',
-      itemOffered: {
-        '@type': 'Service',
-        name: s.title,
-        description: s.intro,
+  crumbs: [{ name: 'Home', path: '/' }, { name: 'Solutions' }],
+  nodes: [
+    {
+      '@type': 'Service',
+      '@id': `${SITE_URL}/solutions#service`,
+      name: 'OyeChats AI Solutions',
+      description:
+        'RAG-grounded AI chatbot solutions for customer support, sales lead qualification, and live agent handoff.',
+      serviceType: 'Conversational AI for support and sales',
+      provider: { '@id': ID.organization },
+      areaServed: 'Worldwide',
+      hasOfferCatalog: {
+        '@type': 'OfferCatalog',
+        name: 'OyeChats Core Workflows',
+        itemListElement: SOLUTIONS.map((sol) => ({
+          '@type': 'Offer',
+          itemOffered: {
+            '@type': 'Service',
+            name: sol.title,
+            description: sol.intro,
+          },
+        })),
       },
-    })),
-  },
-};
+    },
+  ],
+});
 
 const ACCENT: Record<
   Solution['accent'],
@@ -87,7 +96,7 @@ export default function SolutionsPage() {
     <>
       <script
         type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(serviceSchema) }}
+        dangerouslySetInnerHTML={{ __html: jsonLd(graph) }}
       />
       <section className="relative bg-paper overflow-hidden">
         <HeroGlow size="sm" />

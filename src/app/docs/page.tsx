@@ -1,5 +1,5 @@
 import type { Metadata } from 'next';
-import { pageMeta } from '@/lib/seo';
+import { ID, SITE_URL, buildGraph, jsonLd, pageMeta } from '@/lib/seo';
 import { Package, KeyRound, Brain, Zap, Lightbulb, ExternalLink } from 'lucide-react';
 import {
   Button,
@@ -22,18 +22,42 @@ export const metadata: Metadata = pageMeta({
   path: '/docs',
 });
 
-const techArticleSchema = {
-  '@context': 'https://schema.org',
-  '@type': 'TechArticle',
-  headline: 'OyeChats Integration Documentation',
+/** Wired to real edit dates, never `new Date()` — a build-time clock would tell
+ *  crawlers the docs change on every deploy. Update when the content changes. */
+const DOCS_PUBLISHED = '2026-07-14';
+const DOCS_LAST_UPDATED = '2026-07-14';
+
+// TechArticle previously carried only headline/description/url/author. Google
+// treats dateModified as effectively required for the Article family, and
+// undated, unattributed technical content is deprioritised for citation — which
+// matters because this is the highest-intent technical page on the site.
+const graph = buildGraph({
+  path: '/docs',
+  name: 'OyeChats Documentation',
   description:
     'Everything you need to add and configure OyeChats on your website. Install, configure, and connect webhooks.',
-  url: 'https://www.oyechats.com/docs',
-  author: {
-    '@type': 'Organization',
-    name: 'OyeChats',
-  },
-};
+  dateModified: DOCS_LAST_UPDATED,
+  crumbs: [{ name: 'Home', path: '/' }, { name: 'Documentation' }],
+  nodes: [
+    {
+      '@type': 'TechArticle',
+      '@id': ID.article('/docs'),
+      headline: 'OyeChats Integration Documentation',
+      description:
+        'Everything you need to add and configure OyeChats on your website. Install, configure, and connect webhooks.',
+      mainEntityOfPage: { '@id': ID.webPage('/docs') },
+      datePublished: DOCS_PUBLISHED,
+      dateModified: DOCS_LAST_UPDATED,
+      inLanguage: 'en',
+      author: { '@id': ID.organization },
+      publisher: { '@id': ID.organization },
+      image: `${SITE_URL}/opengraph-image`,
+      proficiencyLevel: 'Beginner',
+      about: { '@id': ID.software },
+    },
+  ],
+});
+
 
 const QUICK_START = [
   { icon: Package, step: '1', title: 'Install the widget', desc: 'Add a single script tag to your site and the chat widget appears instantly.', anchor: '#widget' },
@@ -81,7 +105,7 @@ export default function DocsPage() {
     <>
       <script
         type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(techArticleSchema) }}
+        dangerouslySetInnerHTML={{ __html: jsonLd(graph) }}
       />
       <section className="relative bg-paper overflow-hidden border-b border-line">
         <HeroGlow size="sm" />
