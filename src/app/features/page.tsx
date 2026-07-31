@@ -28,7 +28,6 @@ import {
   Section,
 } from '@/components/ds';
 import { APP_LINKS } from '@/lib/site';
-import { FEATURES } from '@/lib/features';
 import { INTEGRATIONS } from '@/lib/integrations';
 
 // Was a second full SoftwareApplication with url=/features and no offers,

@@ -14,7 +14,7 @@ import { useEffect } from 'react';
  */
 
 const WIDGET_SRC = 'https://cdn.oyechats.com/oyechats-widget.js';
-const WIDGET_BOT_KEY = 'bot-9d52d243038c';
+const WIDGET_BOT_KEY = 'bot-ba37e8a8216a';
 const IDLE_FALLBACK_MS = 4000;
 
 type IdleWindow = Window & {

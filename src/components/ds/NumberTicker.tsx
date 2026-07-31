@@ -27,17 +27,24 @@ export function NumberTicker({
   className?: string;
 }) {
   const [display, setDisplay] = useState(value);
+  const [seededValue, setSeededValue] = useState(value);
   const ref = useRef<HTMLSpanElement | null>(null);
   const started = useRef(false);
+
+  // Re-seed to the true number when `value` changes, during render rather than in
+  // an effect — the effect body only drives the count-up animation. This keeps the
+  // static/first paint honest (see the note above) without a cascading re-render.
+  if (seededValue !== value) {
+    setSeededValue(value);
+    setDisplay(value);
+  }
 
   useEffect(() => {
     const el = ref.current;
     if (!el) return;
     const reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-    if (reduced) {
-      setDisplay(value);
-      return;
-    }
+    // Nothing to animate: `display` already holds the true value from render.
+    if (reduced) return;
     const io = new IntersectionObserver(
       (entries) => {
         entries.forEach((entry) => {
