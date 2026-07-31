@@ -81,7 +81,11 @@ export default function ConsentProvider({
       (navigator as Navigator & { globalPrivacyControl?: boolean }).globalPrivacyControl
     );
 
+    // Cookie, GPC and timezone are browser-only, so this state can only be
+    // resolved after mount — the exact "read an external system" case the
+    // set-state-in-effect rule exempts. It runs once and never cascades.
     if (stored) {
+      // eslint-disable-next-line react-hooks/set-state-in-effect
       setConsent(stored);
     } else if (gpc) {
       // The signal is the choice; honouring it is promised in the Cookie Policy.

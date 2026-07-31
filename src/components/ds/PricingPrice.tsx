@@ -26,12 +26,16 @@ export function PricingPrice({
   className?: string;
 }) {
   const [display, setDisplay] = useState(value);
+  const [seededValue, setSeededValue] = useState(value);
   const animated = useRef(false);
 
-  useEffect(() => {
-    // Re-seed when the tier, period or currency changes. Never passes through 0.
+  // Re-seed when the tier, period or currency changes — during render, not in an
+  // effect, so the new price paints immediately and never cascades a render. Never
+  // passes through 0. The count-up below runs only on first mount.
+  if (seededValue !== value) {
+    setSeededValue(value);
     setDisplay(value);
-  }, [value]);
+  }
 
   useEffect(() => {
     if (animated.current) return;

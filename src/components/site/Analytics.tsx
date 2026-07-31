@@ -23,6 +23,11 @@ export default function Analytics(): React.ReactElement {
     <>
       <link rel="preconnect" href={GTM_ORIGIN} crossOrigin="anonymous" />
       <link rel="dns-prefetch" href={GTM_ORIGIN} />
+      {/* This IS the App Router root layout — it replaces pages/_document.js,
+          so beforeInteractive is placed correctly. The consent-ordering property
+          documented above depends on this strategy; the lint rule only knows about
+          the Pages Router. */}
+      {/* eslint-disable-next-line @next/next/no-before-interactive-script-outside-document */}
       <Script
         id="consent-bootstrap"
         strategy="beforeInteractive"
