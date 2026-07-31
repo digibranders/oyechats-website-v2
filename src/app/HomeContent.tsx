@@ -37,6 +37,12 @@ import { buildGraph, jsonLd } from '@/lib/seo';
 // Homepage sets its own complete openGraph (with url). A page-level openGraph
 // replaces the layout's entirely, so every field the homepage needs is listed here.
 export const homeMetadata: Metadata = {
+  // `absolute` bypasses the layout's `%s · OyeChats` template, which would
+  // otherwise append a second brand token to a title that already carries one.
+  // The SERP title leads with the category term ("AI chatbot") the brand-only
+  // layout default omitted; og:title below keeps the tagline, which reads
+  // better as a shared card than a keyword-led string.
+  title: { absolute: 'AI Chatbot That Identifies Qualified Leads | OyeChats' },
   openGraph: {
     type: 'website',
     url: '/',
