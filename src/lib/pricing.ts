@@ -7,11 +7,15 @@ import { APP_LINKS } from './site';
  * price.
  *
  * Resolution happens before render, never in the browser. `src/middleware.ts`
- * reads Vercel's `x-vercel-ip-country`, passes it through
- * `currencyForCountry` below, and rewrites Indian traffic from `/pricing` to
- * the `/pricing/in` variant. Both routes are statically generated, so the
- * correct currency is already in the cached HTML: no hydration flip, no
- * per-request render, and the CDN still serves the page.
+ * reads Vercel's `x-vercel-ip-country`, passes it through `currencyForCountry`
+ * below, and rewrites Indian traffic to the `/in` twin of the requested route
+ * (`/` -> `/in`, `/pricing` -> `/in/pricing`). Every route is statically
+ * generated, so the correct currency is already in the cached HTML: no
+ * hydration flip, no per-request render, and the CDN still serves the page.
+ *
+ * Any new page that renders a price needs both an `/in` twin and an entry in
+ * the middleware matcher. Skipping that is how the home page ended up showing
+ * USD while `/pricing` showed INR.
  *
  * Off Vercel — local dev, or any other host — the header is absent and every
  * request resolves to USD.
