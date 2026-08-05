@@ -25,7 +25,6 @@ import {
   CREDIT_COSTS,
   TOPUP_PACKS,
   CATEGORY_LABELS,
-  CURRENCY_SYMBOL,
   formatPrice,
   isCurrencyText,
   type Currency,
@@ -78,7 +77,6 @@ export default function PricingClient({ currency }: { currency: Currency }) {
   // Single shared "open FAQ" across both columns so only one is open at a time.
   const [openFaq, setOpenFaq] = useState<string | null>(PRICING_FAQ[0]?.q ?? null);
   const toggleFaq = (q: string) => setOpenFaq((prev) => (prev === q ? null : q));
-  const symbol = CURRENCY_SYMBOL[currency];
   const cardTiers = PRICING_TIERS;
 
   return (
@@ -125,10 +123,6 @@ export default function PricingClient({ currency }: { currency: Currency }) {
               </button>
             </div>
           </div>
-
-          <p className="type-mono-sm text-muted mt-4">
-            Prices shown in {currency} ({symbol}) for your region.
-          </p>
         </Container>
       </section>
 
