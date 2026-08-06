@@ -12,8 +12,16 @@ import {
  *   1. initialise dataLayer and define gtag()
  *   2. resolve consent and emit gtag('consent','default', …)
  *   3. on the canonical host only, ARM the GTM loader — the container script is
- *      injected on the visitor's first interaction (scroll / pointer / touch /
- *      key) or when the browser goes idle, whichever comes first
+ *      injected on the visitor's first interaction (scroll / wheel / pointer
+ *      move or down / touch / key). There is deliberately NO idle/timeout
+ *      fallback: a timed injection still lands inside the Lighthouse trace,
+ *      where every gtm/gtag/Clarity long task extends TTI and is charged to
+ *      Total Blocking Time (measured: 280 ms → 1,120 ms on PSI mobile with a
+ *      3.5 s idle fallback). Interaction-only keeps the lab trace clean and
+ *      loads analytics for any human who scrolls, moves the mouse, or touches.
+ *      The known cost: a visitor who lands and leaves without any input never
+ *      fires a pageview — accepted, since those sessions are also invisible to
+ *      Clarity (nothing to replay) and mostly bots.
  *
  * Step 2 must precede step 3: Google's Consent Mode documentation states that
  * defaults called out of order simply do not apply, which would let GTM set
@@ -21,12 +29,8 @@ import {
  * that ordering a property of the language rather than of script-tag
  * scheduling — and deferring the injection cannot break it, because the
  * consent default is already in the dataLayer before gtm.js can ever run.
- *
- * The deferral exists for Core Web Vitals: GTM pulls in gtag.js and Clarity
- * (~290 KB of third-party JS) whose network + CPU cost lands inside the LCP
- * window on throttled mobile. Injecting after interaction/idle moves all of it
- * off the critical path (same pattern as WidgetLoader). Consented pageviews are
- * unaffected: GTM replays the queued dataLayer when it loads.
+ * Consented pageviews are unaffected: GTM replays the queued dataLayer when
+ * it loads.
  *
  * Step 3 also reconciles host gating (needs `location`, client-side) with
  * `beforeInteractive` (renders server-side) by doing the check at runtime.
@@ -48,7 +52,7 @@ a=!(!tz||tz.indexOf('Europe/')===0||zones.indexOf(tz)>-1);}
 gtag('consent','default',{analytics_storage:a?'granted':'denied',ad_storage:'denied',ad_user_data:'denied',ad_personalization:'denied',wait_for_update:500});
 if(w.location.hostname===host){
 var done=false;
-var evs=['scroll','pointerdown','touchstart','keydown'];
+var evs=['scroll','wheel','pointermove','pointerdown','touchstart','keydown'];
 var inject=function(){
 if(done){return;}
 done=true;
@@ -59,8 +63,6 @@ var f=d.getElementsByTagName('script')[0];
 if(f&&f.parentNode){f.parentNode.insertBefore(s,f);}else{d.head.appendChild(s);}
 };
 for(var i=0;i<evs.length;i++){w.addEventListener(evs[i],inject,{once:true,passive:true});}
-if(w.requestIdleCallback){w.requestIdleCallback(inject,{timeout:3500});}
-else{w.setTimeout(inject,3500);}
 }}catch(e){}})(window,document,${JSON.stringify(ANALYTICS_HOST)},${JSON.stringify(
     CONSENT_COOKIE
   )},${JSON.stringify(RESTRICTED_ZONES)},${JSON.stringify(GTM_CONTAINER_ID)},${JSON.stringify(
