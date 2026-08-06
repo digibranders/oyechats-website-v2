@@ -5,7 +5,7 @@ import { FadeUp } from '@/components/ui/FadeUp';
 
 /**
  * Reveal, fades a block up as it scrolls into view. Thin wrapper over FadeUp
- * (motion/react, whileInView): SSR-safe and bfcache-safe — content is visible
+ * (CSS transitions + IntersectionObserver): SSR-safe and bfcache-safe — content is visible
  * by default and only below-the-fold blocks arm the entrance animation, so the
  * hero/LCP text never paints at opacity 0. Respects prefers-reduced-motion.
  *

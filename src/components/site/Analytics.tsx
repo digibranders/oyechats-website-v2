@@ -21,7 +21,10 @@ import { consentBootstrapScript } from '@/lib/consent-bootstrap';
 export default function Analytics(): React.ReactElement {
   return (
     <>
-      <link rel="preconnect" href={GTM_ORIGIN} crossOrigin="anonymous" />
+      {/* No `crossOrigin`: gtm.js is a classic (non-CORS) script, and a CORS
+          preconnect opens a connection the actual request can't reuse —
+          Lighthouse flags exactly that as "unused preconnect". */}
+      <link rel="preconnect" href={GTM_ORIGIN} />
       <link rel="dns-prefetch" href={GTM_ORIGIN} />
       {/* This IS the App Router root layout — it replaces pages/_document.js,
           so beforeInteractive is placed correctly. The consent-ordering property
