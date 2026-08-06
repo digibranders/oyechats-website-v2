@@ -439,8 +439,9 @@ img { max-width: 100%; display: block; }
   mask-image: linear-gradient(90deg, transparent 0%, black 8%, black 92%, transparent 100%);
 }
 
-/* Scroll fade-up is handled by the <Reveal> / FadeUp component (motion/react,
-   whileInView), not CSS — SSR-safe and bfcache-safe with no flash-of-hidden. */
+/* Scroll fade-up is handled by the <Reveal> / FadeUp component (CSS
+   transitions + IntersectionObserver) — SSR-safe and bfcache-safe with no
+   flash-of-hidden. */
 
 /* ═══════════════════════ TYPOGRAPHY ═══════════════════════ */
 
