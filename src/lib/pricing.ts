@@ -166,10 +166,10 @@ export type TopupPack = {
 };
 
 export const TOPUP_PACKS: TopupPack[] = [
-  { price: { INR: 1599, USD: 19 }, credits: 2_000, bonusPct: 0 },
-  { price: { INR: 3999, USD: 49 }, credits: 5_500, bonusPct: 10 },
-  { price: { INR: 7999, USD: 99 }, credits: 12_000, bonusPct: 20, badge: 'Best value' },
-  { price: { INR: 19999, USD: 249 }, credits: 32_500, bonusPct: 30 },
+  { price: { INR: 1599, USD: 19 }, credits: 3_000, bonusPct: 0 },
+  { price: { INR: 3999, USD: 49 }, credits: 8_000, bonusPct: 7 },
+  { price: { INR: 7999, USD: 99 }, credits: 24_000, bonusPct: 60, badge: 'Best value' },
+  { price: { INR: 19999, USD: 249 }, credits: 75_000, bonusPct: 100 },
 ];
 
 export type PricingFeatureCategory = 'usage' | 'features' | 'security';
