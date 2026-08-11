@@ -152,6 +152,9 @@ export function siteGraph(featureList: string[]): Record<string, unknown> {
         '@type': 'Organization',
         '@id': ID.organization,
         name: 'OyeChats',
+        // Helps Google associate the spaced spelling with the coined one-word
+        // brand, so a search for "oye chats" resolves to this entity.
+        alternateName: 'Oye Chats',
         url: `${SITE_URL}/`,
         logo: { '@id': ID.logo },
         image: { '@id': ID.logo },
@@ -177,14 +180,15 @@ export function siteGraph(featureList: string[]): Record<string, unknown> {
         '@id': ID.logo,
         url: `${SITE_URL}/logo.png`,
         contentUrl: `${SITE_URL}/logo.png`,
-        width: 1024,
-        height: 1024,
+        width: 512,
+        height: 512,
         caption: 'OyeChats',
       },
       {
         '@type': 'WebSite',
         '@id': ID.website,
         name: 'OyeChats',
+        alternateName: 'Oye Chats',
         url: `${SITE_URL}/`,
         publisher: { '@id': ID.organization },
         inLanguage: 'en',
