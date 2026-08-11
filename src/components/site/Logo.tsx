@@ -18,11 +18,17 @@ const WORDMARK_RATIO = 1390 / 424;
  */
 export function Logo({
   className,
+  imgClassName,
   invert = false,
   size = 27,
   priority = false,
 }: {
   className?: string;
+  /** Extra classes for the wordmark image itself — used to override the
+   *  intrinsic height responsively (e.g. `md:h-8`); pair with `w-auto` so the
+   *  ratio is preserved. `size` should be set to the largest rendered height so
+   *  the generated srcset stays crisp at every breakpoint. */
+  imgClassName?: string;
   invert?: boolean;
   size?: number;
   /** Only the header instance is above the fold. `priority` was hardcoded, so
@@ -37,7 +43,7 @@ export function Logo({
         alt="OyeChats"
         width={width}
         height={size}
-        className="block"
+        className={cn('block', imgClassName)}
         priority={priority}
         loading={priority ? undefined : 'lazy'}
       />
