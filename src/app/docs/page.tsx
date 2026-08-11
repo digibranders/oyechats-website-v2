@@ -192,8 +192,31 @@ export default function DocsPage() {
                     <span className="text-white/40">=</span>
                     <span className="text-[#FFD494]">{`"YOUR_BOT_KEY"`}</span>{'\n'}
                     {'  '}<span className="text-white/50">defer</span>{'\n'}
-                    <span className="text-[#E879F9]">{`></script>`}</span>
+                    <span className="text-[#E879F9]">{`></script>`}</span>{'\n'}
+                    <span className="text-[#E879F9]">{`<a`}</span>{'\n'}
+                    {'  '}<span className="text-white/50">href</span>
+                    <span className="text-white/40">=</span>
+                    <span className="text-[#FFD494]">{`"https://www.oyechats.com/?ref=YOUR_BOT_KEY&utm_source=widget&utm_medium=referral"`}</span>{'\n'}
+                    {'  '}<span className="text-white/50">rel</span>
+                    <span className="text-white/40">=</span>
+                    <span className="text-[#FFD494]">{`"nofollow"`}</span>{'\n'}
+                    {'  '}<span className="text-white/50">style</span>
+                    <span className="text-white/40">=</span>
+                    <span className="text-[#FFD494]">{`"font-size:11px;color:inherit;opacity:0.7;text-decoration:none"`}</span>{'\n'}
+                    <span className="text-[#E879F9]">{`>`}</span>
+                    <span className="text-white/80">Powered by OyeChats</span>
+                    <span className="text-[#E879F9]">{`</a>`}</span>
                   </pre>
+                </div>
+
+                <div className="mb-10">
+                  <Callout variant="info" title="Why there's a visible credit link">
+                    That{' '}
+                    <code className="font-mono text-[12px] text-volt bg-volt-tint border border-volt-line px-1.5 py-0.5 rounded-[var(--r-1)]">
+                      {`<a>`}
+                    </code>{' '}
+                    tag under the script is a small credit link that lives in your page&apos;s HTML, so search engines and AI assistants can actually read it. The badge inside the widget itself isn&apos;t enough for that job, since it only renders inside the widget after a visitor opens the chat. Workspaces on a plan with white-label branding can remove this line from the dashboard.
+                  </Callout>
                 </div>
 
                 <h3 className="type-heading-3 text-ink mb-2">Configuration attributes</h3>
