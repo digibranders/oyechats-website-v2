@@ -117,7 +117,7 @@ export default function Navbar() {
       onMouseLeave={() => setOpenMenu(null)}
     >
       <div className="mx-auto w-full max-w-[1360px] px-6 md:px-12 flex items-center justify-between">
-        <Logo priority />
+        <Logo priority size={40} imgClassName="h-8 w-auto md:h-10" />
 
         <nav aria-label="Primary" className="hidden lg:flex items-center gap-1">
           {TOP_LINKS.map((l) => (
