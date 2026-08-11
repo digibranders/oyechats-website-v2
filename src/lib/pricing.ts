@@ -106,7 +106,7 @@ export const PRICING_TIERS: PricingTier[] = [
   {
     id: 'standard',
     name: 'Standard',
-    tagline: 'The lead-machine — grounded AI plus BANT qualification.',
+    tagline: 'The lead-machine: grounded AI plus BANT qualification.',
     monthly: { INR: 949, USD: 19 },
     annualMonthly: { INR: 759, USD: 15 },
     annualTotal: { INR: 9108, USD: 180 },
@@ -251,9 +251,9 @@ export const CATEGORY_LABELS: Record<PricingFeatureCategory, string> = {
 export const PRICING_FAQ = [
   { q: "What's a credit?", a: 'Credits are how OyeChats measures usage. Each AI chat reply uses 1 credit, each web page we crawl and add to your knowledge base uses 5 credits, and each document upload uses 3 credits. System emails and live-chat operator messages are always free.' },
   { q: 'Which currency will I be billed in?', a: 'Pricing is shown in your local currency. Customers in India are billed in INR (₹); international customers are billed in USD ($). You always see a single currency based on your location.' },
-  { q: 'How do I pay?', a: 'Indian customers pay via Razorpay — UPI, cards, NetBanking, and wallets are all supported. International customers pay by card in USD. You can switch payment methods any time from the Billing page.' },
-  { q: 'Is there a free trial?', a: 'Yes. New accounts can start a 7-day free trial of the Standard plan — the full Standard feature set, no credit card required. And the Free plan runs a working grounded bot at no cost, forever.' },
-  { q: 'What happens when I run out of credits?', a: 'Your bot pauses new conversations until your monthly credits reset, or you can buy a top-up pack any time from the Billing page. We hard-cap at zero — costs never run away — with a friendly message to visitors.' },
+  { q: 'How do I pay?', a: 'Indian customers pay via Razorpay: UPI, cards, NetBanking, and wallets are all supported. International customers pay by card in USD. You can switch payment methods any time from the Billing page.' },
+  { q: 'Is there a free trial?', a: 'Yes. New accounts can start a 7-day free trial of the Standard plan: the full Standard feature set, no credit card required. And the Free plan runs a working grounded bot at no cost, forever.' },
+  { q: 'What happens when I run out of credits?', a: 'Your bot pauses new conversations until your monthly credits reset, or you can buy a top-up pack any time from the Billing page. We hard-cap at zero (costs never run away) with a friendly message to visitors.' },
   { q: 'Do unused credits roll over?', a: 'Plan credits reset at the start of each billing cycle (use-it-or-lose-it). Top-up credits roll over for 12 months from purchase, oldest first.' },
   { q: 'Can I add more operator seats?', a: 'Yes. Extra seats are ₹499 (or $5 for international customers) per month each, added or removed with one click from the Billing page.' },
   { q: 'Can I change plans at any time?', a: 'Absolutely. Upgrade, downgrade, or cancel any time from your dashboard. Downgrades take effect at the end of the billing cycle.' },

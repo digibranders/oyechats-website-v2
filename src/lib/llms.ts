@@ -108,7 +108,7 @@ function blocksToMarkdown(content: BlogBlock[]): string {
 }
 
 export function buildLlmsFullTxt(): string {
-  const parts: string[] = [`# OyeChats — full text`, `> ${SUMMARY}`, INTRO];
+  const parts: string[] = [`# OyeChats: full text`, `> ${SUMMARY}`, INTRO];
 
   parts.push(`# Pricing`, pricingLines());
   parts.push(

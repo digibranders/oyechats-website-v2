@@ -12,7 +12,7 @@ import PricingClient from './PricingClient';
  * reached through the middleware rewrite or hit directly.
  */
 
-const title = 'AI Chatbot Pricing — Plans from Free';
+const title = 'AI Chatbot Pricing: Plans from Free';
 const description =
   'Credit-based pricing for OyeChats. Start free, then scale on Starter, Standard, or Professional. Live chat, BANT scoring, and top-up packs included.';
 
