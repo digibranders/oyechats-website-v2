@@ -12,8 +12,13 @@ export function Table({ children, className }: { children: ReactNode; className?
       {/* Inner scroll container: `min-w` on the table forces horizontal scroll
           on narrow viewports instead of crushing columns to min-content.
           The rounded frame (overflow-hidden) is kept on the outer element so
-          the two overflow axes don't fight on one node. */}
-      <div className="overflow-x-auto">
+          the two overflow axes don't fight on one node.
+          `relative` makes this the containing block for absolutely-positioned
+          descendants (e.g. the `sr-only` cell labels on the check/X icons).
+          Without it their containing block is <html>, so on a narrow viewport
+          they resolve at the overflowed table width and stretch the layout
+          viewport, letting the whole page scroll sideways. */}
+      <div className="relative overflow-x-auto">
         <table className="w-full min-w-[640px] border-collapse text-left [&_tbody_tr:last-child_td]:border-b-0">
           {children}
         </table>

@@ -2,64 +2,45 @@ import Image from 'next/image';
 import Link from 'next/link';
 import { cn } from '@/lib/cn';
 
+/** Intrinsic wordmark aspect ratio (1390×424 source artwork). */
+const WORDMARK_RATIO = 1390 / 424;
+
 /**
- * OyeChats brand, the navy chat-bubble mark + wordmark.
- * The PNG is a dark navy circle with a white chat glyph; on ink-invert
- * surfaces we flip it to a light circle with dark glyph via `invert(1)`.
+ * OyeChats brand wordmark — the cursive "Oye", the C chat-bubble mark, and
+ * "chats" as one lockup image (the standalone icon + text spans are gone).
+ * Two artwork files rather than a CSS filter: the dark wordmark reads on light
+ * surfaces, and on ink-invert surfaces (footer) we swap to the white wordmark
+ * so the artwork stays crisp instead of being negated.
+ *
+ * `size` is the rendered height in px; width follows the intrinsic ratio.
+ * `alt` carries the brand name so the link keeps an accessible name and the
+ * wordmark stays legible to crawlers even though the text is now baked in.
  */
 export function Logo({
   className,
-  subtitle,
   invert = false,
-  size = 28,
+  size = 27,
   priority = false,
 }: {
   className?: string;
-  subtitle?: string;
   invert?: boolean;
   size?: number;
   /** Only the header instance is above the fold. `priority` was hardcoded, so
    *  the footer logo also loaded eagerly and competed with real LCP resources. */
   priority?: boolean;
 }) {
+  const width = Math.round(size * WORDMARK_RATIO);
   return (
-    <Link href="/" className={cn('flex items-center gap-2.5 no-underline', className)}>
-      <span
-        className="relative inline-flex items-center justify-center shrink-0"
-        style={{ width: size, height: size }}
-        aria-hidden
-      >
-        <Image
-          src="/oyechats-mark.png"
-          alt=""
-          width={size * 2}
-          height={size * 2}
-          className={cn(
-            'block h-full w-full',
-            invert && 'invert brightness-110'
-          )}
-          priority={priority}
-          loading={priority ? undefined : 'lazy'}
-        />
-      </span>
-      <span
-        className={cn(
-          'font-display font-semibold text-[16px] tracking-[-0.01em]',
-          invert ? 'text-paper' : 'text-ink'
-        )}
-      >
-        OyeChats
-      </span>
-      {subtitle && (
-        <span
-          className={cn(
-            'font-mono text-[12px] font-medium ml-1.5 hidden sm:inline',
-            invert ? 'text-ink-invert-muted' : 'text-muted'
-          )}
-        >
-          {subtitle}
-        </span>
-      )}
+    <Link href="/" className={cn('inline-flex items-center no-underline', className)}>
+      <Image
+        src={invert ? '/oyechats-wordmark-light.png' : '/oyechats-wordmark.png'}
+        alt="OyeChats"
+        width={width}
+        height={size}
+        className="block"
+        priority={priority}
+        loading={priority ? undefined : 'lazy'}
+      />
     </Link>
   );
 }

@@ -37,7 +37,7 @@ export default function Footer() {
         <div className="grid md:grid-cols-[1.4fr_2fr] gap-10 md:gap-16">
           {/* Brand column */}
           <div className="max-w-sm">
-            <Logo invert size={32} />
+            <Logo invert size={27} />
             <p className="type-body-sm text-ink-invert-muted mt-4 leading-relaxed">
               The AI chatbot that qualifies inbound leads with BANT scoring so sales reps only talk
               to buyers.
