@@ -1,3 +1,13 @@
+export type PersonId = 'gaurav' | 'steve';
+
+export type Person = { name: string; image: string };
+
+// Face photos live in public/. Cropped to the face in the UI via object-cover.
+export const PEOPLE: Record<PersonId, Person> = {
+  gaurav: { name: 'Gaurav', image: '/gaurav.jpeg' },
+  steve: { name: 'Steve', image: '/steve.jpg' },
+};
+
 export type ChangelogEntry = {
   id: string;
   date: string;
@@ -5,11 +15,32 @@ export type ChangelogEntry = {
   title: string;
   description: string;
   tags: string[];
-  author: { name: string; initials: string };
+  // Who shipped the entry. One or two people; when two, listed in display order.
+  updatedBy: PersonId[];
   accent: 'blue' | 'violet' | 'emerald' | 'amber' | 'rose';
 };
 
 export const CHANGELOG: ChangelogEntry[] = [
+  {
+    id: 'company-intelligence',
+    date: 'August 6, 2026',
+    dateISO: '2026-08-06',
+    title: 'OyeChats now knows the company behind every conversation',
+    description: 'Visitor & Company Intelligence resolves the business behind a chat from the visitor’s own domain, resolving it once per session and caching it across the platform so repeat lookups are free. Company details appear right in the lead record, kept separate from network context we never mistake for the company itself. Turn it on per agent, and you’re only charged when we actually return a match.',
+    tags: ['New feature', 'Leads'],
+    updatedBy: ['steve', 'gaurav'],
+    accent: 'amber',
+  },
+  {
+    id: 'verified-email-capture',
+    date: 'July 22, 2026',
+    dateISO: '2026-07-22',
+    title: 'Verified email capture keeps junk leads out of your CRM',
+    description: 'Every email a visitor submits is now verified in real time before the lead is saved, so mistyped and disposable addresses never reach your pipeline. Deliverability checks run server-side at the moment of capture on Standard and Professional plans, keeping your lead list clean and your follow-ups landing.',
+    tags: ['New feature', 'Lead capture'],
+    updatedBy: ['gaurav'],
+    accent: 'emerald',
+  },
   {
     id: 'auto-recrawl',
     date: 'July 7, 2026',
@@ -17,7 +48,7 @@ export const CHANGELOG: ChangelogEntry[] = [
     title: 'Auto-recrawl keeps your knowledge base fresh, automatically',
     description: 'Standard-tier bots now refresh their knowledge base on a schedule. Point OyeChats at a URL once and we re-crawl it in the background whenever your docs, product pages, or pricing change. No more stale answers, no more manual re-uploads.',
     tags: ['New feature', 'Knowledge base'],
-    author: { name: 'OyeChats Team', initials: 'OC' },
+    updatedBy: ['steve'],
     accent: 'blue',
   },
   {
@@ -27,7 +58,7 @@ export const CHANGELOG: ChangelogEntry[] = [
     title: 'The crawler now understands YouTube and linked downloadables',
     description: 'Point OyeChats at any page and it pulls in YouTube transcripts and linked PDFs, DOCX, and TXT files inline with the source. One URL, one crawl, richer context, more accurate answers.',
     tags: ['Improved', 'Crawler'],
-    author: { name: 'Ingestion Team', initials: 'IG' },
+    updatedBy: ['gaurav'],
     accent: 'violet',
   },
   {
@@ -37,7 +68,7 @@ export const CHANGELOG: ChangelogEntry[] = [
     title: 'Billing moves into its own tab, with the right currency from day one',
     description: 'Billing is now a dedicated tab, decoupled from account settings. We capture your billing country at signup and every price you see (seats, plans, top-ups, invoices) renders in your local currency from the very first load.',
     tags: ['New feature', 'Billing'],
-    author: { name: 'OyeChats Team', initials: 'OC' },
+    updatedBy: ['gaurav'],
     accent: 'emerald',
   },
   {
@@ -47,7 +78,7 @@ export const CHANGELOG: ChangelogEntry[] = [
     title: 'A global currency context, everywhere at once',
     description: 'The seat modal, plan picker, top-up flow, and invoices all read from a single CurrencyContext now. Switch billing country and every price in the app updates instantly. No reloads, no mismatched totals at checkout.',
     tags: ['Improved', 'Billing'],
-    author: { name: 'Billing Squad', initials: 'BS' },
+    updatedBy: ['steve'],
     accent: 'emerald',
   },
   {
@@ -57,7 +88,7 @@ export const CHANGELOG: ChangelogEntry[] = [
     title: 'A quiet security pass across the whole platform',
     description: 'Centralized SSRF guard on the crawler and demo preview. Non-root systemd services with unit-level sandboxing. CI actions pinned to commit SHAs. API docs gated in production, WebSocket file events rate-limited, and web push with a hard timeout. Nothing you have to configure. It just runs safer.',
     tags: ['Security', 'Improved'],
-    author: { name: 'Security Team', initials: 'SC' },
+    updatedBy: ['gaurav'],
     accent: 'rose',
   },
   {
@@ -67,7 +98,7 @@ export const CHANGELOG: ChangelogEntry[] = [
     title: 'Strict auth on every account-credential endpoint',
     description: 'The /settings, /upload-logo, and account-credential endpoints now require a valid X-API-Key. No more soft auth paths. Live-chat sessions restored from the database are correctly tenant-scoped on reconnect, and operator presence has a database fallback when Redis is down.',
     tags: ['Fixed', 'Security'],
-    author: { name: 'Security Team', initials: 'SC' },
+    updatedBy: ['gaurav'],
     accent: 'rose',
   },
   {
@@ -77,7 +108,7 @@ export const CHANGELOG: ChangelogEntry[] = [
     title: 'Live chat handoff, now generally available',
     description: 'Visitors can hand off from the bot to a real human at any point, with department routing, canned responses, and a post-chat rating. Operator presence is Redis-backed with automatic database fallback, so nobody drops off the queue when infrastructure hiccups.',
     tags: ['New feature', 'Live chat'],
-    author: { name: 'OyeChats Team', initials: 'OC' },
+    updatedBy: ['steve'],
     accent: 'violet',
   },
   {
@@ -87,7 +118,7 @@ export const CHANGELOG: ChangelogEntry[] = [
     title: 'Auto-rollback on failed post-deploy health checks',
     description: 'A bad release no longer needs a human in the loop. If a deploy fails its health check, the API rolls back to the previous known-good release automatically. Renewal cron and invoice-email workers isolate per-record failures so one bad account never stalls the batch.',
     tags: ['Improved', 'Infrastructure'],
-    author: { name: 'Platform Team', initials: 'PL' },
+    updatedBy: ['gaurav'],
     accent: 'blue',
   },
   {
@@ -97,7 +128,7 @@ export const CHANGELOG: ChangelogEntry[] = [
     title: 'BANT scoring, built into every conversation',
     description: 'OyeChats now scores every conversation on Budget, Authority, Need, and Timeline, automatically. Combined with visitor context (pages viewed, return visits, UTM, device), sales sees a qualified lead the moment intent shows up, without asking a single form question.',
     tags: ['New feature', 'Analytics'],
-    author: { name: 'OyeChats Team', initials: 'OC' },
+    updatedBy: ['gaurav'],
     accent: 'amber',
   },
   {
@@ -107,7 +138,7 @@ export const CHANGELOG: ChangelogEntry[] = [
     title: 'Hybrid retrieval, tighter answers',
     description: 'Reciprocal rank fusion now blends semantic similarity with keyword TSVECTOR search. Answers stay grounded in your docs even when the visitor uses acronyms, product codes, or phrasing your knowledge base never anticipated.',
     tags: ['Improved', 'RAG'],
-    author: { name: 'AI Team', initials: 'AI' },
+    updatedBy: ['steve'],
     accent: 'violet',
   },
 ];
