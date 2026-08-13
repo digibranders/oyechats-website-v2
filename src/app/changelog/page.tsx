@@ -1,10 +1,11 @@
 import type { Metadata } from 'next';
+import Image from 'next/image';
 import { buildGraph, jsonLd, pageMeta } from '@/lib/seo';
 import { Chip, Container, DottedGrid, GradientText, HeroGlow, Reveal } from '@/components/ds';
-import { CHANGELOG, type ChangelogEntry } from '@/lib/changelog';
+import { CHANGELOG, PEOPLE, type ChangelogEntry } from '@/lib/changelog';
 
 export const metadata: Metadata = pageMeta({
-  title: 'Changelog — Product Updates & Release Notes',
+  title: 'Changelog: Product Updates & Release Notes',
   description:
     'OyeChats product updates and release notes: new features, improvements, and fixes as they ship.',
   path: '/changelog',
@@ -83,13 +84,24 @@ export default function ChangelogPage() {
                       <h2 className="type-heading-1 text-ink mb-3">{entry.title}</h2>
                       <p className="type-body text-ink-2 mb-6">{entry.description}</p>
                       <div className="flex items-center justify-between pt-4 border-t border-line">
-                        <div className="flex items-center gap-3">
-                          <div className="w-8 h-8 rounded-full bg-volt-tint border border-volt-line flex items-center justify-center font-mono font-semibold text-[10px] text-volt-ink">
-                            {entry.author.initials}
-                          </div>
-                          <div className="text-xs">
-                            <div className="text-ink font-medium">{entry.author.name}</div>
-                          </div>
+                        <div className="flex items-center gap-2 text-xs text-ink-2">
+                          <span>Updated by</span>
+                          {entry.updatedBy.map((personId, j) => {
+                            const person = PEOPLE[personId];
+                            return (
+                              <span key={personId} className="flex items-center gap-1.5">
+                                {j > 0 && <span className="text-muted">&amp;</span>}
+                                <span className="text-ink font-medium">{person.name}</span>
+                                <Image
+                                  src={person.image}
+                                  alt={person.name}
+                                  width={24}
+                                  height={24}
+                                  className="w-6 h-6 rounded-full object-cover object-top border border-line"
+                                />
+                              </span>
+                            );
+                          })}
                         </div>
                         <a
                           href={`#${entry.id}`}

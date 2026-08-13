@@ -3,7 +3,7 @@ import { SITE_URL, buildGraph, jsonLd, pageMeta } from '@/lib/seo';
 import { INTEGRATIONS } from '@/lib/integrations';
 import IntegrationsClient from './IntegrationsClient';
 
-const title = 'Integrations — One Script Tag, Any Site';
+const title = 'Integrations: One Script Tag, Any Site';
 const description =
   'Install OyeChats with one script tag. Works with WordPress, Webflow, Next.js, React, and Vue, plus signed webhooks that push every chat event to your CRM.';
 

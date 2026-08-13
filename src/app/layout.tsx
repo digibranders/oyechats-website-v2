@@ -70,8 +70,20 @@ export const metadata: Metadata = {
     description:
       'AI chatbot that qualifies every visitor with BANT scoring before your sales reps see them.',
     siteName: 'OyeChats',
+    images: [
+      {
+        url: '/og.jpg',
+        width: 1200,
+        height: 630,
+        alt: 'OyeChats. AI chatbot that identifies qualified leads.',
+      },
+    ],
   },
-  twitter: { card: 'summary_large_image', title: 'OyeChats. You only talk to buyers.' },
+  twitter: {
+    card: 'summary_large_image',
+    title: 'OyeChats. You only talk to buyers.',
+    images: ['/og.jpg'],
+  },
   robots: { index: true, follow: true },
 };
 

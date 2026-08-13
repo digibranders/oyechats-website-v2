@@ -5,7 +5,7 @@ import { Chip, Container, DottedGrid } from '@/components/ds';
 import { LEGAL_PAGES } from '@/lib/legal';
 
 export const metadata: Metadata = pageMeta({
-  title: 'Legal — Privacy, Terms, DPA & Sub-processors',
+  title: 'Legal: Privacy, Terms, DPA & Sub-processors',
   description: 'Privacy, terms, DPA, sub-processors, and other OyeChats legal documents.',
   path: '/legal',
 });
