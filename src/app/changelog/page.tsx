@@ -4,7 +4,7 @@ import { Chip, Container, DottedGrid, GradientText, HeroGlow, Reveal } from '@/c
 import { CHANGELOG, type ChangelogEntry } from '@/lib/changelog';
 
 export const metadata: Metadata = pageMeta({
-  title: 'Changelog — Product Updates & Release Notes',
+  title: 'Changelog: Product Updates & Release Notes',
   description:
     'OyeChats product updates and release notes: new features, improvements, and fixes as they ship.',
   path: '/changelog',

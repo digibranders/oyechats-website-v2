@@ -13,7 +13,7 @@ import {
 } from '@/components/ds';
 
 export const metadata: Metadata = pageMeta({
-  title: 'About OyeChats — The RAG AI Chat Platform',
+  title: 'About OyeChats: The RAG AI Chat Platform',
   description:
     'OyeChats is the RAG-powered AI chat platform for support, sales, and live conversations. Meet the team defining how businesses answer their customers.',
   path: '/about',

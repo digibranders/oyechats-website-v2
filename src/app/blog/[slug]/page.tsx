@@ -263,7 +263,7 @@ export default async function BlogPostPage({ params }: { params: Promise<Params>
               <h2 className="type-heading-2 text-ink">See it on your own site</h2>
               <p className="type-body mt-3 max-w-xl text-ink-2">
                 OyeChats answers every visitor from your own docs, scores their intent as they
-                chat, and routes the buyers to your team. Free to start — live in under 10 minutes.
+                chat, and routes the buyers to your team. Free to start. Live in under 10 minutes.
               </p>
               <div className="mt-6 flex flex-wrap gap-3">
                 <Button href={APP_LINKS.register} external variant="volt" size="md">

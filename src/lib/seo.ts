@@ -58,7 +58,7 @@ export function pageMeta({
   title,
   description,
   path,
-  image = '/opengraph-image',
+  image = '/og.jpg',
 }: {
   title: string;
   description: string;
