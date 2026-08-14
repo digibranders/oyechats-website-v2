@@ -1,0 +1,712 @@
+{
+  "/Users/a12345/Desktop/AI/OyeChats/oyechats-website/.impeccable/live/config.json": {
+    "mtime": 1786628640.0681531,
+    "ast_hash": "7cdace06f1017cda9ba30957c8102ef0",
+    "semantic_hash": "7cdace06f1017cda9ba30957c8102ef0"
+  },
+  "/Users/a12345/Desktop/AI/OyeChats/oyechats-website/eslint.config.mjs": {
+    "mtime": 1785478421.4626944,
+    "ast_hash": "b05c3bd3807fb3ca5abdbd98800f8a85",
+    "semantic_hash": "b05c3bd3807fb3ca5abdbd98800f8a85"
+  },
+  "/Users/a12345/Desktop/AI/OyeChats/oyechats-website/next.config.ts": {
+    "mtime": 1785478421.4627552,
+    "ast_hash": "42cc589d1f3668cbd2e662bb7bcbb24b",
+    "semantic_hash": "42cc589d1f3668cbd2e662bb7bcbb24b"
+  },
+  "/Users/a12345/Desktop/AI/OyeChats/oyechats-website/package.json": {
+    "mtime": 1785478421.46319,
+    "ast_hash": "a95c9eefd2028b412bb425e5d461cd8e",
+    "semantic_hash": "a95c9eefd2028b412bb425e5d461cd8e"
+  },
+  "/Users/a12345/Desktop/AI/OyeChats/oyechats-website/postcss.config.mjs": {
+    "mtime": 1785478421.4632413,
+    "ast_hash": "75d30725175ead2f191e8277dfa4edb6",
+    "semantic_hash": "75d30725175ead2f191e8277dfa4edb6"
+  },
+  "/Users/a12345/Desktop/AI/OyeChats/oyechats-website/public/openapi.json": {
+    "mtime": 1785478421.4646065,
+    "ast_hash": "16ae80c560f8fc6f189a7fc9b4d4872c",
+    "semantic_hash": "16ae80c560f8fc6f189a7fc9b4d4872c"
+  },
+  "/Users/a12345/Desktop/AI/OyeChats/oyechats-website/scripts/verify-html.mjs": {
+    "mtime": 1786630458.5603209,
+    "ast_hash": "c9457272925bdb09557b9c9433c8a7aa",
+    "semantic_hash": "c9457272925bdb09557b9c9433c8a7aa"
+  },
+  "/Users/a12345/Desktop/AI/OyeChats/oyechats-website/src/app/HomeContent.tsx": {
+    "mtime": 1786631772.9291768,
+    "ast_hash": "615a6799413bb66b0c4a19dc36f48d69",
+    "semantic_hash": "615a6799413bb66b0c4a19dc36f48d69"
+  },
+  "/Users/a12345/Desktop/AI/OyeChats/oyechats-website/src/app/about/page.tsx": {
+    "mtime": 1786628317.134932,
+    "ast_hash": "df272a64fbfa2dc9472019c0aed11670",
+    "semantic_hash": "df272a64fbfa2dc9472019c0aed11670"
+  },
+  "/Users/a12345/Desktop/AI/OyeChats/oyechats-website/src/app/api/contact/route.ts": {
+    "mtime": 1785478421.4658175,
+    "ast_hash": "8382173690426d31aceb7a8f69653629",
+    "semantic_hash": "8382173690426d31aceb7a8f69653629"
+  },
+  "/Users/a12345/Desktop/AI/OyeChats/oyechats-website/src/app/api/status/route.ts": {
+    "mtime": 1785478421.4659343,
+    "ast_hash": "d61cb1ccd2553e94dc03bf44595a2f3e",
+    "semantic_hash": "d61cb1ccd2553e94dc03bf44595a2f3e"
+  },
+  "/Users/a12345/Desktop/AI/OyeChats/oyechats-website/src/app/blog/[slug]/opengraph-image.tsx": {
+    "mtime": 1785478421.466354,
+    "ast_hash": "e1de1c0fd550fe807a38390b5cdcf765",
+    "semantic_hash": "e1de1c0fd550fe807a38390b5cdcf765"
+  },
+  "/Users/a12345/Desktop/AI/OyeChats/oyechats-website/src/app/blog/[slug]/page.tsx": {
+    "mtime": 1786628317.1355946,
+    "ast_hash": "54b132476b21e61e7fdd5b0a4efdb111",
+    "semantic_hash": "54b132476b21e61e7fdd5b0a4efdb111"
+  },
+  "/Users/a12345/Desktop/AI/OyeChats/oyechats-website/src/app/blog/page.tsx": {
+    "mtime": 1786628317.1359718,
+    "ast_hash": "6b703ec764c4083acdbdb74edc3a2515",
+    "semantic_hash": "6b703ec764c4083acdbdb74edc3a2515"
+  },
+  "/Users/a12345/Desktop/AI/OyeChats/oyechats-website/src/app/changelog/page.tsx": {
+    "mtime": 1786628317.1362133,
+    "ast_hash": "23a4ad22c7c64fc623f3786aa8438385",
+    "semantic_hash": "23a4ad22c7c64fc623f3786aa8438385"
+  },
+  "/Users/a12345/Desktop/AI/OyeChats/oyechats-website/src/app/compare/[slug]/page.tsx": {
+    "mtime": 1786628317.1366603,
+    "ast_hash": "3bd3988af7fce8f060819143573023a6",
+    "semantic_hash": "3bd3988af7fce8f060819143573023a6"
+  },
+  "/Users/a12345/Desktop/AI/OyeChats/oyechats-website/src/app/compare/page.tsx": {
+    "mtime": 1786628317.1368625,
+    "ast_hash": "71959957993f2a0338efa84dc3882038",
+    "semantic_hash": "71959957993f2a0338efa84dc3882038"
+  },
+  "/Users/a12345/Desktop/AI/OyeChats/oyechats-website/src/app/contact/ContactClient.tsx": {
+    "mtime": 1785478421.4670444,
+    "ast_hash": "e4c1df759bf8ca8e969af909726b2fba",
+    "semantic_hash": "e4c1df759bf8ca8e969af909726b2fba"
+  },
+  "/Users/a12345/Desktop/AI/OyeChats/oyechats-website/src/app/contact/page.tsx": {
+    "mtime": 1785478421.4671297,
+    "ast_hash": "850eb2d21b5bee315a2646d6efd85de4",
+    "semantic_hash": "850eb2d21b5bee315a2646d6efd85de4"
+  },
+  "/Users/a12345/Desktop/AI/OyeChats/oyechats-website/src/app/docs/page.tsx": {
+    "mtime": 1786628317.137098,
+    "ast_hash": "e3d64607be448cb435782e6edf3aa0a1",
+    "semantic_hash": "e3d64607be448cb435782e6edf3aa0a1"
+  },
+  "/Users/a12345/Desktop/AI/OyeChats/oyechats-website/src/app/error.tsx": {
+    "mtime": 1785478421.4673812,
+    "ast_hash": "47db81c0fb5ddf2d4f1f675ec7e84d67",
+    "semantic_hash": "47db81c0fb5ddf2d4f1f675ec7e84d67"
+  },
+  "/Users/a12345/Desktop/AI/OyeChats/oyechats-website/src/app/features/page.tsx": {
+    "mtime": 1786630458.5608757,
+    "ast_hash": "cfcd67a3d5d21dc694977593df87432d",
+    "semantic_hash": "cfcd67a3d5d21dc694977593df87432d"
+  },
+  "/Users/a12345/Desktop/AI/OyeChats/oyechats-website/src/app/global-error.tsx": {
+    "mtime": 1785478421.4676907,
+    "ast_hash": "ee84b1f624bfe4aec0e6a835ec6e3bcd",
+    "semantic_hash": "ee84b1f624bfe4aec0e6a835ec6e3bcd"
+  },
+  "/Users/a12345/Desktop/AI/OyeChats/oyechats-website/src/app/in/page.tsx": {
+    "mtime": 1786631772.9286022,
+    "ast_hash": "1dc6eae83911dccc05e82f948c5642ea",
+    "semantic_hash": "1dc6eae83911dccc05e82f948c5642ea"
+  },
+  "/Users/a12345/Desktop/AI/OyeChats/oyechats-website/src/app/in/pricing/page.tsx": {
+    "mtime": 1786631772.9283454,
+    "ast_hash": "3a2ea365e368bddad130393903793cab",
+    "semantic_hash": "3a2ea365e368bddad130393903793cab"
+  },
+  "/Users/a12345/Desktop/AI/OyeChats/oyechats-website/src/app/integrations/IntegrationsClient.tsx": {
+    "mtime": 1785478421.4684994,
+    "ast_hash": "2c36620d851856f55579dd1797c0c550",
+    "semantic_hash": "2c36620d851856f55579dd1797c0c550"
+  },
+  "/Users/a12345/Desktop/AI/OyeChats/oyechats-website/src/app/integrations/page.tsx": {
+    "mtime": 1786628317.1381457,
+    "ast_hash": "5d1e4b31667e3baa044a7d7fe8c31cad",
+    "semantic_hash": "5d1e4b31667e3baa044a7d7fe8c31cad"
+  },
+  "/Users/a12345/Desktop/AI/OyeChats/oyechats-website/src/app/layout.tsx": {
+    "mtime": 1786630458.5619674,
+    "ast_hash": "5d39aa6bed239d331cfcecbfb8e6e284",
+    "semantic_hash": "5d39aa6bed239d331cfcecbfb8e6e284"
+  },
+  "/Users/a12345/Desktop/AI/OyeChats/oyechats-website/src/app/legal/cancellation/page.tsx": {
+    "mtime": 1785478421.4688292,
+    "ast_hash": "5cc2c1d911d37f5054f0e1ab10ee6eea",
+    "semantic_hash": "5cc2c1d911d37f5054f0e1ab10ee6eea"
+  },
+  "/Users/a12345/Desktop/AI/OyeChats/oyechats-website/src/app/legal/cookies/page.tsx": {
+    "mtime": 1785478421.4689276,
+    "ast_hash": "55a766d45b5cad204ffe5e676d9b8420",
+    "semantic_hash": "55a766d45b5cad204ffe5e676d9b8420"
+  },
+  "/Users/a12345/Desktop/AI/OyeChats/oyechats-website/src/app/legal/dpa/page.tsx": {
+    "mtime": 1785478421.4690154,
+    "ast_hash": "9bc09eab67ea07e330cc82658285e9a5",
+    "semantic_hash": "9bc09eab67ea07e330cc82658285e9a5"
+  },
+  "/Users/a12345/Desktop/AI/OyeChats/oyechats-website/src/app/legal/page.tsx": {
+    "mtime": 1786628317.1388993,
+    "ast_hash": "76cba7d2b36754a8fa0c183e7916bedc",
+    "semantic_hash": "76cba7d2b36754a8fa0c183e7916bedc"
+  },
+  "/Users/a12345/Desktop/AI/OyeChats/oyechats-website/src/app/legal/privacy/page.tsx": {
+    "mtime": 1785478421.4691796,
+    "ast_hash": "0f61acd7a2fcf623e018cdaf203b0831",
+    "semantic_hash": "0f61acd7a2fcf623e018cdaf203b0831"
+  },
+  "/Users/a12345/Desktop/AI/OyeChats/oyechats-website/src/app/legal/refund/page.tsx": {
+    "mtime": 1785478421.4692674,
+    "ast_hash": "5387d5c3be8906ccf88e57056bf4d73d",
+    "semantic_hash": "5387d5c3be8906ccf88e57056bf4d73d"
+  },
+  "/Users/a12345/Desktop/AI/OyeChats/oyechats-website/src/app/legal/subprocessors/page.tsx": {
+    "mtime": 1785478421.469371,
+    "ast_hash": "2075ce9d73f654326d1aef2c2f87e040",
+    "semantic_hash": "2075ce9d73f654326d1aef2c2f87e040"
+  },
+  "/Users/a12345/Desktop/AI/OyeChats/oyechats-website/src/app/legal/terms/page.tsx": {
+    "mtime": 1785478421.469457,
+    "ast_hash": "4a0f7ef15eb594a4b0de3d8809959038",
+    "semantic_hash": "4a0f7ef15eb594a4b0de3d8809959038"
+  },
+  "/Users/a12345/Desktop/AI/OyeChats/oyechats-website/src/app/llms-full.txt/route.ts": {
+    "mtime": 1785478421.4695663,
+    "ast_hash": "196d8dc76a8628fdcf93276af8a95cc0",
+    "semantic_hash": "196d8dc76a8628fdcf93276af8a95cc0"
+  },
+  "/Users/a12345/Desktop/AI/OyeChats/oyechats-website/src/app/llms.txt/route.ts": {
+    "mtime": 1785478421.4698946,
+    "ast_hash": "45b532b56609a4f23e10ab082484dcbc",
+    "semantic_hash": "45b532b56609a4f23e10ab082484dcbc"
+  },
+  "/Users/a12345/Desktop/AI/OyeChats/oyechats-website/src/app/manifest.ts": {
+    "mtime": 1785478421.470029,
+    "ast_hash": "0f8a3c81041c17e571e1d79b5ea49635",
+    "semantic_hash": "0f8a3c81041c17e571e1d79b5ea49635"
+  },
+  "/Users/a12345/Desktop/AI/OyeChats/oyechats-website/src/app/not-found.tsx": {
+    "mtime": 1785478421.470119,
+    "ast_hash": "7349770da196c7d361b91c1a85450265",
+    "semantic_hash": "7349770da196c7d361b91c1a85450265"
+  },
+  "/Users/a12345/Desktop/AI/OyeChats/oyechats-website/src/app/page.tsx": {
+    "mtime": 1786631778.887641,
+    "ast_hash": "616df512812e9ab35ffbfa4f643bb5ea",
+    "semantic_hash": "616df512812e9ab35ffbfa4f643bb5ea"
+  },
+  "/Users/a12345/Desktop/AI/OyeChats/oyechats-website/src/app/pricing/PricingClient.tsx": {
+    "mtime": 1786631772.9307559,
+    "ast_hash": "1741ed9797710570f636175c3a2ca263",
+    "semantic_hash": "1741ed9797710570f636175c3a2ca263"
+  },
+  "/Users/a12345/Desktop/AI/OyeChats/oyechats-website/src/app/pricing/page.tsx": {
+    "mtime": 1786631778.8881319,
+    "ast_hash": "fd934a9a5c03695bfeb42d1fdfc97a70",
+    "semantic_hash": "fd934a9a5c03695bfeb42d1fdfc97a70"
+  },
+  "/Users/a12345/Desktop/AI/OyeChats/oyechats-website/src/app/pricing/shared.tsx": {
+    "mtime": 1786631772.931998,
+    "ast_hash": "0ff73cd8a60b54dd330c6eefcf58deb8",
+    "semantic_hash": "0ff73cd8a60b54dd330c6eefcf58deb8"
+  },
+  "/Users/a12345/Desktop/AI/OyeChats/oyechats-website/src/app/robots.ts": {
+    "mtime": 1785478421.4706175,
+    "ast_hash": "25b60b38815dbfd589b1f57ff7d172f6",
+    "semantic_hash": "25b60b38815dbfd589b1f57ff7d172f6"
+  },
+  "/Users/a12345/Desktop/AI/OyeChats/oyechats-website/src/app/security/page.tsx": {
+    "mtime": 1786628317.1394403,
+    "ast_hash": "3245bc699052883f3e1abd60c2e90977",
+    "semantic_hash": "3245bc699052883f3e1abd60c2e90977"
+  },
+  "/Users/a12345/Desktop/AI/OyeChats/oyechats-website/src/app/sitemap.ts": {
+    "mtime": 1785478421.470816,
+    "ast_hash": "a38a2c539f3942524cfd2011905e315d",
+    "semantic_hash": "a38a2c539f3942524cfd2011905e315d"
+  },
+  "/Users/a12345/Desktop/AI/OyeChats/oyechats-website/src/app/solutions/page.tsx": {
+    "mtime": 1785478421.4709558,
+    "ast_hash": "4b704a2b17fe361dea0debe91f69bb1e",
+    "semantic_hash": "4b704a2b17fe361dea0debe91f69bb1e"
+  },
+  "/Users/a12345/Desktop/AI/OyeChats/oyechats-website/src/components/ds/Accordion.tsx": {
+    "mtime": 1785478421.471097,
+    "ast_hash": "bf81a7722f2b7c352435b24a53ae94cc",
+    "semantic_hash": "bf81a7722f2b7c352435b24a53ae94cc"
+  },
+  "/Users/a12345/Desktop/AI/OyeChats/oyechats-website/src/components/ds/BantScoreRing.tsx": {
+    "mtime": 1785478421.4711688,
+    "ast_hash": "2db8578e108e5dc086c875ccec914c24",
+    "semantic_hash": "2db8578e108e5dc086c875ccec914c24"
+  },
+  "/Users/a12345/Desktop/AI/OyeChats/oyechats-website/src/components/ds/Button.tsx": {
+    "mtime": 1785478421.4712489,
+    "ast_hash": "c585f6c39e9ebe451673b8d0d07d2052",
+    "semantic_hash": "c585f6c39e9ebe451673b8d0d07d2052"
+  },
+  "/Users/a12345/Desktop/AI/OyeChats/oyechats-website/src/components/ds/Callout.tsx": {
+    "mtime": 1785478421.471329,
+    "ast_hash": "7f5848ff9572773b71c612b2550903f5",
+    "semantic_hash": "7f5848ff9572773b71c612b2550903f5"
+  },
+  "/Users/a12345/Desktop/AI/OyeChats/oyechats-website/src/components/ds/Card.tsx": {
+    "mtime": 1785478421.4714046,
+    "ast_hash": "9fdb93706b00b373af71868dc9a62758",
+    "semantic_hash": "9fdb93706b00b373af71868dc9a62758"
+  },
+  "/Users/a12345/Desktop/AI/OyeChats/oyechats-website/src/components/ds/ChatBubble.tsx": {
+    "mtime": 1785478421.4714856,
+    "ast_hash": "f346e65a835acb53be3e7f9ea8869004",
+    "semantic_hash": "f346e65a835acb53be3e7f9ea8869004"
+  },
+  "/Users/a12345/Desktop/AI/OyeChats/oyechats-website/src/components/ds/Chip.tsx": {
+    "mtime": 1785478421.4715507,
+    "ast_hash": "5b82b06224f0663e95e830c55f96cb7a",
+    "semantic_hash": "5b82b06224f0663e95e830c55f96cb7a"
+  },
+  "/Users/a12345/Desktop/AI/OyeChats/oyechats-website/src/components/ds/Container.tsx": {
+    "mtime": 1785478421.471615,
+    "ast_hash": "cba304a08f81015a17e111a91104ba2c",
+    "semantic_hash": "cba304a08f81015a17e111a91104ba2c"
+  },
+  "/Users/a12345/Desktop/AI/OyeChats/oyechats-website/src/components/ds/DataFlowLine.tsx": {
+    "mtime": 1785478421.4716842,
+    "ast_hash": "7b62b776cf0ae42aba8bcae02b5edd97",
+    "semantic_hash": "7b62b776cf0ae42aba8bcae02b5edd97"
+  },
+  "/Users/a12345/Desktop/AI/OyeChats/oyechats-website/src/components/ds/DottedGrid.tsx": {
+    "mtime": 1785478421.471776,
+    "ast_hash": "840fee481dcffcf807864160b3c5a166",
+    "semantic_hash": "840fee481dcffcf807864160b3c5a166"
+  },
+  "/Users/a12345/Desktop/AI/OyeChats/oyechats-website/src/components/ds/GradientText.tsx": {
+    "mtime": 1785478421.4718528,
+    "ast_hash": "0ddd0a3b11767b40cb3e025492557481",
+    "semantic_hash": "0ddd0a3b11767b40cb3e025492557481"
+  },
+  "/Users/a12345/Desktop/AI/OyeChats/oyechats-website/src/components/ds/HeroGlow.tsx": {
+    "mtime": 1785478421.471935,
+    "ast_hash": "b5ad384c509b64bd06ac58e1f357de0f",
+    "semantic_hash": "b5ad384c509b64bd06ac58e1f357de0f"
+  },
+  "/Users/a12345/Desktop/AI/OyeChats/oyechats-website/src/components/ds/Input.tsx": {
+    "mtime": 1785478421.47202,
+    "ast_hash": "126f5ac8438525462e221cd0d20d5705",
+    "semantic_hash": "126f5ac8438525462e221cd0d20d5705"
+  },
+  "/Users/a12345/Desktop/AI/OyeChats/oyechats-website/src/components/ds/LogoCloud.tsx": {
+    "mtime": 1785478421.4720948,
+    "ast_hash": "2c833893e91632e34b6f91a2498717fb",
+    "semantic_hash": "2c833893e91632e34b6f91a2498717fb"
+  },
+  "/Users/a12345/Desktop/AI/OyeChats/oyechats-website/src/components/ds/Marquee.tsx": {
+    "mtime": 1785478421.4721663,
+    "ast_hash": "4d01ca2954ed79d1a1ae57ed306faa0b",
+    "semantic_hash": "4d01ca2954ed79d1a1ae57ed306faa0b"
+  },
+  "/Users/a12345/Desktop/AI/OyeChats/oyechats-website/src/components/ds/MonoMark.tsx": {
+    "mtime": 1785478421.4722435,
+    "ast_hash": "067426c624957b7004176ff9d5d58865",
+    "semantic_hash": "067426c624957b7004176ff9d5d58865"
+  },
+  "/Users/a12345/Desktop/AI/OyeChats/oyechats-website/src/components/ds/NumberTicker.tsx": {
+    "mtime": 1785496231.480544,
+    "ast_hash": "7aff295fd3c7fbf1a63c074150b663f7",
+    "semantic_hash": "7aff295fd3c7fbf1a63c074150b663f7"
+  },
+  "/Users/a12345/Desktop/AI/OyeChats/oyechats-website/src/components/ds/PricingPrice.tsx": {
+    "mtime": 1785496231.4806912,
+    "ast_hash": "c87dcc869242966359d44f2c9ced04f1",
+    "semantic_hash": "c87dcc869242966359d44f2c9ced04f1"
+  },
+  "/Users/a12345/Desktop/AI/OyeChats/oyechats-website/src/components/ds/PullQuote.tsx": {
+    "mtime": 1785478421.472497,
+    "ast_hash": "f9caa163f5a7165a09a7f78d7dfdc760",
+    "semantic_hash": "f9caa163f5a7165a09a7f78d7dfdc760"
+  },
+  "/Users/a12345/Desktop/AI/OyeChats/oyechats-website/src/components/ds/Reveal.tsx": {
+    "mtime": 1786003669.0556562,
+    "ast_hash": "ec2adc8a1eeee1d9e5cee5f1077550db",
+    "semantic_hash": "ec2adc8a1eeee1d9e5cee5f1077550db"
+  },
+  "/Users/a12345/Desktop/AI/OyeChats/oyechats-website/src/components/ds/Section.tsx": {
+    "mtime": 1785478421.4726167,
+    "ast_hash": "1aa1f59f7618d2ba9ed58009970bb82d",
+    "semantic_hash": "1aa1f59f7618d2ba9ed58009970bb82d"
+  },
+  "/Users/a12345/Desktop/AI/OyeChats/oyechats-website/src/components/ds/Table.tsx": {
+    "mtime": 1786628317.1397932,
+    "ast_hash": "98fcc48efd7e41baed8bc251db0676be",
+    "semantic_hash": "98fcc48efd7e41baed8bc251db0676be"
+  },
+  "/Users/a12345/Desktop/AI/OyeChats/oyechats-website/src/components/ds/TerminalCard.tsx": {
+    "mtime": 1785478421.47276,
+    "ast_hash": "b3d87eaa9c450588d2dca25ecada9460",
+    "semantic_hash": "b3d87eaa9c450588d2dca25ecada9460"
+  },
+  "/Users/a12345/Desktop/AI/OyeChats/oyechats-website/src/components/ds/index.ts": {
+    "mtime": 1785478421.4728181,
+    "ast_hash": "6f81486dcfb3053a49572f3a7881da5f",
+    "semantic_hash": "6f81486dcfb3053a49572f3a7881da5f"
+  },
+  "/Users/a12345/Desktop/AI/OyeChats/oyechats-website/src/components/site/Analytics.tsx": {
+    "mtime": 1786630458.5621107,
+    "ast_hash": "2766289f975d4fb26d71a6fa994183e0",
+    "semantic_hash": "2766289f975d4fb26d71a6fa994183e0"
+  },
+  "/Users/a12345/Desktop/AI/OyeChats/oyechats-website/src/components/site/AnnouncementBar.tsx": {
+    "mtime": 1785478421.4729862,
+    "ast_hash": "561b3dd8b429420e22ba91533624e2cb",
+    "semantic_hash": "561b3dd8b429420e22ba91533624e2cb"
+  },
+  "/Users/a12345/Desktop/AI/OyeChats/oyechats-website/src/components/site/BlogCover.tsx": {
+    "mtime": 1785478421.473064,
+    "ast_hash": "6a8870943efc9284d27a3804b581b8f6",
+    "semantic_hash": "6a8870943efc9284d27a3804b581b8f6"
+  },
+  "/Users/a12345/Desktop/AI/OyeChats/oyechats-website/src/components/site/BlogList.tsx": {
+    "mtime": 1785478421.4731388,
+    "ast_hash": "40520d3b9dbd874f968131d601250242",
+    "semantic_hash": "40520d3b9dbd874f968131d601250242"
+  },
+  "/Users/a12345/Desktop/AI/OyeChats/oyechats-website/src/components/site/CompareTable.tsx": {
+    "mtime": 1786628317.1400201,
+    "ast_hash": "eb31843d2d91890f3a8254d980b5d089",
+    "semantic_hash": "eb31843d2d91890f3a8254d980b5d089"
+  },
+  "/Users/a12345/Desktop/AI/OyeChats/oyechats-website/src/components/site/ConsentProvider.tsx": {
+    "mtime": 1785496231.4811451,
+    "ast_hash": "766ca6d52faaeaefabdfad8e471aa786",
+    "semantic_hash": "766ca6d52faaeaefabdfad8e471aa786"
+  },
+  "/Users/a12345/Desktop/AI/OyeChats/oyechats-website/src/components/site/CookieConsent.tsx": {
+    "mtime": 1785478421.4733124,
+    "ast_hash": "ecdd3fcb47d9eb66154513210bcaca6b",
+    "semantic_hash": "ecdd3fcb47d9eb66154513210bcaca6b"
+  },
+  "/Users/a12345/Desktop/AI/OyeChats/oyechats-website/src/components/site/CookiePreferencesButton.tsx": {
+    "mtime": 1785478421.4733987,
+    "ast_hash": "da7fb2737590b82a218b418735a5a419",
+    "semantic_hash": "da7fb2737590b82a218b418735a5a419"
+  },
+  "/Users/a12345/Desktop/AI/OyeChats/oyechats-website/src/components/site/FinalCTA.tsx": {
+    "mtime": 1786630609.103444,
+    "ast_hash": "a7b6250f8cb038876dae68668e4a5c50",
+    "semantic_hash": "a7b6250f8cb038876dae68668e4a5c50"
+  },
+  "/Users/a12345/Desktop/AI/OyeChats/oyechats-website/src/components/site/Footer.tsx": {
+    "mtime": 1786628317.1402302,
+    "ast_hash": "8df8713ca2c551207e9b0450013737e9",
+    "semantic_hash": "8df8713ca2c551207e9b0450013737e9"
+  },
+  "/Users/a12345/Desktop/AI/OyeChats/oyechats-website/src/components/site/HeroDemo.tsx": {
+    "mtime": 1786628803.2934031,
+    "ast_hash": "827aed3e354e856d3003cb1617f89b2c",
+    "semantic_hash": "827aed3e354e856d3003cb1617f89b2c"
+  },
+  "/Users/a12345/Desktop/AI/OyeChats/oyechats-website/src/components/site/LegalDocument.tsx": {
+    "mtime": 1785478421.4737406,
+    "ast_hash": "3200a25c4b93e89b6d6655942ce15afc",
+    "semantic_hash": "3200a25c4b93e89b6d6655942ce15afc"
+  },
+  "/Users/a12345/Desktop/AI/OyeChats/oyechats-website/src/components/site/Logo.tsx": {
+    "mtime": 1786628317.1404748,
+    "ast_hash": "b9eb82f60609eb0d57983217c0201f93",
+    "semantic_hash": "b9eb82f60609eb0d57983217c0201f93"
+  },
+  "/Users/a12345/Desktop/AI/OyeChats/oyechats-website/src/components/site/Navbar.tsx": {
+    "mtime": 1786628317.1408923,
+    "ast_hash": "2af40a17e14593c2e36333d845b34a7d",
+    "semantic_hash": "2af40a17e14593c2e36333d845b34a7d"
+  },
+  "/Users/a12345/Desktop/AI/OyeChats/oyechats-website/src/components/site/ReadingProgress.tsx": {
+    "mtime": 1785478421.4739842,
+    "ast_hash": "8e98df398f2eaef0a301b66fd9bfa5fd",
+    "semantic_hash": "8e98df398f2eaef0a301b66fd9bfa5fd"
+  },
+  "/Users/a12345/Desktop/AI/OyeChats/oyechats-website/src/components/site/ScrollSpyToc.tsx": {
+    "mtime": 1785478421.4740553,
+    "ast_hash": "1dbedbcdc2565cd68fb18521e1ed8e47",
+    "semantic_hash": "1dbedbcdc2565cd68fb18521e1ed8e47"
+  },
+  "/Users/a12345/Desktop/AI/OyeChats/oyechats-website/src/components/site/SystemStatus.tsx": {
+    "mtime": 1785478421.474135,
+    "ast_hash": "d5fcf5c6b6f9893ba724499f981f9b76",
+    "semantic_hash": "d5fcf5c6b6f9893ba724499f981f9b76"
+  },
+  "/Users/a12345/Desktop/AI/OyeChats/oyechats-website/src/components/site/WidgetLoader.tsx": {
+    "mtime": 1786171492.2989895,
+    "ast_hash": "409762b7a0e88fab3640f9f17bc9cb9f",
+    "semantic_hash": "409762b7a0e88fab3640f9f17bc9cb9f"
+  },
+  "/Users/a12345/Desktop/AI/OyeChats/oyechats-website/src/components/site/pill-tabs.tsx": {
+    "mtime": 1785478421.4742842,
+    "ast_hash": "bb82d18d6f9a405561a1681c429b06eb",
+    "semantic_hash": "bb82d18d6f9a405561a1681c429b06eb"
+  },
+  "/Users/a12345/Desktop/AI/OyeChats/oyechats-website/src/components/ui/FadeUp.tsx": {
+    "mtime": 1786003882.862689,
+    "ast_hash": "1a99472737c6caa6c1c0571efae3ba08",
+    "semantic_hash": "1a99472737c6caa6c1c0571efae3ba08"
+  },
+  "/Users/a12345/Desktop/AI/OyeChats/oyechats-website/src/lib/blog.ts": {
+    "mtime": 1786628317.1414046,
+    "ast_hash": "707748c9d6c1c165e1931e7d0962ee03",
+    "semantic_hash": "707748c9d6c1c165e1931e7d0962ee03"
+  },
+  "/Users/a12345/Desktop/AI/OyeChats/oyechats-website/src/lib/changelog.ts": {
+    "mtime": 1786628317.1416864,
+    "ast_hash": "27b10f27724ae2e863d6277558ea403f",
+    "semantic_hash": "27b10f27724ae2e863d6277558ea403f"
+  },
+  "/Users/a12345/Desktop/AI/OyeChats/oyechats-website/src/lib/cn.ts": {
+    "mtime": 1785478421.4747171,
+    "ast_hash": "d6e2491c9e3f33c6cae3d462680282d4",
+    "semantic_hash": "d6e2491c9e3f33c6cae3d462680282d4"
+  },
+  "/Users/a12345/Desktop/AI/OyeChats/oyechats-website/src/lib/compare.ts": {
+    "mtime": 1786630458.562578,
+    "ast_hash": "5aa574c34a6e21117086f5da6339c048",
+    "semantic_hash": "5aa574c34a6e21117086f5da6339c048"
+  },
+  "/Users/a12345/Desktop/AI/OyeChats/oyechats-website/src/lib/consent-bootstrap.ts": {
+    "mtime": 1786015608.9003313,
+    "ast_hash": "39587892979afafde555587903aa288d",
+    "semantic_hash": "39587892979afafde555587903aa288d"
+  },
+  "/Users/a12345/Desktop/AI/OyeChats/oyechats-website/src/lib/consent.ts": {
+    "mtime": 1785478421.4749713,
+    "ast_hash": "4014959768fd47d84d7e6b07079bd92d",
+    "semantic_hash": "4014959768fd47d84d7e6b07079bd92d"
+  },
+  "/Users/a12345/Desktop/AI/OyeChats/oyechats-website/src/lib/features.ts": {
+    "mtime": 1785478421.4750485,
+    "ast_hash": "695d57a2fc7b19d884f3a20a75c9362d",
+    "semantic_hash": "695d57a2fc7b19d884f3a20a75c9362d"
+  },
+  "/Users/a12345/Desktop/AI/OyeChats/oyechats-website/src/lib/integrations.tsx": {
+    "mtime": 1785478421.4751062,
+    "ast_hash": "e166c90f43a9a8435b5abf2a970aa43e",
+    "semantic_hash": "e166c90f43a9a8435b5abf2a970aa43e"
+  },
+  "/Users/a12345/Desktop/AI/OyeChats/oyechats-website/src/lib/legal.ts": {
+    "mtime": 1786630458.5627565,
+    "ast_hash": "96a23152ef354c298421b07ab7772c87",
+    "semantic_hash": "96a23152ef354c298421b07ab7772c87"
+  },
+  "/Users/a12345/Desktop/AI/OyeChats/oyechats-website/src/lib/llms.ts": {
+    "mtime": 1786628317.1426258,
+    "ast_hash": "fc76c0d5df59a82d654db08130f2228d",
+    "semantic_hash": "fc76c0d5df59a82d654db08130f2228d"
+  },
+  "/Users/a12345/Desktop/AI/OyeChats/oyechats-website/src/lib/pricing.ts": {
+    "mtime": 1786631772.932823,
+    "ast_hash": "45dfae4e9606eb7a24a387824d80dfc4",
+    "semantic_hash": "45dfae4e9606eb7a24a387824d80dfc4"
+  },
+  "/Users/a12345/Desktop/AI/OyeChats/oyechats-website/src/lib/richtext.tsx": {
+    "mtime": 1785478421.4754446,
+    "ast_hash": "0c63cbe94d8036f27bdd25a271396d3b",
+    "semantic_hash": "0c63cbe94d8036f27bdd25a271396d3b"
+  },
+  "/Users/a12345/Desktop/AI/OyeChats/oyechats-website/src/lib/seo.ts": {
+    "mtime": 1786628803.2940352,
+    "ast_hash": "85baa0b53f79a80d1685ff7719c5ca5f",
+    "semantic_hash": "85baa0b53f79a80d1685ff7719c5ca5f"
+  },
+  "/Users/a12345/Desktop/AI/OyeChats/oyechats-website/src/lib/site.ts": {
+    "mtime": 1785478421.4755745,
+    "ast_hash": "7dff2fb718f87cfd92000b3112e0dd01",
+    "semantic_hash": "7dff2fb718f87cfd92000b3112e0dd01"
+  },
+  "/Users/a12345/Desktop/AI/OyeChats/oyechats-website/src/proxy.ts": {
+    "mtime": 1786631763.5755832,
+    "ast_hash": "2bd2b8ae928985ed540f6b368ab7e417",
+    "semantic_hash": "2bd2b8ae928985ed540f6b368ab7e417"
+  },
+  "/Users/a12345/Desktop/AI/OyeChats/oyechats-website/tsconfig.json": {
+    "mtime": 1785478421.4756978,
+    "ast_hash": "510e3bbf03065efe75928789446dd41e",
+    "semantic_hash": "510e3bbf03065efe75928789446dd41e"
+  },
+  "/Users/a12345/Desktop/AI/OyeChats/oyechats-website/vercel.json": {
+    "mtime": 1785478421.4757466,
+    "ast_hash": "8b5847fbedcd49bc66bc7c34dc2f7519",
+    "semantic_hash": "8b5847fbedcd49bc66bc7c34dc2f7519"
+  },
+  "/Users/a12345/Desktop/AI/OyeChats/oyechats-website/.impeccable/critique/2026-08-13T14-05-07Z__src-app-page-tsx.md": {
+    "mtime": 1786629907.8884416,
+    "ast_hash": "5d3253e972963c33a4e3394e228c7708",
+    "semantic_hash": "5d3253e972963c33a4e3394e228c7708"
+  },
+  "/Users/a12345/Desktop/AI/OyeChats/oyechats-website/CONTENT_AUDIT.md": {
+    "mtime": 1785478421.4607222,
+    "ast_hash": "42178a2513bcac2881da6225558de163",
+    "semantic_hash": "42178a2513bcac2881da6225558de163"
+  },
+  "/Users/a12345/Desktop/AI/OyeChats/oyechats-website/CONTENT_CHANGELOG.md": {
+    "mtime": 1785478421.4608605,
+    "ast_hash": "20c0e52d707f9d7180e55faa7735ad85",
+    "semantic_hash": "20c0e52d707f9d7180e55faa7735ad85"
+  },
+  "/Users/a12345/Desktop/AI/OyeChats/oyechats-website/CONTENT_STYLE_GUIDE.md": {
+    "mtime": 1785478421.4609635,
+    "ast_hash": "6a203dc00ac1daac5fc9a98e65750a6b",
+    "semantic_hash": "6a203dc00ac1daac5fc9a98e65750a6b"
+  },
+  "/Users/a12345/Desktop/AI/OyeChats/oyechats-website/MOBILE_RESPONSIVENESS_AUDIT_2026-07-14.md": {
+    "mtime": 1785478421.4610598,
+    "ast_hash": "6389a238d9e96210aea98a72508d7210",
+    "semantic_hash": "6389a238d9e96210aea98a72508d7210"
+  },
+  "/Users/a12345/Desktop/AI/OyeChats/oyechats-website/PRODUCT.md": {
+    "mtime": 1786630697.8442862,
+    "ast_hash": "4dfdcc5c06e057511db5eb7b98b355f4",
+    "semantic_hash": "4dfdcc5c06e057511db5eb7b98b355f4"
+  },
+  "/Users/a12345/Desktop/AI/OyeChats/oyechats-website/PRODUCT_DESIGN_AUDIT_2026-07-13.md": {
+    "mtime": 1785478421.46119,
+    "ast_hash": "ea9d342ee512714875d94abadd17e162",
+    "semantic_hash": "ea9d342ee512714875d94abadd17e162"
+  },
+  "/Users/a12345/Desktop/AI/OyeChats/oyechats-website/README.md": {
+    "mtime": 1786015608.2605133,
+    "ast_hash": "da41e295717094e97305c061e5ac056b",
+    "semantic_hash": "da41e295717094e97305c061e5ac056b"
+  },
+  "/Users/a12345/Desktop/AI/OyeChats/oyechats-website/SEO_AEO_GEO_AUDIT_2026-07-29.md": {
+    "mtime": 1785478421.461739,
+    "ast_hash": "55ddca236ecd0fff987e3c2bf1324a28",
+    "semantic_hash": "55ddca236ecd0fff987e3c2bf1324a28"
+  },
+  "/Users/a12345/Desktop/AI/OyeChats/oyechats-website/docs/superpowers/plans/2026-07-29-seo-aeo-geo-remediation.md": {
+    "mtime": 1785478421.4621675,
+    "ast_hash": "2d12f08891649422e170b03e168ea7a2",
+    "semantic_hash": "2d12f08891649422e170b03e168ea7a2"
+  },
+  "/Users/a12345/Desktop/AI/OyeChats/oyechats-website/docs/superpowers/plans/2026-07-30-cookie-consent.md": {
+    "mtime": 1785478421.4624226,
+    "ast_hash": "aefd0fd2ffde7364a47eb218b8c2b54a",
+    "semantic_hash": "aefd0fd2ffde7364a47eb218b8c2b54a"
+  },
+  "/Users/a12345/Desktop/AI/OyeChats/oyechats-website/docs/superpowers/specs/2026-07-21-brand-color-refinement-design.md": {
+    "mtime": 1785478421.462527,
+    "ast_hash": "b07bfad26a56f9aed6c90833ef8593c2",
+    "semantic_hash": "b07bfad26a56f9aed6c90833ef8593c2"
+  },
+  "/Users/a12345/Desktop/AI/OyeChats/oyechats-website/docs/superpowers/specs/2026-07-30-cookie-consent-design.md": {
+    "mtime": 1785478421.4626393,
+    "ast_hash": "9ac6bc5d6bbc0058b84cbf62ef37bfd0",
+    "semantic_hash": "9ac6bc5d6bbc0058b84cbf62ef37bfd0"
+  },
+  "/Users/a12345/Desktop/AI/OyeChats/oyechats-website/public/96077628-190c-4669-bdd8-972c574ed3a8.png": {
+    "mtime": 1786628317.128204,
+    "ast_hash": "6361b7bdc8a1c35168274a5cbac6c6cc",
+    "semantic_hash": "6361b7bdc8a1c35168274a5cbac6c6cc"
+  },
+  "/Users/a12345/Desktop/AI/OyeChats/oyechats-website/public/apple-icon.png": {
+    "mtime": 1785478421.4633634,
+    "ast_hash": "1ffa63af3e64679d2b6dc1e2159e3366",
+    "semantic_hash": "1ffa63af3e64679d2b6dc1e2159e3366"
+  },
+  "/Users/a12345/Desktop/AI/OyeChats/oyechats-website/public/dark.png": {
+    "mtime": 1786628317.128783,
+    "ast_hash": "787123644bad2695c9464fd58ac6f285",
+    "semantic_hash": "787123644bad2695c9464fd58ac6f285"
+  },
+  "/Users/a12345/Desktop/AI/OyeChats/oyechats-website/public/favicon-cropped.png": {
+    "mtime": 1785478421.4634502,
+    "ast_hash": "e25890f992d0b3fc48c9953e2fc7c8e6",
+    "semantic_hash": "e25890f992d0b3fc48c9953e2fc7c8e6"
+  },
+  "/Users/a12345/Desktop/AI/OyeChats/oyechats-website/public/favicon.png": {
+    "mtime": 1786628317.1291845,
+    "ast_hash": "cc8749ab89f0aa2228a575e7c60f3d4e",
+    "semantic_hash": "cc8749ab89f0aa2228a575e7c60f3d4e"
+  },
+  "/Users/a12345/Desktop/AI/OyeChats/oyechats-website/public/gaurav.jpeg": {
+    "mtime": 1786628317.1295078,
+    "ast_hash": "9231b2c7376f8f3106ac137a8eb0212c",
+    "semantic_hash": "9231b2c7376f8f3106ac137a8eb0212c"
+  },
+  "/Users/a12345/Desktop/AI/OyeChats/oyechats-website/public/icon.png": {
+    "mtime": 1785478421.463961,
+    "ast_hash": "1ffa63af3e64679d2b6dc1e2159e3366",
+    "semantic_hash": "1ffa63af3e64679d2b6dc1e2159e3366"
+  },
+  "/Users/a12345/Desktop/AI/OyeChats/oyechats-website/public/image-1786456259232.webp": {
+    "mtime": 1786628317.130645,
+    "ast_hash": "fbaf601052525e2fa6f10684578e014d",
+    "semantic_hash": "fbaf601052525e2fa6f10684578e014d"
+  },
+  "/Users/a12345/Desktop/AI/OyeChats/oyechats-website/public/light.png": {
+    "mtime": 1786628317.1308298,
+    "ast_hash": "daae7ac78e0afd7db1fc38092b404d12",
+    "semantic_hash": "daae7ac78e0afd7db1fc38092b404d12"
+  },
+  "/Users/a12345/Desktop/AI/OyeChats/oyechats-website/public/logo.png": {
+    "mtime": 1786628317.1320336,
+    "ast_hash": "883a3782ad470d3533e9ca832351ebba",
+    "semantic_hash": "883a3782ad470d3533e9ca832351ebba"
+  },
+  "/Users/a12345/Desktop/AI/OyeChats/oyechats-website/public/new_dark.png": {
+    "mtime": 1786628317.132273,
+    "ast_hash": "165019e17e8b58d93e6113f110629af8",
+    "semantic_hash": "165019e17e8b58d93e6113f110629af8"
+  },
+  "/Users/a12345/Desktop/AI/OyeChats/oyechats-website/public/new_white.png": {
+    "mtime": 1786628317.1325295,
+    "ast_hash": "53ad4f34452742159e34a9fe80a6a4c0",
+    "semantic_hash": "53ad4f34452742159e34a9fe80a6a4c0"
+  },
+  "/Users/a12345/Desktop/AI/OyeChats/oyechats-website/public/og.jpg": {
+    "mtime": 1786628317.1335607,
+    "ast_hash": "1efbe8e7d9ea5214bbe3c91e086365d5",
+    "semantic_hash": "1efbe8e7d9ea5214bbe3c91e086365d5"
+  },
+  "/Users/a12345/Desktop/AI/OyeChats/oyechats-website/public/oyechats-c-light.png": {
+    "mtime": 1786628317.1337235,
+    "ast_hash": "cc8749ab89f0aa2228a575e7c60f3d4e",
+    "semantic_hash": "cc8749ab89f0aa2228a575e7c60f3d4e"
+  },
+  "/Users/a12345/Desktop/AI/OyeChats/oyechats-website/public/oyechats-c.png": {
+    "mtime": 1786628317.1339161,
+    "ast_hash": "883a3782ad470d3533e9ca832351ebba",
+    "semantic_hash": "883a3782ad470d3533e9ca832351ebba"
+  },
+  "/Users/a12345/Desktop/AI/OyeChats/oyechats-website/public/oyechats-wordmark-light.png": {
+    "mtime": 1786449795.5922751,
+    "ast_hash": "b6e3d7ce928421cec28109d97ad95132",
+    "semantic_hash": "b6e3d7ce928421cec28109d97ad95132"
+  },
+  "/Users/a12345/Desktop/AI/OyeChats/oyechats-website/public/oyechats-wordmark.png": {
+    "mtime": 1786449795.5902102,
+    "ast_hash": "b7aafb57ae0b242385df77d3f4ee956b",
+    "semantic_hash": "b7aafb57ae0b242385df77d3f4ee956b"
+  },
+  "/Users/a12345/Desktop/AI/OyeChats/oyechats-website/public/steve.jpg": {
+    "mtime": 1786628317.134259,
+    "ast_hash": "33a173992aa92ee261986fa1502e2095",
+    "semantic_hash": "33a173992aa92ee261986fa1502e2095"
+  },
+  "/Users/a12345/Desktop/AI/OyeChats/oyechats-website/src/app/apple-icon.png": {
+    "mtime": 1786628317.135258,
+    "ast_hash": "cc8749ab89f0aa2228a575e7c60f3d4e",
+    "semantic_hash": "cc8749ab89f0aa2228a575e7c60f3d4e"
+  },
+  "/Users/a12345/Desktop/AI/OyeChats/oyechats-website/src/app/icon.png": {
+    "mtime": 1786628317.1378515,
+    "ast_hash": "cc8749ab89f0aa2228a575e7c60f3d4e",
+    "semantic_hash": "cc8749ab89f0aa2228a575e7c60f3d4e"
+  }
+}
