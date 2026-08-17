@@ -281,6 +281,47 @@ check('T-6 canonical is absolute and www', () => {
   return bad;
 });
 
+/**
+ * Capabilities the product does NOT have, which have each reached production
+ * copy at least once. Every entry is a claim a buyer could pay for and not
+ * receive, so this asserts against the compiled HTML rather than the source:
+ * the claims previously arrived via data files, JSON-LD and legal documents,
+ * and only the rendered output sees all three at once.
+ *
+ * - MEDDIC / CHAMP: only BANT is implemented. These were sold as a paid
+ *   Professional feature and also described in the privacy policy and DPA.
+ * - CLI: the install is one script tag. There is no CLI and no SDK.
+ * - cited / citations / "links back to the source": answers are genuinely
+ *   grounded via hybrid RAG, but the platform prompt forbids mentioning
+ *   sources and the streaming response carries no source data, so the visitor
+ *   never sees a citation. Removed once in 1795f3e; regressed; removed again.
+ */
+const UNSHIPPED_CLAIMS = [
+  { term: 'MEDDIC', re: /\bMEDDIC\b/i },
+  { term: 'CHAMP', re: /\bCHAMP\b/i },
+  { term: 'CLI', re: /\bCLI\b/ },
+  { term: 'cited', re: /\bcited\b/i },
+  { term: 'citation', re: /\bcitations?\b/i },
+  { term: 'source link', re: /links? back to the source/i },
+];
+
+check('C-1 no claims for unshipped capabilities', () => {
+  const bad = [];
+  for (const p of P) {
+    // Strip JSON-LD script bodies' escaped unicode so <-style encoding
+    // cannot hide a claim from a plain substring match.
+    const text = p.html.replace(/\\u([0-9a-f]{4})/gi, (_, h) =>
+      String.fromCharCode(parseInt(h, 16))
+    );
+    for (const { term, re } of UNSHIPPED_CLAIMS) {
+      if (re.test(text)) {
+        bad.push(`${p.route} claims "${term}" — not a shipped capability`);
+      }
+    }
+  }
+  return bad;
+});
+
 // ── Report ────────────────────────────────────────────────────────────────
 const failedIds = [...new Set(failures.map((f) => f.id))];
 const total = passed.length + skipped.length + failedIds.length;

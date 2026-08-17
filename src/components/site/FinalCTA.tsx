@@ -78,6 +78,13 @@ export function FinalCTA() {
             Talk to sales
           </Button>
         </div>
+
+        {/* Mirrors the hero reassurance line. `--ink-invert-muted` rather than
+            `--muted`: this sits on the plum-black section, where the paper-tuned
+            gray would drop under AA. */}
+        <p className="type-mono-sm text-ink-invert-muted text-center mt-5 text-balance">
+          No credit card · Free plan forever · One script tag
+        </p>
       </Container>
     </section>
   );

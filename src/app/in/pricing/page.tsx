@@ -1,8 +1,8 @@
 import { PricingRoute, pricingMetadata } from '../../pricing/shared';
 
 /**
- * Indian pricing (INR), served at `/pricing` via the middleware rewrite in
- * `src/middleware.ts`. Visitors never see this path.
+ * Indian pricing (INR), served at `/pricing` via the proxy rewrite in
+ * `src/proxy.ts`. Visitors never see this path.
  *
  * It carries `/pricing` as its canonical (inherited from `pricingMetadata`) and
  * is deliberately absent from `app/sitemap.ts`, so it cannot compete with

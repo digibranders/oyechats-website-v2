@@ -17,13 +17,13 @@ import { currencyForCountry } from '@/lib/pricing';
  * any non-Vercel host, where `currencyForCountry` resolves to USD and the
  * request falls through unchanged.
  *
- * The matcher lists the priced routes explicitly: middleware bills per
+ * The matcher lists the priced routes explicitly: the proxy bills per
  * invocation and adds latency, so it must not run on assets or on the many
  * routes that show no price. Adding a price to another page means adding it
  * here AND creating its `/in` twin — miss either and that page silently shows
  * the wrong currency to Indian visitors, which is the bug this replaced.
  */
-export function middleware(request: NextRequest): NextResponse {
+export function proxy(request: NextRequest): NextResponse {
   const country = request.headers.get('x-vercel-ip-country');
 
   if (currencyForCountry(country) === 'INR') {

@@ -50,7 +50,7 @@ export const LEGAL_PAGES: LegalPage[] = [
         'We use the information described above for the following purposes:',
         '- Provide, maintain, and operate the Service, including running the retrieval-augmented generation pipeline that answers Visitor questions from your knowledge base.',
         '- Authenticate users, enforce plan limits, and prevent abuse.',
-        '- Generate lead-qualification signals (for example, BANT or MEDDIC scoring) and surface those signals to the customer who owns the conversation.',
+        '- Generate lead-qualification signals (BANT scoring) and surface those signals to the customer who owns the conversation.',
         '- Send transactional emails such as account verification, password resets, billing notifications, and webhook failure alerts.',
         '- Process payments, issue invoices, and meet tax and accounting obligations.',
         '- Monitor platform health, debug errors, and investigate security incidents.',
@@ -104,7 +104,7 @@ export const LEGAL_PAGES: LegalPage[] = [
         'We use a small number of strictly necessary cookies on oyechats.com and the customer dashboard for session management, authentication, and CSRF protection. We do not use third-party advertising or cross-site tracking cookies on our own properties, and the embeddable chat widget does not set cookies. For the full breakdown, see our Cookie Policy.',
       ]},
       { id: 'automated-decisions', heading: 'Automated Decision-Making', body: [
-        'OyeChats generates qualification signals (such as BANT or MEDDIC scoring) and conversation summaries using large language models. These outputs are decision-support information for the customer who owns the conversation; they do not by themselves produce legal or similarly significant effects on a Visitor. Customers remain responsible for any subsequent decisions they take based on these signals.',
+        'OyeChats generates qualification signals (BANT scoring) and conversation summaries using large language models. These outputs are decision-support information for the customer who owns the conversation; they do not by themselves produce legal or similarly significant effects on a Visitor. Customers remain responsible for any subsequent decisions they take based on these signals.',
       ]},
       { id: 'third-party-links', heading: 'Third-Party Links', body: [
         'Our website and the chat widget may contain links to third-party sites or content provided by our customers. We are not responsible for the privacy practices of those third parties. You should review their privacy policies independently.',

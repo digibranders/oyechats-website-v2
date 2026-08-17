@@ -1,6 +1,6 @@
 /**
  * Home page body, shared by both geo variants: `/` renders it in USD and
- * `/in` in INR. `currency` is resolved by `src/middleware.ts` before render, so
+ * `/in` in INR. `currency` is resolved by `src/proxy.ts` before render, so
  * neither variant does client-side detection and both stay static.
  *
  * Not a route: only `page.tsx` files may export `metadata`, so this exports
@@ -111,6 +111,14 @@ export function HomeContent({ currency }: { currency: Currency }) {
                     Read the docs →
                   </Button>
                 </div>
+                {/* The CTA leaves for app.oyechats.com, so this is the last
+                    thing a visitor reads before deciding. Every claim here is
+                    substantiated elsewhere on the site: the Free tier is free
+                    forever, the trial takes no card, and the install is one
+                    script tag. */}
+                <p className="type-mono-sm text-muted mt-4 text-balance">
+                  No credit card · Free plan forever · One script tag
+                </p>
               </Reveal>
             </div>
 
