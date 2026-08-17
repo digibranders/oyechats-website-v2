@@ -68,9 +68,13 @@ export const FOOTER_COLUMNS = [
       { label: 'All legal docs', href: '/legal' },
       { label: 'Privacy', href: '/legal/privacy' },
       { label: 'Terms', href: '/legal/terms' },
+      { label: 'Acceptable use', href: '/legal/aup' },
       { label: 'DPA', href: '/legal/dpa' },
       { label: 'Sub-processors', href: '/legal/subprocessors' },
       { label: 'Cookies', href: '/legal/cookies' },
+      // Distinct from the marketing page at /security — this is the
+      // vulnerability-reporting policy the Privacy Policy points at.
+      { label: 'Responsible disclosure', href: '/legal/security' },
       { label: 'Refund', href: '/legal/refund' },
       { label: 'Cancellation', href: '/legal/cancellation' },
     ],
