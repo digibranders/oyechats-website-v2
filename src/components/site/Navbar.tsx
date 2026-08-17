@@ -10,6 +10,9 @@ import {
   ShieldCheck,
   LineChart,
   ChevronDown,
+  Rocket,
+  Code2,
+  Webhook,
 } from 'lucide-react';
 import { Button } from '@/components/ds';
 import { APP_LINKS } from '@/lib/site';
@@ -23,9 +26,17 @@ type MegaColumn = {
 
 const RESOURCES_MENU: MegaColumn[] = [
   {
-    title: 'Resources',
+    title: 'Documentation',
     items: [
-      { icon: BookOpen, label: 'Documentation', description: 'Install, configure, connect webhooks', href: '/docs' },
+      { icon: BookOpen, label: 'All docs', description: 'Every guide, in reading order', href: '/docs' },
+      { icon: Rocket, label: 'Quickstart', description: 'Live chatbot in five minutes', href: '/docs/getting-started/quickstart' },
+      { icon: Code2, label: 'REST API', description: 'Authentication, endpoints, limits', href: '/docs/api/overview' },
+      { icon: Webhook, label: 'Webhooks', description: 'Signed events for your CRM', href: '/docs/integrations/webhooks' },
+    ],
+  },
+  {
+    title: 'More',
+    items: [
       { icon: Sparkles, label: 'Changelog', description: 'Every release, tagged and dated', href: '/changelog' },
       { icon: LineChart, label: 'Blog', description: 'Ideas from the team', href: '/blog' },
       { icon: ShieldCheck, label: 'Security', description: 'How we protect your data', href: '/security' },

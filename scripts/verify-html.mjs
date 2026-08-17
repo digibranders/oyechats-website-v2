@@ -288,17 +288,21 @@ check('T-6 canonical is absolute and www', () => {
  * the claims previously arrived via data files, JSON-LD and legal documents,
  * and only the rendered output sees all three at once.
  *
- * - MEDDIC / CHAMP: only BANT is implemented. These were sold as a paid
- *   Professional feature and also described in the privacy policy and DPA.
- * - CLI: the install is one script tag. There is no CLI and no SDK.
+ * - MEDDIC / CHAMP / GPCTBA: REMOVED from this list on 2026-08-17. They were
+ *   listed here because only BANT was implemented when the guard was written.
+ *   All four frameworks now ship end to end: presets with per-dimension
+ *   weights and options in `qualification_service.PRESET_FRAMEWORKS`, served by
+ *   `GET /bots/{bot_id}/framework-presets`, selectable from the admin
+ *   Qualification section (`FRAMEWORK_OPTIONS`), and scored by
+ *   framework-generic composite code. Re-add an entry here only after
+ *   confirming the capability is gone from the platform, not merely renamed.
+ * - CLI: the install is one script tag. There is no published CLI and no SDK.
  * - cited / citations / "links back to the source": answers are genuinely
  *   grounded via hybrid RAG, but the platform prompt forbids mentioning
  *   sources and the streaming response carries no source data, so the visitor
  *   never sees a citation. Removed once in 1795f3e; regressed; removed again.
  */
 const UNSHIPPED_CLAIMS = [
-  { term: 'MEDDIC', re: /\bMEDDIC\b/i },
-  { term: 'CHAMP', re: /\bCHAMP\b/i },
   { term: 'CLI', re: /\bCLI\b/ },
   { term: 'cited', re: /\bcited\b/i },
   { term: 'citation', re: /\bcitations?\b/i },

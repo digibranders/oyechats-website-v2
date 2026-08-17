@@ -3,6 +3,7 @@ import { LEGAL_PAGES } from '@/lib/legal';
 import { PRICING_TIERS, PRICING_FAQ, CURRENCY_SYMBOL } from '@/lib/pricing';
 import { FEATURES } from '@/lib/features';
 import { INTEGRATIONS } from '@/lib/integrations';
+import { DOC_PAGES } from '@/lib/docs';
 import { SITE_URL } from '@/lib/seo';
 
 /**
@@ -66,11 +67,14 @@ export function buildLlmsTxt(): string {
     FEATURES.map((f) => `- ${f.title}: ${f.tagline}`).join('\n'),
     `## Integrations`,
     INTEGRATIONS.map((i) => `- ${i.name}: ${i.description}`).join('\n'),
+    `## Documentation`,
+    // Enumerated from the corpus rather than hand-listed: the previous three
+    // hand-written lines all pointed at /docs itself, so an answer engine
+    // reading this file could not reach any individual documentation page.
+    DOC_PAGES.map(({ page, path }) => `- [${page.title}](${SITE_URL}${path}): ${page.metaDescription}`).join('\n'),
     `## API`,
     [
-      `- [OpenAPI specification](${SITE_URL}/openapi.json): machine-readable REST API schema.`,
-      `- [REST API reference](${SITE_URL}/docs): endpoints, authentication, and examples.`,
-      `- [Webhook events](${SITE_URL}/docs): HMAC-signed event payloads.`,
+      `- [OpenAPI specification](${SITE_URL}/openapi.json): machine-readable REST API schema for the customer-facing endpoints.`,
     ].join('\n'),
     `## Legal`,
     LEGAL_PAGES.map((p) => `- [${p.title}](${SITE_URL}/legal/${p.slug}): ${p.description} Last updated ${p.lastUpdated}.`).join('\n'),
