@@ -6,7 +6,7 @@ import { APP_LINKS } from './site';
  * USD is a deliberate international geo-price, not an FX conversion of the INR
  * price.
  *
- * Resolution happens before render, never in the browser. `src/middleware.ts`
+ * Resolution happens before render, never in the browser. `src/proxy.ts`
  * reads Vercel's `x-vercel-ip-country`, passes it through `currencyForCountry`
  * below, and rewrites Indian traffic to the `/in` twin of the requested route
  * (`/` -> `/in`, `/pricing` -> `/in/pricing`). Every route is statically
@@ -14,7 +14,7 @@ import { APP_LINKS } from './site';
  * hydration flip, no per-request render, and the CDN still serves the page.
  *
  * Any new page that renders a price needs both an `/in` twin and an entry in
- * the middleware matcher. Skipping that is how the home page ended up showing
+ * the proxy matcher. Skipping that is how the home page ended up showing
  * USD while `/pricing` showed INR.
  *
  * Off Vercel — local dev, or any other host — the header is absent and every
@@ -73,7 +73,7 @@ export const PRICING_TIERS: PricingTier[] = [
     features: [
       '1 chatbot',
       '200 credits / month',
-      'Grounded AI answers, cited & streamed',
+      'Grounded AI answers, streamed live',
       'Website widget + customization',
       '7-day chat history',
       'Community & docs support',
@@ -121,7 +121,7 @@ export const PRICING_TIERS: PricingTier[] = [
       'BANT lead qualification & scoring',
       'Auto-recrawl + visitor & UTM tracking',
       'Remove OyeChats branding · routing',
-      'Webhooks + REST API + CLI',
+      'Webhooks + REST API',
       '90-day history · priority support',
     ],
     cta: 'Start 7-day trial',
@@ -130,7 +130,7 @@ export const PRICING_TIERS: PricingTier[] = [
   {
     id: 'professional',
     name: 'Professional',
-    tagline: 'For teams scaling qualified pipeline with deeper frameworks.',
+    tagline: 'For teams scaling qualified pipeline under their own brand.',
     monthly: { INR: 1399, USD: 39 },
     annualMonthly: { INR: 1119, USD: 31 },
     annualTotal: { INR: 13428, USD: 372 },
@@ -140,7 +140,6 @@ export const PRICING_TIERS: PricingTier[] = [
       'Everything in Standard, plus',
       '10,000 credits / month',
       '3 operator seats',
-      'MEDDIC / CHAMP / custom frameworks',
       'White-label custom domain',
       'Audit logs & advanced controls',
       '1-year history · priority chat support',
@@ -221,7 +220,7 @@ export const FEATURE_ROWS: PricingFeature[] = [
   { label: 'Chat history retention', free: '7 days', starter: '30 days', standard: '90 days', professional: '1 year', category: 'usage' },
   { label: 'Credit top-ups / overage', free: false, starter: true, standard: true, professional: true, category: 'usage' },
 
-  { label: 'Grounded AI answers (cited, streamed)', free: true, starter: true, standard: true, professional: true, category: 'features' },
+  { label: 'Grounded AI answers (streamed)', free: true, starter: true, standard: true, professional: true, category: 'features' },
   { label: 'Hallucination guardrails', free: 'Sampled', starter: true, standard: 'Full', professional: 'Full', category: 'features' },
   { label: 'Website crawl + file upload', free: true, starter: true, standard: true, professional: true, category: 'features' },
   { label: 'Auto-recrawl (weekly refresh)', free: false, starter: false, standard: true, professional: true, category: 'features' },
@@ -229,10 +228,9 @@ export const FEATURE_ROWS: PricingFeature[] = [
   { label: 'Live chat / human handoff', free: false, starter: true, standard: true, professional: true, category: 'features' },
   { label: 'Routing + departments', free: false, starter: false, standard: true, professional: true, category: 'features' },
   { label: 'BANT lead qualification', free: false, starter: false, standard: true, professional: true, category: 'features' },
-  { label: 'MEDDIC / CHAMP / custom frameworks', free: false, starter: false, standard: false, professional: true, category: 'features' },
   { label: 'Qualification funnel analytics', free: false, starter: false, standard: true, professional: true, category: 'features' },
   { label: 'Visitor + behavioral tracking, UTM', free: 'Basic', starter: 'Basic', standard: true, professional: true, category: 'features' },
-  { label: 'Webhooks (5 events) + REST API + CLI', free: false, starter: false, standard: true, professional: true, category: 'features' },
+  { label: 'Webhooks (5 events) + REST API', free: false, starter: false, standard: true, professional: true, category: 'features' },
   { label: 'Remove OyeChats branding', free: false, starter: false, standard: true, professional: true, category: 'features' },
   { label: 'White-label custom domain', free: false, starter: false, standard: false, professional: true, category: 'features' },
 
@@ -257,7 +255,7 @@ export const PRICING_FAQ = [
   { q: 'Do unused credits roll over?', a: 'Plan credits reset at the start of each billing cycle (use-it-or-lose-it). Top-up credits roll over for 12 months from purchase, oldest first.' },
   { q: 'Can I add more operator seats?', a: 'Yes. Extra seats are ₹499 (or $5 for international customers) per month each, added or removed with one click from the Billing page.' },
   { q: 'Can I change plans at any time?', a: 'Absolutely. Upgrade, downgrade, or cancel any time from your dashboard. Downgrades take effect at the end of the billing cycle.' },
-  { q: 'How does BANT scoring work?', a: 'OyeChats analyzes every conversation across Budget, Authority, Need, and Timeline, scoring each dimension and combining them into a composite 0 to 100 lead score. That score drives webhook notifications and lead-tier assignments. Professional adds MEDDIC, CHAMP, and custom frameworks.' },
+  { q: 'How does BANT scoring work?', a: 'OyeChats analyzes every conversation across Budget, Authority, Need, and Timeline, scoring each dimension and combining them into a composite 0 to 100 lead score. That score drives webhook notifications and lead-tier assignments.' },
   { q: 'Is annual billing charged upfront?', a: 'Yes. Annual billing is charged as a single payment at the start of the year, giving you approximately 20% savings versus monthly.' },
   { q: 'Do you offer discounts for startups or non-profits?', a: 'Yes. Contact us at support@oyechats.com and we will work out the right pricing.' },
 ];

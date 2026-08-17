@@ -1,8 +1,8 @@
 import { HomeContent, homeMetadata } from '../HomeContent';
 
 /**
- * Indian home page (INR), served at `/` via the middleware rewrite in
- * `src/middleware.ts`. Visitors never see this path.
+ * Indian home page (INR), served at `/` via the proxy rewrite in
+ * `src/proxy.ts`. Visitors never see this path.
  *
  * Canonical and `og:url` both point at `/` (inherited from `homeMetadata`), and
  * the path is absent from `app/sitemap.ts`, so it cannot compete with `/`.

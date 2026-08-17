@@ -99,7 +99,11 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
       lang="en"
       className={`${inter.variable} ${geist.variable} ${geistMono.variable} ${fraunces.variable}`}
     >
-      <Analytics />
+      {/* Explicit <head>: Analytics emits an inline consent-bootstrap script,
+          and React rejects a raw <script> as a direct child of <html>. */}
+      <head>
+        <Analytics />
+      </head>
       <body>
         <ConsentProvider>
           {/* Keyboard users otherwise tab through the logo, six nav links and two

@@ -344,9 +344,14 @@ img { max-width: 100%; display: block; }
   filter: blur(60px);
 }
 
-/* Gradient text, one accent word per hero, ink → volt */
+/* Gradient text, one accent word per hero.
+   The ramp runs volt → volt-2 across the glyphs, NOT ink → volt: an ink stop
+   inside the visible run painted the first ~40% of the word black, so "buyers"
+   rendered as "bu" + "yers" and read as a font-loading failure rather than as
+   emphasis. Both classes now differ only in which end of the violet ramp they
+   start from, so the accent is legible on paper and on ink-inverted sections. */
 .gradient-volt {
-  background: linear-gradient(120deg, var(--ink) 30%, var(--volt) 100%);
+  background: linear-gradient(120deg, var(--volt) 0%, var(--volt-2) 100%);
   -webkit-background-clip: text;
   background-clip: text;
   -webkit-text-fill-color: transparent;
@@ -354,12 +359,23 @@ img { max-width: 100%; display: block; }
   display: inline-block;
 }
 .gradient-volt-only {
-  background: linear-gradient(120deg, var(--volt) 0%, #A78BFA 100%);
+  background: linear-gradient(120deg, var(--volt) 0%, var(--volt-light) 100%);
   -webkit-background-clip: text;
   background-clip: text;
   -webkit-text-fill-color: transparent;
   padding-bottom: 0.08em;
   display: inline-block;
+}
+/* `background-clip: text` + transparent fill discards the background in forced
+   colors, so the accent word vanished entirely in Windows High Contrast — on
+   every hero on the site. Restore a painted glyph and let the OS pick the ink. */
+@media (forced-colors: active) {
+  .gradient-volt,
+  .gradient-volt-only {
+    background: none;
+    -webkit-text-fill-color: currentColor;
+    color: currentColor;
+  }
 }
 
 /* Animated shimmer bar under section eyebrows */

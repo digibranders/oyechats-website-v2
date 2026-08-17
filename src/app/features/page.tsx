@@ -108,7 +108,7 @@ export default function FeaturesPage() {
         <DottedGrid />
         <Container className="relative pt-24 pb-16 md:pt-20 md:pb-20 text-center">
           <h1 className="type-display-2 text-ink max-w-3xl mx-auto">
-            Everything you need, <GradientText>built in</GradientText>.
+            Everything you need, <GradientText>included</GradientText>.
           </h1>
           <p className="type-body-lg text-ink-2 mt-6 max-w-2xl mx-auto">
             Grounded answers. Lead scoring. Live chat. Analytics. Webhooks. Integrations. Each one

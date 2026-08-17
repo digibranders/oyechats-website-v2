@@ -360,7 +360,7 @@ export const COMPETITORS: Competitor[] = [
     ],
     oyeEdge: [
       'Deep AI qualification with BANT scoring, not just an inbox',
-      'Hybrid RAG answers grounded and cited from your own content',
+      'Hybrid RAG answers grounded in your own content',
       'Analytics focused on lead quality and conversion',
     ],
     whenToChooseThem:
@@ -406,7 +406,7 @@ export const COMPETITORS: Competitor[] = [
     ],
     oyeEdge: [
       'Structured BANT scoring, not just contact capture',
-      'Hybrid RAG grounding with cited sources for accurate answers',
+      'Hybrid RAG grounding in your own content for accurate answers',
       'Live handoff plus qualification analytics your reps can trust',
     ],
     whenToChooseThem:
@@ -425,7 +425,7 @@ export const COMPETITORS: Competitor[] = [
     faqs: [
       {
         q: 'What is the difference between OyeChats and Chatsimple?',
-        a: 'Both are AI sales chatbots. Chatsimple focuses on lead capture and booking; OyeChats adds a structured BANT qualification model, hybrid RAG grounding with cited sources, and live handoff, so reps receive scored, qualified leads rather than raw contacts.',
+        a: 'Both are AI sales chatbots. Chatsimple focuses on lead capture and booking; OyeChats adds a structured BANT qualification model, hybrid RAG grounding in your own content, and live handoff, so reps receive scored, qualified leads rather than raw contacts.',
       },
       {
         q: 'Is OyeChats better for qualifying leads than Chatsimple?',

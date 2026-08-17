@@ -66,7 +66,7 @@ function perThousand(price: number, credits: number, currency: Currency) {
 
 /**
  * `currency` is resolved before render and never changes on the client. There
- * is no manual switch and no post-mount correction: `src/middleware.ts` routes
+ * is no manual switch and no post-mount correction: `src/proxy.ts` routes
  * Indian traffic to the INR variant, so the price in the static HTML is already
  * the right one. Nothing here should reintroduce a client-side currency swap —
  * that would put the flicker back.
