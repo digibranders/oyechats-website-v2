@@ -2,6 +2,7 @@
 
 import { useEffect, useState } from 'react';
 import { Chip } from '@/components/ds';
+import { STATUS_URL } from '@/lib/site';
 import type { SystemStatusValue } from '@/app/api/status/route';
 
 type Chrome = { variant: 'signal' | 'alert' | 'danger' | 'mono'; label: string };
@@ -57,8 +58,17 @@ export function SystemStatus() {
     : 'Live platform status';
 
   return (
-    <span aria-live="polite" title={title}>
-      <Chip variant={variant}>{label}</Chip>
-    </span>
+    <a
+      href={STATUS_URL}
+      target="_blank"
+      rel="noopener noreferrer"
+      title={title}
+      aria-label={`${label}. View the full status page.`}
+      className="inline-flex no-underline transition-opacity hover:opacity-80"
+    >
+      <span aria-live="polite">
+        <Chip variant={variant}>{label}</Chip>
+      </span>
+    </a>
   );
 }
