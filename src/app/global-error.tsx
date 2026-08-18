@@ -1,7 +1,7 @@
 'use client';
 
 /**
- * Root error boundary — catches failures in the root layout itself, which the
+ * Root error boundary. Catches failures in the root layout itself, which the
  * route-level error.tsx cannot. It REPLACES the layout, so it must render its
  * own <html> and <body> and cannot rely on globals.css, the font variables, or
  * any design-system component. Hence the inline styles: they mirror the brand

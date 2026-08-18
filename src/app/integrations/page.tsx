@@ -14,7 +14,7 @@ export const metadata: Metadata = pageMeta({
 });
 
 // Each ListItem previously carried neither `item` nor `url`, which makes the
-// list invalid per Google's ItemList spec — it must be one or the other. There
+// list invalid per Google's ItemList spec, it must be one or the other. There
 // are no per-integration routes, so the all-in-one-page form (nested `item`) is
 // the correct choice rather than `url`.
 const graph = buildGraph({

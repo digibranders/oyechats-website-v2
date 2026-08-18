@@ -8,7 +8,7 @@ import { CURRENCY_SYMBOL, type Currency } from '@/lib/pricing';
  *
  * `NumberTicker` seeded its display state to 0, so the static HTML for /pricing
  * shipped "$0" for Starter, Standard and Professional while the same page's
- * AggregateOffer schema declared 9/19/39 — the visible-content-vs-markup
+ * AggregateOffer schema declared 9/19/39, the visible-content-vs-markup
  * mismatch Google's rich-result policy targets. Google renders JS and would
  * eventually see the truth; GPTBot, ClaudeBot, PerplexityBot and CCBot do not,
  * so they read $0 as the price.
@@ -29,7 +29,7 @@ export function PricingPrice({
   const [seededValue, setSeededValue] = useState(value);
   const animated = useRef(false);
 
-  // Re-seed when the tier, period or currency changes — during render, not in an
+  // Re-seed when the tier, period or currency changes. During render, not in an
   // effect, so the new price paints immediately and never cascades a render. Never
   // passes through 0. The count-up below runs only on first mount.
   if (seededValue !== value) {

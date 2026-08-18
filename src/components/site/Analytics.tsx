@@ -13,9 +13,9 @@ import { consentBootstrapScript } from '@/lib/consent-bootstrap';
  * This is a plain inline `<script>`, not `next/script` with
  * `beforeInteractive`. That strategy emitted a raw `<script>` as a direct child
  * of `<html>` (the root layout rendered no explicit `<head>`), which React
- * rejects: every route logged three errors — "Cannot render a sync or defer
+ * rejects: every route logged three errors. "Cannot render a sync or defer
  * <script> outside the main document", a hydration error, and a nested-script
- * error — on the very code path that gates consent. An inline script inside
+ * error, on the very code path that gates consent. An inline script inside
  * `<head>` runs synchronously during parse, which is a *stronger* ordering
  * guarantee than `beforeInteractive`, and satisfies Google's "as high in the
  * <head> as possible" guidance directly. The container snippet the bootstrap
@@ -28,7 +28,7 @@ export default function Analytics(): React.ReactElement {
   return (
     <>
       {/* No `crossOrigin`: gtm.js is a classic (non-CORS) script, and a CORS
-          preconnect opens a connection the actual request can't reuse —
+          preconnect opens a connection the actual request can't reuse -
           Lighthouse flags exactly that as "unused preconnect". */}
       <link rel="preconnect" href={GTM_ORIGIN} />
       <link rel="dns-prefetch" href={GTM_ORIGIN} />

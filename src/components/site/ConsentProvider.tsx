@@ -16,7 +16,7 @@ type ConsentContextValue = {
    * What analytics is actually doing right now, which is NOT the same as
    * `consent`: outside the restricted regions the bootstrap grants analytics by
    * default, so an undecided visitor is being measured. Any UI reporting state
-   * to the visitor must read this, never `consent` — showing "Off" while GA is
+   * to the visitor must read this, never `consent`. Showing "Off" while GA is
    * running misrepresents the processing.
    */
   effectiveConsent: ConsentValue;
@@ -45,7 +45,7 @@ type GtagWindow = Window & {
 /**
  * Mirrors a decision into Google's consent API. Falls back to a raw dataLayer
  * push when `gtag` is missing, which happens when an ad blocker has removed it
- * or the host gate skipped the container — the choice must still persist.
+ * or the host gate skipped the container, the choice must still persist.
  */
 function pushConsentUpdate(value: ConsentValue): void {
   const w = window as GtagWindow;
@@ -82,7 +82,7 @@ export default function ConsentProvider({
     );
 
     // Cookie, GPC and timezone are browser-only, so this state can only be
-    // resolved after mount — the exact "read an external system" case the
+    // resolved after mount, the exact "read an external system" case the
     // set-state-in-effect rule exempts. It runs once and never cascades.
     if (stored) {
       // eslint-disable-next-line react-hooks/set-state-in-effect
@@ -113,7 +113,7 @@ export default function ConsentProvider({
 
   // Mirrors the bootstrap's own resolution: an explicit choice wins, otherwise
   // restricted regions are denied and everyone else is granted by default. This
-  // must stay in step with `consent-bootstrap.ts` — if the two disagree, the
+  // must stay in step with `consent-bootstrap.ts`. If the two disagree, the
   // banner reports one thing while GA does another.
   const effectiveConsent: ConsentValue = consent ?? (isRestricted ? 'denied' : 'granted');
 

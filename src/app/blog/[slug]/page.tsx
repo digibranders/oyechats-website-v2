@@ -176,7 +176,7 @@ export default async function BlogPostPage({ params }: { params: Promise<Params>
                 <ScrollSpyToc items={toc} variant="pills" />
               </div>
               {/* Desktop: sticky vertical rail. The sticky element must be a
-                  direct child of the full-height <aside> grid cell — nesting it
+                  direct child of the full-height <aside> grid cell. Nesting it
                   inside a shorter wrapper kills its scroll travel. */}
               <div className="hidden lg:block lg:sticky lg:top-24 lg:max-h-[calc(100vh-7rem)] lg:overflow-y-auto">
                 <ScrollSpyToc items={toc} variant="toc" label="On this page" />

@@ -27,7 +27,7 @@
   --volt: #7C3AED;
   --volt-2: #6D28D9;
   --volt-light: #A78BFA; /* brighter violet for hover/accents on dark surfaces */
-  --volt-tint: #FDF4FF;   /* background tint — unchanged */
+  --volt-tint: #FDF4FF;   /* background tint. Unchanged */
   --volt-line: #DDD6FE;
   --volt-ink: #5B21B6;
 
@@ -261,7 +261,7 @@ body {
    (a) measured 2.23:1 against paper, below the 3:1 required by WCAG 1.4.11,
    (b) vanished entirely under forced-colors / Windows High Contrast, which
        discards author box-shadows, and
-   (c) was clipped by every `overflow` ancestor — the pill scrollers and tables.
+   (c) was clipped by every `overflow` ancestor. The pill scrollers and tables.
    A real outline is drawn outside the box and survives all three. --volt-2 is
    7.10:1 on canvas. */
 :focus-visible {
@@ -367,7 +367,7 @@ img { max-width: 100%; display: block; }
   display: inline-block;
 }
 /* `background-clip: text` + transparent fill discards the background in forced
-   colors, so the accent word vanished entirely in Windows High Contrast — on
+   colors, so the accent word vanished entirely in Windows High Contrast. On
    every hero on the site. Restore a painted glyph and let the OS pick the ink. */
 @media (forced-colors: active) {
   .gradient-volt,
@@ -456,7 +456,7 @@ img { max-width: 100%; display: block; }
 }
 
 /* Scroll fade-up is handled by the <Reveal> / FadeUp component (CSS
-   transitions + IntersectionObserver) — SSR-safe and bfcache-safe with no
+   transitions + IntersectionObserver): SSR-safe and bfcache-safe with no
    flash-of-hidden. */
 
 /* ═══════════════════════ TYPOGRAPHY ═══════════════════════ */

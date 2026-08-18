@@ -26,8 +26,8 @@ export function Label({
 }: {
   children: React.ReactNode;
   htmlFor?: string;
-  /** For controls that cannot use `htmlFor` — e.g. a custom combobox built on a
-   *  button — so the label can be referenced via `aria-labelledby` instead. */
+  /** For controls that cannot use `htmlFor`. E.g. a custom combobox built on a
+   *  button, so the label can be referenced via `aria-labelledby` instead. */
   id?: string;
   className?: string;
 }) {

@@ -73,7 +73,7 @@ export function BlogList({ posts }: { posts: BlogCardData[] }) {
     <div>
       {/* Category filter */}
       {/* role="tablist" was declared with no tabpanel, no aria-controls, no ids,
-          no roving tabIndex and no arrow-key handler — it promised a keyboard
+          no roving tabIndex and no arrow-key handler. It promised a keyboard
           contract that did not exist. aria-pressed on a plain button group is
           the honest pattern, and is what IntegrationsClient already uses. */}
       <div className="mb-10 flex flex-wrap gap-2" role="group" aria-label="Filter posts by category">

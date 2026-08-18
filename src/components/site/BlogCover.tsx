@@ -2,7 +2,7 @@ import type { BlogAccent } from '@/lib/blog';
 import { cn } from '@/lib/cn';
 
 /**
- * Programmatic blog cover art — no raster assets to ship or break. Each post
+ * Programmatic blog cover art, no raster assets to ship or break. Each post
  * gets an aurora gradient mesh plus a motif drawn from the product's own world,
  * chosen by category (a chat exchange, price tiers, a step flow, a doc stack, a
  * growth pulse). On-brand "Voltage Paper", deterministic per slug, and purely
@@ -210,7 +210,7 @@ export function BlogCover({
         ].join(', '),
       }}
     >
-      {/* Film grain — soft organic texture, not a rigid grid */}
+      {/* Film grain. Soft organic texture, not a rigid grid */}
       <svg className="absolute inset-0 h-full w-full" style={{ mixBlendMode: 'soft-light', opacity: 0.5 }}>
         <filter id={grainId}>
           <feTurbulence type="fractalNoise" baseFrequency="0.9" numOctaves="2" stitchTiles="stitch" />

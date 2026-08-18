@@ -6,7 +6,7 @@ import { currencyForCountry } from '@/lib/pricing';
  *
  * Each priced route has an INR twin under `/in`, and both are statically
  * generated and CDN-cached. This rewrites Indian traffic to the twin, so the
- * correct currency is already in the HTML the visitor receives — no
+ * correct currency is already in the HTML the visitor receives, no
  * client-side detection, no currency flip after hydration, no per-request
  * render, and no chance of the home page and the pricing page disagreeing.
  *
@@ -20,7 +20,7 @@ import { currencyForCountry } from '@/lib/pricing';
  * The matcher lists the priced routes explicitly: the proxy bills per
  * invocation and adds latency, so it must not run on assets or on the many
  * routes that show no price. Adding a price to another page means adding it
- * here AND creating its `/in` twin — miss either and that page silently shows
+ * here AND creating its `/in` twin, miss either and that page silently shows
  * the wrong currency to Indian visitors, which is the bug this replaced.
  */
 export function proxy(request: NextRequest): NextResponse {

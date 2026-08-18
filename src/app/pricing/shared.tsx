@@ -7,7 +7,7 @@ import PricingClient from './PricingClient';
  * Shared by both pricing routes: `/pricing` (USD) and `/pricing/in` (INR).
  *
  * Metadata and the entity graph are built once, against `/pricing` in both
- * cases. That is deliberate — `/pricing/in` is a rendering variant, not a
+ * cases. That is deliberate. `/pricing/in` is a rendering variant, not a
  * separate page, so it must declare `/pricing` as its canonical whether it is
  * reached through the proxy rewrite or hit directly.
  */

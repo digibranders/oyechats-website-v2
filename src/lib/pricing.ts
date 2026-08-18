@@ -2,7 +2,7 @@ import { APP_LINKS } from './site';
 
 /**
  * Pricing is geo-gated: visitors in India are shown INR only, everyone else
- * USD only. There is no manual currency switch — a visitor never sees both.
+ * USD only. There is no manual currency switch, a visitor never sees both.
  * USD is a deliberate international geo-price, not an FX conversion of the INR
  * price.
  *
@@ -17,7 +17,7 @@ import { APP_LINKS } from './site';
  * the proxy matcher. Skipping that is how the home page ended up showing
  * USD while `/pricing` showed INR.
  *
- * Off Vercel — local dev, or any other host — the header is absent and every
+ * Off Vercel (local dev, or any other host)the header is absent and every
  * request resolves to USD.
  */
 export type Currency = 'INR' | 'USD';

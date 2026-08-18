@@ -7,8 +7,8 @@ import { HomeContent, homeMetadata } from '../HomeContent';
  * Canonical and `og:url` both point at `/` (inherited from `homeMetadata`), and
  * the path is absent from `app/sitemap.ts`, so it cannot compete with `/`.
  *
- * Deliberately NOT `noindex`: the rewrite serves this route's markup — metadata
- * included — at `/`, so a `noindex` here would deindex the home page for any
+ * Deliberately NOT `noindex`: the rewrite serves this route's markup, metadata
+ * included, at `/`, so a `noindex` here would deindex the home page for any
  * crawler requesting from an Indian IP.
  */
 

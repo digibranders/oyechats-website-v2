@@ -191,7 +191,7 @@ export default function IntegrationsClient() {
 
         {/* Data flow diagram */}
         <div className="mb-10 bg-canvas border border-line rounded-[var(--r-4)] p-8 shadow-[var(--e-1)]">
-          {/* Stacks vertically on mobile — the connecting arrows are row-only
+          {/* Stacks vertically on mobile. The connecting arrows are row-only
               (flex-1 horizontal rules) so they're hidden below md. */}
           <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-4">
             <FlowNode icon={<MessageSquare size={18} />} label="Chat event" />

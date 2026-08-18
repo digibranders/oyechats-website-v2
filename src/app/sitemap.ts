@@ -2,6 +2,7 @@ import type { MetadataRoute } from 'next';
 import { LEGAL_PAGES } from '@/lib/legal';
 import { BLOG_POSTS } from '@/lib/blog';
 import { CHANGELOG } from '@/lib/changelog';
+import { DOCS_LAST_UPDATED, DOC_PAGES } from '@/lib/docs';
 
 const BASE = 'https://www.oyechats.com';
 
@@ -11,7 +12,7 @@ const BASE = 'https://www.oyechats.com';
  * declaring /legal as volatile as /pricing is noise, and a lastmod that never
  * moves removes the one signal Google actually uses for recrawl scheduling.
  *
- * Deliberately NOT `new Date()` — a build-time clock claims every page changed
+ * Deliberately NOT `new Date()`, a build-time clock claims every page changed
  * on every deploy, which is worse than a stale date.
  */
 const STATIC_ROUTES: { path: string; lastModified: string; changeFrequency: 'weekly' | 'monthly' | 'yearly'; priority: number }[] = [
@@ -20,7 +21,7 @@ const STATIC_ROUTES: { path: string; lastModified: string; changeFrequency: 'wee
   { path: '/features', lastModified: '2026-07-23', changeFrequency: 'weekly', priority: 0.9 },
   { path: '/solutions', lastModified: '2026-07-21', changeFrequency: 'monthly', priority: 0.8 },
   { path: '/integrations', lastModified: '2026-07-18', changeFrequency: 'monthly', priority: 0.8 },
-  { path: '/docs', lastModified: '2026-07-14', changeFrequency: 'monthly', priority: 0.8 },
+  { path: '/docs', lastModified: DOCS_LAST_UPDATED, changeFrequency: 'monthly', priority: 0.8 },
   { path: '/blog', lastModified: '2026-07-16', changeFrequency: 'weekly', priority: 0.7 },
   { path: '/contact', lastModified: '2026-07-14', changeFrequency: 'yearly', priority: 0.6 },
   { path: '/about', lastModified: '2026-07-14', changeFrequency: 'yearly', priority: 0.5 },
@@ -58,5 +59,16 @@ export default function sitemap(): MetadataRoute.Sitemap {
     priority: 0.6,
   }));
 
-  return [...routes, ...legal, ...blog];
+  // Every docs page, derived from the corpus so a new page cannot be added
+  // without appearing here. Priority sits just under /docs itself: these are
+  // high-intent technical pages, and they change more often than legal but
+  // less often than pricing.
+  const docs = DOC_PAGES.map(({ path }) => ({
+    url: `${BASE}${path}`,
+    lastModified: new Date(DOCS_LAST_UPDATED),
+    changeFrequency: 'monthly' as const,
+    priority: 0.7,
+  }));
+
+  return [...routes, ...docs, ...legal, ...blog];
 }

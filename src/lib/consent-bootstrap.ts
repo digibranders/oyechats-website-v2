@@ -11,7 +11,7 @@ import {
  *
  *   1. initialise dataLayer and define gtag()
  *   2. resolve consent and emit gtag('consent','default', …)
- *   3. on the canonical host only, ARM the GTM loader — the container script is
+ *   3. on the canonical host only, ARM the GTM loader; the container script is
  *      injected on the visitor's first interaction (scroll / wheel / pointer
  *      move or down / touch / key). There is deliberately NO idle/timeout
  *      fallback: a timed injection still lands inside the Lighthouse trace,
@@ -20,14 +20,14 @@ import {
  *      3.5 s idle fallback). Interaction-only keeps the lab trace clean and
  *      loads analytics for any human who scrolls, moves the mouse, or touches.
  *      The known cost: a visitor who lands and leaves without any input never
- *      fires a pageview — accepted, since those sessions are also invisible to
+ *      fires a pageview. Accepted, since those sessions are also invisible to
  *      Clarity (nothing to replay) and mostly bots.
  *
  * Step 2 must precede step 3: Google's Consent Mode documentation states that
  * defaults called out of order simply do not apply, which would let GTM set
  * `_ga` before the banner has rendered. Keeping all three in one script makes
  * that ordering a property of the language rather than of script-tag
- * scheduling — and deferring the injection cannot break it, because the
+ * scheduling, and deferring the injection cannot break it, because the
  * consent default is already in the dataLayer before gtm.js can ever run.
  * Consented pageviews are unaffected: GTM replays the queued dataLayer when
  * it loads.
@@ -36,7 +36,7 @@ import {
  * `beforeInteractive` (renders server-side) by doing the check at runtime.
  *
  * Written in ES5 so it needs no transpilation, and wrapped in try/catch because
- * it runs before everything else — a throw here would blank the page.
+ * it runs before everything else, a throw here would blank the page.
  */
 export function consentBootstrapScript(): string {
   return `(function(w,d,host,name,zones,id,origin){try{

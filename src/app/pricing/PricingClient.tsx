@@ -36,7 +36,7 @@ const CATEGORIES: PricingFeatureCategory[] = ['usage', 'features', 'security'];
 
 function renderCell(v: PricingFeatureValue, currency: Currency) {
   // lucide icons carry no ARIA of their own, so a bare Check/X left every
-  // boolean cell in all three comparison tables completely unannounced — the
+  // boolean cell in all three comparison tables completely unannounced, the
   // icon was the only carrier of meaning (WCAG 1.1.1). sr-only text is
   // invisible and changes nothing on screen.
   if (v === true)
@@ -68,7 +68,7 @@ function perThousand(price: number, credits: number, currency: Currency) {
  * `currency` is resolved before render and never changes on the client. There
  * is no manual switch and no post-mount correction: `src/proxy.ts` routes
  * Indian traffic to the INR variant, so the price in the static HTML is already
- * the right one. Nothing here should reintroduce a client-side currency swap —
+ * the right one. Nothing here should reintroduce a client-side currency swap:
  * that would put the flicker back.
  */
 export default function PricingClient({ currency }: { currency: Currency }) {

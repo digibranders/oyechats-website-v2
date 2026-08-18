@@ -7,7 +7,7 @@ import { useEffect } from 'react';
  *
  * The widget script is the single largest main-thread cost on the page, so we
  * hold it back until the visitor shows intent (scroll / pointer / touch / key)
- * or the browser goes idle — whichever comes first. This keeps Total Blocking
+ * or the browser goes idle. Whichever comes first. This keeps Total Blocking
  * Time low without ever failing to load the widget.
  *
  * Renders nothing.
@@ -26,7 +26,7 @@ export default function WidgetLoader(): null {
   useEffect(() => {
     // The widget's settings API validates the request origin against the bot's
     // allowed domains, so it can only succeed on real deployments. On localhost
-    // it always fails with "Failed to fetch chatbot settings" — skip loading it
+    // it always fails with "Failed to fetch chatbot settings". Skip loading it
     // in local dev to keep the console clean. Every real host still loads it.
     const host = window.location.hostname;
     const isLocalHost =
