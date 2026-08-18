@@ -34,13 +34,13 @@ export const CHANGELOG: ChangelogEntry[] = [
   },
   {
     id: 'chat-concurrency',
-    date: 'August 17, 2026',
-    dateISO: '2026-08-17',
+    date: 'August 10, 2026',
+    dateISO: '2026-08-10',
     title: 'Chat stays responsive when a lot of visitors arrive at once',
     description:
       'Two changes to how a chat request uses the database. Billing and subscription checks no longer block while they run, and a database connection is now released for the whole time we are searching your knowledge base and generating a reply rather than being held end to end. Together they take the ceiling off how many conversations can be in flight at the same time, so a traffic spike on one site no longer slows replies for everyone. Nothing to configure.',
     tags: ['Improved', 'Performance'],
-    updatedBy: ['gaurav'],
+    updatedBy: ['steve'],
     accent: 'violet',
   },
   {
