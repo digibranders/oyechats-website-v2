@@ -199,7 +199,6 @@ export const GETTING_STARTED: DocGroup = {
 <script
   src="https://cdn.oyechats.com/oyechats-widget.js"
   data-bot-key="YOUR_BOT_KEY"
-  defer
 ></script>
 <a
   href="https://www.oyechats.com/?ref=YOUR_BOT_KEY&utm_source=widget&utm_medium=referral"

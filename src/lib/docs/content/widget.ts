@@ -29,7 +29,6 @@ export const WIDGET: DocGroup = {
               code: `<script
   src="https://cdn.oyechats.com/oyechats-widget.js"
   data-bot-key="bot-6a427d4529b9"
-  defer
 ></script>`,
             },
             {
@@ -37,7 +36,6 @@ export const WIDGET: DocGroup = {
               head: ['Attribute', 'Required', 'Purpose'],
               rows: [
                 ['`data-bot-key`', 'Yes', 'Identifies which chatbot to load. Public by design.'],
-                ['`defer`', 'Recommended', 'Keeps the script off your page\'s critical rendering path.'],
               ],
             },
             {
@@ -114,7 +112,6 @@ export const WIDGET: DocGroup = {
 <script
   src="https://cdn.oyechats.com/oyechats-widget.js"
   data-bot-key="bot-6a427d4529b9"
-  defer
 ></script>
 
 <script>

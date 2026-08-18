@@ -247,7 +247,7 @@ export const SUPPORT: DocGroup = {
                 },
                 {
                   term: 'Will it slow my site down?',
-                  text: 'The script is deferred and the chat panel is only built when a visitor opens it, so the initial page load carries very little.',
+                  text: 'The snippet goes at the end of the body, the loader waits for the page to finish parsing before it does anything, and the chat panel is only built when a visitor opens it. The initial page load carries very little.',
                 },
                 {
                   term: 'Can I use one chatbot on several websites?',
