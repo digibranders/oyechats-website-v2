@@ -96,7 +96,7 @@ export const CHATBOT: DocGroup = {
                 },
                 {
                   title: 'Review the discovered pages',
-                  text: 'OyeChats reads your sitemap where one exists and follows links where it does not, then shows you the page list with an estimated credit cost before anything is charged.',
+                  text: 'Discovery reads your `robots.txt` for `Sitemap:` directives, then the sitemaps themselves, and lists what it finds with an estimated credit cost before anything is charged. Your typed URL is always included even if the sitemap omits it.',
                 },
                 {
                   title: 'Deselect what you do not want',
@@ -110,9 +110,15 @@ export const CHATBOT: DocGroup = {
             },
             {
               t: 'callout',
+              variant: 'warn',
+              title: 'No sitemap? There is no list to review',
+              text: 'Page discovery is sitemap-driven — it does not scan your HTML for links. If your site publishes no sitemap, there is nothing to preview or prune, and the crawl instead explores your site by following links, with no known page total. You still get live progress, just no denominator. Publishing a sitemap is the single best thing you can do for crawl quality.',
+            },
+            {
+              t: 'callout',
               variant: 'info',
               title: 'What it can reach',
-              text: 'Only pages a public visitor can reach. Anything behind a login, a paywall, or a `robots.txt` disallow is not indexed. JavaScript-rendered pages are supported, subject to a per-plan cap on how many need rendering.',
+              text: 'Only pages a public visitor can reach. Anything behind a login or a paywall is not indexed, and `robots.txt` `Disallow` rules are honoured. JavaScript-rendered pages are supported, subject to a per-plan cap on how many need rendering.',
             },
           ],
         },

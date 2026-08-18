@@ -24,7 +24,7 @@ export const INTEGRATIONS: DocGroup = {
               items: [
                 {
                   title: 'Create the endpoint on your side',
-                  text: 'It must accept `POST` with a JSON body over HTTPS on a publicly resolvable host, and return a 2xx status quickly. Private, internal and loopback addresses are rejected.',
+                  text: 'It must accept `POST` with a JSON body on a publicly resolvable host, and return a 2xx status quickly. Private, internal and loopback addresses are rejected at registration. Use an `https://` URL: deliveries carry lead names, emails and phone numbers, and a plain `http://` endpoint sends those in clear text.',
                 },
                 {
                   title: 'Register it',

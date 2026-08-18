@@ -113,7 +113,7 @@ export const SUPPORT: DocGroup = {
               items: [
                 {
                   term: 'It found almost no pages',
-                  text: 'Either your site has no sitemap and few internal links to follow, or `robots.txt` disallows crawling. Point the crawler at a section root that links out widely, or upload the content instead.',
+                  text: 'Discovery is sitemap-driven, so the usual cause is no sitemap — publish one and re-run. Failing that, `robots.txt` may `Disallow` the paths, which is honoured. With no sitemap the crawl falls back to following links, so a section root that links out widely works better than a sparse landing page; uploading the content directly always works.',
                 },
                 {
                   term: 'Pages indexed but empty',
