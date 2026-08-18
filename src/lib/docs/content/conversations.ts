@@ -1,4 +1,5 @@
 import type { DocGroup } from '../types';
+import { seatsTable } from '../plan-matrix';
 
 export const CONVERSATIONS: DocGroup = {
   slug: 'conversations',
@@ -273,8 +274,9 @@ export const CONVERSATIONS: DocGroup = {
           blocks: [
             {
               t: 'p',
-              text: 'Each plan includes a number of operator seats and you can buy extra seats as an add-on. Enterprise includes unlimited seats. Current seat pricing is on the [pricing page](/pricing).',
+              text: 'Each plan includes a number of operator seats, and you can buy extra seats as an add-on. Seat pricing is on the [pricing page](/pricing).',
             },
+            seatsTable(),
             {
               t: 'table',
               head: ['Control', 'Default', 'Meaning'],

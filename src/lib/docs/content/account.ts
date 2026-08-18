@@ -1,4 +1,5 @@
 import type { DocGroup } from '../types';
+import { TRIAL_PLAN, capabilitiesTable, limitsTable } from '../plan-matrix';
 
 export const ACCOUNT: DocGroup = {
   slug: 'account',
@@ -21,42 +22,26 @@ export const ACCOUNT: DocGroup = {
           blocks: [
             {
               t: 'p',
-              text: 'Prices and the per-tier numbers live on the [pricing page](/pricing) and in your dashboard, which read from the same source the platform enforces against. These docs describe the *kinds* of limit rather than restating figures that would drift.',
+              text: 'Both tables below are generated from the platform itself — the seeded plan matrix for limits, and the entitlement gates in the services layer for capabilities. They are not restated by hand, so they cannot drift from what your workspace is actually allowed to do.',
             },
-            { t: 'h3', text: 'Numeric limits' },
             {
-              t: 'table',
-              head: ['Limit', 'Meaning'],
-              rows: [
-                ['Credits per month', 'Your monthly allowance. Resets each billing period; see [Credits](/docs/account/credits).'],
-                ['Chatbots', 'How many you can run. Unlimited on Enterprise.'],
-                ['Operator seats', 'Included live-chat seats. Extra seats are an add-on.'],
-                ['Leads stored', 'Capped on Free, unlimited on every paid tier.'],
-                ['Pages', 'How many crawled pages a chatbot may hold.'],
-                ['Documents', 'How many uploaded files a chatbot may hold.'],
-                ['Knowledge characters', 'Total indexed text size — the cap that actually bounds a large knowledge base.'],
-                ['Chat history window', 'How far back the dashboard shows conversations, from one week to a year.'],
-                ['Crawl depth, JS-rendered pages, crawl concurrency', 'How deep and how fast a crawl may go.'],
-              ],
+              t: 'callout',
+              variant: 'info',
+              title: 'Prices are not here on purpose',
+              text: 'Pricing is geo-dependent and lives on the [pricing page](/pricing). These tables cover what each tier *does*, not what it costs.',
             },
-            { t: 'h3', text: 'Gated features' },
+            { t: 'h3', text: 'Limits' },
             {
-              t: 'table',
-              head: ['Feature', 'Typically from'],
-              rows: [
-                ['Live chat with human operators', 'Starter'],
-                ['Lead intelligence — score, tier, breakdown, CSV export', 'Starter'],
-                ['Qualification frameworks (BANT and the rest)', 'Standard'],
-                ['Webhooks', 'Standard'],
-                ['White-label branding removal', 'Standard'],
-                ['Automatic weekly re-crawl', 'Standard'],
-                ['Journey analytics and lead source attribution', 'Standard'],
-                ['Background email verification', 'Standard'],
-                ['Credit top-ups', 'Starter'],
-                ['Visitor company / network identification', 'Professional'],
-                ['Unlimited chatbots on one credit pool', 'Enterprise'],
-              ],
+              t: 'p',
+              text: '"Unlimited" is a real uncapped value, not a fair-use figure. Credits still meter actual usage, so uncapped ingestion is self-limiting.',
             },
+            limitsTable(),
+            { t: 'h3', text: 'Capabilities' },
+            {
+              t: 'p',
+              text: 'A capability your plan does not include is visible but disabled in the dashboard, and its API endpoints return 403 with a `feature_not_available` code naming the feature.',
+            },
+            capabilitiesTable(),
           ],
         },
         {
@@ -86,7 +71,7 @@ export const ACCOUNT: DocGroup = {
           blocks: [
             {
               t: 'p',
-              text: 'There is a 7-day trial of the Standard tier, with full Standard features. It is the only trial offered — the other tiers do not carry one. Free is not a trial; it is a permanent tier with a small allowance and no card required.',
+              text: `There is a ${TRIAL_PLAN ? `${TRIAL_PLAN.days}-day trial of the ${TRIAL_PLAN.name} tier, with full ${TRIAL_PLAN.name} features. It is the only trial offered — the other tiers do not carry one` : 'no trial on any tier'}. Free is not a trial; it is a permanent tier with a small allowance and no card required.`,
             },
             {
               t: 'callout',
