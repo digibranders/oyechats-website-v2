@@ -113,7 +113,7 @@ export const SUPPORT: DocGroup = {
               items: [
                 {
                   term: 'It found almost no pages',
-                  text: 'Discovery is sitemap-driven, so the usual cause is no sitemap — publish one and re-run. Failing that, `robots.txt` may `Disallow` the paths, which is honoured. With no sitemap the crawl falls back to following links, so a section root that links out widely works better than a sparse landing page; uploading the content directly always works.',
+                  text: 'Discovery tries your sitemap first, then a same-domain link scan. Both come up short on a client-rendered site whose links only exist after JavaScript runs, and `robots.txt` `Disallow` rules are honoured, so check those first. Publishing a sitemap is the most reliable fix — it also reaches orphaned pages a link scan cannot. Failing that, point the crawler at a section root that links out widely rather than a sparse landing page, or upload the content directly.',
                 },
                 {
                   term: 'Pages indexed but empty',

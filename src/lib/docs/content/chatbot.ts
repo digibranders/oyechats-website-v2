@@ -96,7 +96,7 @@ export const CHATBOT: DocGroup = {
                 },
                 {
                   title: 'Review the discovered pages',
-                  text: 'Discovery reads your `robots.txt` for `Sitemap:` directives, then the sitemaps themselves, and lists what it finds with an estimated credit cost before anything is charged. Your typed URL is always included even if the sitemap omits it.',
+                  text: 'OyeChats reads your `robots.txt` for `Sitemap:` directives and then the sitemaps themselves. If that turns up nothing usable, it scans the page you gave it for same-domain links and follows them. Either way you get the page list with an estimated credit cost before anything is charged, and your typed URL is always included.',
                 },
                 {
                   title: 'Deselect what you do not want',
@@ -110,9 +110,15 @@ export const CHATBOT: DocGroup = {
             },
             {
               t: 'callout',
-              variant: 'warn',
-              title: 'No sitemap? There is no list to review',
-              text: 'Page discovery is sitemap-driven — it does not scan your HTML for links. If your site publishes no sitemap, there is nothing to preview or prune, and the crawl instead explores your site by following links, with no known page total. You still get live progress, just no denominator. Publishing a sitemap is the single best thing you can do for crawl quality.',
+              variant: 'info',
+              title: 'A sitemap gets you better coverage',
+              text: 'The link scan is deliberately bounded so it stays fast and does not hammer your origin: it follows links about two hops from the page you give it and only fetches a limited number of pages to find more. A sitemap is authoritative, so it also reaches deep and orphaned pages that no link scan would find. If you have one, discovery will be more complete.',
+            },
+            {
+              t: 'callout',
+              variant: 'info',
+              title: 'Client-rendered sites',
+              text: 'If a site publishes no sitemap and its links only exist after JavaScript runs — a typical single-page app — neither of the above finds anything. The crawl then falls back to a recursive browser crawl, which does render the page. That path is slower and gives no page list to review up front.',
             },
             {
               t: 'callout',
