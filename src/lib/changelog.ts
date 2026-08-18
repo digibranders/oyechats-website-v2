@@ -27,7 +27,7 @@ export const CHANGELOG: ChangelogEntry[] = [
     dateISO: '2026-08-17',
     title: 'Fixed: answers could come back empty on small knowledge bases',
     description:
-      'A chatbot could reply that it did not know something while the answer sat in its knowledge base. The cause was our shared vector index: as the total number of customers grew, searches scoped to one workspace were drawn from a candidate set dominated by everyone else’s content and discarded, returning nothing — silently, with no error to alert us. Smaller knowledge bases were hit hardest, which is most of them. Retrieval now runs an exact, workspace-scoped search: every matching passage is found, every time, and it is faster at today’s sizes — a 5,000-chunk knowledge base searches in under 8ms. No action needed, and nothing was lost; the content was always there.',
+      'A chatbot could reply that it did not know something while the answer sat in its knowledge base. The cause was our shared vector index: as the total number of customers grew, searches scoped to one workspace were drawn from a candidate set dominated by everyone else’s content and discarded, returning nothing. Silently, with no error to alert us. Smaller knowledge bases were hit hardest, which is most of them. Retrieval now runs an exact, workspace-scoped search: every matching passage is found, every time, and it is faster at today’s sizes. A 5,000-chunk knowledge base searches in under 8ms. No action needed, and nothing was lost; the content was always there.',
     tags: ['Fixed', 'Answer quality'],
     updatedBy: ['gaurav'],
     accent: 'rose',

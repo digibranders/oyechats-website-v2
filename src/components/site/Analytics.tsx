@@ -28,7 +28,7 @@ export default function Analytics(): React.ReactElement {
   return (
     <>
       {/* No `crossOrigin`: gtm.js is a classic (non-CORS) script, and a CORS
-          preconnect opens a connection the actual request can't reuse —
+          preconnect opens a connection the actual request can't reuse -
           Lighthouse flags exactly that as "unused preconnect". */}
       <link rel="preconnect" href={GTM_ORIGIN} />
       <link rel="dns-prefetch" href={GTM_ORIGIN} />

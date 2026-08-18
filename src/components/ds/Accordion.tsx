@@ -54,7 +54,7 @@ export function Accordion({
                 the DOM: that is what keeps the FAQPage markup visible-content
                 compliant and lets AI answer engines extract the text. Switching
                 to conditional rendering or display:none would destroy both.
-                `inert` + `aria-hidden` hide it from assistive tech only —
+                `inert` + `aria-hidden` hide it from assistive tech only -
                 crawlers ignore both attributes. */}
             <div
               id={`${baseId}-panel-${i}`}

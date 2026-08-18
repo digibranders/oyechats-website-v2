@@ -207,7 +207,7 @@ export default function ContactClient() {
                   </div>
 
                   {/* Keyboard support. Previously the options were <li role="option">
-                      with onClick only — no keydown handling anywhere — so a
+                      with onClick only (no keydown handling anywhere) so a
                       keyboard user could open the menu and never choose a value
                       (WCAG 2.1.1 Level A), and it silently blocked lead capture.
                       Kept as a custom listbox rather than a native <select> so the

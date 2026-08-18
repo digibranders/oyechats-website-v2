@@ -131,7 +131,7 @@ export default function CookieConsent(): React.ReactElement | null {
 
         <div className="mt-3 flex flex-wrap items-center gap-x-3 gap-y-1 text-[12px]">
           {/* Granular consent has to be reachable from the first-visit banner,
-              not only from the footer — otherwise the only options on offer are
+              not only from the footer. Otherwise the only options on offer are
               all-or-nothing. */}
           {!isPanelOpen && (
             <button

@@ -14,7 +14,7 @@ export const CONVERSATIONS: DocGroup = {
         'Every conversation is in exactly one of four states. Knowing which is which explains most of what you see in the Support inbox.',
       metaTitle: 'Conversation Lifecycle: AI, Waiting, Live, Closed',
       metaDescription:
-        'The four conversation states in OyeChats — bot, waiting, live and closed — how transitions happen, and how transcripts and audit logs are kept.',
+        'The four conversation states in OyeChats. Bot, waiting, live and closed. How transitions happen, and how transcripts and audit logs are kept.',
       sections: [
         {
           id: 'states',
@@ -32,7 +32,7 @@ export const CONVERSATIONS: DocGroup = {
             },
             {
               t: 'p',
-              text: 'From Live there are two ways out. **Close** returns the visitor to the chatbot, which is what you want when the human question is answered but the visitor may keep browsing. **Resolve** ends the conversation entirely and records it as done — this is the one that reads as completed in your resolution metrics.',
+              text: 'From Live there are two ways out. **Close** returns the visitor to the chatbot, which is what you want when the human question is answered but the visitor may keep browsing. **Resolve** ends the conversation entirely and records it as done. This is the one that reads as completed in your resolution metrics.',
             },
           ],
         },
@@ -45,11 +45,11 @@ export const CONVERSATIONS: DocGroup = {
               items: [
                 {
                   term: 'Visitor asks for a human',
-                  text: 'Either by tapping the live chat control or by saying so in conversation — the chatbot recognises the intent and offers the handoff.',
+                  text: 'Either by tapping the live chat control or by saying so in conversation. The chatbot recognises the intent and offers the handoff.',
                 },
                 {
                   term: 'The visitor appears stuck',
-                  text: 'Several messages inside the frustration window trigger a proactive offer of a human. Tunable per chatbot — see [Behaviour and timing](/docs/widget/behavior).',
+                  text: 'Several messages inside the frustration window trigger a proactive offer of a human. Tunable per chatbot. See [Behaviour and timing](/docs/widget/behavior).',
                 },
                 {
                   term: 'An operator reaches out',
@@ -74,7 +74,7 @@ export const CONVERSATIONS: DocGroup = {
             {
               t: 'list',
               items: [
-                'Every message, tagged with who sent it — visitor, chatbot, operator or system.',
+                'Every message, tagged with who sent it. Visitor, chatbot, operator or system.',
                 'An append-only audit log of state changes: handoff requested, accepted, transferred, closed, resolved.',
                 'The visitor rating, when post-chat rating is enabled.',
                 'The page journey: what the visitor saw before, during and after the conversation.',
@@ -85,7 +85,7 @@ export const CONVERSATIONS: DocGroup = {
               t: 'callout',
               variant: 'info',
               title: 'How far back you can look',
-              text: 'Your plan sets a chat-history window that governs how far back the dashboard shows conversations — from one week on Free to a year on the top tiers. It is a visibility window, not an automatic deletion schedule; for deletion see [Data and privacy](/docs/account/privacy).',
+              text: 'Your plan sets a chat-history window that governs how far back the dashboard shows conversations, from one week on Free to a year on the top tiers. It is a visibility window, not an automatic deletion schedule; for deletion see [Data and privacy](/docs/account/privacy).',
             },
           ],
         },
@@ -196,7 +196,7 @@ export const CONVERSATIONS: DocGroup = {
             },
             {
               t: 'p',
-              text: 'Showing queue position is off by default. It reassures visitors when your queue is short and does the opposite when it is long — turn it on only if you know which situation you are in.',
+              text: 'Showing queue position is off by default. It reassures visitors when your queue is short and does the opposite when it is long. Turn it on only if you know which situation you are in.',
             },
           ],
         },
@@ -209,10 +209,10 @@ export const CONVERSATIONS: DocGroup = {
               items: [
                 '**Accept** a queued conversation and start chatting.',
                 '**Take over** a conversation the chatbot is currently handling.',
-                '**Connect** — invite a visitor in an AI conversation to talk to a human; they choose.',
+                '**Connect**. Invite a visitor in an AI conversation to talk to a human; they choose.',
                 '**Transfer** an active conversation to another operator or department.',
-                '**Close** — hand the visitor back to the chatbot.',
-                '**Resolve** — end the conversation and mark it done.',
+                '**Close**. Hand the visitor back to the chatbot.',
+                '**Resolve**. End the conversation and mark it done.',
                 'Send files, if file sharing is enabled for that chatbot.',
                 'Insert a [canned response](/docs/conversations/canned-responses) with a slash shortcut.',
                 'Read and edit the conversation\'s qualification scores.',
@@ -294,7 +294,7 @@ export const CONVERSATIONS: DocGroup = {
           blocks: [
             {
               t: 'p',
-              text: 'Departments group operators — Sales, Support, Billing. A visitor can be asked to pick one when they request a human, and each department can carry its own business hours. Routing then only considers operators in the chosen department.',
+              text: 'Departments group operators. Sales, Support, Billing. A visitor can be asked to pick one when they request a human, and each department can carry its own business hours. Routing then only considers operators in the chosen department.',
             },
           ],
         },
@@ -325,7 +325,7 @@ export const CONVERSATIONS: DocGroup = {
               t: 'list',
               items: [
                 'In-dashboard toast and sound while the tab is open.',
-                'Browser push, for when the dashboard tab is closed — the operator has to grant permission once.',
+                'Browser push, for when the dashboard tab is closed. The operator has to grant permission once.',
                 'Email, as a backstop when nobody picked the conversation up. Repeated messages from the same waiting visitor are debounced to one email per minute.',
               ],
             },
@@ -361,7 +361,7 @@ export const CONVERSATIONS: DocGroup = {
               rows: [
                 ['`/hours`', 'Our team is available Monday to Friday, 9am–6pm IST.'],
                 ['`/refund`', 'Refund requests go to billing@example.com and are processed within 5 business days.'],
-                ['`/escalate`', 'I am bringing in a specialist — one moment.'],
+                ['`/escalate`', 'I am bringing in a specialist. One moment.'],
               ],
             },
             {
@@ -379,7 +379,7 @@ export const CONVERSATIONS: DocGroup = {
       slug: 'offline-messages',
       navLabel: 'Offline messages',
       title: 'Offline messages',
-      summary: 'What happens to a visitor who wants a human when no human is there — and how you follow up.',
+      summary: 'What happens to a visitor who wants a human when no human is there, and how you follow up.',
       metaTitle: 'Offline Messages and Out-of-Hours Enquiries',
       metaDescription:
         'How the OyeChats offline form captures enquiries when no operator is available, where the messages land, and how to follow them up.',
@@ -390,7 +390,7 @@ export const CONVERSATIONS: DocGroup = {
           blocks: [
             {
               t: 'p',
-              text: 'In any availability state except "available", the widget offers a short form instead of a queue. The visitor leaves their details and message, and the AI chatbot remains available the whole time — the form is an addition, never a dead end.',
+              text: 'In any availability state except "available", the widget offers a short form instead of a queue. The visitor leaves their details and message, and the AI chatbot remains available the whole time. The form is an addition, never a dead end.',
             },
             {
               t: 'p',

@@ -141,8 +141,8 @@ export default function Navbar() {
 
               {/* Rendered unconditionally and hidden with CSS + `inert`, mirroring
                   the mobile drawer below. Conditional rendering kept Docs,
-                  Changelog, Blog and Security out of the served HTML entirely —
-                  the header contributed no link equity to them — and made them
+                  Changelog, Blog and Security out of the served HTML entirely -
+                  the header contributed no link equity to them, and made them
                   unreachable by keyboard, since the panel only ever existed
                   while the mouse was over it. `onFocus` on the wrapper opens it
                   when the trigger is tabbed to. Visually identical: closed state
@@ -175,7 +175,7 @@ export default function Navbar() {
         {/* Mobile / tablet: keep the primary CTA visible in the header,
             not just buried in the drawer. */}
         <div className="flex items-center gap-1.5 lg:hidden">
-          {/* Hidden while the drawer is open — the drawer footer already has
+          {/* Hidden while the drawer is open. The drawer footer already has
               its own Start free, so showing both would duplicate the CTA. */}
           {!open && (
             <Button href={APP_LINKS.register} external variant="volt" size="md">
@@ -197,7 +197,7 @@ export default function Navbar() {
       </div>
       </header>
 
-      {/* Mobile drawer — rendered OUTSIDE <header> on purpose. The header has
+      {/* Mobile drawer. Rendered OUTSIDE <header> on purpose. The header has
           `backdrop-blur` (backdrop-filter), which establishes a containing block
           for `position: fixed` descendants; keeping the drawer inside would make
           `top-16 bottom-0` resolve against the 64px header and collapse it.

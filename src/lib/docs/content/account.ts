@@ -14,7 +14,7 @@ export const ACCOUNT: DocGroup = {
         'What a plan actually controls, how limits are enforced, and how to check what your workspace is entitled to right now.',
       metaTitle: 'OyeChats Plans, Limits and Feature Entitlements',
       metaDescription:
-        'How OyeChats plan limits and feature entitlements work — chatbots, credits, seats, knowledge size, chat history and gated features.',
+        'How OyeChats plan limits and feature entitlements work. Chatbots, credits, seats, knowledge size, chat history and gated features.',
       sections: [
         {
           id: 'shape',
@@ -22,7 +22,7 @@ export const ACCOUNT: DocGroup = {
           blocks: [
             {
               t: 'p',
-              text: 'Both tables below are generated from the platform itself — the seeded plan matrix for limits, and the entitlement gates in the services layer for capabilities. They are not restated by hand, so they cannot drift from what your workspace is actually allowed to do.',
+              text: 'Both tables below are generated from the platform itself: the seeded plan matrix for limits, and the entitlement gates in the services layer for capabilities. They are not restated by hand, so they cannot drift from what your workspace is actually allowed to do.',
             },
             {
               t: 'callout',
@@ -53,7 +53,7 @@ export const ACCOUNT: DocGroup = {
               items: [
                 'Hitting a **knowledge** cap blocks further ingestion for that chatbot. It never truncates a document silently.',
                 'Hitting the **lead** cap stops new lead records accumulating. Conversations keep working.',
-                'Running out of **credits** stops metered actions — see [Credits](/docs/account/credits) for exactly which.',
+                'Running out of **credits** stops metered actions. See [Credits](/docs/account/credits) for exactly which.',
                 'A **locked feature** is visible but disabled in the dashboard, and its API endpoints return 403 with a machine-readable `feature_not_available` code.',
               ],
             },
@@ -61,7 +61,7 @@ export const ACCOUNT: DocGroup = {
               t: 'callout',
               variant: 'info',
               title: 'Check entitlements programmatically',
-              text: '`GET /auth/me/entitlements` returns your resolved limits, feature flags and current usage. Branch on that rather than on a plan name — plan names change, entitlements are the contract.',
+              text: '`GET /auth/me/entitlements` returns your resolved limits, feature flags and current usage. Branch on that rather than on a plan name: plan names change, entitlements are the contract.',
             },
           ],
         },
@@ -71,7 +71,7 @@ export const ACCOUNT: DocGroup = {
           blocks: [
             {
               t: 'p',
-              text: `There is a ${TRIAL_PLAN ? `${TRIAL_PLAN.days}-day trial of the ${TRIAL_PLAN.name} tier, with full ${TRIAL_PLAN.name} features. It is the only trial offered — the other tiers do not carry one` : 'no trial on any tier'}. Free is not a trial; it is a permanent tier with a small allowance and no card required.`,
+              text: `There is a ${TRIAL_PLAN ? `${TRIAL_PLAN.days}-day trial of the ${TRIAL_PLAN.name} tier, with full ${TRIAL_PLAN.name} features. It is the only trial offered, and the other tiers do not carry one` : 'no trial on any tier'}. Free is not a trial; it is a permanent tier with a small allowance and no card required.`,
             },
             {
               t: 'callout',
@@ -89,7 +89,7 @@ export const ACCOUNT: DocGroup = {
               t: 'list',
               items: [
                 'Upgrade or downgrade from **Workspace → Billing**.',
-                'A downgrade applies your new, lower limits — if you are over one of them, resolve that before switching.',
+                'A downgrade applies your new, lower limits. If you are over one of them, resolve that before switching.',
                 'A scheduled change can be cancelled from the same screen before it takes effect.',
                 'Extra operator seats are billed as a separate add-on and can be adjusted independently of the plan.',
               ],
@@ -130,7 +130,7 @@ export const ACCOUNT: DocGroup = {
               t: 'list',
               items: [
                 'Preview conversations from the dashboard, up to 50 per chatbot per day.',
-                'Automatic weekly re-crawls — funded by your subscription. A **manual** re-crawl is metered: on Standard and above you can re-crawl updated pages only, otherwise a manual re-crawl charges for every page. See [Training](/docs/chatbot/knowledge).',
+                'Automatic weekly re-crawls are funded by your subscription. A **manual** re-crawl is metered: on Standard and above you can re-crawl updated pages only, otherwise a manual re-crawl charges for every page. See [Training](/docs/chatbot/knowledge).',
                 'Live chat with a human operator. Operator capacity is billed as seats, not credits.',
                 'Reading anything: dashboard, analytics, exports, API reads.',
                 'The real-time email format check on the lead form.',
@@ -176,7 +176,7 @@ Optional extras
           blocks: [
             {
               t: 'p',
-              text: 'You are warned as your balance gets low — the default threshold is 20% remaining. At zero the chat endpoint returns a `402` with `insufficient_credits` rather than an answer, and the widget surfaces that to the visitor:',
+              text: 'You are warned as your balance gets low. The default threshold is 20% remaining. At zero the chat endpoint returns a `402` with `insufficient_credits` rather than an answer, and the widget surfaces that to the visitor:',
             },
             {
               t: 'table',
@@ -207,7 +207,7 @@ Optional extras
             {
               t: 'list',
               items: [
-                'Top-up credits do not expire — they carry forward indefinitely.',
+                'Top-up credits do not expire; they carry forward indefinitely.',
                 'Your monthly allowance is consumed before your top-up balance, so buying early never wastes credits.',
                 'Every grant and deduction is recorded in an append-only ledger you can read in full from **Workspace → Usage** or `GET /credits/history`.',
               ],
@@ -225,7 +225,7 @@ Optional extras
         'Currency, tax, invoices, what happens when a payment fails, and how cancellation actually works.',
       metaTitle: 'Billing, GST Invoices and Cancellation',
       metaDescription:
-        'How OyeChats billing works — payment methods, GST-compliant invoices, failed payment grace periods, cancellation, reactivation and refunds.',
+        'How OyeChats billing works. Payment methods, GST-compliant invoices, failed payment grace periods, cancellation, reactivation and refunds.',
       sections: [
         {
           id: 'payments',
@@ -233,7 +233,7 @@ Optional extras
           blocks: [
             {
               t: 'p',
-              text: 'Payments are processed by Razorpay. Card, UPI and net-banking mandates are supported for recurring billing; the available methods depend on your country. Card numbers, UPI handles and bank details are handled entirely by the payment provider and never reach OyeChats servers — we store only the brand and last four digits so you can tell your instruments apart.',
+              text: 'Payments are processed by Razorpay. Card, UPI and net-banking mandates are supported for recurring billing; the available methods depend on your country. Card numbers, UPI handles and bank details are handled entirely by the payment provider and never reach OyeChats servers. We store only the brand and last four digits so you can tell your instruments apart.',
             },
             {
               t: 'p',
@@ -272,7 +272,7 @@ Optional extras
               items: [
                 {
                   title: 'The subscription goes past due',
-                  text: 'Your workspace keeps full access during this window — nothing is cut off while the payment is being recovered.',
+                  text: 'Your workspace keeps full access during this window. Nothing is cut off while the payment is being recovered.',
                 },
                 {
                   title: 'The provider retries',
@@ -302,7 +302,7 @@ Optional extras
               t: 'callout',
               variant: 'success',
               title: 'Changing your mind is free',
-              text: 'Until close to the period end, cancellation is a reversible intent — reactivating restores your subscription at no cost. Only near the end of the period does the cancellation become final with the payment provider, because mandates cannot be un-cancelled once withdrawn.',
+              text: 'Until close to the period end, cancellation is a reversible intent. Reactivating restores your subscription at no cost. Only near the end of the period does the cancellation become final with the payment provider, because mandates cannot be un-cancelled once withdrawn.',
             },
             {
               t: 'p',
@@ -338,7 +338,7 @@ Optional extras
           blocks: [
             {
               t: 'p',
-              text: 'Invite from **Workspace → Members**. The invitee gets an email, accepts, and sets a password. Pending invites can be resent or revoked, and one login can belong to several workspaces — useful for agencies and contractors.',
+              text: 'Invite from **Workspace → Members**. The invitee gets an email, accepts, and sets a password. Pending invites can be resent or revoked, and one login can belong to several workspaces, which is useful for agencies and contractors.',
             },
             {
               t: 'p',
@@ -376,7 +376,7 @@ Optional extras
               t: 'list',
               items: [
                 'Treat your API key as a full-access credential. Rotate it if it has ever been pasted anywhere you would not paste a password.',
-                'Remove operators who leave — deactivating them ends their access and frees their seat.',
+                'Remove operators who leave. Deactivating them ends their access and frees their seat.',
                 'Set the [domain allowlist](/docs/widget/security) on every chatbot so your bot key cannot be used on someone else\'s site.',
                 'Administrative actions in the workspace are recorded in an audit log.',
               ],
@@ -406,13 +406,13 @@ Optional extras
           blocks: [
             {
               t: 'p',
-              text: 'For your **visitors\'** conversation data, you are the controller and OyeChats is the processor acting on your instructions. For **your own account** data — your login, your billing, your usage — OyeChats is the controller. The [DPA](/legal/dpa) sets out the processor terms and is incorporated into the [Terms of Service](/legal/terms).',
+              text: 'For your **visitors\'** conversation data, you are the controller and OyeChats is the processor acting on your instructions. For **your own account** data (your login, your billing, your usage), OyeChats is the controller. The [DPA](/legal/dpa) sets out the processor terms and is incorporated into the [Terms of Service](/legal/terms).',
             },
             {
               t: 'callout',
               variant: 'warn',
               title: 'Your notice, your obligation',
-              text: 'Because you are the controller of visitor conversations, telling your visitors that a chatbot processes their messages — and obtaining consent where your jurisdiction requires it — is your responsibility, not ours.',
+              text: 'Because you are the controller of visitor conversations, telling your visitors that a chatbot processes their messages (and obtaining consent where your jurisdiction requires it) is your responsibility, not ours.',
             },
           ],
         },
@@ -434,7 +434,7 @@ Optional extras
             },
             {
               t: 'p',
-              text: 'Full IP addresses are recorded because geolocation, abuse prevention and repeat-visit detection are performed against them, but they are stripped at every boundary you can see — dashboard, export and API all return geography only.',
+              text: 'Full IP addresses are recorded because geolocation, abuse prevention and repeat-visit detection are performed against them, but they are stripped at every boundary you can see: dashboard, export and API all return geography only.',
             },
           ],
         },
@@ -459,7 +459,7 @@ Optional extras
                 },
                 {
                   term: 'Account deletion',
-                  text: 'Request full deletion of a workspace and its data via support. Retention required for statutory purposes — invoices, tax records — is described in the [Privacy Policy](/legal/privacy).',
+                  text: 'Request full deletion of a workspace and its data via support. Retention required for statutory purposes (invoices, tax records) is described in the [Privacy Policy](/legal/privacy).',
                 },
               ],
             },

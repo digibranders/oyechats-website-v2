@@ -169,7 +169,7 @@ export default async function DocPage({ params }: { params: Promise<Params> }) {
               <Link href="/contact" className="text-volt underline decoration-volt-line underline-offset-2">
                 Tell us
               </Link>{' '}
-              and name this page — we will fix it.
+              and name this page. We will fix it.
             </p>
           </div>
         </article>

@@ -210,7 +210,7 @@ export function BlogCover({
         ].join(', '),
       }}
     >
-      {/* Film grain — soft organic texture, not a rigid grid */}
+      {/* Film grain. Soft organic texture, not a rigid grid */}
       <svg className="absolute inset-0 h-full w-full" style={{ mixBlendMode: 'soft-light', opacity: 0.5 }}>
         <filter id={grainId}>
           <feTurbulence type="fractalNoise" baseFrequency="0.9" numOctaves="2" stitchTiles="stitch" />

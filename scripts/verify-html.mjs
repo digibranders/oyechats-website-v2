@@ -309,6 +309,26 @@ const UNSHIPPED_CLAIMS = [
   { term: 'source link', re: /links? back to the source/i },
 ];
 
+/**
+ * Em-dashes read as machine-written to a lot of people, and once one lands in a
+ * shared string it propagates to every page that renders it. Asserting against
+ * the COMPILED HTML is what makes this stick: it covers page copy, data files,
+ * JSON-LD, alt text and meta descriptions in one check, wherever they came from.
+ *
+ * Source comments are deliberately not covered. This is a house style rule for
+ * what readers see, not a ban on a character.
+ */
+check('W-1 no em-dashes in rendered copy', () => {
+  const bad = [];
+  for (const p of P) {
+    const hits = (p.html.match(/\u2014/g) || []).length;
+    if (hits > 0) {
+      bad.push(`${p.route} has ${hits} em-dash(es) - use a comma, colon, full stop or brackets`);
+    }
+  }
+  return bad;
+});
+
 check('C-1 no claims for unshipped capabilities', () => {
   const bad = [];
   for (const p of P) {

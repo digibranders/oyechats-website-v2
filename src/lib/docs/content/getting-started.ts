@@ -10,7 +10,7 @@ export const GETTING_STARTED: DocGroup = {
       navLabel: 'Introduction',
       title: 'What OyeChats is',
       summary:
-        'OyeChats turns the content you already have — your website, help centre and documents — into an AI chatbot that answers visitor questions on your site, captures leads, and hands off to a human when it matters.',
+        'OyeChats turns the content you already have. Your website, help centre and documents. Into an AI chatbot that answers visitor questions on your site, captures leads, and hands off to a human when it matters.',
       metaTitle: 'OyeChats Documentation: AI Chatbot Platform Overview',
       metaDescription:
         'How OyeChats works: train a chatbot on your content, embed it with one script tag, qualify leads, and hand off to human operators.',
@@ -21,7 +21,7 @@ export const GETTING_STARTED: DocGroup = {
           blocks: [
             {
               t: 'p',
-              text: 'You point OyeChats at your website or upload your documents. It reads that content, indexes it, and answers visitor questions from it — grounded in your material rather than invented. When a visitor looks like a buyer, it captures their details and scores them. When they want a person, it routes them to one of your operators.',
+              text: 'You point OyeChats at your website or upload your documents. It reads that content, indexes it, and answers visitor questions from it. Grounded in your material rather than invented. When a visitor looks like a buyer, it captures their details and scores them. When they want a person, it routes them to one of your operators.',
             },
             {
               t: 'defs',
@@ -32,7 +32,7 @@ export const GETTING_STARTED: DocGroup = {
                 },
                 {
                   term: 'One-line install',
-                  text: 'A single `<script>` tag adds the widget to any website — plain HTML, WordPress, Shopify, Webflow, Next.js, anything with a `<body>` tag.',
+                  text: 'A single `<script>` tag adds the widget to any website. Plain HTML, WordPress, Shopify, Webflow, Next.js, anything with a `<body>` tag.',
                 },
                 {
                   term: 'Lead capture and scoring',
@@ -71,7 +71,7 @@ export const GETTING_STARTED: DocGroup = {
                 },
                 {
                   title: 'It retrieves, then answers',
-                  text: 'The platform searches your indexed content — by meaning and by keyword together — assembles the most relevant passages with the recent conversation, and generates a reply that streams back word by word.',
+                  text: 'The platform searches your indexed content, by meaning and by keyword together. Assembles the most relevant passages with the recent conversation, and generates a reply that streams back word by word.',
                 },
                 {
                   title: 'It records what happened',
@@ -94,7 +94,7 @@ export const GETTING_STARTED: DocGroup = {
             {
               t: 'list',
               items: [
-                'An OyeChats account — sign up at [app.oyechats.com](https://app.oyechats.com/register). The Free plan needs no card.',
+                'An OyeChats account. Sign up at [app.oyechats.com](https://app.oyechats.com/register). The Free plan needs no card.',
                 'Content to train on: a public website URL, or files you can upload.',
                 'Access to edit your website\'s HTML, or a plugin/app that can inject a script tag.',
               ],
@@ -162,11 +162,11 @@ export const GETTING_STARTED: DocGroup = {
               items: [
                 {
                   title: 'Create your account',
-                  text: 'Register with email and password, or continue with Google, at [app.oyechats.com/register](https://app.oyechats.com/register). Verify your email address — unverified accounts cannot train or publish a chatbot.',
+                  text: 'Register with email and password, or continue with Google, at [app.oyechats.com/register](https://app.oyechats.com/register). Verify your email address. Unverified accounts cannot train or publish a chatbot.',
                 },
                 {
                   title: 'Create a chatbot',
-                  text: 'Give it a name — this is what visitors see in the widget header. You can change it, its colours and its avatar later.',
+                  text: 'Give it a name. This is what visitors see in the widget header. You can change it, its colours and its avatar later.',
                 },
                 {
                   title: 'Train it',
@@ -194,7 +194,7 @@ export const GETTING_STARTED: DocGroup = {
             },
             {
               t: 'code',
-              label: 'HTML — paste before </body>',
+              label: 'HTML. Paste before </body>',
               code: `<!-- OyeChats -->
 <script
   src="https://cdn.oyechats.com/oyechats-widget.js"
@@ -210,7 +210,7 @@ export const GETTING_STARTED: DocGroup = {
               t: 'callout',
               variant: 'info',
               title: 'About the credit link',
-              text: 'The `<a>` is the attribution link. It sits in your page\'s HTML so search engines and AI assistants can read it — the badge inside the widget only renders after a visitor opens the chat, so crawlers never see it. Plans that include white-label branding emit a snippet without this line. See [Branding](/docs/widget/customize).',
+              text: 'The `<a>` is the attribution link. It sits in your page\'s HTML so search engines and AI assistants can read it. The badge inside the widget only renders after a visitor opens the chat, so crawlers never see it. Plans that include white-label branding emit a snippet without this line. See [Branding](/docs/widget/customize).',
             },
           ],
         },
@@ -228,7 +228,7 @@ export const GETTING_STARTED: DocGroup = {
             },
             {
               t: 'p',
-              text: 'If the launcher does not appear, work through [Troubleshooting](/docs/support/troubleshooting) — the two usual causes are a script tag placed outside `<body>` and a domain allowlist that does not include the site you are testing on.',
+              text: 'If the launcher does not appear, work through [Troubleshooting](/docs/support/troubleshooting). The two usual causes are a script tag placed outside `<body>` and a domain allowlist that does not include the site you are testing on.',
             },
           ],
         },
@@ -262,7 +262,7 @@ export const GETTING_STARTED: DocGroup = {
                 },
                 {
                   term: 'Bot key',
-                  text: 'The public identifier for a chatbot, shaped like `bot-6a427d4529b9`. It goes in the embed snippet and is visible to anyone who views your page source — that is by design. It can only start conversations, never read your account. Protect your site with the [domain allowlist](/docs/widget/security), not by hiding the key.',
+                  text: 'The public identifier for a chatbot, shaped like `bot-6a427d4529b9`. It goes in the embed snippet and is visible to anyone who views your page source. That is by design. It can only start conversations, never read your account. Protect your site with the [domain allowlist](/docs/widget/security), not by hiding the key.',
                 },
                 {
                   term: 'API key',
@@ -270,7 +270,7 @@ export const GETTING_STARTED: DocGroup = {
                 },
                 {
                   term: 'Knowledge base',
-                  text: 'Everything a chatbot has been trained on — crawled pages and uploaded files — after extraction and indexing. See [Training your chatbot](/docs/chatbot/knowledge).',
+                  text: 'Everything a chatbot has been trained on. Crawled pages and uploaded files. After extraction and indexing. See [Training your chatbot](/docs/chatbot/knowledge).',
                 },
                 {
                   term: 'Conversation',
@@ -286,7 +286,7 @@ export const GETTING_STARTED: DocGroup = {
                 },
                 {
                   term: 'Credits',
-                  text: 'The single unit that meters usage — one per AI reply, five per crawled page, and so on. Your plan grants a monthly allowance. See [Credits](/docs/account/credits).',
+                  text: 'The single unit that meters usage. One per AI reply, five per crawled page, and so on. Your plan grants a monthly allowance. See [Credits](/docs/account/credits).',
                 },
               ],
             },
@@ -345,7 +345,7 @@ export const GETTING_STARTED: DocGroup = {
               t: 'table',
               head: ['Section', 'What it is for'],
               rows: [
-                ['Home', 'Daily overview — recent activity, what needs attention, quick actions.'],
+                ['Home', 'Daily overview. Recent activity, what needs attention, quick actions.'],
                 ['Chatbots', 'Create, train, configure and manage each chatbot.'],
                 ['Support', 'The live-chat inbox: the queue, active conversations, transcripts and offline messages.'],
                 ['Leads', 'Captured contacts with their qualification scores, filters and CSV export.'],

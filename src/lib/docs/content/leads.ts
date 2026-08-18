@@ -28,7 +28,7 @@ export const LEADS: DocGroup = {
                 },
                 {
                   term: 'Conversationally',
-                  text: 'A visitor who types their email or phone number while chatting has it recognised and attached to the conversation — no form required.',
+                  text: 'A visitor who types their email or phone number while chatting has it recognised and attached to the conversation, no form required.',
                 },
                 {
                   term: 'The offline form',
@@ -64,7 +64,7 @@ export const LEADS: DocGroup = {
           blocks: [
             {
               t: 'p',
-              text: 'On paid plans the widget checks an email address the moment the visitor leaves the field, before the form can be submitted. It is deliberately lenient: it blocks unambiguous junk — malformed addresses, disposable domains, spam traps, domains with no working mail server — and lets everything else through.',
+              text: 'On paid plans the widget checks an email address the moment the visitor leaves the field, before the form can be submitted. It is deliberately lenient: it blocks unambiguous junk (malformed addresses, disposable domains, spam traps, domains with no working mail server) and lets everything else through.',
             },
             {
               t: 'callout',
@@ -84,7 +84,7 @@ export const LEADS: DocGroup = {
           blocks: [
             {
               t: 'p',
-              text: 'Free caps how many leads are stored; every paid tier stores an unlimited number. Once a cap is reached, conversations still work — you just stop accumulating new lead records until you upgrade.',
+              text: 'Free caps how many leads are stored; every paid tier stores an unlimited number. Once a cap is reached, conversations still work. You just stop accumulating new lead records until you upgrade.',
             },
           ],
         },
@@ -107,13 +107,13 @@ export const LEADS: DocGroup = {
           blocks: [
             {
               t: 'p',
-              text: 'After a conversation ends, OyeChats analyses what the visitor said and scores each dimension of your chosen framework. Those scores combine into one composite score out of 100, and the composite maps to a tier. Nothing is asked of the visitor to make this happen — it is derived from the conversation they already had.',
+              text: 'After a conversation ends, OyeChats analyses what the visitor said and scores each dimension of your chosen framework. Those scores combine into one composite score out of 100, and the composite maps to a tier. Nothing is asked of the visitor to make this happen. It is derived from the conversation they already had.',
             },
             {
               t: 'callout',
               variant: 'info',
               title: 'Plan availability',
-              text: 'Qualification scoring is available from Standard upwards. Every paid tier gets the lead-intelligence layer — score, tier, per-dimension breakdown, location and device, and CSV export. On Free you see the conversation and any contact details, without the scoring layer.',
+              text: 'Qualification scoring is available from Standard upwards. Every paid tier gets the lead-intelligence layer. Score, tier, per-dimension breakdown, location and device, and CSV export. On Free you see the conversation and any contact details, without the scoring layer.',
             },
           ],
         },
@@ -196,7 +196,7 @@ Conversation order: Need → Timeline → Authority → Budget`,
             },
             {
               t: 'p',
-              text: 'With them off, scoring still happens — it is inferred from the conversation text after the fact. You get the tier without interrogating the visitor. Turn individual prompts on if you want the faster, more explicit flow.',
+              text: 'With them off, scoring still happens. It is inferred from the conversation text after the fact. You get the tier without interrogating the visitor. Turn individual prompts on if you want the faster, more explicit flow.',
             },
           ],
         },
@@ -237,7 +237,7 @@ Conversation order: Need → Timeline → Authority → Budget`,
           blocks: [
             {
               t: 'p',
-              text: 'Every scoring change is written to an append-only signal log with the dimension, the before and after values, and the source — whether it came from analysing the conversation or from the visitor tapping a prompt. Open any lead to see that trail, and correct a score by hand if the analysis got it wrong.',
+              text: 'Every scoring change is written to an append-only signal log with the dimension, the before and after values, and the source. Whether it came from analysing the conversation or from the visitor tapping a prompt. Open any lead to see that trail, and correct a score by hand if the analysis got it wrong.',
             },
           ],
         },
@@ -263,9 +263,9 @@ Conversation order: Need → Timeline → Authority → Budget`,
               head: ['Tier', 'Default band', 'Reading'],
               rows: [
                 ['Unqualified', '0–29', 'Browsing. No sales action warranted.'],
-                ['MQL — marketing qualified', '30–54', 'Genuine interest. Worth nurturing.'],
-                ['SAL — sales accepted', '55–74', 'Worth a human conversation.'],
-                ['SQL — sales qualified', '75–100', 'Real buying intent. Follow up today.'],
+                ['MQL. Marketing qualified', '30–54', 'Genuine interest. Worth nurturing.'],
+                ['SAL. Sales accepted', '55–74', 'Worth a human conversation.'],
+                ['SQL. Sales qualified', '75–100', 'Real buying intent. Follow up today.'],
               ],
             },
             {
@@ -313,7 +313,7 @@ Conversation order: Need → Timeline → Authority → Budget`,
       navLabel: 'Visitor intelligence',
       title: 'Visitor intelligence',
       summary:
-        'What OyeChats can infer about a visitor beyond what they typed — and, just as importantly, what it cannot.',
+        'What OyeChats can infer about a visitor beyond what they typed, and, just as importantly, what it cannot.',
       metaTitle: 'Visitor Intelligence and Company Signals',
       metaDescription:
         'What OyeChats infers about chat visitors from network signals and email domains, which plans include it, and the limits of IP-based company identification.',
@@ -346,7 +346,7 @@ Conversation order: Need → Timeline → Authority → Budget`,
             },
             {
               t: 'p',
-              text: 'Company identification works from the network a visitor connects through. That is reliable when someone is on a corporate network that owns its own address space, and unreliable when they are on home broadband, mobile data, a VPN or a coffee-shop connection — which is most people, most of the time. Treat an identified company as a signal, not a fact, and never as the basis for an automated claim to the visitor about who they are.',
+              text: 'Company identification works from the network a visitor connects through. That is reliable when someone is on a corporate network that owns its own address space, and unreliable when they are on home broadband, mobile data, a VPN or a coffee-shop connection, which is most people, most of the time. Treat an identified company as a signal, not a fact, and never as the basis for an automated claim to the visitor about who they are.',
             },
             {
               t: 'p',
@@ -360,7 +360,7 @@ Conversation order: Need → Timeline → Authority → Budget`,
           blocks: [
             {
               t: 'p',
-              text: 'Full IP addresses are never shown in the dashboard, included in an export, or returned by the API — every one of those boundaries strips the address and shows geography only. You are the controller of your visitors\' conversation data and OyeChats is the processor; the split is set out in the [DPA](/legal/dpa) and the [Privacy Policy](/legal/privacy).',
+              text: 'Full IP addresses are never shown in the dashboard, included in an export, or returned by the API. Every one of those boundaries strips the address and shows geography only. You are the controller of your visitors\' conversation data and OyeChats is the processor; the split is set out in the [DPA](/legal/dpa) and the [Privacy Policy](/legal/privacy).',
             },
             {
               t: 'callout',

@@ -24,7 +24,7 @@ export const SUPPORT: DocGroup = {
               items: [
                 {
                   title: 'Confirm the script is in the served HTML',
-                  text: 'View source — not the inspector, which shows the DOM after JavaScript has run — and search for `oyechats-widget.js`. If it is not there, your CMS or template did not publish the change.',
+                  text: 'View source (not the inspector, which shows the DOM after JavaScript has run) and search for `oyechats-widget.js`. If it is not there, your CMS or template did not publish the change.',
                 },
                 {
                   title: 'Check it is inside <body>',
@@ -113,7 +113,7 @@ export const SUPPORT: DocGroup = {
               items: [
                 {
                   term: 'It found almost no pages',
-                  text: 'Discovery tries your sitemap first, then a same-domain link scan. Both come up short on a client-rendered site whose links only exist after JavaScript runs, and `robots.txt` `Disallow` rules are honoured, so check those first. Publishing a sitemap is the most reliable fix — it also reaches orphaned pages a link scan cannot. Failing that, point the crawler at a section root that links out widely rather than a sparse landing page, or upload the content directly.',
+                  text: 'Discovery tries your sitemap first, then a same-domain link scan. Both come up short on a client-rendered site whose links only exist after JavaScript runs, and `robots.txt` `Disallow` rules are honoured, so check those first. Publishing a sitemap is the most reliable fix. It also reaches orphaned pages a link scan cannot. Failing that, point the crawler at a section root that links out widely rather than a sparse landing page, or upload the content directly.',
                 },
                 {
                   term: 'Pages indexed but empty',
@@ -137,7 +137,7 @@ export const SUPPORT: DocGroup = {
           blocks: [
             {
               t: 'p',
-              text: 'Work down the seven [availability states](/docs/conversations/live-chat) in order — the first match wins, and the answer is almost always one of the first four:',
+              text: 'Work down the seven [availability states](/docs/conversations/live-chat) in order. The first match wins, and the answer is almost always one of the first four:',
             },
             {
               t: 'list',
@@ -251,7 +251,7 @@ export const SUPPORT: DocGroup = {
                 },
                 {
                   term: 'Can I use one chatbot on several websites?',
-                  text: 'Technically yes — add each hostname to the allowlist. But one knowledge base answering for two different businesses produces worse answers for both. Use one chatbot per site unless the content genuinely overlaps.',
+                  text: 'Technically yes. Add each hostname to the allowlist. But one knowledge base answering for two different businesses produces worse answers for both. Use one chatbot per site unless the content genuinely overlaps.',
                 },
               ],
             },
@@ -274,11 +274,11 @@ export const SUPPORT: DocGroup = {
                 },
                 {
                   term: 'What languages does it support?',
-                  text: 'The underlying models are multilingual and will generally reply in the language a visitor writes in. The widget\'s own buttons and labels are not auto-translated — you set those strings yourself. See [Appearance and copy](/docs/widget/customize).',
+                  text: 'The underlying models are multilingual and will generally reply in the language a visitor writes in. The widget\'s own buttons and labels are not auto-translated. You set those strings yourself. See [Appearance and copy](/docs/widget/customize).',
                 },
                 {
                   term: 'Can I correct a bad answer?',
-                  text: 'Not by editing a stored reply — there is no answer cache to edit. You fix the source: add or rewrite the content it drew from, then re-crawl. That fixes every future phrasing of the question, not just the one that was asked.',
+                  text: 'Not by editing a stored reply. There is no answer cache to edit. You fix the source: add or rewrite the content it drew from, then re-crawl. That fixes every future phrasing of the question, not just the one that was asked.',
                 },
               ],
             },
@@ -297,7 +297,7 @@ export const SUPPORT: DocGroup = {
                 },
                 {
                   term: 'Is my content used to train models?',
-                  text: 'Your content is indexed to answer your visitors\' questions. What each third-party provider does with data passed to it is set out in [Sub-processors](/legal/subprocessors) — read that page if this matters to your procurement.',
+                  text: 'Your content is indexed to answer your visitors\' questions. What each third-party provider does with data passed to it is set out in [Sub-processors](/legal/subprocessors). Read that page if this matters to your procurement.',
                 },
                 {
                   term: 'Can I export everything?',
@@ -325,7 +325,7 @@ export const SUPPORT: DocGroup = {
                 'WhatsApp as a channel.',
                 'Facebook Messenger as a channel.',
                 'A general-purpose Conversation API for talking to your chatbot from your own app or backend.',
-                'Native one-click CRM connectors — today the route is [webhooks plus an automation platform](/docs/integrations/crm).',
+                'Native one-click CRM connectors. Today the route is [webhooks plus an automation platform](/docs/integrations/crm).',
               ],
             },
           ],
@@ -351,7 +351,7 @@ export const SUPPORT: DocGroup = {
               head: ['For', 'Go to'],
               rows: [
                 ['Product questions and problems', '[Contact support](/contact) or email support@oyechats.com'],
-                ['Something in these docs is wrong or missing', 'Same address — tell us the page'],
+                ['Something in these docs is wrong or missing', 'Same address. Tell us the page'],
                 ['A security vulnerability', '[Responsible disclosure](/legal/security). Not the support inbox.'],
                 ['Billing and invoices', 'Contact support with the invoice number'],
                 ['What changed recently', '[Changelog](/changelog)'],
@@ -375,7 +375,7 @@ export const SUPPORT: DocGroup = {
               t: 'list',
               ordered: true,
               items: [
-                'Which chatbot — its name or bot key.',
+                'Which chatbot. Its name or bot key.',
                 'What you expected, and what happened instead.',
                 'The exact question you asked, if it is an answer-quality problem.',
                 'The URL where you saw it, and the browser.',

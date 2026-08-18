@@ -32,7 +32,7 @@ export const INTEGRATIONS: DocGroup = {
                 },
                 {
                   title: 'Store the signing secret',
-                  text: 'A secret is generated when you create the endpoint and shown once in full. Copy it then — afterwards it is masked.',
+                  text: 'A secret is generated when you create the endpoint and shown once in full. Copy it then. Afterwards it is masked.',
                 },
                 {
                   title: 'Send a test',
@@ -94,7 +94,7 @@ export const INTEGRATIONS: DocGroup = {
             },
             {
               t: 'code',
-              label: 'Python — FastAPI',
+              label: 'Python. FastAPI',
               code: `import hashlib
 import hmac
 
@@ -120,7 +120,7 @@ async def receive(request: Request, x_oyechats_signature: str = Header(default="
             },
             {
               t: 'code',
-              label: 'Node.js — Express',
+              label: 'Node.js. Express',
               code: `import crypto from 'node:crypto';
 import express from 'express';
 
@@ -153,7 +153,7 @@ app.post(
               t: 'list',
               items: [
                 'Always use a constant-time comparison. A plain `===` leaks timing information.',
-                'Never skip verification because the payload "looks right" — the URL is not a secret.',
+                'Never skip verification because the payload "looks right". The URL is not a secret.',
                 'Treat deliveries as at-least-once and make your handler idempotent. Key on the `session_id` in `data`.',
               ],
             },
@@ -165,7 +165,7 @@ app.post(
           blocks: [
             {
               t: 'p',
-              text: 'A delivery succeeds on any 2xx. Anything else — a 4xx, a 5xx, a timeout, a connection error — is retried.',
+              text: 'A delivery succeeds on any 2xx. Anything else (a 4xx, a 5xx, a timeout, a connection error) is retried.',
             },
             {
               t: 'table',
@@ -185,7 +185,7 @@ app.post(
               t: 'callout',
               variant: 'warn',
               title: 'Return 2xx fast, work afterwards',
-              text: 'Do the slow part of your handler after responding — enqueue a job, then reply. A handler that takes longer than 10 seconds is a failed delivery even if it eventually succeeds.',
+              text: 'Do the slow part of your handler after responding. Enqueue a job, then reply. A handler that takes longer than 10 seconds is a failed delivery even if it eventually succeeds.',
             },
           ],
         },
@@ -200,7 +200,7 @@ app.post(
         'The five events OyeChats sends, and the exact contents of each one\'s `data` object.',
       metaTitle: 'OyeChats Webhook Event Reference and Payloads',
       metaDescription:
-        'Reference for all OyeChats webhook events — tier_transition, lead_captured, handoff_requested, meeting_booked and chat_closed — with example payloads.',
+        'Reference for all OyeChats webhook events. Tier_transition, lead_captured, handoff_requested, meeting_booked and chat_closed, with example payloads.',
       sections: [
         {
           id: 'list',
@@ -376,7 +376,7 @@ app.post(
           blocks: [
             {
               t: 'p',
-              text: 'OyeChats sends signed webhooks. Zapier, Make, n8n and every other automation platform can catch a webhook and write to a CRM. That composition covers HubSpot, Salesforce, Pipedrive, Zoho and anything else with an automation connector — and your own backend, if you would rather skip the middle layer.',
+              text: 'OyeChats sends signed webhooks. Zapier, Make, n8n and every other automation platform can catch a webhook and write to a CRM. That composition covers HubSpot, Salesforce, Pipedrive, Zoho and anything else with an automation connector, and your own backend, if you would rather skip the middle layer.',
             },
             {
               t: 'callout',
@@ -493,7 +493,7 @@ app.post(
           blocks: [
             {
               t: 'p',
-              text: 'When booking is enabled, the chatbot offers a meeting where it is a sensible next step, and the scheduler opens inside the conversation. Once a booking is confirmed, the chatbot does not also push a live-chat handoff in the same turn — the visitor has already got what they came for.',
+              text: 'When booking is enabled, the chatbot offers a meeting where it is a sensible next step, and the scheduler opens inside the conversation. Once a booking is confirmed, the chatbot does not also push a live-chat handoff in the same turn. The visitor has already got what they came for.',
             },
             {
               t: 'p',
@@ -524,7 +524,7 @@ app.post(
         'Who gets told what, on which channel, when something happens in a conversation.',
       metaTitle: 'Notifications: Email and Browser Push',
       metaDescription:
-        'Configure OyeChats notifications — qualified lead emails, handoff alerts, offline message notifications, and browser push for operators.',
+        'Configure OyeChats notifications. Qualified lead emails, handoff alerts, offline message notifications, and browser push for operators.',
       sections: [
         {
           id: 'email',
@@ -560,7 +560,7 @@ app.post(
               t: 'list',
               items: [
                 'In-dashboard toast and sound while the tab is open.',
-                'Browser push when the dashboard is closed — requires the operator to grant permission once, and is skipped while their dashboard is demonstrably being watched so they are not alerted twice.',
+                'Browser push when the dashboard is closed. Requires the operator to grant permission once, and is skipped while their dashboard is demonstrably being watched so they are not alerted twice.',
                 'Email as a backstop for conversations nobody picked up, debounced to one message per minute per waiting visitor.',
               ],
             },

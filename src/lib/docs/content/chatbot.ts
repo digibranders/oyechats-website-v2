@@ -21,7 +21,7 @@ export const CHATBOT: DocGroup = {
           blocks: [
             {
               t: 'p',
-              text: 'Go to **Chatbots → New chatbot**, give it a name, and optionally give it your website URL. The name is visible to visitors in the widget header, so use something they will recognise — usually your company or product name.',
+              text: 'Go to **Chatbots → New chatbot**, give it a name, and optionally give it your website URL. The name is visible to visitors in the widget header, so use something they will recognise. Usually your company or product name.',
             },
             {
               t: 'p',
@@ -62,11 +62,11 @@ export const CHATBOT: DocGroup = {
           blocks: [
             {
               t: 'p',
-              text: 'Every paid tier below Enterprise includes one chatbot; Enterprise includes an unlimited number sharing one credit pool, which is what makes it the agency tier. Current numbers live on the [pricing page](/pricing) — plan limits are enforced from your subscription, not from these docs.',
+              text: 'Every paid tier below Enterprise includes one chatbot; Enterprise includes an unlimited number sharing one credit pool, which is what makes it the agency tier. Current numbers live on the [pricing page](/pricing). Plan limits are enforced from your subscription, not from these docs.',
             },
             {
               t: 'p',
-              text: 'Deleting a chatbot removes its knowledge base, conversations and captured leads. Export anything you need first — see [Exporting leads](/docs/leads/export).',
+              text: 'Deleting a chatbot removes its knowledge base, conversations and captured leads. Export anything you need first. See [Exporting leads](/docs/leads/export).',
             },
           ],
         },
@@ -118,7 +118,7 @@ export const CHATBOT: DocGroup = {
               t: 'callout',
               variant: 'info',
               title: 'Client-rendered sites',
-              text: 'If a site publishes no sitemap and its links only exist after JavaScript runs — a typical single-page app — neither of the above finds anything. The crawl then falls back to a recursive browser crawl, which does render the page. That path is slower and gives no page list to review up front.',
+              text: 'If a site publishes no sitemap and its links only exist after JavaScript runs. A typical single-page app. Neither of the above finds anything. The crawl then falls back to a recursive browser crawl, which does render the page. That path is slower and gives no page list to review up front.',
             },
             {
               t: 'callout',
@@ -168,7 +168,7 @@ export const CHATBOT: DocGroup = {
               rows: [
                 ['Crawled page', '5 per page'],
                 ['Uploaded file', '1 credit per 250 words, minimum 1 credit per file'],
-                ['Automatic weekly re-crawl', '0 — funded by your subscription, whatever changed'],
+                ['Automatic weekly re-crawl', '0, funded by your subscription, whatever changed'],
                 ['Manual re-crawl, updated pages only *(Standard and above)*', '5 per page that actually changed'],
                 ['Manual re-crawl, full', '5 per page for every page, changed or not'],
               ],
@@ -187,11 +187,11 @@ export const CHATBOT: DocGroup = {
               t: 'defs',
               items: [
                 {
-                  term: 'Manual re-crawl — full',
+                  term: 'Manual re-crawl. Full',
                   text: 'Re-fetches and re-indexes every discovered page, and **charges for all of them at 5 credits each even if nothing changed**. Available on every plan, and it is the only manual option below Standard.',
                 },
                 {
-                  term: 'Manual re-crawl — updated pages only',
+                  term: 'Manual re-crawl. Updated pages only',
                   text: 'Re-fetches everything but only re-indexes and charges for pages whose content actually changed. Included on Standard and above. Before it runs you get a diff showing how many pages are unchanged, new and removed.',
                 },
                 {
@@ -200,7 +200,7 @@ export const CHATBOT: DocGroup = {
                 },
                 {
                   term: 'Re-index a file',
-                  text: 'Re-processes a single uploaded document — useful after you upload a corrected version under the same name.',
+                  text: 'Re-processes a single uploaded document, useful after you upload a corrected version under the same name.',
                 },
               ],
             },
@@ -208,7 +208,7 @@ export const CHATBOT: DocGroup = {
               t: 'callout',
               variant: 'warn',
               title: 'A full manual re-crawl bills the whole site',
-              text: 'Only the automatic weekly refresh is free. A manual full re-crawl deliberately re-charges every page — on a 300-page site that is 1,500 credits whether two pages changed or none did. If you are on Standard or above, use "updated pages only". If you are below it, leaning on the automatic weekly re-crawl is much cheaper than re-crawling by hand.',
+              text: 'Only the automatic weekly refresh is free. A manual full re-crawl deliberately re-charges every page, on a 300-page site that is 1,500 credits whether two pages changed or none did. If you are on Standard or above, use "updated pages only". If you are below it, leaning on the automatic weekly re-crawl is much cheaper than re-crawling by hand.',
             },
           ],
         },
@@ -235,7 +235,7 @@ export const CHATBOT: DocGroup = {
             {
               t: 'list',
               items: [
-                'Index the pages that answer questions — docs, help centre, FAQs, pricing, policies — before marketing pages.',
+                'Index the pages that answer questions. Docs, help centre, FAQs, pricing, policies. Before marketing pages.',
                 'Skip near-duplicate pages. Ten variants of the same landing page make retrieval less certain, not more thorough.',
                 'Prefer one thorough page over several thin ones on the same topic.',
                 'Watch **Analytics → Unanswered questions**. It is a direct list of what your knowledge base is missing.',
@@ -320,11 +320,11 @@ Rules:
           blocks: [
             {
               t: 'p',
-              text: 'Listing services constrains the chatbot to those topics. Off-topic questions get a polite decline and a redirect instead of a best-effort answer — useful when your site covers more ground than you want the chatbot fielding.',
+              text: 'Listing services constrains the chatbot to those topics. Off-topic questions get a polite decline and a redirect instead of a best-effort answer, useful when your site covers more ground than you want the chatbot fielding.',
             },
             {
               t: 'p',
-              text: 'Each service can carry its own URL. When the chatbot mentions that service, its name is rendered with an inline link to that page — there is no single "learn more" line appended at the end. Leave the services list empty to let the chatbot answer from everything you trained it on.',
+              text: 'Each service can carry its own URL. When the chatbot mentions that service, its name is rendered with an inline link to that page. There is no single "learn more" line appended at the end. Leave the services list empty to let the chatbot answer from everything you trained it on.',
             },
           ],
         },
@@ -359,7 +359,7 @@ Rules:
           blocks: [
             {
               t: 'p',
-              text: 'The widget can open with up to three one-tap suggestions. OyeChats generates candidates from your content and then checks each one against your own index with a stricter threshold than normal chat, so a suggestion only ships if there is strong content behind it. Candidates that fail the check are dropped — an empty result is a normal outcome for a thin knowledge base, and the widget falls back to a plain input.',
+              text: 'The widget can open with up to three one-tap suggestions. OyeChats generates candidates from your content and then checks each one against your own index with a stricter threshold than normal chat, so a suggestion only ships if there is strong content behind it. Candidates that fail the check are dropped. An empty result is a normal outcome for a thin knowledge base, and the widget falls back to a plain input.',
             },
             {
               t: 'p',
@@ -386,7 +386,7 @@ Rules:
           blocks: [
             {
               t: 'p',
-              text: 'Every chatbot has a preview chat in the dashboard that behaves exactly like the live widget — same retrieval, same prompt, same streaming. Preview replies do not consume chat credits.',
+              text: 'Every chatbot has a preview chat in the dashboard that behaves exactly like the live widget. Same retrieval, same prompt, same streaming. Preview replies do not consume chat credits.',
             },
             {
               t: 'callout',
@@ -406,7 +406,7 @@ Rules:
               items: [
                 'Ask the ten questions your customers actually ask. Not the ten you wish they asked.',
                 'Ask something deliberately outside your content and confirm the chatbot admits it does not know instead of inventing an answer.',
-                'Check any figure it quotes — prices, SLAs, delivery windows — against the source page.',
+                'Check any figure it quotes. Prices, SLAs, delivery windows. Against the source page.',
                 'Test the handoff: ask to speak to a human and confirm the request reaches the right place.',
                 'If a lead form is enabled, submit it and confirm the lead appears under **Leads**.',
                 'Open the widget on a phone-sized viewport.',

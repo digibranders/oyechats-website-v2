@@ -13,7 +13,7 @@ export const ANALYTICS: DocGroup = {
         'Volume, quality and outcome metrics for every chatbot, plus the two reports that tell you what to fix next.',
       metaTitle: 'Chatbot Analytics, Ratings and Resolution',
       metaDescription:
-        'Understand OyeChats analytics — conversation volume, top questions, unanswered questions, visitor ratings, resolution rate and the qualification funnel.',
+        'Understand OyeChats analytics. Conversation volume, top questions, unanswered questions, visitor ratings, resolution rate and the qualification funnel.',
       sections: [
         {
           id: 'metrics',
@@ -49,7 +49,7 @@ export const ANALYTICS: DocGroup = {
               items: [
                 {
                   term: 'Unanswered questions',
-                  text: 'The single highest-value report in the product. Every row is a visitor whose question your knowledge base could not answer. Fix the top five each week — write the missing page, then re-crawl — and answer quality compounds.',
+                  text: 'The single highest-value report in the product. Every row is a visitor whose question your knowledge base could not answer. Fix the top five each week (write the missing page, then re-crawl) and answer quality compounds.',
                 },
                 {
                   term: 'Top questions',
@@ -71,7 +71,7 @@ export const ANALYTICS: DocGroup = {
           blocks: [
             {
               t: 'p',
-              text: 'Analytics respect your plan\'s chat-history window — one week on Free, up to a year on the top tiers. Export what you need if you want a longer series than your plan shows.',
+              text: 'Analytics respect your plan\'s chat-history window. One week on Free, up to a year on the top tiers. Export what you need if you want a longer series than your plan shows.',
             },
           ],
         },
@@ -83,7 +83,7 @@ export const ANALYTICS: DocGroup = {
       navLabel: 'Visitor journey',
       title: 'Visitor journey',
       summary:
-        'The pages a visitor saw before, during and after chatting — which is where chat stops being a support channel and starts being attribution.',
+        'The pages a visitor saw before, during and after chatting, which is where chat stops being a support channel and starts being attribution.',
       metaTitle: 'OyeChats Visitor Journey and Chat Attribution',
       metaDescription:
         'See which pages lead to chats, which pages visitors go to afterwards, and which journeys convert, with OyeChats visitor journey analytics.',
@@ -96,7 +96,7 @@ export const ANALYTICS: DocGroup = {
               t: 'table',
               head: ['View', 'Answers'],
               rows: [
-                ['Summary', 'Overall journey shape — entry, chat, exit.'],
+                ['Summary', 'Overall journey shape. Entry, chat, exit.'],
                 ['Top pages', 'Which pages produce the most conversations. Usually not the pages you would guess.'],
                 ['Pre-chat sequences', 'The common page paths visitors take before opening the chat.'],
                 ['Post-chat destinations', 'Where visitors go after chatting. A jump to pricing or signup is the strongest signal chat is working.'],
@@ -105,7 +105,7 @@ export const ANALYTICS: DocGroup = {
             },
             {
               t: 'p',
-              text: 'Campaign attribution is captured too — source, medium, campaign, referrer and landing page travel with the lead and appear in the [CSV export](/docs/leads/export).',
+              text: 'Campaign attribution is captured too. Source, medium, campaign, referrer and landing page travel with the lead and appear in the [CSV export](/docs/leads/export).',
             },
           ],
         },
@@ -121,7 +121,7 @@ export const ANALYTICS: DocGroup = {
               t: 'callout',
               variant: 'info',
               title: 'Only pages the widget was on',
-              text: 'The journey is built from pages where your widget is installed. Pages without the snippet are invisible to it — which is a good reason to install site-wide even where you do not expect chats.',
+              text: 'The journey is built from pages where your widget is installed. Pages without the snippet are invisible to it, which is a good reason to install site-wide even where you do not expect chats.',
             },
           ],
         },

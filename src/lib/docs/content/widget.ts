@@ -136,7 +136,7 @@ export const WIDGET: DocGroup = {
               items: [
                 'Load the page in a normal tab and look for the launcher in the bottom-right corner.',
                 'Open the console. Widget messages are prefixed `[OyeChats]`. Run `OyeChats.diagnose()` for a snapshot of version, mount state and resolved configuration.',
-                'The dashboard marks the chatbot as installed after the widget has bootstrapped from your real domain at least once — dashboard previews, the demo page and localhost do not count.',
+                'The dashboard marks the chatbot as installed after the widget has bootstrapped from your real domain at least once. Dashboard previews, the demo page and localhost do not count.',
               ],
             },
             {
@@ -175,7 +175,7 @@ export const WIDGET: DocGroup = {
                 },
                 {
                   term: 'Webflow',
-                  text: 'Project settings → Custom code → Footer code, then publish. Custom code does not run on the Designer canvas — test on the published site.',
+                  text: 'Project settings → Custom code → Footer code, then publish. Custom code does not run on the Designer canvas. Test on the published site.',
                 },
                 {
                   term: 'Wix',
@@ -236,7 +236,7 @@ export default function RootLayout({ children }) {
           blocks: [
             {
               t: 'p',
-              text: 'The widget survives client-side navigation on its own — it lives outside your app\'s render tree, so it does not unmount when a route changes. You do not need to re-initialise it per route.',
+              text: 'The widget survives client-side navigation on its own. It lives outside your app\'s render tree, so it does not unmount when a route changes. You do not need to re-initialise it per route.',
             },
             {
               t: 'callout',
@@ -254,7 +254,7 @@ export default function RootLayout({ children }) {
       navLabel: 'Appearance & copy',
       title: 'Appearance and copy',
       summary:
-        'Colours, avatar, launcher, every visitor-facing string, and branding removal. All of it is dashboard configuration — no code.',
+        'Colours, avatar, launcher, every visitor-facing string, and branding removal. All of it is dashboard configuration, no code.',
       metaTitle: 'Customise the Chat Widget: Colours and Copy',
       metaDescription:
         'Configure the OyeChats widget appearance and wording: brand colours, avatar, launcher label, welcome copy, offline message, rating prompt and white-label branding.',
@@ -271,7 +271,7 @@ export default function RootLayout({ children }) {
                 ['Header colour', 'The chat panel header.'],
                 ['Background colour', 'The message area.'],
                 ['Visitor bubble colour', 'The visitor\'s own messages.'],
-                ['Avatar', 'The chatbot\'s picture in the header and next to its messages — upload an image or use a generated orb.'],
+                ['Avatar', 'The chatbot\'s picture in the header and next to its messages. Upload an image or use a generated orb.'],
                 ['Launcher label', 'The text on the floating button, e.g. "Have Questions?".'],
                 ['Launcher icon', 'The image on the floating button.'],
               ],
@@ -425,7 +425,7 @@ export default function RootLayout({ children }) {
                 ['`OyeChats.toggle()`', 'Toggles the panel.'],
                 ['`OyeChats.send("text")`', 'Opens the panel and sends a message as the visitor.'],
                 ['`OyeChats.boot()`', 'Starts a fresh conversation, discarding the stored one.'],
-                ['`OyeChats.shutdown()`', 'Ends the session and clears the stored conversation — use this on logout.'],
+                ['`OyeChats.shutdown()`', 'Ends the session and clears the stored conversation. Use this on logout.'],
                 ['`OyeChats.diagnose()`', 'Logs and returns a diagnostic snapshot. Useful in a support ticket.'],
                 ['`OyeChats.version`', 'The loaded bundle version.'],
               ],
@@ -492,7 +492,7 @@ function onLogout() {
           blocks: [
             {
               t: 'p',
-              text: 'The bot key is in your page source, so treat it as public — every embedded chat product works this way. It is scoped to exactly one capability: starting and continuing visitor conversations with that one chatbot. It cannot read your leads, your analytics, your billing or your settings. Only your `X-API-Key` can do that, and it never touches the browser.',
+              text: 'The bot key is in your page source, so treat it as public. Every embedded chat product works this way. It is scoped to exactly one capability: starting and continuing visitor conversations with that one chatbot. It cannot read your leads, your analytics, your billing or your settings. Only your `X-API-Key` can do that, and it never touches the browser.',
             },
             {
               t: 'callout',
@@ -516,18 +516,18 @@ function onLogout() {
               rows: [
                 ['`acme.com`', '`acme.com`', '`www.acme.com`, `app.acme.com`'],
                 ['`*.acme.com`', '`www.acme.com`, `app.acme.com`', '`acme.com` itself'],
-                ['`acme.com` and `*.acme.com`', 'the apex and every subdomain', '—'],
+                ['`acme.com` and `*.acme.com`', 'the apex and every subdomain', '-'],
               ],
             },
             {
               t: 'callout',
               variant: 'warn',
               title: 'An empty list allows everything',
-              text: 'The check is on by default but has nothing to enforce until you add at least one domain. Add your domains as part of going live — this is the single most valuable widget setting most customers never touch.',
+              text: 'The check is on by default but has nothing to enforce until you add at least one domain. Add your domains as part of going live. This is the single most valuable widget setting most customers never touch.',
             },
             {
               t: 'p',
-              text: 'To cover `www`, add the wildcard — entries are stored as bare hostnames, so typing `www.acme.com` is saved as `acme.com` and will not match a `www` origin on its own. `acme.com` plus `*.acme.com` covers the apex and every subdomain, which is what a chatbot created from a website URL gets by default. Add your staging hostname too if you test there. `localhost` and `127.0.0.1` are accepted outside production without being listed.',
+              text: 'To cover `www`, add the wildcard. Entries are stored as bare hostnames, so typing `www.acme.com` is saved as `acme.com` and will not match a `www` origin on its own. `acme.com` plus `*.acme.com` covers the apex and every subdomain, which is what a chatbot created from a website URL gets by default. Add your staging hostname too if you test there. `localhost` and `127.0.0.1` are accepted outside production without being listed.',
             },
             {
               t: 'p',
@@ -541,7 +541,7 @@ function onLogout() {
           blocks: [
             {
               t: 'p',
-              text: 'By default a conversation is stored per browser and per origin, so a visitor who moves from `example.com` to `academy.example.com` starts a new one — browser storage cannot cross that boundary on its own.',
+              text: 'By default a conversation is stored per browser and per origin, so a visitor who moves from `example.com` to `academy.example.com` starts a new one. Browser storage cannot cross that boundary on its own.',
             },
             {
               t: 'p',
@@ -559,7 +559,7 @@ function onLogout() {
             },
             {
               t: 'p',
-              text: 'Visitor IP addresses are used for geolocation and abuse prevention and are never shown in the dashboard, included in a CSV export, or returned by the API — those boundaries return geography only. Full detail is in the [Privacy Policy](/legal/privacy).',
+              text: 'Visitor IP addresses are used for geolocation and abuse prevention and are never shown in the dashboard, included in a CSV export, or returned by the API. Those boundaries return geography only. Full detail is in the [Privacy Policy](/legal/privacy).',
             },
           ],
         },

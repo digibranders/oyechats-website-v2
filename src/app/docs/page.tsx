@@ -8,7 +8,7 @@ import { DOCS_LAST_UPDATED, DOCS_PUBLISHED, DOC_ENTRY_PATH, DOC_GROUPS, DOC_PAGE
 export const metadata: Metadata = pageMeta({
   title: 'Documentation: Install, Train, Integrate',
   description:
-    'Complete OyeChats documentation — install the chat widget, train it on your content, qualify leads, run live chat, and integrate with webhooks and the REST API.',
+    'Complete OyeChats documentation. Install the chat widget, train it on your content, qualify leads, run live chat, and integrate with webhooks and the REST API.',
   path: '/docs',
 });
 
@@ -16,7 +16,7 @@ const graph = buildGraph({
   path: '/docs',
   name: 'OyeChats Documentation',
   description:
-    'Complete OyeChats documentation — install the chat widget, train it on your content, qualify leads, run live chat, and integrate with webhooks and the REST API.',
+    'Complete OyeChats documentation. Install the chat widget, train it on your content, qualify leads, run live chat, and integrate with webhooks and the REST API.',
   dateModified: DOCS_LAST_UPDATED,
   crumbs: [{ name: 'Home', path: '/' }, { name: 'Documentation' }],
   nodes: [
@@ -25,7 +25,7 @@ const graph = buildGraph({
       '@id': ID.article('/docs'),
       headline: 'OyeChats Documentation',
       description:
-        'Complete OyeChats documentation — install the chat widget, train it on your content, qualify leads, run live chat, and integrate with webhooks and the REST API.',
+        'Complete OyeChats documentation. Install the chat widget, train it on your content, qualify leads, run live chat, and integrate with webhooks and the REST API.',
       mainEntityOfPage: { '@id': ID.webPage('/docs') },
       datePublished: DOCS_PUBLISHED,
       dateModified: DOCS_LAST_UPDATED,
@@ -186,7 +186,7 @@ export default function DocsIndexPage() {
           >
             /openapi.json
           </a>{' '}
-          — import it into Postman, Insomnia or a client generator. Start with{' '}
+         . Import it into Postman, Insomnia or a client generator. Start with{' '}
           <Link href="/docs/api/overview" className="text-volt underline decoration-volt-line underline-offset-2">
             API authentication
           </Link>

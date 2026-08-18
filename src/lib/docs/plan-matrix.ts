@@ -50,7 +50,7 @@ const UNLIMITED = -1;
  * constants; this only guards the artifact's shape at the consuming end.
  */
 if (PLANS.length === 0 || LIMIT_LABELS.length === 0 || CAPABILITIES.length === 0) {
-  throw new Error('plan-matrix.generated.json is empty — re-run scripts/export_plan_matrix.py');
+  throw new Error('plan-matrix.generated.json is empty. Re-run scripts/export_plan_matrix.py');
 }
 {
   const slugs = new Set(PLANS.map((p) => p.slug));
@@ -66,7 +66,7 @@ if (PLANS.length === 0 || LIMIT_LABELS.length === 0 || CAPABILITIES.length === 0
 }
 
 function formatLimit(value: number | null | undefined): string {
-  if (value === null || value === undefined) return '—';
+  if (value === null || value === undefined) return 'No';
   if (value === UNLIMITED) return 'Unlimited';
   return value.toLocaleString('en-US');
 }
@@ -99,7 +99,7 @@ export function capabilitiesTable(): DocBlock {
     head: ['Capability', ...PLAN_NAMES],
     rows: CAPABILITIES.map((cap) => [
       cap.label,
-      ...PLANS.map((p) => (cap.slugs.includes(p.slug) ? '✓' : '—')),
+      ...PLANS.map((p) => (cap.slugs.includes(p.slug) ? 'Yes' : 'No')),
     ]),
   };
 }

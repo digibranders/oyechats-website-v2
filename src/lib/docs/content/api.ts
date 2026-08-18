@@ -73,7 +73,7 @@ export const API: DocGroup = {
               t: 'list',
               items: [
                 'Read it from **Workspace → API Keys**.',
-                'Rotate it from the same screen. Rotation is immediate — the old key stops working the moment the new one is issued, so update your integrations first.',
+                'Rotate it from the same screen. Rotation is immediate. The old key stops working the moment the new one is issued, so update your integrations first.',
                 'Store it in a secret manager or an environment variable. Not in source control, not in a front-end bundle, not in a support ticket.',
                 'If it leaks, rotate it. There is no partial revocation.',
               ],
@@ -93,7 +93,7 @@ export const API: DocGroup = {
                 },
                 {
                   term: 'Pagination',
-                  text: 'List endpoints take `page` and `limit`, or `limit` and `offset`. Defaults are modest — typically 50 — and each endpoint enforces its own maximum.',
+                  text: 'List endpoints take `page` and `limit`, or `limit` and `offset`. Defaults are modest (typically 50) and each endpoint enforces its own maximum.',
                 },
                 {
                   term: 'Filtering',
@@ -105,7 +105,7 @@ export const API: DocGroup = {
                 },
                 {
                   term: 'Money',
-                  text: 'Integer minor units — paise for INR, cents for USD — with the currency alongside. Never a float.',
+                  text: 'Integer minor units. Paise for INR, cents for USD, with the currency alongside. Never a float.',
                 },
                 {
                   term: 'Identifiers',
@@ -121,7 +121,7 @@ export const API: DocGroup = {
           blocks: [
             {
               t: 'p',
-              text: 'The full machine-readable schema for the customer-facing API — every parameter, request body and response model — is published as OpenAPI. Import it into Postman, Insomnia, or a client generator.',
+              text: 'The full machine-readable schema for the customer-facing API (every parameter, request body and response model) is published as OpenAPI. Import it into Postman, Insomnia, or a client generator.',
             },
             { t: 'code', label: 'Specification URL', code: 'https://www.oyechats.com/openapi.json' },
             {
@@ -155,18 +155,18 @@ export const API: DocGroup = {
             },
             {
               t: 'code',
-              label: 'JSON — 403',
+              label: 'JSON. 403',
               code: `{
   "detail": "Bot not found or access denied."
 }`,
             },
             {
               t: 'p',
-              text: 'Validation failures return 422 with `detail` as a list of field-level problems. Feature-gated endpoints return a machine-readable code alongside the message — the same shape whether the gate is a plan feature or an exhausted credit balance:',
+              text: 'Validation failures return 422 with `detail` as a list of field-level problems. Feature-gated endpoints return a machine-readable code alongside the message, the same shape whether the gate is a plan feature or an exhausted credit balance:',
             },
             {
               t: 'code',
-              label: 'JSON — 403, feature not on this plan',
+              label: 'JSON. 403, feature not on this plan',
               code: `{
   "detail": {
     "error": "feature_not_available",
@@ -177,7 +177,7 @@ export const API: DocGroup = {
             },
             {
               t: 'code',
-              label: 'JSON — 402, out of credits',
+              label: 'JSON. 402, out of credits',
               code: `{
   "detail": {
     "error": "insufficient_credits",
@@ -197,12 +197,12 @@ export const API: DocGroup = {
               t: 'table',
               head: ['Code', 'Meaning', 'What to do'],
               rows: [
-                ['200 / 201', 'Success.', '—'],
-                ['202', 'Accepted — long-running work was queued.', 'Poll the matching status endpoint.'],
+                ['200 / 201', 'Success.', '-'],
+                ['202', 'Accepted. Long-running work was queued.', 'Poll the matching status endpoint.'],
                 ['400', 'Malformed request.', 'Fix the request. Retrying will not help.'],
                 ['401', 'Missing or invalid key.', 'Check the header name and the key value.'],
                 ['402', 'Out of credits. `detail.error` is `insufficient_credits`, with `required` and `available`.', 'Top up or upgrade. Retrying will not help.'],
-                ['403', 'Authenticated but not allowed — wrong workspace, insufficient role, or a plan gate.', 'Read `detail`. Do not retry.'],
+                ['403', 'Authenticated but not allowed. Wrong workspace, insufficient role, or a plan gate.', 'Read `detail`. Do not retry.'],
                 ['404', 'No such resource, or not yours.', 'Do not retry.'],
                 ['409', 'Conflicts with current state.', 'Re-read the resource and decide.'],
                 ['422', 'Validation failed.', 'Fix the fields listed in `detail`.'],
@@ -224,11 +224,11 @@ export const API: DocGroup = {
               t: 'table',
               head: ['Endpoint class', 'Typical limit'],
               rows: [
-                ['Reads — lists, analytics, settings', '20–60 per minute'],
+                ['Reads. Lists, analytics, settings', '20–60 per minute'],
                 ['Chat, including streaming', '30 per minute per bot key'],
-                ['Document upload — `POST /ingest`', '10 per minute'],
+                ['Document upload. `POST /ingest`', '10 per minute'],
                 ['Upload cost preview', '20 per minute'],
-                ['Start a crawl — `POST /crawl`', '10 per hour'],
+                ['Start a crawl. `POST /crawl`', '10 per hour'],
                 ['Crawl discovery', '120 per hour'],
                 ['Authentication and password reset', '5–10 per minute'],
                 ['Billing and checkout', 'Tightly limited; see the response headers'],
@@ -238,11 +238,11 @@ export const API: DocGroup = {
               t: 'callout',
               variant: 'info',
               title: 'The exact ceiling is not published in the response',
-              text: 'A 429 body does not restate the configured limit — publishing it would tell an abusive caller exactly how slowly to grind. What you get instead is a `Retry-After` header in seconds and a `retry_after_seconds` field in the body, which is what a well-behaved client actually needs.',
+              text: 'A 429 body does not restate the configured limit. Publishing it would tell an abusive caller exactly how slowly to grind. What you get instead is a `Retry-After` header in seconds and a `retry_after_seconds` field in the body, which is what a well-behaved client actually needs.',
             },
             {
               t: 'code',
-              label: 'JSON — 429',
+              label: 'JSON. 429',
               code: `{
   "detail": "Too many requests. Please slow down and try again shortly.",
   "error": "Rate limit exceeded",
@@ -289,7 +289,7 @@ export const API: DocGroup = {
                 { method: 'GET', path: '/bots', text: 'List every chatbot in the workspace.' },
                 { method: 'POST', path: '/bots', text: 'Create a chatbot. Subject to your plan\'s chatbot limit.' },
                 { method: 'GET', path: '/bots/{bot_id}', text: 'Full configuration for one chatbot.' },
-                { method: 'PATCH', path: '/bots/{bot_id}', text: 'Update configuration — prompt, appearance, copy, live chat, qualification.' },
+                { method: 'PATCH', path: '/bots/{bot_id}', text: 'Update configuration. Prompt, appearance, copy, live chat, qualification.' },
                 { method: 'DELETE', path: '/bots/{bot_id}', text: 'Delete a chatbot and everything it owns.' },
                 { method: 'GET', path: '/bots/{bot_id}/framework-presets', text: 'The qualification framework presets and their default weights.' },
                 { method: 'GET', path: '/bots/{bot_id}/recrawl', text: 'Read automatic re-crawl settings.' },
@@ -341,7 +341,7 @@ export const API: DocGroup = {
             },
             {
               t: 'code',
-              label: 'curl — today\'s sales-qualified leads',
+              label: 'curl. Today\'s sales-qualified leads',
               code: `curl -G https://api.oyechats.com/leads \\
   -H "X-API-Key: $OYECHATS_API_KEY" \\
   --data-urlencode "tier=sql" \\
@@ -375,7 +375,7 @@ export const API: DocGroup = {
               t: 'endpoints',
               items: [
                 { method: 'GET', path: '/webhooks', text: 'List endpoints for a chatbot (`bot_id` required). Secrets come back masked.' },
-                { method: 'POST', path: '/webhooks', text: 'Create an endpoint. The response contains the signing secret in full — this is the only time it is returned.' },
+                { method: 'POST', path: '/webhooks', text: 'Create an endpoint. The response contains the signing secret in full. This is the only time it is returned.' },
                 { method: 'PATCH', path: '/webhooks/{webhook_id}', text: 'Change the URL, the subscribed events, or the active flag.' },
                 { method: 'DELETE', path: '/webhooks/{webhook_id}', text: 'Delete an endpoint.' },
                 { method: 'POST', path: '/webhooks/{webhook_id}/test', text: 'Send a test delivery.' },
@@ -416,7 +416,7 @@ export const API: DocGroup = {
           blocks: [
             {
               t: 'p',
-              text: 'These authenticate with `X-Bot-Key` and exist so the widget can work. They are documented because they are visible in any browser\'s network tab, not because you are expected to call them — build on the widget or on webhooks instead.',
+              text: 'These authenticate with `X-Bot-Key` and exist so the widget can work. They are documented because they are visible in any browser\'s network tab, not because you are expected to call them. Build on the widget or on webhooks instead.',
             },
             {
               t: 'endpoints',
