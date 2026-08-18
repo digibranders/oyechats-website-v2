@@ -1,6 +1,7 @@
 'use client';
 
 import { useEffect, useState } from 'react';
+import { ArrowUpRight } from 'lucide-react';
 import { Chip } from '@/components/ds';
 import { STATUS_URL } from '@/lib/site';
 import type { SystemStatusValue } from '@/app/api/status/route';
@@ -64,10 +65,14 @@ export function SystemStatus() {
       rel="noopener noreferrer"
       title={title}
       aria-label={`${label}. View the full status page.`}
-      className="inline-flex no-underline transition-opacity hover:opacity-80"
+      className="group inline-flex items-center gap-2 no-underline"
     >
       <span aria-live="polite">
         <Chip variant={variant}>{label}</Chip>
+      </span>
+      <span className="type-mono-sm text-ink-invert-muted group-hover:text-volt-light inline-flex items-center gap-0.5 transition-colors">
+        View status
+        <ArrowUpRight size={12} aria-hidden="true" />
       </span>
     </a>
   );
