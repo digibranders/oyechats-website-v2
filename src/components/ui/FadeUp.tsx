@@ -79,7 +79,7 @@ const EASE = "cubic-bezier(0.16, 1, 0.3, 1)";
 
 /**
  * Fades a block up as it scrolls into view, with plain CSS transitions driven
- * by one IntersectionObserver — no animation library. This component (via
+ * by one IntersectionObserver, no animation library. This component (via
  * Reveal) is on every page, and the motion/react runtime it previously pulled
  * in was a measurable slice of the critical-path JS that throttled-mobile
  * Lighthouse charges against LCP/TBT.
@@ -127,7 +127,7 @@ export function FadeUp({
     const viewportH =
       window.innerHeight || document.documentElement.clientHeight || 0;
     // If the element's top edge is already in (or above) the viewport at mount,
-    // skip animation — it's already visible, no need to animate from opacity 0.
+    // skip animation, it's already visible, no need to animate from opacity 0.
     // A 0-height viewport means the page mounted before layout (hidden tab,
     // embedded pane): we can't tell what's above the fold, so fail visible.
     const alreadyVisible = viewportH === 0 || rect.top < viewportH;

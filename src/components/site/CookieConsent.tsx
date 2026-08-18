@@ -15,13 +15,13 @@ import { useConsent } from './ConsentProvider';
  * Rendered on the inverted (dark) surface. A paper-on-paper card was almost
  * invisible against `--paper`: `--canvas` is #FFFFFF and `--line` is #E7E5DE,
  * roughly a 1.03:1 surface difference, so the card read as a faint smudge. The
- * dark treatment is not decoration — a consent notice nobody notices is not a
+ * dark treatment is not decoration, a consent notice nobody notices is not a
  * consent notice. It also matches the footer, which is the design system's
  * other inverted surface.
  *
  * Accept and Decline are deliberately the same `outline-invert` variant. Equal
- * visual weight is a GDPR requirement — a prominent Accept beside a faint
- * Decline is treated as invalid consent — so this is correctness, not styling.
+ * visual weight is a GDPR requirement, a prominent Accept beside a faint
+ * Decline is treated as invalid consent, so this is correctness, not styling.
  */
 export default function CookieConsent(): React.ReactElement | null {
   const {

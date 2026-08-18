@@ -11,7 +11,7 @@ export const metadata: Metadata = pageMeta({
   path: '/blog',
 });
 
-// CollectionPage previously enumerated nothing — eight posts rendered on the
+// CollectionPage previously enumerated nothing. Eight posts rendered on the
 // page and not one was declared. For an AI crawler that is the difference
 // between "OyeChats has a blog" and knowing what it has published.
 const graph = buildGraph({

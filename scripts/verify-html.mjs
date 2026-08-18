@@ -2,9 +2,9 @@
 /**
  * Asserts facts about the COMPILED output in .next/server/app.
  *
- * Rationale: every critical defect found in the 2026-07-29 audit — 18 routes
+ * Rationale: every critical defect found in the 2026-07-29 audit. 18 routes
  * with no og:image, "$0" rendered for every paid pricing tier, and a Tailwind
- * class that matched no CSS rule — passed `eslint`, `tsc --noEmit` AND
+ * class that matched no CSS rule. Passed `eslint`, `tsc --noEmit` AND
  * `next build`. Those three tools verify that code compiles, not that it
  * produces correct markup. This script closes that gap.
  *
@@ -17,7 +17,7 @@ const APP_DIR = '.next/server/app';
 const CSS_DIR = '.next/static/css';
 
 if (!existsSync(APP_DIR)) {
-  console.error(`✗ ${APP_DIR} not found — run \`next build\` first.`);
+  console.error(`✗ ${APP_DIR} not found. Run \`next build\` first.`);
   process.exit(1);
 }
 
@@ -126,7 +126,7 @@ check('T-2 titles are substantive', () => {
     const len = m[1].length;
     if (len < 30) bad.push(`${p.route} title only ${len} chars: "${m[1]}"`);
     // No upper bound on article titles. A descriptive post headline running to
-    // 90 chars is correct — Google truncates the display but still uses the
+    // 90 chars is correct. Google truncates the display but still uses the
     // full string for relevance. Enforcing a ceiling here would push authors to
     // shorten titles the audit found exemplary.
     if (!p.route.startsWith('/blog/') && len > 65) {
@@ -210,7 +210,7 @@ check('A-2 long pages have h3 subheadings', () => {
       continue;
     }
     const h3 = (p.html.match(/<h3[\s>]/g) ?? []).length;
-    if (h3 === 0) bad.push(`${route} has zero <h3> — content cannot chunk for AI retrieval`);
+    if (h3 === 0) bad.push(`${route} has zero <h3>. Content cannot chunk for AI retrieval`);
   }
   return bad;
 });
@@ -318,13 +318,14 @@ const UNSHIPPED_CLAIMS = [
  * Source comments are deliberately not covered. This is a house style rule for
  * what readers see, not a ban on a character.
  */
-check('W-1 no em-dashes in rendered copy', () => {
+check('W-1 no em-dashes or en-dashes in rendered copy', () => {
   const bad = [];
   for (const p of P) {
-    const hits = (p.html.match(/\u2014/g) || []).length;
-    if (hits > 0) {
-      bad.push(`${p.route} has ${hits} em-dash(es) - use a comma, colon, full stop or brackets`);
-    }
+    const em = (p.html.match(/\u2014/g) || []).length;
+    // En-dashes almost always mean a number range, which reads better as "to".
+    const en = (p.html.match(/\u2013/g) || []).length;
+    if (em > 0) bad.push(`${p.route} has ${em} em-dash(es): use a comma, colon, full stop or brackets`);
+    if (en > 0) bad.push(`${p.route} has ${en} en-dash(es): write ranges as "5 to 10"`);
   }
   return bad;
 });
@@ -339,7 +340,7 @@ check('C-1 no claims for unshipped capabilities', () => {
     );
     for (const { term, re } of UNSHIPPED_CLAIMS) {
       if (re.test(text)) {
-        bad.push(`${p.route} claims "${term}" — not a shipped capability`);
+        bad.push(`${p.route} claims "${term}". Not a shipped capability`);
       }
     }
   }
@@ -364,7 +365,7 @@ if (passed.length) console.log(`\n✓ passing (${passed.length}):`);
 for (const id of passed) console.log(`      ${id}`);
 
 if (skipped.length) {
-  console.log(`\n⊘ skipped — precondition unavailable (${skipped.length}):`);
+  console.log(`\n⊘ skipped. Precondition unavailable (${skipped.length}):`);
   for (const id of skipped) console.log(`      ${id}`);
 }
 

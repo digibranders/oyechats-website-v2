@@ -60,7 +60,7 @@ export function DocsSidebar() {
   /**
    * The drawer's open state is stored as *the path it was opened on*, and
    * `open` is derived from whether that still matches the current path. Any
-   * navigation — a link inside the drawer, or the browser back button —
+   * navigation (a link inside the drawer, or the browser back button)
    * therefore closes it during render, with no effect and no cascading
    * setState. Storing a boolean and clearing it in an effect keyed on
    * `pathname` would leave the drawer covering the page for one paint.

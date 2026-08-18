@@ -6,7 +6,7 @@ import matrix from './plan-matrix.generated.json';
  * Plans page renders.
  *
  * The JSON is produced by `platform/api/scripts/export_plan_matrix.py` from
- * BOTH sources of truth — `seed_plans._PLANS` for per-tier limits and feature
+ * BOTH sources of truth. `seed_plans._PLANS` for per-tier limits and feature
  * flags, and the slug sets in `plan_entitlements_service` / `plan_service` for
  * the capabilities gated outside that column. Restating either in prose is what
  * drifted before: the docs twice described gating that the platform did not
@@ -71,10 +71,10 @@ function formatLimit(value: number | null | undefined): string {
   return value.toLocaleString('en-US');
 }
 
-/** Plan display names, in seeded order — the column headers for both tables. */
+/** Plan display names, in seeded order, the column headers for both tables. */
 export const PLAN_NAMES: string[] = PLANS.map((p) => p.name);
 
-/** The tier that carries a trial, if any — used for the trial paragraph. */
+/** The tier that carries a trial, if any. Used for the trial paragraph. */
 export const TRIAL_PLAN: { name: string; days: number } | null = (() => {
   const withTrial = PLANS.find((p) => p.trial_days > 0);
   return withTrial ? { name: withTrial.name, days: withTrial.trial_days } : null;
@@ -92,7 +92,7 @@ export function limitsTable(): DocBlock {
   };
 }
 
-/** Capability table: one row per gated capability, ✓ / — per plan. */
+/** Capability table: one row per gated capability, ✓ /. Per plan. */
 export function capabilitiesTable(): DocBlock {
   return {
     t: 'table',

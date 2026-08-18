@@ -44,7 +44,7 @@ const TOP_LINKS = [
   { label: 'Contact us', href: '/contact' },
 ] as const;
 
-// Primary mobile nav — kept lean. Secondary pages (Changelog, About,
+// Primary mobile nav. Kept lean. Secondary pages (Changelog, About,
 // Security) are intentionally omitted here since they're all reachable from
 // the footer; a 10-item drawer buried the primary journey.
 const MOBILE_LINKS = [
@@ -65,7 +65,7 @@ export default function Navbar() {
 
   useEffect(() => {
     // rAF-coalesced, matching ReadingProgress. React bails out when the boolean
-    // is unchanged, so this was never a re-render problem — but it did invoke a
+    // is unchanged, so this was never a re-render problem, but it did invoke a
     // callback on every scroll event on every page.
     let raf = 0;
     const update = () => {

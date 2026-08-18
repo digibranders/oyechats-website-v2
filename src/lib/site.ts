@@ -22,7 +22,7 @@ export const SUPPORT_EMAIL = 'support@oyechats.com';
 
 /**
  * Official profiles. Rendered in the footer AND used verbatim as
- * `Organization.sameAs` — keeping one source means the entity signal can never
+ * `Organization.sameAs`. Keeping one source means the entity signal can never
  * drift from the links users actually see.
  */
 export const SOCIAL_LINKS = [
@@ -72,7 +72,7 @@ export const FOOTER_COLUMNS = [
       { label: 'DPA', href: '/legal/dpa' },
       { label: 'Sub-processors', href: '/legal/subprocessors' },
       { label: 'Cookies', href: '/legal/cookies' },
-      // Distinct from the marketing page at /security — this is the
+      // Distinct from the marketing page at /security. This is the
       // vulnerability-reporting policy the Privacy Policy points at.
       { label: 'Responsible disclosure', href: '/legal/security' },
       { label: 'Refund', href: '/legal/refund' },

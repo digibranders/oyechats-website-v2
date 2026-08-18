@@ -15,7 +15,7 @@ export const metadata: Metadata = pageMeta({
 });
 
 // `mainEntity` points at the Organization, not a ContactPoint. A ContactPoint is
-// a property OF an organization, not a thing a page can be "about" — and the
+// a property OF an organization, not a thing a page can be "about", and the
 // contact details now live on the single Organization node in the site graph.
 const graph = buildGraph({
   path: '/contact',

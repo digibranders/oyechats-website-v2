@@ -8,17 +8,17 @@
  * Every value here is a statutory identifier, a registered address, or a named
  * natural person. None of it is cosmetic: each field is displayed because a
  * specific rule requires it, and the rule is cited at the field. Verified against
- * the production seller profile and confirmed by the company on 2026-08-17 —
- * don't "tidy" a value without checking the certificate it came from.
+ * the production seller profile and confirmed by the company on 2026-08-17.
+ * Don't "tidy" a value without checking the certificate it came from.
  *
- *   Grievance officer — named 2026-08-17. Consumer Protection (E-Commerce) Rules
+ *   Grievance officer. Named 2026-08-17. Consumer Protection (E-Commerce) Rules
  *     r.4(5) wants name, contact details AND designation, and binds whoever is
  *     named to the 48-hour acknowledgement / one-month resolution clock
  *     published on /contact. The direct mobile below is a personal number on a
  *     public page and will be scraped; swap it for a landline or a desk line if
- *     that becomes a nuisance — the rule asks for a contact, not a mobile.
+ *     that becomes a nuisance, the rule asks for a contact, not a mobile.
  *
- * SELLER OF RECORD — RESOLVED
+ * SELLER OF RECORD. RESOLVED
  *   Digibranders Private Limited is the contracting entity and the only one of
  *   the two candidate names that holds a GST registration. Oyechats Pvt Ltd does
  *   not, so it cannot be the seller of record on a tax invoice.
@@ -27,7 +27,7 @@
  *   `billing.seller_profile`, read 2026-08-17): legal_name "Digibranders Pvt
  *   Ltd", GSTIN 27AAICD9268J1Z0, and the same address lines as below. The
  *   `27AAPFU0939F1ZV` that appears beside "Digibranders Pvt Ltd" across the test
- *   suite is fixture data — its PAN `AAPFU0939F` has `F` (partnership firm) as
+ *   suite is fixture data, its PAN `AAPFU0939F` has `F` (partnership firm) as
  *   its 4th character, where a private limited company carries `C`.
  *
  * NOTE ON THE NAME
@@ -36,7 +36,7 @@
  *   still holds the abbreviated "Digibranders Pvt Ltd", so tax invoices issued
  *   until that is corrected carry the short form. Invoices snapshot the seller at
  *   issue time (`invoice_service._seller_snapshot`), so fixing the profile
- *   changes future documents only — already-issued invoices keep the old string
+ *   changes future documents only. Already-issued invoices keep the old string
  *   by design.
  *
  * GSTIN is deliberately absent from this module. Rule 18 CGST Rules requires it
@@ -48,7 +48,7 @@ export const ENTITY = {
   legalName: 'Digibranders Private Limited',
   tradeName: 'OyeChats',
   /**
-   * Companies Act 2013 s.12(3)(c) — required on official publications.
+   * Companies Act 2013 s.12(3)(c). Required on official publications.
    * Verified against the production seller profile
    * (`pricing_config` row `billing.seller_profile`, read 2026-08-17), which is
    * what the billing engine already prints on every tax invoice. Format checks
@@ -56,7 +56,7 @@ export const ENTITY = {
    */
   cin: 'U72900MH2021PTC372344',
   /**
-   * Consumer Protection (E-Commerce) Rules 2020 r.4(2) — principal geographic
+   * Consumer Protection (E-Commerce) Rules 2020 r.4(2). Principal geographic
    * address. This is the operating office. Companies Act s.12 concerns the
    * REGISTERED office as filed with the MCA; if the two ever differ, the
    * Companies Act line in the footer needs the registered one.
@@ -79,7 +79,7 @@ export const ENTITY = {
   /**
    * Consumer Protection (E-Commerce) Rules 2020 r.4(3) requires the NAME,
    * designation and contact of a grievance officer to be displayed. A shared
-   * alias does not satisfy it — the rule asks for a person. The email reuses the
+   * alias does not satisfy it, the rule asks for a person. The email reuses the
    * monitored support@ mailbox rather than minting a grievance@ nobody reads.
    */
   grievanceOfficer: {

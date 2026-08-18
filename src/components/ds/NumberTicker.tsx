@@ -10,7 +10,7 @@ import { cn } from '@/lib/cn';
  * Seeds `display` with the real value so the SERVER renders the true number and
  * the count-up is purely post-hydration. Initialising to 0 instead put "$0" in
  * the static HTML for every paid pricing tier while the page's own Offer schema
- * declared the real prices — a visible-content-vs-markup mismatch, and non-JS AI
+ * declared the real prices, a visible-content-vs-markup mismatch, and non-JS AI
  * crawlers read the 0 as fact. Keep this seeding if you reuse the component.
  */
 export function NumberTicker({
@@ -32,7 +32,7 @@ export function NumberTicker({
   const started = useRef(false);
 
   // Re-seed to the true number when `value` changes, during render rather than in
-  // an effect — the effect body only drives the count-up animation. This keeps the
+  // an effect, the effect body only drives the count-up animation. This keeps the
   // static/first paint honest (see the note above) without a cascading re-render.
   if (seededValue !== value) {
     setSeededValue(value);

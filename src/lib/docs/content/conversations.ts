@@ -359,7 +359,7 @@ export const CONVERSATIONS: DocGroup = {
               t: 'table',
               head: ['Shortcut', 'Typical body'],
               rows: [
-                ['`/hours`', 'Our team is available Monday to Friday, 9am–6pm IST.'],
+                ['`/hours`', 'Our team is available Monday to Friday, 9am to 6pm IST.'],
                 ['`/refund`', 'Refund requests go to billing@example.com and are processed within 5 business days.'],
                 ['`/escalate`', 'I am bringing in a specialist. One moment.'],
               ],

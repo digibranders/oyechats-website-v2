@@ -8,7 +8,7 @@ const LINK_RE = /\[([^\]]+)\]\((\/[^)]+|https?:\/\/[^)]+)\)/g;
  * Renders a blog text string with support for inline `[label](href)` links.
  * Internal hrefs (starting with `/`) use next/link; external hrefs open in a new
  * tab with rel="noopener". Plain strings (no link syntax) pass straight through,
- * so existing posts are unaffected. No HTML is injected — nodes are built by
+ * so existing posts are unaffected. No HTML is injected. Nodes are built by
  * hand, so this is XSS-safe by construction.
  */
 export function renderRichText(text: string): ReactNode {

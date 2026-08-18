@@ -15,7 +15,7 @@ export type * from './types';
 /**
  * Sidebar order IS reading order. `prev`/`next` on every page are derived from
  * this array flattened, so re-ordering here re-wires the pager and the sitemap
- * with it — there is no second list to keep in sync.
+ * with it. There is no second list to keep in sync.
  */
 export const DOC_GROUPS: DocGroup[] = [
   GETTING_STARTED,
@@ -75,7 +75,7 @@ export const DOC_PAGES: { group: DocGroup; page: DocPage; path: string }[] = DOC
   group.pages.map((page) => ({ group, page, path: `/docs/${group.slug}/${page.slug}` })),
 );
 
-/** The first page of the corpus — the "Start reading" target on `/docs`. */
+/** The first page of the corpus, the "Start reading" target on `/docs`. */
 export const DOC_ENTRY_PATH = DOC_PAGES[0].path;
 
 /**

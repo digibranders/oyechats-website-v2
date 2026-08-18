@@ -12,7 +12,7 @@ import { SITE_URL } from '@/lib/seo';
  *
  * The previous hand-written `public/llms.txt` advertised an "Enterprise
  * (custom)" plan that had been deleted from the product, with a fabricated
- * price — in the one file AI answer engines fetch first and treat as
+ * price, in the one file AI answer engines fetch first and treat as
  * authoritative. It drifted within days of a pricing change. Deriving it from
  * PRICING_TIERS / BLOG_POSTS / LEGAL_PAGES makes that class of drift
  * structurally impossible rather than a thing someone has to remember.

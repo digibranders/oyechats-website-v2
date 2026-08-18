@@ -8,7 +8,7 @@ type Item = { q: string; a: string };
 
 /**
  * Uncontrolled by default (tracks its own open row). Pass `activeKey` + `onToggle`
- * to control it externally — e.g. to share a single "open" state across multiple
+ * to control it externally. E.g. to share a single "open" state across multiple
  * Accordions so only one row is open at a time across all of them. In controlled
  * mode each row is identified by its question text (`item.q`), which must be unique.
  */

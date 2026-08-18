@@ -27,8 +27,8 @@ export function Table({ children, className }: { children: ReactNode; className?
   );
 }
 
-/** `scope` defaults to "col". Pass "row" for the leading cell of a data row —
- *  without a row header a screen reader reading the pricing matrix cell by cell
+/** `scope` defaults to "col". Pass "row" for the leading cell of a data row.
+ *  Without a row header a screen reader reading the pricing matrix cell by cell
  *  has no idea which feature a checkmark belongs to. It also materially improves
  *  table extraction by AI answer engines. Purely semantic: no visual effect. */
 export function Th({

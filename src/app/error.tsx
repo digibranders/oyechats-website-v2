@@ -6,8 +6,8 @@ import { Button, Chip, Container, DottedGrid, GradientText, HeroGlow } from '@/c
 /**
  * Route-level error boundary.
  *
- * Without one, any runtime throw in a client component — HeroDemo's async
- * script runner, SystemStatus's fetch, ScrollSpyToc's DOM reads — unwinds to
+ * Without one, any runtime throw in a client component. HeroDemo's async
+ * script runner, SystemStatus's fetch, ScrollSpyToc's DOM reads. Unwinds to
  * Next's default error page and blanks the whole route. On a marketing site
  * that is a lost conversion, not a stack trace.
  *

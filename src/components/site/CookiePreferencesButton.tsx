@@ -5,7 +5,7 @@ import { useConsent } from './ConsentProvider';
 /**
  * Re-opens the consent card from the footer.
  *
- * Split out of `Footer` so the footer itself stays a server component — it
+ * Split out of `Footer` so the footer itself stays a server component, it
  * pulls in the changelog and the full link graph, none of which belongs in the
  * client bundle just to attach one click handler.
  *

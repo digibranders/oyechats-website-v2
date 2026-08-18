@@ -2,7 +2,7 @@ import type { BlogAccent } from '@/lib/blog';
 import { cn } from '@/lib/cn';
 
 /**
- * Programmatic blog cover art — no raster assets to ship or break. Each post
+ * Programmatic blog cover art, no raster assets to ship or break. Each post
  * gets an aurora gradient mesh plus a motif drawn from the product's own world,
  * chosen by category (a chat exchange, price tiers, a step flow, a doc stack, a
  * growth pulse). On-brand "Voltage Paper", deterministic per slug, and purely

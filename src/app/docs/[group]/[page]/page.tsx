@@ -8,7 +8,7 @@ import { DocBlocks } from '@/components/docs/DocBlocks';
 import { DocsInline } from '@/components/docs/inline';
 import { ScrollSpyToc } from '@/components/site/ScrollSpyToc';
 
-/** Route params for `/docs/[group]/[page]`. `page` shadows nothing — it is the
+/** Route params for `/docs/[group]/[page]`. `page` shadows nothing, it is the
  *  page slug, not the Next.js page module. */
 type Params = { group: string; page: string };
 
@@ -41,7 +41,7 @@ export default async function DocPage({ params }: { params: Promise<Params> }) {
 
   // TechArticle rather than a bare WebPage: these are procedural technical
   // documents, and the Article family needs an author, a publisher and
-  // dateModified to be citable. Dates are hand-maintained in lib/docs — a
+  // dateModified to be citable. Dates are hand-maintained in lib/docs, a
   // build-time clock would claim the whole corpus changed on every deploy.
   const graph = buildGraph({
     path,

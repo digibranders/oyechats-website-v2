@@ -6,7 +6,7 @@ import { cn } from '@/lib/cn';
 const WORDMARK_RATIO = 1390 / 424;
 
 /**
- * OyeChats brand wordmark — the cursive "Oye", the C chat-bubble mark, and
+ * OyeChats brand wordmark, the cursive "Oye", the C chat-bubble mark, and
  * "chats" as one lockup image (the standalone icon + text spans are gone).
  * Two artwork files rather than a CSS filter: the dark wordmark reads on light
  * surfaces, and on ink-invert surfaces (footer) we swap to the white wordmark
@@ -24,7 +24,7 @@ export function Logo({
   priority = false,
 }: {
   className?: string;
-  /** Extra classes for the wordmark image itself — used to override the
+  /** Extra classes for the wordmark image itself. Used to override the
    *  intrinsic height responsively (e.g. `md:h-8`); pair with `w-auto` so the
    *  ratio is preserved. `size` should be set to the largest rendered height so
    *  the generated srcset stays crisp at every breakpoint. */

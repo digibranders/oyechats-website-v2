@@ -12,7 +12,7 @@ const BASE = 'https://www.oyechats.com';
  * declaring /legal as volatile as /pricing is noise, and a lastmod that never
  * moves removes the one signal Google actually uses for recrawl scheduling.
  *
- * Deliberately NOT `new Date()` — a build-time clock claims every page changed
+ * Deliberately NOT `new Date()`, a build-time clock claims every page changed
  * on every deploy, which is worse than a stale date.
  */
 const STATIC_ROUTES: { path: string; lastModified: string; changeFrequency: 'weekly' | 'monthly' | 'yearly'; priority: number }[] = [

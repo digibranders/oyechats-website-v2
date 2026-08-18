@@ -29,7 +29,7 @@ const nextConfig: NextConfig = {
         ],
       },
       // Files in public/ carry no content hash, so Vercel serves them
-      // `max-age=0, must-revalidate` — /openapi.json is 486 KB and revalidates
+      // `max-age=0, must-revalidate` - /openapi.json is 486 KB and revalidates
       // on every visit. Deliberately scoped: a blanket rule over /(.*) would
       // override Vercel's `immutable` policy on /_next/static, which is correct
       // as-is and must not be touched.

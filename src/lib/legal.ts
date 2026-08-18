@@ -2,7 +2,7 @@ export type LegalPage = {
   slug: string;
   /** Visible H1 on the document page, and the card heading on /legal. */
   title: string;
-  /** Visible card body on /legal. Never used as the meta description — several
+  /** Visible card body on /legal. Never used as the meta description. Several
    *  are far shorter than a SERP snippet wants, and lengthening them would
    *  change on-page content. */
   description: string;
@@ -20,14 +20,14 @@ export type LegalPage = {
  * contact page. That module documents which values are still unresolved and why.
  *
  * The renderer (`components/site/LegalDocument.tsx`) emits these strings as
- * plain text — no markdown, no links, no emphasis — so keep interpolations
+ * plain text (no markdown, no links, no emphasis)so keep interpolations
  * inside ordinary prose.
  */
 import { ENTITY, REGISTERED_ADDRESS } from '@/lib/entity';
 
 const OFFICER = ENTITY.grievanceOfficer;
 
-/** Repeated verbatim in Privacy, Terms and the DPA — one string, one truth. */
+/** Repeated verbatim in Privacy, Terms and the DPA. One string, one truth. */
 const ENTITY_PREAMBLE =
   `OyeChats is a brand of ${ENTITY.legalName} (CIN ${ENTITY.cin}), a company incorporated in India with its registered office at ${REGISTERED_ADDRESS}.`;
 

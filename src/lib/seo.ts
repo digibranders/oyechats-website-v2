@@ -51,7 +51,7 @@ export function jsonLd(schema: unknown): string {
  *
  * `images` must be set explicitly. A page-level `openGraph` *replaces* the root
  * one rather than merging, and the file-convention `app/opengraph-image` only
- * backfills pages that declare no `openGraph` at all — so every page using this
+ * backfills pages that declare no `openGraph` at all, so every page using this
  * helper previously shipped with no og:image or twitter:image.
  */
 export function pageMeta({
@@ -138,7 +138,7 @@ const SITE_DESCRIPTION =
  * Site-level entity graph, emitted once from the root layout. Every page-level
  * graph references these by `@id` rather than redefining them.
  *
- * Deliberately omitted: `aggregateRating`/`review` (no real reviews exist — the
+ * Deliberately omitted: `aggregateRating`/`review` (no real reviews exist, the
  * Software App rich result stays unattainable until they do, and inventing them
  * would be a spam-policy violation), `foundingDate`, `telephone`, and
  * `streetAddress` (not present anywhere in this repo). `addressLocality` and
@@ -215,7 +215,7 @@ export type Crumb = { name: string; path?: string };
 /**
  * Per-page graph: a `WebPage` node plus an optional `BreadcrumbList`, plus any
  * page-specific nodes. The `WebPage` is what gives `breadcrumb`, `isPartOf`, and
- * `dateModified` something to attach to — previously no route declared one.
+ * `dateModified` something to attach to. Previously no route declared one.
  *
  * The final breadcrumb entry deliberately carries no `item`: that is Google's
  * documented preference for the page you are already on.

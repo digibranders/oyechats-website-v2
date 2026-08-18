@@ -179,7 +179,7 @@ export const WIDGET: DocGroup = {
                 },
                 {
                   term: 'Wix',
-                  text: 'Settings → Custom code → Add custom code, place in Body – end, apply to all pages.',
+                  text: 'Settings → Custom code → Add custom code, place it at the end of the body, apply to all pages.',
                 },
                 {
                   term: 'Squarespace',

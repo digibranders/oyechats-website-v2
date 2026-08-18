@@ -43,7 +43,7 @@ export type CalloutBlock = { t: 'callout'; variant?: CalloutVariant; title?: str
 /** Grid of links out to other docs pages or site routes. */
 export type CardsBlock = { t: 'cards'; items: { title: string; text: string; href: string }[] };
 
-/** Definition list — term on the left, meaning on the right. */
+/** Definition list. Term on the left, meaning on the right. */
 export type DefsBlock = { t: 'defs'; items: { term: string; text: string }[] };
 
 /** One REST endpoint row. Rendered as a method badge + path + description. */
@@ -74,7 +74,7 @@ export type DocSection = {
 export type DocPage = {
   /** URL segment within its group, e.g. `install` → `/docs/widget/install`. */
   slug: string;
-  /** Sidebar label. Keep it short — the sidebar column is narrow. */
+  /** Sidebar label. Keep it short, the sidebar column is narrow. */
   navLabel: string;
   /** Visible `<h1>`. */
   title: string;

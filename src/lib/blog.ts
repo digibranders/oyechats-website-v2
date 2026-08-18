@@ -18,7 +18,7 @@ export type BlogPost = {
   dateISO: string;
   /** ISO date of the last substantive edit. Optional; falls back to `dateISO`.
    *  Emitting dateModified === datePublished on every post forever gave crawlers
-   *  and answer engines no freshness signal at all — posts dated months back
+   *  and answer engines no freshness signal at all. Posts dated months back
    *  read as permanently stale. Set this when a post is meaningfully revised. */
   updatedISO?: string;
   readMinutes: number;
@@ -422,7 +422,7 @@ export function getToc(content: BlogBlock[]): TocEntry[] {
  * The previous implementation appended `rest` in declaration order. With seven
  * distinct categories across eight posts, six posts therefore surfaced the exact
  * same first three entries, and four posts were never selected by any other post
- * — leaving them with a single inbound link (the /blog index) and effectively
+ *. Leaving them with a single inbound link (the /blog index) and effectively
  * orphaning them. Scoring by tag overlap makes the module reciprocal without
  * changing how it looks or how many cards it renders.
  */
