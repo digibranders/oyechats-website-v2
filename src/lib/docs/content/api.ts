@@ -162,7 +162,7 @@ export const API: DocGroup = {
             },
             {
               t: 'p',
-              text: 'Validation failures return 422 with `detail` as a list of field-level problems. Feature-gated endpoints return a machine-readable code alongside the message:',
+              text: 'Validation failures return 422 with `detail` as a list of field-level problems. Feature-gated endpoints return a machine-readable code alongside the message — the same shape whether the gate is a plan feature or an exhausted credit balance:',
             },
             {
               t: 'code',
@@ -172,6 +172,18 @@ export const API: DocGroup = {
     "error": "feature_not_available",
     "feature": "lead_intelligence",
     "message": "Lead export is included on Starter and above."
+  }
+}`,
+            },
+            {
+              t: 'code',
+              label: 'JSON — 402, out of credits',
+              code: `{
+  "detail": {
+    "error": "insufficient_credits",
+    "required": 1,
+    "available": 0,
+    "message": "You're out of credits. Upgrade your plan or buy a top-up to keep chatting."
   }
 }`,
             },
@@ -189,6 +201,7 @@ export const API: DocGroup = {
                 ['202', 'Accepted — long-running work was queued.', 'Poll the matching status endpoint.'],
                 ['400', 'Malformed request.', 'Fix the request. Retrying will not help.'],
                 ['401', 'Missing or invalid key.', 'Check the header name and the key value.'],
+                ['402', 'Out of credits. `detail.error` is `insufficient_credits`, with `required` and `available`.', 'Top up or upgrade. Retrying will not help.'],
                 ['403', 'Authenticated but not allowed — wrong workspace, insufficient role, or a plan gate.', 'Read `detail`. Do not retry.'],
                 ['404', 'No such resource, or not yours.', 'Do not retry.'],
                 ['409', 'Conflicts with current state.', 'Re-read the resource and decide.'],

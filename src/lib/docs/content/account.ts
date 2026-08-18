@@ -145,7 +145,7 @@ export const ACCOUNT: DocGroup = {
               t: 'list',
               items: [
                 'Preview conversations from the dashboard, up to 50 per chatbot per day.',
-                'Automatic weekly re-crawls — funded by your subscription, not metered per page.',
+                'Automatic weekly re-crawls — funded by your subscription. A **manual** re-crawl is metered: on Standard and above you can re-crawl updated pages only, otherwise a manual re-crawl charges for every page. See [Training](/docs/chatbot/knowledge).',
                 'Live chat with a human operator. Operator capacity is billed as seats, not credits.',
                 'Reading anything: dashboard, analytics, exports, API reads.',
                 'The real-time email format check on the lead form.',
@@ -191,7 +191,7 @@ Optional extras
           blocks: [
             {
               t: 'p',
-              text: 'You are warned as your balance gets low — the default threshold is 20% remaining. At zero:',
+              text: 'You are warned as your balance gets low — the default threshold is 20% remaining. At zero the chat endpoint returns a `402` with `insufficient_credits` rather than an answer, and the widget surfaces that to the visitor:',
             },
             {
               t: 'table',

@@ -168,7 +168,9 @@ export const CHATBOT: DocGroup = {
               rows: [
                 ['Crawled page', '5 per page'],
                 ['Uploaded file', '1 credit per 250 words, minimum 1 credit per file'],
-                ['Re-crawl of an unchanged page', '0 — auto re-crawls are covered by your subscription'],
+                ['Automatic weekly re-crawl', '0 — funded by your subscription, whatever changed'],
+                ['Manual re-crawl, updated pages only *(Standard and above)*', '5 per page that actually changed'],
+                ['Manual re-crawl, full', '5 per page for every page, changed or not'],
               ],
             },
             {
@@ -185,8 +187,12 @@ export const CHATBOT: DocGroup = {
               t: 'defs',
               items: [
                 {
-                  term: 'Manual re-crawl',
-                  text: 'Re-runs the crawl for the URLs already indexed for this chatbot. Available on every plan.',
+                  term: 'Manual re-crawl — full',
+                  text: 'Re-fetches and re-indexes every discovered page, and **charges for all of them at 5 credits each even if nothing changed**. Available on every plan, and it is the only manual option below Standard.',
+                },
+                {
+                  term: 'Manual re-crawl — updated pages only',
+                  text: 'Re-fetches everything but only re-indexes and charges for pages whose content actually changed. Included on Standard and above. Before it runs you get a diff showing how many pages are unchanged, new and removed.',
                 },
                 {
                   term: 'Automatic re-crawl',
@@ -200,9 +206,9 @@ export const CHATBOT: DocGroup = {
             },
             {
               t: 'callout',
-              variant: 'success',
-              title: 'Re-crawls do not bill per page',
-              text: 'Automatic re-crawls are funded by your subscription rather than metered against your credit balance, so leaving the toggle on has no per-page cost.',
+              variant: 'warn',
+              title: 'A full manual re-crawl bills the whole site',
+              text: 'Only the automatic weekly refresh is free. A manual full re-crawl deliberately re-charges every page — on a 300-page site that is 1,500 credits whether two pages changed or none did. If you are on Standard or above, use "updated pages only". If you are below it, leaning on the automatic weekly re-crawl is much cheaper than re-crawling by hand.',
             },
           ],
         },
@@ -318,7 +324,7 @@ Rules:
             },
             {
               t: 'p',
-              text: 'You can also set a services URL, which is appended as a "learn more" link under on-scope answers. Leave the services list empty to let the chatbot answer from everything you trained it on.',
+              text: 'Each service can carry its own URL. When the chatbot mentions that service, its name is rendered with an inline link to that page — there is no single "learn more" line appended at the end. Leave the services list empty to let the chatbot answer from everything you trained it on.',
             },
           ],
         },

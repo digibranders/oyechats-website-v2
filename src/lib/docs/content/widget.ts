@@ -332,6 +332,12 @@ export default function RootLayout({ children }) {
                 ['Email transcript', 'Off', 'Offers the visitor a copy of the conversation by email.'],
               ],
             },
+            {
+              t: 'callout',
+              variant: 'warn',
+              title: 'On Free these are all forced off',
+              text: 'The defaults above apply on paid plans. A Free workspace has file sharing, post-chat rating, queue position, typing preview and email transcript forced off, and the branding badge forced on, no matter what is stored against the chatbot. The lock is applied server-side when the widget fetches its configuration, so it holds even for settings left over from a previous paid tier.',
+            },
           ],
         },
         {
@@ -521,7 +527,7 @@ function onLogout() {
             },
             {
               t: 'p',
-              text: 'Add `www` and non-`www` if your site serves both, and add your staging hostname if you test there. `localhost` and `127.0.0.1` are accepted in non-production environments without being listed.',
+              text: 'To cover `www`, add the wildcard — entries are stored as bare hostnames, so typing `www.acme.com` is saved as `acme.com` and will not match a `www` origin on its own. `acme.com` plus `*.acme.com` covers the apex and every subdomain, which is what a chatbot created from a website URL gets by default. Add your staging hostname too if you test there. `localhost` and `127.0.0.1` are accepted outside production without being listed.',
             },
             {
               t: 'p',
