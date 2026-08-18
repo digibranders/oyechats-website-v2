@@ -11,8 +11,6 @@ import {
   LineChart,
   ChevronDown,
   Rocket,
-  Code2,
-  Webhook,
 } from 'lucide-react';
 import { Button } from '@/components/ds';
 import { APP_LINKS } from '@/lib/site';
@@ -21,25 +19,18 @@ import { cn } from '@/lib/cn';
 
 type MegaColumn = {
   title: string;
-  items: { icon: React.ComponentType<{ size?: number; className?: string }>; label: string; description: string; href: string }[];
+  items: { icon: React.ComponentType<{ size?: number; className?: string }>; label: string; href: string }[];
 };
 
 const RESOURCES_MENU: MegaColumn[] = [
   {
-    title: 'Documentation',
+    title: 'Resources',
     items: [
-      { icon: BookOpen, label: 'All docs', description: 'Every guide, in reading order', href: '/docs' },
-      { icon: Rocket, label: 'Quickstart', description: 'Live chatbot in five minutes', href: '/docs/getting-started/quickstart' },
-      { icon: Code2, label: 'REST API', description: 'Authentication, endpoints, limits', href: '/docs/api/overview' },
-      { icon: Webhook, label: 'Webhooks', description: 'Signed events for your CRM', href: '/docs/integrations/webhooks' },
-    ],
-  },
-  {
-    title: 'More',
-    items: [
-      { icon: Sparkles, label: 'Changelog', description: 'Every release, tagged and dated', href: '/changelog' },
-      { icon: LineChart, label: 'Blog', description: 'Ideas from the team', href: '/blog' },
-      { icon: ShieldCheck, label: 'Security', description: 'How we protect your data', href: '/security' },
+      { icon: BookOpen, label: 'Documentation', href: '/docs' },
+      { icon: Rocket, label: 'Quickstart', href: '/docs/getting-started/quickstart' },
+      { icon: Sparkles, label: 'Changelog', href: '/changelog' },
+      { icon: LineChart, label: 'Blog', href: '/blog' },
+      { icon: ShieldCheck, label: 'Security', href: '/security' },
     ],
   },
 ];
@@ -255,8 +246,14 @@ function MegaMenu({
   onNavigate: () => void;
 }) {
   return (
-    <div className="bg-canvas rounded-[var(--r-4)] shadow-[var(--e-3)] border border-line p-5 grid gap-6 min-w-[520px]"
-      style={{ gridTemplateColumns: `repeat(${columns.length}, minmax(0, 1fr))` }}>
+    // Width scales with the column count instead of a flat 520px floor: that
+    // floor was set when the menu had one column and silently doubled the
+    // panel the moment a second was added.
+    <div className="bg-canvas rounded-[var(--r-4)] shadow-[var(--e-3)] border border-line p-4 grid gap-6"
+      style={{
+        gridTemplateColumns: `repeat(${columns.length}, minmax(0, 1fr))`,
+        minWidth: `${columns.length * 220}px`,
+      }}>
       {columns.map((col) => (
         <div key={col.title}>
           <div className="type-mono-sm text-muted mb-3">{col.title}</div>
@@ -266,15 +263,12 @@ function MegaMenu({
                 <Link
                   href={item.href}
                   onClick={onNavigate}
-                  className="flex items-start gap-3 p-2.5 rounded-[var(--r-2)] hover:bg-paper transition-colors no-underline group"
+                  className="flex items-center gap-3 p-2 rounded-[var(--r-2)] hover:bg-paper transition-colors no-underline group"
                 >
                   <div className="w-8 h-8 rounded-[var(--r-2)] bg-volt-tint text-volt flex items-center justify-center shrink-0 group-hover:bg-volt group-hover:text-white transition-colors">
                     <item.icon size={16} />
                   </div>
-                  <div className="min-w-0">
-                    <div className="type-body-sm text-ink font-medium">{item.label}</div>
-                    <div className="type-mono-sm text-muted mt-0.5">{item.description}</div>
-                  </div>
+                  <div className="type-body-sm text-ink font-medium min-w-0">{item.label}</div>
                 </Link>
               </li>
             ))}
