@@ -68,11 +68,11 @@ export const PRICING_TIERS: PricingTier[] = [
     monthly: { INR: 0, USD: 0 },
     annualMonthly: { INR: 0, USD: 0 },
     annualTotal: { INR: 0, USD: 0 },
-    credits: 200,
+    credits: 100,
     includedSeats: 1,
     features: [
       '1 chatbot',
-      '200 credits / month',
+      '100 credits / month',
       'Grounded AI answers, streamed live',
       'Website widget + customization',
       '7-day chat history',
@@ -85,14 +85,14 @@ export const PRICING_TIERS: PricingTier[] = [
     id: 'starter',
     name: 'Starter',
     tagline: 'For a solo site that wants live chat + a real AI agent.',
-    monthly: { INR: 449, USD: 9 },
-    annualMonthly: { INR: 359, USD: 7 },
-    annualTotal: { INR: 4308, USD: 84 },
-    credits: 2000,
+    monthly: { INR: 599, USD: 7.99 },
+    annualMonthly: { INR: 479, USD: 6.49 },
+    annualTotal: { INR: 5748, USD: 77.88 },
+    credits: 1000,
     includedSeats: 1,
     features: [
       'Everything in Free, plus',
-      '2,000 credits / month',
+      '1,000 credits / month',
       '1 operator seat',
       'Live chat + human handoff',
       'Proactive triggers & meeting booking',
@@ -107,16 +107,16 @@ export const PRICING_TIERS: PricingTier[] = [
     id: 'standard',
     name: 'Standard',
     tagline: 'The lead-machine: grounded AI plus BANT qualification.',
-    monthly: { INR: 949, USD: 19 },
-    annualMonthly: { INR: 759, USD: 15 },
-    annualTotal: { INR: 9108, USD: 180 },
-    credits: 6000,
+    monthly: { INR: 1199, USD: 15.99 },
+    annualMonthly: { INR: 959, USD: 12.99 },
+    annualTotal: { INR: 11508, USD: 155.88 },
+    credits: 2500,
     includedSeats: 2,
     featured: true,
-    badge: 'Most Popular',
+    badge: 'Recommended',
     features: [
       'Everything in Starter, plus',
-      '6,000 credits / month',
+      '2,500 credits / month',
       '2 operator seats',
       'BANT lead qualification & scoring',
       'Auto-recrawl + visitor & UTM tracking',
@@ -131,14 +131,14 @@ export const PRICING_TIERS: PricingTier[] = [
     id: 'professional',
     name: 'Professional',
     tagline: 'For teams scaling qualified pipeline under their own brand.',
-    monthly: { INR: 1399, USD: 39 },
-    annualMonthly: { INR: 1119, USD: 31 },
-    annualTotal: { INR: 13428, USD: 372 },
-    credits: 10000,
+    monthly: { INR: 2999, USD: 45.99 },
+    annualMonthly: { INR: 2399, USD: 37.99 },
+    annualTotal: { INR: 28788, USD: 455.88 },
+    credits: 8000,
     includedSeats: 3,
     features: [
       'Everything in Standard, plus',
-      '10,000 credits / month',
+      '8,000 credits / month',
       '3 operator seats',
       'White-label custom domain',
       'Audit logs & advanced controls',
@@ -153,8 +153,10 @@ export type CreditCost = { action: string; credits: number };
 
 export const CREDIT_COSTS: CreditCost[] = [
   { action: '1 AI chat reply', credits: 1 },
-  { action: '1 document uploaded to your knowledge base', credits: 3 },
-  { action: '1 web page crawled and added to your knowledge base', credits: 5 },
+  { action: '1 email verification', credits: 10 },
+  { action: '1 URL scan', credits: 5 },
+  { action: '1 company name lookup', credits: 5 },
+  { action: '1 document scan (per 250 words)', credits: 1 },
 ];
 
 export type TopupPack = {
@@ -165,10 +167,11 @@ export type TopupPack = {
 };
 
 export const TOPUP_PACKS: TopupPack[] = [
-  { price: { INR: 1599, USD: 19 }, credits: 3_000, bonusPct: 0 },
-  { price: { INR: 3999, USD: 49 }, credits: 8_000, bonusPct: 7 },
-  { price: { INR: 7999, USD: 99 }, credits: 24_000, bonusPct: 60, badge: 'Best value' },
-  { price: { INR: 19999, USD: 249 }, credits: 75_000, bonusPct: 100 },
+  { price: { INR: 1000, USD: 13 }, credits: 2_000, bonusPct: 0 },
+  { price: { INR: 4000, USD: 50 }, credits: 8_000, bonusPct: 0 },
+  { price: { INR: 10000, USD: 125 }, credits: 30_000, bonusPct: 0 },
+  { price: { INR: 20000, USD: 250 }, credits: 70_000, bonusPct: 0 },
+  { price: { INR: 30000, USD: 375 }, credits: 100_000, bonusPct: 0 },
 ];
 
 export type PricingFeatureCategory = 'usage' | 'features' | 'security';
@@ -192,20 +195,20 @@ export const FEATURE_ROWS: PricingFeature[] = [
   {
     label: 'Monthly price',
     free: 'Free',
-    starter: { INR: '₹449 / mo', USD: '$9 / mo' },
-    standard: { INR: '₹949 / mo', USD: '$19 / mo' },
-    professional: { INR: '₹1,399 / mo', USD: '$39 / mo' },
+    starter: { INR: '₹599 / mo', USD: '$7.99 / mo' },
+    standard: { INR: '₹1,199 / mo', USD: '$15.99 / mo' },
+    professional: { INR: '₹2,999 / mo', USD: '$45.99 / mo' },
     category: 'usage',
   },
   {
     label: 'Annual price (save ~20%)',
     free: '-',
-    starter: { INR: '₹359/mo (₹4,308/yr)', USD: '$7/mo ($84/yr)' },
-    standard: { INR: '₹759/mo (₹9,108/yr)', USD: '$15/mo ($180/yr)' },
-    professional: { INR: '₹1,119/mo (₹13,428/yr)', USD: '$31/mo ($372/yr)' },
+    starter: { INR: '₹479/mo (₹5,748/yr)', USD: '$6.49/mo ($77.88/yr)' },
+    standard: { INR: '₹959/mo (₹11,508/yr)', USD: '$12.99/mo ($155.88/yr)' },
+    professional: { INR: '₹2,399/mo (₹28,788/yr)', USD: '$37.99/mo ($455.88/yr)' },
     category: 'usage',
   },
-  { label: 'Monthly credits', free: '200', starter: '2,000', standard: '6,000', professional: '10,000', category: 'usage' },
+  { label: 'Monthly credits', free: '100', starter: '1,000', standard: '2,500', professional: '8,000', category: 'usage' },
   { label: 'Chatbots', free: '1', starter: '1', standard: '1', professional: '1', category: 'usage' },
   { label: 'Operator seats included', free: '1', starter: '1', standard: '2', professional: '3', category: 'usage' },
   {
@@ -247,12 +250,12 @@ export const CATEGORY_LABELS: Record<PricingFeatureCategory, string> = {
 };
 
 export const PRICING_FAQ = [
-  { q: "What's a credit?", a: 'Credits are how OyeChats measures usage. Each AI chat reply uses 1 credit, each web page we crawl and add to your knowledge base uses 5 credits, and each document upload uses 3 credits. System emails and live-chat operator messages are always free.' },
+  { q: "What's a credit?", a: 'Credits are how OyeChats measures usage. Each AI chat reply uses 1 credit, each email verification uses 10 credits, each URL scan uses 5 credits, each company name lookup uses 5 credits, and each document scan uses 1 credit per 250 words. System emails and live-chat operator messages are always free.' },
   { q: 'Which currency will I be billed in?', a: 'Pricing is shown in your local currency. Customers in India are billed in INR (₹); international customers are billed in USD ($). You always see a single currency based on your location.' },
   { q: 'How do I pay?', a: 'Indian customers pay via Razorpay: UPI, cards, NetBanking, and wallets are all supported. International customers pay by card in USD. You can switch payment methods any time from the Billing page.' },
   { q: 'Is there a free trial?', a: 'Yes. New accounts can start a 7-day free trial of the Standard plan: the full Standard feature set, no credit card required. And the Free plan runs a working grounded bot at no cost, forever.' },
   { q: 'What happens when I run out of credits?', a: 'Your bot pauses new conversations until your monthly credits reset, or you can buy a top-up pack any time from the Billing page. We hard-cap at zero (costs never run away) with a friendly message to visitors.' },
-  { q: 'Do unused credits roll over?', a: 'Plan credits reset at the start of each billing cycle (use-it-or-lose-it). Top-up credits roll over for 12 months from purchase, oldest first.' },
+  { q: 'Do unused credits roll over?', a: 'Plan credits reset at the start of each billing cycle (use-it-or-lose-it). Top-up credits never expire and are used oldest first.' },
   { q: 'Can I add more operator seats?', a: 'Yes. Extra seats are ₹499 (or $5 for international customers) per month each, added or removed with one click from the Billing page.' },
   { q: 'Can I change plans at any time?', a: 'Absolutely. Upgrade, downgrade, or cancel any time from your dashboard. Downgrades take effect at the end of the billing cycle.' },
   { q: 'How does BANT scoring work?', a: 'OyeChats analyzes every conversation across Budget, Authority, Need, and Timeline, scoring each dimension and combining them into a composite 0 to 100 lead score. That score drives webhook notifications and lead-tier assignments.' },

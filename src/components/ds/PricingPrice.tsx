@@ -25,6 +25,12 @@ export function PricingPrice({
   currency: Currency;
   className?: string;
 }) {
+  // Prices are either whole rupees/dollars or carry cents (e.g. $7.99); the
+  // animation must land on the exact seeded value either way, not a rounded one.
+  const decimals = Number.isInteger(value) ? 0 : 2;
+  const format = (n: number) =>
+    decimals === 0 ? Math.round(n).toLocaleString() : n.toFixed(decimals);
+
   const [display, setDisplay] = useState(value);
   const [seededValue, setSeededValue] = useState(value);
   const animated = useRef(false);
@@ -49,7 +55,7 @@ export function PricingPrice({
     const tick = (now: number) => {
       const t = Math.min(1, (now - start) / DURATION);
       const eased = 1 - Math.pow(1 - t, 3);
-      setDisplay(Math.round(value * eased));
+      setDisplay(t < 1 ? value * eased : value);
       if (t < 1) raf = requestAnimationFrame(tick);
     };
     raf = requestAnimationFrame(tick);
@@ -59,7 +65,7 @@ export function PricingPrice({
   return (
     <span className={className}>
       {CURRENCY_SYMBOL[currency]}
-      {display.toLocaleString()}
+      {format(display)}
     </span>
   );
 }
