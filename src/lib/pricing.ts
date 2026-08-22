@@ -171,7 +171,7 @@ export const TOPUP_PACKS: TopupPack[] = [
   { price: { INR: 4000, USD: 50 }, credits: 8_000, bonusPct: 0 },
   { price: { INR: 10000, USD: 125 }, credits: 30_000, bonusPct: 0 },
   { price: { INR: 20000, USD: 250 }, credits: 70_000, bonusPct: 0 },
-  { price: { INR: 30000, USD: 375 }, credits: 100_000, bonusPct: 0 },
+  { price: { INR: 30000, USD: 375 }, credits: 120_000, bonusPct: 0 },
 ];
 
 export type PricingFeatureCategory = 'usage' | 'features' | 'security';
