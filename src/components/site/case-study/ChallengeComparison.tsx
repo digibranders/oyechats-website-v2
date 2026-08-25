@@ -5,12 +5,18 @@ import type { ComparisonRow } from '@/lib/case-studies';
  *
  * The change is encoded in the type rather than in a table header: the prior
  * state is set in the mono face and muted, the resolved state in the body face
- * and ink. Raw signal on the left, fact on the right. A reader feels the
- * direction before reading either column, and because each row is one grid
- * item the pairing survives the mobile stack instead of separating into two
- * lists that have to be re-paired by counting.
+ * and ink. Raw signal on the left, fact on the right.
  *
- * The same grammar closes the page in the business impact section.
+ * The two halves have to sit close enough to read as one pair. An earlier
+ * version let the columns fill the container, which put 309px of empty space
+ * between the end of the left phrase and the arrow that was supposed to join
+ * it to the right one, with the arrow itself only 16px wide. Constraining the
+ * measure and running a single rule down the middle does the joining instead:
+ * structure once, rather than the same glyph repeated on every row. Direction
+ * is carried by the two column labels.
+ *
+ * Below md each pair stacks with the same short volt hinge the business impact
+ * section uses, so the two comparisons on this page share one device.
  */
 export function ChallengeComparison({
   rows,
@@ -22,26 +28,27 @@ export function ChallengeComparison({
   neededLabel: string;
 }) {
   return (
-    <div>
-      <div className="hidden gap-6 border-b border-line pb-3 sm:grid sm:grid-cols-[1fr_auto_1.1fr]">
+    <div className="max-w-3xl">
+      <div className="hidden border-b border-line pb-3 md:grid md:grid-cols-2">
         <span className="type-mono-sm text-muted">{realityLabel}</span>
-        <span aria-hidden />
-        <span className="type-mono-sm text-muted">{neededLabel}</span>
+        <span className="type-mono-sm border-l border-line pl-10 text-muted">
+          {neededLabel}
+        </span>
       </div>
 
       <ul className="m-0 list-none p-0">
         {rows.map((row) => (
           <li
             key={row.reality}
-            className="grid items-baseline gap-x-6 gap-y-1.5 border-b border-line py-5 sm:grid-cols-[1fr_auto_1.1fr]"
+            className="border-b border-line py-4 md:grid md:grid-cols-2 md:items-baseline"
           >
-            <span className="font-mono text-[13px] leading-relaxed text-muted">
+            <span className="block font-mono text-[13px] leading-relaxed text-muted">
               {row.reality}
             </span>
-            <span className="hidden font-mono text-[12px] text-volt sm:block" aria-hidden>
-              &rarr;
+            <span className="mb-2.5 mt-2 block h-px w-7 bg-volt md:hidden" aria-hidden />
+            <span className="type-body block font-medium text-ink md:border-l md:border-line md:pl-10">
+              {row.needed}
             </span>
-            <span className="type-body font-medium text-ink">{row.needed}</span>
           </li>
         ))}
       </ul>
