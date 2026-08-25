@@ -30,20 +30,26 @@ export function ImpactTransformations({
         const stage = item.evidence ? stages.find((s) => s.id === item.evidence) : undefined;
 
         return (
+          /* Two columns, not three. Three split the evidence from the claim it
+             supports and, because grid stretches every child to the tallest of
+             them, left the number block with about 100px of visible emptiness
+             beneath it in every row at 1024px. Pairing the figure with its
+             claim balances the two sides and gives the title enough width to
+             stay on one line, which it did not have at 357px. */
           <li
             key={item.title}
-            className="grid gap-x-10 gap-y-6 border-t border-line py-10 md:grid-cols-12"
+            className="grid gap-x-12 gap-y-6 border-t border-line py-10 lg:grid-cols-2"
           >
-            {stage && (
-              <div className="md:col-span-3">
-                <p className="font-display text-[clamp(1.875rem,3vw,2.5rem)] font-semibold leading-none tracking-[-0.04em] text-ink tabular-nums">
-                  {stage.value.toLocaleString()}
-                </p>
-                <p className="type-mono-sm mt-2.5 text-muted">{stage.label}</p>
-              </div>
-            )}
+            <div>
+              {stage && (
+                <div className="mb-7">
+                  <p className="font-display text-[clamp(1.875rem,3vw,2.5rem)] font-semibold leading-none tracking-[-0.04em] text-ink tabular-nums">
+                    {stage.value.toLocaleString()}
+                  </p>
+                  <p className="type-mono-sm mt-2.5 text-muted">{stage.label}</p>
+                </div>
+              )}
 
-            <div className={stage ? 'md:col-span-5' : 'md:col-span-8'}>
               {item.was && (
                 <>
                   <p className="font-mono text-[13px] leading-relaxed text-muted">{item.was}</p>
@@ -52,10 +58,10 @@ export function ImpactTransformations({
                   <span className="mt-2.5 mb-3 block h-px w-7 bg-volt" aria-hidden />
                 </>
               )}
-              <h3 className="type-heading-2 text-ink">{item.title}</h3>
+              <h3 className="type-heading-2 text-balance text-ink">{item.title}</h3>
             </div>
 
-            <p className="type-body text-ink-2 md:col-span-4">{item.body}</p>
+            <p className="type-body text-ink-2 lg:pt-1">{item.body}</p>
           </li>
         );
       })}
