@@ -119,7 +119,12 @@ export type CaseSection =
       eyebrow: string;
       heading: string;
       intro?: string;
-      items: { title: string; body: string }[];
+      /**
+       * `was` is the prior state this outcome replaced. Optional: a study whose
+       * impact is not a transformation should leave it unset rather than invent
+       * a before.
+       */
+      items: { was?: string; title: string; body: string }[];
     }
   /**
    * Editorial close. `conclusion` is the study's own authored statement, NOT a
@@ -134,6 +139,11 @@ export type CaseSection =
       heading: string;
       conclusion: string;
       body: string[];
+      /**
+       * Sentence set beside the derived end-to-end rate. The rate itself is
+       * computed from the funnel, so the two can never drift apart.
+       */
+      closing?: string;
     };
 
 /**
@@ -342,14 +352,17 @@ export const CASE_STUDIES: CaseStudy[] = [
           'The implementation changed the role of the website from being primarily an information channel into an active lead identification and qualification channel.',
         items: [
           {
+            was: 'Anonymous traffic',
             title: 'Traffic became identifiable',
             body: 'Company and contact information could be captured during the conversation itself, so visitors who would otherwise have left without contacting the company could still be identified as potential buyers.',
           },
           {
-            title: 'Qualification happened before sales involvement',
+            was: 'Sales qualified manually',
+            title: 'Qualification moved before sales',
             body: 'Potential B2B prospects were identified before a sales representative was involved, conversations carried more structure, and visitors were engaged even when the sales team was unavailable.',
           },
           {
+            was: 'Every enquiry reached a person',
             title: 'Human attention became selective',
             body: 'High intent users were transferred to live support when required, and the sales team received additional context before engaging, so human time went to the conversations that needed it.',
           },
@@ -365,6 +378,8 @@ export const CASE_STUDIES: CaseStudy[] = [
           'The biggest impact of the AI chatbot was not simply the number of conversations it handled. It was its ability to turn anonymous website visitors into identifiable, qualified and actionable B2B opportunities.',
           'In 90 days the chatbot handled 18,742 users, identified 1,146 potential B2B leads, validated 7,821 email IDs, identified 12,486 companies, transferred 428 users to live support, and helped facilitate 241 quotations.',
         ],
+        closing:
+          'of conversations became a shared quotation. The rest of them are on this page too, which is the only reason to believe that figure.',
       },
     ],
   },

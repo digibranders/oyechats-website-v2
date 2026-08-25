@@ -1,12 +1,16 @@
-import { ArrowRight } from 'lucide-react';
 import type { ComparisonRow } from '@/lib/case-studies';
 
 /**
  * Website reality against what the business needed.
  *
- * Rows are pairs, not two independent lists. Two columns of five would separate
- * on mobile into two stacks a reader has to re-pair by counting; keeping the
- * pair as the unit means the association survives the breakpoint.
+ * The change is encoded in the type rather than in a table header: the prior
+ * state is set in the mono face and muted, the resolved state in the body face
+ * and ink. Raw signal on the left, fact on the right. A reader feels the
+ * direction before reading either column, and because each row is one grid
+ * item the pairing survives the mobile stack instead of separating into two
+ * lists that have to be re-paired by counting.
+ *
+ * The same grammar closes the page in the business impact section.
  */
 export function ChallengeComparison({
   rows,
@@ -19,8 +23,9 @@ export function ChallengeComparison({
 }) {
   return (
     <div>
-      <div className="hidden grid-cols-2 gap-8 border-b border-line pb-3 sm:grid">
+      <div className="hidden gap-6 border-b border-line pb-3 sm:grid sm:grid-cols-[1fr_auto_1.1fr]">
         <span className="type-mono-sm text-muted">{realityLabel}</span>
+        <span aria-hidden />
         <span className="type-mono-sm text-muted">{neededLabel}</span>
       </div>
 
@@ -28,17 +33,15 @@ export function ChallengeComparison({
         {rows.map((row) => (
           <li
             key={row.reality}
-            className="grid gap-x-8 gap-y-2 border-b border-line py-5 sm:grid-cols-2"
+            className="grid items-baseline gap-x-6 gap-y-1.5 border-b border-line py-5 sm:grid-cols-[1fr_auto_1.1fr]"
           >
-            <span className="type-body text-ink-2">{row.reality}</span>
-            <span className="type-body flex items-start gap-2.5 font-medium text-ink">
-              <ArrowRight
-                size={15}
-                aria-hidden
-                className="mt-[5px] shrink-0 text-volt sm:hidden"
-              />
-              {row.needed}
+            <span className="font-mono text-[13px] leading-relaxed text-muted">
+              {row.reality}
             </span>
+            <span className="hidden font-mono text-[12px] text-volt sm:block" aria-hidden>
+              &rarr;
+            </span>
+            <span className="type-body font-medium text-ink">{row.needed}</span>
           </li>
         ))}
       </ul>

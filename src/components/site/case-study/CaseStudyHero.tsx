@@ -3,7 +3,7 @@ import { ArrowLeft, ArrowRight } from 'lucide-react';
 import { Button, Container, DottedGrid, HeroGlow } from '@/components/ds';
 import type { CaseStudy } from '@/lib/case-studies';
 import { APP_LINKS } from '@/lib/site';
-import { QualificationFlow } from './QualificationFlow';
+import { FunnelWedge } from './FunnelWedge';
 
 /**
  * Case study hero. Seven columns of argument, five of evidence.
@@ -75,8 +75,11 @@ export function CaseStudyHero({ study }: { study: CaseStudy }) {
             </div>
           </div>
 
+          {/* The wedge, not a feature list. It states the thesis before any
+              body copy, it cannot be faked, and no competitor can draw it
+              without having the same numbers. */}
           <div className="lg:col-span-5">
-            <QualificationFlow />
+            <FunnelWedge stages={study.funnel} />
           </div>
         </div>
       </Container>

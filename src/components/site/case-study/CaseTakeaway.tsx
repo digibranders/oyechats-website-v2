@@ -15,13 +15,25 @@ export function CaseTakeaway({
   heading,
   conclusion,
   body,
+  closing,
+  endToEnd,
 }: {
   id: string;
   eyebrow: string;
   heading: string;
   conclusion: string;
   body: string[];
+  closing?: string;
+  /** First and last funnel stage, so the closing rate is derived, not typed. */
+  endToEnd?: { first: number; last: number };
 }) {
+  // The page opens on the top of funnel. Closing on what survived it gives the
+  // argument an ending instead of a stop, and the rate is computed from the two
+  // counts so it can never drift from the funnel above it.
+  const rate =
+    endToEnd && endToEnd.first > 0
+      ? `${((endToEnd.last / endToEnd.first) * 100).toFixed(1)}%`
+      : null;
   return (
     <section id={id} className="scroll-mt-32 border-b border-line bg-paper py-20 md:py-24">
       <Container>
@@ -40,6 +52,15 @@ export function CaseTakeaway({
             </p>
           ))}
         </div>
+
+        {rate && closing && (
+          <div className="mt-12 flex flex-wrap items-baseline gap-x-6 gap-y-3 border-t border-line pt-8">
+            <p className="font-display text-[clamp(2.5rem,5vw,3.5rem)] font-semibold leading-none tracking-[-0.045em] text-volt tabular-nums">
+              {rate}
+            </p>
+            <p className="type-body-sm measure-narrow text-ink-2">{closing}</p>
+          </div>
+        )}
       </Container>
     </section>
   );

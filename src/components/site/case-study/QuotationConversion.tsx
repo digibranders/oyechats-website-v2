@@ -1,13 +1,17 @@
-import { ArrowRight } from 'lucide-react';
 import { Container } from '@/components/ds';
 
 /**
  * One conversion, stated as a conversion.
  *
  * Both source counts sit beside the rate so the arithmetic is checkable on the
- * page rather than asserted. No proportional bar: two numbers this close do not
- * need a chart to be understood, and adding one would reintroduce the
- * minimum-width question the funnel rewrite just removed.
+ * page rather than asserted.
+ *
+ * This is the one place on the page where a proportional bar is safe. 84.3% is
+ * a large fraction, so the smaller bar is 84% of the larger one and no minimum
+ * width is needed to keep it visible. The unfilled remainder IS the 45 requests
+ * that did not convert, which is a shape a sentence cannot give you. Everywhere
+ * else on this page the ratios are small enough that a bar would have to lie to
+ * stay legible, which is why there are none.
  */
 export function QuotationConversion({
   id,
@@ -38,27 +42,38 @@ export function QuotationConversion({
         <h2 className="type-heading-1 measure-narrow text-ink">{heading}</h2>
 
         <div className="mt-12 grid gap-12 lg:grid-cols-12 lg:gap-16">
-          <dl className="flex flex-wrap items-center gap-x-8 gap-y-6 lg:col-span-7">
-            <div>
-              <dd className="font-display text-[clamp(3rem,6vw,4.5rem)] font-semibold leading-none tracking-[-0.045em] text-ink tabular-nums">
-                {from.value.toLocaleString()}
-              </dd>
-              <dt className="type-body-sm mt-3 text-muted">{from.label}</dt>
+          <dl className="m-0 flex flex-col gap-5 lg:col-span-7">
+            <div className="grid items-center gap-x-6 gap-y-2 sm:grid-cols-[9rem_1fr]">
+              <div>
+                <dd className="font-display text-[clamp(1.75rem,3vw,2.25rem)] font-semibold leading-none tracking-[-0.04em] text-ink tabular-nums">
+                  {from.value.toLocaleString()}
+                </dd>
+                <dt className="type-mono-sm mt-2 text-muted">{from.label}</dt>
+              </div>
+              <span className="h-8 overflow-hidden rounded-[3px] bg-line" aria-hidden>
+                <span className="block h-full w-full rounded-[3px] bg-volt-line" />
+              </span>
             </div>
 
-            <ArrowRight
-              size={28}
-              aria-hidden
-              className="shrink-0 self-start text-line-2"
-              style={{ marginTop: '0.6em' }}
-            />
-
-            <div>
-              <dd className="font-display text-[clamp(3rem,6vw,4.5rem)] font-semibold leading-none tracking-[-0.045em] text-volt-ink tabular-nums">
-                {to.value.toLocaleString()}
-              </dd>
-              <dt className="type-body-sm mt-3 text-muted">{to.label}</dt>
+            <div className="grid items-center gap-x-6 gap-y-2 sm:grid-cols-[9rem_1fr]">
+              <div>
+                <dd className="font-display text-[clamp(1.75rem,3vw,2.25rem)] font-semibold leading-none tracking-[-0.04em] text-volt-ink tabular-nums">
+                  {to.value.toLocaleString()}
+                </dd>
+                <dt className="type-mono-sm mt-2 text-muted">{to.label}</dt>
+              </div>
+              <span className="h-8 overflow-hidden rounded-[3px] bg-line" aria-hidden>
+                <span
+                  className="block h-full rounded-[3px] bg-volt"
+                  style={{ width: `${(to.value / from.value) * 100}%` }}
+                />
+              </span>
             </div>
+
+            <p className="type-body-sm measure text-muted">
+              The {(from.value - to.value).toLocaleString()} request gap is the unfilled
+              remainder above.
+            </p>
           </dl>
 
           <div className="lg:col-span-5">

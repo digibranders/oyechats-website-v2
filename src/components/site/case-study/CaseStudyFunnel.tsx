@@ -1,16 +1,25 @@
 import type { FunnelStage } from '@/lib/case-studies';
-import { stepRate } from '@/lib/case-studies';
+import { stageShare, stepRate } from '@/lib/case-studies';
 import { cn } from '@/lib/cn';
 
 /**
  * The conversation funnel, as a vertical stage progression.
  *
- * This replaces a horizontal proportional bar chart that was quietly lying.
- * Its bars carried `minWidth: 12px`, which on a 205px mobile track drew the
- * bottom three stages (2.3%, 1.5% and 1.3%) at an identical 5.85%, so the
- * chart showed no attrition at all across exactly the stages this study is
- * about. There is no minimum-width floor here and no proportional bar to need
- * one: every quantity is a written numeral, and rank is carried by order.
+ * The rail on each row is drawn at the stage's true share of the top of
+ * funnel, with NO minimum width. That distinction is the whole point. An
+ * earlier version of this chart carried `minWidth: 12px`, which on a 205px
+ * mobile track drew the bottom three stages (2.3%, 1.5% and 1.3%) at an
+ * identical 5.85%, so it showed no attrition at all across exactly the stages
+ * this study is about.
+ *
+ * Drawn honestly, 241 is a two pixel thread at the desktop rail width. That
+ * thread lands harder than the inflated block ever did, because 1.29% really
+ * is almost nothing. If a future change makes the smallest rail feel too
+ * small, widen the rail; never floor the value.
+ *
+ * The rail is decorative. Every quantity it encodes is a written numeral in
+ * the same row, and rank is carried by order, so the section reads identically
+ * with the rails absent.
  *
  * SSR contract: this is a server component. Nothing is gated on an observer or
  * on hydration, so the full sequence is in the static HTML for a non-JS
@@ -63,18 +72,36 @@ export function CaseStudyFunnel({
 
             <div
               className={cn(
-                'flex flex-wrap items-baseline gap-x-5 gap-y-1 border-t py-5',
+                'grid items-center gap-x-5 gap-y-2.5 border-t py-5',
+                'grid-cols-[auto_1fr] md:grid-cols-[2rem_10.5rem_1fr]',
                 isFocal ? 'border-volt-line' : 'border-line',
               )}
             >
               <span
                 className={cn(
-                  'w-8 shrink-0 font-mono text-[11px] font-semibold tabular-nums',
+                  'shrink-0 font-mono text-[11px] font-semibold tabular-nums',
                   isFocal ? 'text-volt' : 'text-muted',
                 )}
               >
                 {String(i + 1).padStart(2, '0')}
               </span>
+
+              {/* True proportion, no floor. See the note above. */}
+              <span
+                aria-hidden
+                className="order-last col-span-2 h-3 overflow-hidden rounded-[2px] bg-line md:order-none md:col-span-1 md:h-3.5"
+              >
+                <span
+                  className="block h-full rounded-[2px]"
+                  style={{
+                    width: `${stageShare(stage, stages)}%`,
+                    background:
+                      'linear-gradient(90deg, var(--volt) 0%, var(--volt-light) 100%)',
+                  }}
+                />
+              </span>
+
+              <span className="flex flex-wrap items-baseline gap-x-4 gap-y-1">
 
               {/* The count leads the row. It is the evidence; the label names
                   it. Keeping them on one baseline stops the number orphaning
@@ -92,15 +119,16 @@ export function CaseStudyFunnel({
 
               <span
                 className={cn(
-                  'min-w-0 flex-1',
+                  'min-w-0',
                   isFocal ? 'type-body font-medium text-ink' : 'type-body text-ink-2',
                 )}
               >
                 {stage.label}
               </span>
+              </span>
 
               {stage.note && (
-                <span className="type-body-sm w-full pl-8 text-muted sm:pl-[3.25rem]">
+                <span className="type-body-sm col-span-2 text-muted md:col-span-3">
                   {stage.note}
                 </span>
               )}

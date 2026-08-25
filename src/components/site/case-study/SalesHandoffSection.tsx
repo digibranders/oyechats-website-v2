@@ -13,6 +13,7 @@ export function SalesHandoffSection({
   body,
   itemsLabel,
   items,
+  ofTotal,
 }: {
   id: string;
   eyebrow: string;
@@ -21,7 +22,14 @@ export function SalesHandoffSection({
   body: string[];
   itemsLabel?: string;
   items?: string[];
+  /** Top of funnel, so the figure can be anchored to what it is a share of. */
+  ofTotal?: number;
 }) {
+  // A large number on a dark ground is impressive but unmoored. Against a
+  // full-width scale it becomes an argument about restraint: almost nobody
+  // needed a person, which is what this section is actually claiming.
+  const share =
+    ofTotal && ofTotal > 0 && !stat.suffix ? (stat.value / ofTotal) * 100 : null;
   return (
     <section
       id={id}
@@ -39,6 +47,20 @@ export function SalesHandoffSection({
               {stat.suffix}
             </p>
             <p className="type-body-sm mt-4 text-ink-invert-muted">{stat.caption}</p>
+
+            {share !== null && (
+              <>
+                <div className="relative mt-7 h-px w-full bg-white/20" aria-hidden>
+                  <span
+                    className="absolute -top-[5px] h-[11px] w-[2px] bg-volt-light"
+                    style={{ left: `${share}%` }}
+                  />
+                </div>
+                <p className="type-mono-sm mt-3 text-ink-invert-muted">
+                  {share.toFixed(1)}% of all {ofTotal?.toLocaleString()} conversations
+                </p>
+              </>
+            )}
           </div>
 
           <div className="lg:col-span-7">

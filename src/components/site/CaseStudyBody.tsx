@@ -114,6 +114,7 @@ export function CaseSectionRenderer({
           body={section.body}
           itemsLabel={section.itemsLabel}
           items={section.items}
+          ofTotal={study.funnel[0]?.value}
         />
       );
 
@@ -153,6 +154,15 @@ export function CaseSectionRenderer({
           heading={section.heading}
           conclusion={section.conclusion}
           body={section.body}
+          closing={section.closing}
+          endToEnd={
+            study.funnel.length > 1
+              ? {
+                  first: study.funnel[0].value,
+                  last: study.funnel[study.funnel.length - 1].value,
+                }
+              : undefined
+          }
         />
       );
   }
