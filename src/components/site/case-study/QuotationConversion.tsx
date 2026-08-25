@@ -1,17 +1,19 @@
 import { Container } from '@/components/ds';
 
 /**
- * One conversion, stated as a conversion.
+ * One conversion, drawn as what it is: a part of a whole.
  *
- * Both source counts sit beside the rate so the arithmetic is checkable on the
- * page rather than asserted.
+ * An earlier version drew 286 and 241 as two separate bars, which says "compare
+ * these two quantities" when 241 is a SUBSET of 286. That encoding needed three
+ * colours to work and still needed a sentence underneath explaining that the
+ * grey tail was the 45 requests, and a chart that needs instructions has already
+ * failed. One track, two segments, both labelled: the 45 is a visible part of
+ * the whole rather than a leftover of the drawing.
  *
- * This is the one place on the page where a proportional bar is safe. 84.3% is
- * a large fraction, so the smaller bar is 84% of the larger one and no minimum
- * width is needed to keep it visible. The unfilled remainder IS the 45 requests
- * that did not convert, which is a shape a sentence cannot give you. Everywhere
- * else on this page the ratios are small enough that a bar would have to lie to
- * stay legible, which is why there are none.
+ * This is the only proportional chart on the page. At 84.3% the smaller segment
+ * is still 174px at desktop and 51px at 375px, so nothing needs a minimum width
+ * to stay visible. Everywhere else the ratios are small enough that a bar would
+ * have to lie to stay legible, which is why the funnel has none.
  */
 export function QuotationConversion({
   id,
@@ -32,59 +34,56 @@ export function QuotationConversion({
   rateCaption: string;
   body: string[];
 }) {
+  const remainder = from.value - to.value;
+  const sharePct = (to.value / from.value) * 100;
+
   return (
-    <section id={id} className="scroll-mt-14 md:scroll-mt-10 border-b border-line bg-canvas py-20 md:py-24">
+    <section
+      id={id}
+      className="scroll-mt-14 border-b border-line bg-canvas py-20 md:scroll-mt-10 md:py-24"
+    >
       <Container>
         <p className="type-mono-sm mb-5 flex items-center gap-2.5 text-muted">
           <span className="h-px w-6 bg-volt" aria-hidden />
           {eyebrow}
         </p>
-        <h2 className="type-heading-1 measure-narrow text-ink">{heading}</h2>
+        <h2 className="type-heading-1 text-balance text-ink">{heading}</h2>
 
-        <div className="mt-12 grid gap-12 lg:grid-cols-12 lg:gap-16">
-          <dl className="m-0 flex flex-col gap-5 lg:col-span-7">
-            <div className="grid items-center gap-x-6 gap-y-2 sm:grid-cols-[9rem_1fr]">
-              <div>
-                <dd className="font-display text-[clamp(1.75rem,3vw,2.25rem)] font-semibold leading-none tracking-[-0.04em] text-ink tabular-nums">
-                  {from.value.toLocaleString()}
-                </dd>
-                <dt className="type-mono-sm mt-2 text-muted">{from.label}</dt>
-              </div>
-              <span className="h-8 overflow-hidden rounded-[3px] bg-line" aria-hidden>
-                <span className="block h-full w-full rounded-[3px] bg-volt-line" />
-              </span>
-            </div>
-
-            <div className="grid items-center gap-x-6 gap-y-2 sm:grid-cols-[9rem_1fr]">
-              <div>
-                <dd className="font-display text-[clamp(1.75rem,3vw,2.25rem)] font-semibold leading-none tracking-[-0.04em] text-volt-ink tabular-nums">
-                  {to.value.toLocaleString()}
-                </dd>
-                <dt className="type-mono-sm mt-2 text-muted">{to.label}</dt>
-              </div>
-              <span className="h-8 overflow-hidden rounded-[3px] bg-line" aria-hidden>
-                <span
-                  className="block h-full rounded-[3px] bg-volt"
-                  style={{ width: `${(to.value / from.value) * 100}%` }}
-                />
-              </span>
-            </div>
-
-            <p className="type-body-sm measure text-muted">
-              The {(from.value - to.value).toLocaleString()} request gap is the unfilled
-              remainder above.
-            </p>
-          </dl>
-
-          <div className="lg:col-span-5">
+        <div className="mt-12">
+          <div className="flex flex-wrap items-baseline gap-x-5 gap-y-2">
             <p className="font-display text-[clamp(2.5rem,4vw,3.25rem)] font-semibold leading-none tracking-[-0.04em] text-ink tabular-nums">
               {rate}
             </p>
-            <p className="type-body-sm measure-narrow mt-3 text-ink-2">{rateCaption}</p>
+            <p className="type-body-sm max-w-[46ch] text-ink-2">{rateCaption}</p>
+          </div>
+
+          {/* The whole is `from`. Decorative: both segments are named in the
+              legend below, with their counts. */}
+          <p className="type-mono-sm mt-9 text-muted">
+            {from.value.toLocaleString()} {from.label.toLowerCase()}
+          </p>
+          <div
+            aria-hidden
+            className="mt-3 flex h-11 overflow-hidden rounded-[var(--r-2)] bg-line"
+          >
+            <div style={{ width: `${sharePct}%` }} className="h-full bg-volt" />
+          </div>
+
+          <div className="mt-3.5 flex flex-wrap items-start justify-between gap-x-8 gap-y-2">
+            <p className="flex items-center gap-2.5 text-[13.5px] text-ink">
+              <span className="h-2.5 w-2.5 shrink-0 rounded-[2px] bg-volt" aria-hidden />
+              <span className="font-medium tabular-nums">{to.value.toLocaleString()}</span>
+              {to.label.toLowerCase()}
+            </p>
+            <p className="flex items-center gap-2.5 text-[13.5px] text-muted">
+              <span className="h-2.5 w-2.5 shrink-0 rounded-[2px] bg-line-2" aria-hidden />
+              <span className="font-medium tabular-nums">{remainder.toLocaleString()}</span>
+              not shared
+            </p>
           </div>
         </div>
 
-        <div className="measure mt-12 space-y-4 border-t border-line pt-8">
+        <div className="measure mt-12 space-y-4 border-t border-line pt-9">
           {body.map((p, i) => (
             <p key={i} className="type-body text-ink-2">
               {p}
