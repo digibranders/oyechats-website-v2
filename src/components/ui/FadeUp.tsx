@@ -156,7 +156,17 @@ export function FadeUp({
       { threshold: amount, rootMargin: "0px 0px -60px 0px" },
     );
     io.observe(node);
-    return () => io.disconnect();
+
+    // Backstop, mirroring CaseStudyFunnel. An observer callback that never
+    // arrives (tab backgrounded mid-scroll, renderer throttling, a root the
+    // element never intersects) would otherwise leave this block at opacity 0
+    // permanently. `replay` blocks deliberately re-hide, so they opt out.
+    const fallback = replay ? 0 : window.setTimeout(() => setInView(true), 4000);
+
+    return () => {
+      io.disconnect();
+      if (fallback) window.clearTimeout(fallback);
+    };
   }, [animate, amount, replay]);
 
   if (!animate) {

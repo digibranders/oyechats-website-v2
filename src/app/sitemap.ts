@@ -1,6 +1,7 @@
 import type { MetadataRoute } from 'next';
 import { LEGAL_PAGES } from '@/lib/legal';
 import { BLOG_POSTS } from '@/lib/blog';
+import { CASE_STUDIES } from '@/lib/case-studies';
 import { CHANGELOG } from '@/lib/changelog';
 import { DOCS_LAST_UPDATED, DOC_PAGES } from '@/lib/docs';
 
@@ -23,6 +24,7 @@ const STATIC_ROUTES: { path: string; lastModified: string; changeFrequency: 'wee
   { path: '/integrations', lastModified: '2026-07-18', changeFrequency: 'monthly', priority: 0.8 },
   { path: '/docs', lastModified: DOCS_LAST_UPDATED, changeFrequency: 'monthly', priority: 0.8 },
   { path: '/blog', lastModified: '2026-07-16', changeFrequency: 'weekly', priority: 0.7 },
+  { path: '/case-studies', lastModified: '2026-08-24', changeFrequency: 'monthly', priority: 0.8 },
   { path: '/contact', lastModified: '2026-07-14', changeFrequency: 'yearly', priority: 0.6 },
   { path: '/about', lastModified: '2026-07-14', changeFrequency: 'yearly', priority: 0.5 },
   { path: '/security', lastModified: '2026-07-14', changeFrequency: 'yearly', priority: 0.5 },
@@ -70,5 +72,14 @@ export default function sitemap(): MetadataRoute.Sitemap {
     priority: 0.7,
   }));
 
-  return [...routes, ...docs, ...legal, ...blog];
+  // Case studies are high-intent proof pages, so they sit above blog posts and
+  // just under the library that lists them.
+  const caseStudies = CASE_STUDIES.map((c) => ({
+    url: `${BASE}/case-studies/${c.slug}`,
+    lastModified: new Date(c.updatedISO ?? c.dateISO),
+    changeFrequency: 'monthly' as const,
+    priority: 0.7,
+  }));
+
+  return [...routes, ...docs, ...legal, ...blog, ...caseStudies];
 }

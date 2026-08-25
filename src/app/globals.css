@@ -498,6 +498,13 @@ img { max-width: 100%; display: block; }
 
 /* ═══════════════════════ PROSE ═══════════════════════ */
 
+/* ── Measure ──
+   Two deliberate text measures, so a composition stops stacking three
+   different `max-w-*` values (768 / 540 / 720px) inside one block. `ch` tracks
+   the rendered font, which is what a measure is actually about. */
+.measure        { max-width: 62ch; }
+.measure-narrow { max-width: 52ch; }
+
 .prose { max-width: 720px; color: var(--ink-2); font-size: 1.0625rem; line-height: 1.75; }
 /* Headings own their own top margin; body/list elements share a single rhythm
    step so spacing never doubles up against a heading's margin. */

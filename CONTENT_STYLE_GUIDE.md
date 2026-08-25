@@ -1,4 +1,4 @@
-# OyeChats — Content Style Guide
+# OyeChats Content Style Guide
 
 **Purpose:** One consistent voice for every word on the OyeChats website. Use this when writing or editing any page, component, form, error, empty state, tooltip, CTA, or metadata.
 **Companion docs:** `CONTENT_AUDIT.md` (findings) · `CONTENT_CHANGELOG.md` (changes made).
@@ -7,14 +7,14 @@
 
 ## 1. Brand Voice
 
-OyeChats sounds like a **calm, technical expert who respects your time** — closer to Stripe, Linear, and Anthropic than to a hype-driven SaaS ad.
+OyeChats sounds like a **calm, technical expert who respects your time**: closer to Stripe, Linear, and Anthropic than to a hype-driven SaaS ad.
 
 Four traits, in priority order:
 
-1. **Honest** — we only claim what the product does. If we can't back it, we cut it. Trust *is* the product.
-2. **Clear** — one idea per sentence. A non-engineer should understand the value; an engineer should respect the accuracy.
-3. **Confident** — short declaratives, no hedging, no exclamation marks. "You only talk to buyers." not "You could talk to more buyers!"
-4. **Concrete** — describe outcomes and real mechanisms, never vague "AI magic".
+1. **Honest.** We only claim what the product does. If we can't back it, we cut it. Trust *is* the product.
+2. **Clear.** One idea per sentence. A non-engineer should understand the value; an engineer should respect the accuracy.
+3. **Confident.** Short declaratives, no hedging, no exclamation marks. "You only talk to buyers." not "You could talk to more buyers!"
+4. **Concrete.** Describe outcomes and real mechanisms, never vague "AI magic".
 
 **We are not:** salesy, hype-y, buzzword-heavy, or robotic. No "revolutionary", "cutting-edge", "game-changing", "unleash", "supercharge", "seamless", "10x", "next-gen".
 
@@ -27,19 +27,19 @@ Tone shifts with context, but voice never does.
 | Surface | Tone | Jargon budget |
 |---|---|---|
 | Homepage, About, Solutions (first scroll) | Warm, benefit-led, plain | **None.** Explain the payoff. |
-| Features | Confident, precise | Medium — technical terms OK, glossed on first use. |
-| Docs, API, Webhooks | Direct, instructional | High — the audience is developers. |
-| Blog | First-person, essay | High — depth is the point. |
+| Features | Confident, precise | Medium. Technical terms OK, glossed on first use. |
+| Docs, API, Webhooks | Direct, instructional | High. The audience is developers. |
+| Blog | First-person, essay | High. Depth is the point. |
 | Pricing | Reassuring, transparent | Low. |
-| Security, Legal | Precise, plain, no spin | Medium — accuracy over simplicity; never soften a limitation. |
+| Security, Legal | Precise, plain, no spin | Medium. Accuracy over simplicity; never soften a limitation. |
 | Errors, empty states, toasts | Human, calm, helpful | None. |
 
 ---
 
 ## 3. Reading Level
 
-- **Marketing surfaces (home, about, solutions, pricing intro, CTAs, errors, empty states):** target **Grade 7–9**. Short sentences. One idea per paragraph. Scannable.
-- **Technical surfaces (features, docs, blog):** clarity over grade level — but still plain where a plain word exists.
+- **Marketing surfaces (home, about, solutions, pricing intro, CTAs, errors, empty states):** target **Grade 7 to 9**. Short sentences. One idea per paragraph. Scannable.
+- **Technical surfaces (features, docs, blog):** clarity over grade level, but still plain where a plain word exists.
 - Enterprise ≠ complicated. If a smart 14-year-old couldn't follow the homepage, simplify it.
 
 ---
@@ -52,11 +52,11 @@ Tone shifts with context, but voice never does.
 | What the customer deploys | **your chatbot**, **your bot**, **your assistant** | "engine", "pipeline", "AI agent" (in marketing) |
 | The on-site embed | **the widget**, **one script tag** | "SDK", "CLI", "package" (no CLI exists) |
 | Retrieval feature | **grounded answers** (gloss: "answers from your own docs, with sources") | leading with "RAG" on marketing pages |
-| Qualification feature | **BANT scoring** — always gloss *Budget, Authority, Need, Timeline* on first use | "MEDDIC" (not implemented) |
+| Qualification feature | **BANT scoring**, always gloss *Budget, Authority, Need, Timeline* on first use | "MEDDIC" (not implemented) |
 | Human escalation | **live handoff**, **hand off to a human** | "omnichannel", "multi-channel" (web widget only) |
 | Setup | **easy setup**, **one line of code** | "integration" as a verb-noun everywhere |
 
-**Product acronyms:** `RAG`, `TSVECTOR`, `embeddings`, `reranking`, `vector index`, `HMAC` — allowed on `/features`, `/docs`, and the blog. **Not** on the homepage/about first scroll.
+**Product acronyms:** `RAG`, `TSVECTOR`, `embeddings`, `reranking`, `vector index`, `HMAC`: allowed on `/features`, `/docs`, and the blog. **Not** on the homepage/about first scroll.
 
 **Consistency rule:** describe the same feature the same way on every page. If Features calls it "grounded answers", the homepage and nav must too.
 
@@ -132,9 +132,9 @@ Rules: never dead-end the user; name the next step; keep it short.
 This is where trust is won or lost. Every claim must pass one test: **can we back it with the product or a cited source?**
 
 - **Only claim shipped capabilities.** No SOC 2 / ISO unless certified. No channels we don't have. No CLI we didn't build.
-- **Numbers:** verifiable stack facts ("768 vector dimensions", "200 free credits", "5 webhook events", "0–100 BANT") are encouraged. Outcome stats ("60% deflection", "3.4x leads") are **banned** unless attributed to a real, named study or pilot ("in an internal pilot, N=…").
-- **Mocks and samples** must be labeled ("Sample", "Illustrative — not live customer data"). Never present a mock as live telemetry.
-- **Mirror the `/security` page's honesty everywhere.** It openly states what's *not* in place — that candor is the brand's biggest trust asset.
+- **Numbers:** verifiable stack facts ("768 vector dimensions", "200 free credits", "5 webhook events", "0 to 100 BANT") are encouraged. Outcome stats ("60% deflection", "3.4x leads") are **banned** unless attributed to a real, named study or pilot ("in an internal pilot, N=…").
+- **Mocks and samples** must be labeled ("Sample", "Illustrative, not live customer data"). Never present a mock as live telemetry.
+- **Mirror the `/security` page's honesty everywhere.** It openly states what's *not* in place. That candor is the brand's biggest trust asset.
 - When in doubt, **cut the claim.** The real product is strong enough to sell on the truth.
 
 ---
@@ -142,9 +142,9 @@ This is where trust is won or lost. Every claim must pass one test: **can we bac
 ## 10. Mechanics & Formatting
 
 - **Apostrophes/quotes:** curly (`'` `"`) in prose.
-- **Dashes:** em dash `—` for asides (no surrounding spaces in tight display copy, spaced in body). En dash `–` for ranges (`0–100`).
-- **Numbers:** numerals for stats and money (`5 webhook events`, `$19/mo`); spell out one–nine only in flowing blog prose.
-- **Currency:** `$19 / month`, `$372/yr` — match existing pricing format.
+- **Dashes:** none. No em dashes, no en dashes, anywhere in copy. For an aside use a full stop, a colon, a comma or brackets; if a sentence needs a dash to hold together, split it. Write ranges with "to" (`0 to 100`, `Grade 7 to 9`). A hyphen inside a compound word (`re-crawl`, `self-serve`) is fine and is not what this rule is about. `scripts/verify-html.mjs` (W-1) fails the build on any em dash or en dash in rendered copy.
+- **Numbers:** numerals for stats and money (`5 webhook events`, `$19/mo`); spell out one to nine only in flowing blog prose.
+- **Currency:** `$19 / month`, `$372/yr`. Match existing pricing format.
 - **Ampersands:** only in tight labels ("Webhooks & REST API"); "and" in sentences.
 - **Lists:** parallel structure; start each bullet with the same part of speech.
 - **Product name:** always "OyeChats" (one word, camel-cased O and C). Never "Oye Chats" or "oyechats" in prose.
@@ -154,7 +154,7 @@ This is where trust is won or lost. Every claim must pass one test: **can we bac
 ## 11. Quick Checklist (before shipping any copy)
 
 - [ ] Would a non-engineer understand the value in one read?
-- [ ] Is every claim backable by the product? (If not — cut it.)
+- [ ] Is every claim backable by the product? (If not, cut it.)
 - [ ] Does each CTA say what happens next?
 - [ ] Any jargon that could be plain English on a marketing surface?
 - [ ] Same feature named the same way as elsewhere on the site?

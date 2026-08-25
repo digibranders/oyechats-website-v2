@@ -8,7 +8,8 @@ web
 
 ## Users
 
-Two co-primary, equally weighted markets — neither is the fallback for the other:
+Two co-primary, equally weighted markets, neither of them the fallback for the
+other:
 
 1. **India SMB / mid-market**, buying in INR through the `/in` pricing path.
 2. **Global (English-speaking) SMB / mid-market**, buying in USD.
@@ -32,7 +33,7 @@ business only spends human time on buyers.
 
 The website's job is to take a stranger mid-evaluation and get them to register
 for the platform (`app.oyechats.com`). Success is a qualified signup, not a
-demo request — there is no sales-call gate in the funnel.
+demo request. There is no sales-call gate in the funnel.
 
 ## Positioning
 
@@ -65,7 +66,7 @@ docs (hybrid RAG); BANT lead scoring; live human handoff; one-line widget
 install; brand-voice customization; built-in security; analytics; webhooks and
 REST API; multi-bot support.
 
-**Hard product boundaries — do not imply otherwise:**
+**Hard product boundaries (do not imply otherwise):**
 
 - Web widget only. Not omnichannel, not multi-channel.
 - No CLI and no SDK/package. The install is one script tag.
@@ -93,7 +94,7 @@ strict, `motion` for micro-interactions only, Lucide icons. `npm run verify`
 
 - **Name and wordmark:** OyeChats. The one-word spelling is the entity; schema
   carries `alternateName: "Oye Chats"` so the spaced spelling resolves to it.
-  Search has also confused the brand with WeChat — the two are close in edit
+  Search has also confused the brand with WeChat: the two are close in edit
   distance and a young domain loses that disambiguation. A
   `disambiguatingDescription` addressing this was drafted but is **not currently
   in the codebase** (it was discarded with an abandoned working branch on
@@ -109,14 +110,14 @@ strict, `motion` for micro-interactions only, Lucide icons. `npm run verify`
   ink, a single electric violet accent. Its standing rules: never invent tokens
   outside the system; never introduce a new hero style; never highlight more than
   one word in Volt. Future work extends this world rather than replacing it. A
-  2026-07-13 audit scored the earlier site ~6.5/10 — that is a mandate to execute
+  2026-07-13 audit scored the earlier site ~6.5/10. That is a mandate to execute
   the system better, not to rebrand.
 
 ## Evidence on Hand
 
 **Real and usable:**
 
-- The live widget on the site — the product demonstrates itself.
+- The live widget on the site: the product demonstrates itself.
 - A genuine changelog with two named, real authors (Gaurav, Steve) and dated
   entries.
 - Real technical documentation, security page, and seven legal documents.
@@ -124,14 +125,14 @@ strict, `motion` for micro-interactions only, Lucide icons. `npm run verify`
 - Live platform health surfaced via `SystemStatus`.
 - Transparent, published pricing in both INR and USD.
 
-**Confirmed absent — must never be fabricated:**
+**Confirmed absent (must never be fabricated):**
 
 - No customer testimonials anywhere in the codebase.
 - No customer logos. The `LogoCloud` component exists but is deliberately
   unused; populating it requires real, permissioned customers.
 - No published usage metrics or outcome statistics.
 
-**OPEN DECISION — not yet answered by the user:** whether named customers,
+**OPEN DECISION (not yet answered by the user):** whether named customers,
 logos, or defensible usage metrics now exist and may be published. Until
 answered, future work must assume they do not and must lead with the product
 itself as proof. Ask before adding any social-proof section.
@@ -144,7 +145,7 @@ itself as proof. Ask before adding any social-proof section.
 2. **Honesty is the differentiator, not a constraint.** Every claim traces to a
    shipped capability. Absent proof is stated plainly, never simulated.
 3. **Show the mechanism.** This audience distrusts "AI magic." Name the actual
-   thing — grounded in your docs, scored on BANT, one script tag.
+   thing: grounded in your docs, scored on BANT, one script tag.
 4. **Self-serve or nothing.** Every question a buyer would ask a salesperson is
    answerable on the site. No step in the path requires a human.
 5. **Two markets, one argument.** Currency and geography change; the reasoning,
@@ -153,5 +154,5 @@ itself as proof. Ask before adding any social-proof section.
 ## Accessibility & Inclusion
 
 No project-specific standard has been established with the user. Treat WCAG 2.2
-AA as the working floor — the general Impeccable baseline — and confirm before
+AA as the working floor (the general Impeccable baseline) and confirm before
 any work that would depend on a stricter commitment.

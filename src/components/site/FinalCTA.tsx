@@ -1,3 +1,4 @@
+import type { ReactNode } from 'react';
 import { Zap } from 'lucide-react';
 import { Button, Container } from '@/components/ds';
 import { APP_LINKS } from '@/lib/site';
@@ -14,7 +15,26 @@ const NODES = [
   { x: 68, y: 78, size: 4, delay: 1.0 },
 ];
 
-export function FinalCTA() {
+/**
+ * Site-wide closing CTA. Every prop is optional and defaults to the copy this
+ * component has always shipped, so existing callers render byte-identically.
+ * The props exist so a route with its own argument (the case study) can supply
+ * its own heading without cloning the section's markup and background, which is
+ * how the two versions drifted apart in the first place.
+ */
+export function FinalCTA({
+  eyebrow = 'Go live in 10 minutes \u00b7 every minute a lead',
+  heading,
+  body = 'Add OyeChats to your site in under 10 minutes. Your first qualified lead can land the same hour, every visitor scored, routed, and reported.',
+  secondaryLabel = 'Talk to sales',
+  secondaryHref = '/contact',
+}: {
+  eyebrow?: string;
+  heading?: ReactNode;
+  body?: string;
+  secondaryLabel?: string;
+  secondaryHref?: string;
+} = {}) {
   return (
     <section className="relative bg-ink-invert text-ink-invert-fg overflow-hidden py-24 md:py-20">
       {/* Background: grid + aurora + constellation */}
@@ -44,19 +64,22 @@ export function FinalCTA() {
         {/* Eyebrow */}
         <div className="text-center type-mono-sm text-ink-invert-muted mb-5 flex items-center gap-2 justify-center">
           <span className="eyebrow-line" />
-          <span>Go live in 10 minutes · every minute a lead</span>
+          <span>{eyebrow}</span>
         </div>
 
         {/* Headline */}
         <h2 className="type-display-2 text-ink-invert-fg text-center max-w-4xl mx-auto">
-          <span>Never lose a </span>
-          <span className="gradient-volt-only">buyer</span>
-          <span> again.</span>
+          {heading ?? (
+            <>
+              <span>Never lose a </span>
+              <span className="gradient-volt-only">buyer</span>
+              <span> again.</span>
+            </>
+          )}
         </h2>
 
         <p className="text-center type-body-lg text-ink-invert-muted max-w-[680px] mx-auto mt-6">
-          Add OyeChats to your site in under 10 minutes. Your first qualified lead can land the same
-          hour, every visitor scored, routed, and reported.
+          {body}
         </p>
 
         <div className="flex justify-center gap-3 flex-wrap mt-9">
@@ -70,12 +93,12 @@ export function FinalCTA() {
             Start free <Zap size={15} />
           </Button>
           <Button
-            href="/contact"
+            href={secondaryHref}
             variant="outline-invert"
             size="lg"
             className="px-5 py-2.5 min-h-11"
           >
-            Talk to sales
+            {secondaryLabel}
           </Button>
         </div>
 
