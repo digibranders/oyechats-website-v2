@@ -123,8 +123,14 @@ export type CaseSection =
        * `was` is the prior state this outcome replaced. Optional: a study whose
        * impact is not a transformation should leave it unset rather than invent
        * a before.
+       *
+       * `evidence` is the id of the funnel stage that backs the claim, so the
+       * figure beside each outcome is resolved from the funnel rather than
+       * typed here. A claim whose evidence is not already a reported count has
+       * to go without one; that is the point of referencing rather than
+       * restating.
        */
-      items: { was?: string; title: string; body: string }[];
+      items: { was?: string; title: string; body: string; evidence?: string }[];
     }
   /**
    * Editorial close. `conclusion` is the study's own authored statement, NOT a
@@ -363,16 +369,19 @@ export const CASE_STUDIES: CaseStudy[] = [
           {
             was: 'Anonymous traffic',
             title: 'Traffic became identifiable',
+            evidence: 'company',
             body: 'Company and contact information could be captured during the conversation itself, so visitors who would otherwise have left without contacting the company could still be identified as potential buyers.',
           },
           {
             was: 'Sales qualified manually',
             title: 'Qualification moved before sales',
+            evidence: 'leads',
             body: 'Potential B2B prospects were identified before a sales representative was involved, conversations carried more structure, and visitors were engaged even when the sales team was unavailable.',
           },
           {
             was: 'Every enquiry reached a person',
             title: 'Human attention became selective',
+            evidence: 'transferred',
             body: 'High intent users were transferred to live support when required, and the sales team received additional context before engaging, so human time went to the conversations that needed it.',
           },
         ],

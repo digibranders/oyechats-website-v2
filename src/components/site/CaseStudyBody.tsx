@@ -152,7 +152,7 @@ export function CaseSectionRenderer({
           sub={section.intro}
           className={SCROLL_MARGIN}
         >
-          <ImpactTransformations items={section.items} />
+          <ImpactTransformations items={section.items} stages={study.funnel} />
         </Section>
       );
 
