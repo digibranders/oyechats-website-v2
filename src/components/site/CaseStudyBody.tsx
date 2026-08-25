@@ -18,9 +18,19 @@ import type { CaseSection, CaseStudy } from '@/lib/case-studies';
  * Section headings are all h2 and any nested title is h3, which is what keeps
  * `verify-html` F-12 (no skipped heading level) green.
  *
- * `scroll-mt-32` (128px) clears the 64px header plus the ~49px section nav.
+ * Scroll offset for a jumped-to section.
+ *
+ * This is NOT simply the height of the pinned chrome. The chrome ends at 113px
+ * on mobile and 109px on desktop, but a `Section` also carries 64px (mobile) or
+ * 80px (desktop) of its own top padding, and the two stack: an offset equal to
+ * the chrome left 99px of empty paper between the nav and the eyebrow, an
+ * eighth of the viewport, which read as the page having failed to scroll.
+ *
+ * So the offset is chrome minus that padding, plus a little air. Both values
+ * land the eyebrow at 136px, just under the chrome, at either breakpoint. If
+ * a section's padding changes, its offset has to change with it.
  */
-const SCROLL_MARGIN = 'scroll-mt-32';
+const SCROLL_MARGIN = 'scroll-mt-[4.5rem] md:scroll-mt-14';
 
 export function CaseSectionRenderer({
   section,

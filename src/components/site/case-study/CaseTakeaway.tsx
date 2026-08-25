@@ -35,7 +35,7 @@ export function CaseTakeaway({
       ? `${((endToEnd.last / endToEnd.first) * 100).toFixed(1)}%`
       : null;
   return (
-    <section id={id} className="scroll-mt-32 border-b border-line bg-paper py-20 md:py-24">
+    <section id={id} className="scroll-mt-14 md:scroll-mt-10 border-b border-line bg-paper py-20 md:py-24">
       <Container>
         <p className="type-mono-sm mb-5 flex items-center gap-2.5 text-muted">
           <span className="h-px w-6 bg-volt" aria-hidden />

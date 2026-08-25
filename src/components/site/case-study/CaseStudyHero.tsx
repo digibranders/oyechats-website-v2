@@ -20,7 +20,10 @@ export function CaseStudyHero({ study }: { study: CaseStudy }) {
   ];
 
   return (
-    <header id="overview" className="relative overflow-hidden border-b border-line bg-paper">
+    <header
+      id="overview"
+      className="relative scroll-mt-26 overflow-hidden border-b border-line bg-paper md:scroll-mt-24"
+    >
       <HeroGlow />
       <DottedGrid />
 

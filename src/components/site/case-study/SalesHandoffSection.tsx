@@ -33,7 +33,7 @@ export function SalesHandoffSection({
   return (
     <section
       id={id}
-      className="scroll-mt-32 bg-ink-invert py-20 text-ink-invert-fg md:py-24"
+      className="scroll-mt-14 md:scroll-mt-10 bg-ink-invert py-20 text-ink-invert-fg md:py-24"
     >
       <Container>
         <div className="grid gap-12 lg:grid-cols-12 lg:gap-16">
