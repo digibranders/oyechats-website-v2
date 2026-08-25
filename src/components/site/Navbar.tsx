@@ -11,6 +11,7 @@ import {
   LineChart,
   ChevronDown,
   Rocket,
+  Trophy,
 } from 'lucide-react';
 import { Button } from '@/components/ds';
 import { APP_LINKS } from '@/lib/site';
@@ -29,6 +30,7 @@ const RESOURCES_MENU: MegaColumn[] = [
       { icon: BookOpen, label: 'Documentation', href: '/docs' },
       { icon: Rocket, label: 'Quickstart', href: '/docs/getting-started/quickstart' },
       { icon: Sparkles, label: 'Changelog', href: '/changelog' },
+      { icon: Trophy, label: 'Case studies', href: '/case-studies' },
       { icon: LineChart, label: 'Blog', href: '/blog' },
       { icon: ShieldCheck, label: 'Security', href: '/security' },
     ],
@@ -53,6 +55,7 @@ const MOBILE_LINKS = [
   { label: 'Integrations', href: '/integrations' },
   { label: 'Pricing', href: '/pricing' },
   { label: 'Docs', href: '/docs' },
+  { label: 'Case studies', href: '/case-studies' },
   { label: 'Blog', href: '/blog' },
   { label: 'Contact us', href: '/contact' },
 ];

@@ -58,6 +58,7 @@ export const FOOTER_COLUMNS = [
     title: 'Resources',
     links: [
       { label: 'Docs', href: '/docs' },
+      { label: 'Case studies', href: '/case-studies' },
       { label: 'Security', href: '/security' },
       { label: 'Status', href: STATUS_URL },
       { label: 'Blog', href: '/blog' },
