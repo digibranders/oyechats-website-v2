@@ -52,7 +52,12 @@ export function NumberTicker({
           started.current = true;
           const start = performance.now();
           const tick = (now: number) => {
-            const t = Math.min(1, (now - start) / duration);
+            // Clamped at BOTH ends. rAF reports the timestamp of the current
+            // frame's start, which can precede the `performance.now()` captured
+            // in the observer callback above. Without the lower clamp `t` goes
+            // negative, `1 - (1-t)^3` goes negative with it, and the ticker
+            // paints a negative count on its first frame.
+            const t = Math.max(0, Math.min(1, (now - start) / duration));
             const eased = 1 - Math.pow(1 - t, 3);
             setDisplay(Math.round(value * eased));
             if (t < 1) requestAnimationFrame(tick);

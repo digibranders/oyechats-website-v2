@@ -53,7 +53,11 @@ export function PricingPrice({
     const start = performance.now();
     let raf = 0;
     const tick = (now: number) => {
-      const t = Math.min(1, (now - start) / DURATION);
+      // Clamped at both ends, same reason as NumberTicker: rAF reports the
+      // current frame's start time, which can precede the `performance.now()`
+      // captured just above, and an unclamped negative `t` drives the easing
+      // below negative. On this component that paints a negative PRICE.
+      const t = Math.max(0, Math.min(1, (now - start) / DURATION));
       const eased = 1 - Math.pow(1 - t, 3);
       setDisplay(t < 1 ? value * eased : value);
       if (t < 1) raf = requestAnimationFrame(tick);
