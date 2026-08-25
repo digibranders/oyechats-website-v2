@@ -154,6 +154,15 @@ export type CaseSection =
  */
 export type HeadlineSegment = { text: string; accent?: boolean };
 
+/**
+ * One rendered line of the hero h1. Lines are explicit rather than left to the
+ * browser, because natural wrapping split "18,742" onto a line of its own,
+ * away from "conversations", and stranded "1,146" at the end of the next line
+ * away from "potential B2B leads". An accent that separates a figure from the
+ * noun it counts is worse than no accent at all.
+ */
+export type HeadlineLine = HeadlineSegment[];
+
 export type CaseStudy = {
   slug: string;
   /**
@@ -185,8 +194,8 @@ export type CaseStudy = {
     period: string;
     solution: string;
   };
-  /** The h1, split so the accent lands on the figures that carry the claim. */
-  heroHeadline: HeadlineSegment[];
+  /** The h1, one entry per line, with the accent on the figures that carry the claim. */
+  heroHeadline: HeadlineLine[];
   /** Exactly three. Rendered in the outcome strip and on the library card. */
   headline: CaseMetric[];
   funnel: FunnelStage[];
@@ -221,11 +230,11 @@ export const CASE_STUDIES: CaseStudy[] = [
       period: '90 days',
       solution: 'AI website chatbot for lead identification, qualification and support',
     },
+    // Three declarative beats, one per line. Each figure stays with its noun.
     heroHeadline: [
-      { text: '18,742', accent: true },
-      { text: ' conversations. ' },
-      { text: '1,146', accent: true },
-      { text: ' potential B2B leads. 90 days.' },
+      [{ text: '18,742', accent: true }, { text: ' conversations.' }],
+      [{ text: '1,146', accent: true }, { text: ' potential B2B leads.' }],
+      [{ text: '90 days.' }],
     ],
     headline: [
       { value: 18742, label: 'Conversations handled' },

@@ -36,12 +36,6 @@ function shareOfFunnel(metric: CaseMetric, study: CaseStudy): string | null {
 }
 
 export function CaseStudyOutcomeStrip({ study }: { study: CaseStudy }) {
-  const meta = [
-    `${study.client.period} implementation`,
-    study.client.industry,
-    study.client.market,
-    'Client identity withheld',
-  ];
   const last = study.headline.length - 1;
 
   return (
@@ -77,15 +71,6 @@ export function CaseStudyOutcomeStrip({ study }: { study: CaseStudy }) {
             );
           })}
         </dl>
-
-        <p className="type-mono-sm mt-12 border-t border-line pt-6 text-muted">
-          {meta.map((part, i) => (
-            <span key={part}>
-              {i > 0 && <span className="mx-2 text-line-2">&middot;</span>}
-              {part}
-            </span>
-          ))}
-        </p>
       </Container>
     </section>
   );

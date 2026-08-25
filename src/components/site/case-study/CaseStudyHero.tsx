@@ -13,10 +13,10 @@ import { FunnelWedge } from './FunnelWedge';
  */
 export function CaseStudyHero({ study }: { study: CaseStudy }) {
   const meta = [
-    'Case study',
     study.client.industry,
     study.client.market,
     study.client.period,
+    study.client.name,
   ];
 
   return (
@@ -37,36 +37,38 @@ export function CaseStudyHero({ study }: { study: CaseStudy }) {
           <ArrowLeft size={14} aria-hidden /> All case studies
         </Link>
 
-        <div className="grid gap-12 lg:grid-cols-12 lg:gap-16">
-          <div className="lg:col-span-7">
-            {/* One metadata line, not four chips. */}
-            <p className="type-mono-sm mb-6 text-muted">
-              {meta.map((part, i) => (
-                <span key={part}>
-                  {i > 0 && <span className="mx-2 text-line-2">&middot;</span>}
-                  {part}
-                </span>
-              ))}
-            </p>
+        {/* One metadata line, not four chips. It ends on the anonymisation,
+            because "whose numbers are these?" is the first question an unnamed
+            case study raises and leaving it to a strip further down lets the
+            reader sit with it. */}
+        <p className="type-mono-sm mb-6 text-muted">
+          {meta.map((part, i) => (
+            <span key={part}>
+              {i > 0 && <span className="mx-2 text-line-2">&middot;</span>}
+              {part}
+            </span>
+          ))}
+        </p>
 
-            {/* The display scale's own size, not the `type-display-2` class.
-                That class floors at 44px under 640px and tops out at 72px,
-                either side of this page's 38-42px / 60-68px target, and it is
-                shared with routes that should keep those sizes. Family, weight
-                and tracking still come from the same scale. */}
-            <h1 className="font-display text-[clamp(2.375rem,4.2vw+1.1rem,4.25rem)] font-semibold leading-[1.03] tracking-[-0.04em] text-ink">
-              {study.heroHeadline.map((seg, i) =>
+        <h1 className="mb-12 font-display text-[clamp(2.375rem,4.6vw+1rem,4.25rem)] font-semibold leading-[1.04] tracking-[-0.04em] text-ink">
+          {study.heroHeadline.map((line, li) => (
+            <span key={li} className="block">
+              {line.map((seg, si) =>
                 seg.accent ? (
-                  <span key={i} className="text-volt">
+                  <span key={si} className="text-volt">
                     {seg.text}
                   </span>
                 ) : (
-                  <span key={i}>{seg.text}</span>
+                  <span key={si}>{seg.text}</span>
                 ),
               )}
-            </h1>
+            </span>
+          ))}
+        </h1>
 
-            <p className="type-body-lg measure mt-7 text-ink-2">{study.summary}</p>
+        <div className="grid gap-12 lg:grid-cols-12 lg:gap-16">
+          <div className="lg:col-span-6">
+            <p className="type-body-lg measure text-ink-2">{study.summary}</p>
 
             <div className="mt-9 flex flex-wrap items-center gap-3">
               <Button href={APP_LINKS.register} external variant="volt" size="md">
@@ -81,7 +83,7 @@ export function CaseStudyHero({ study }: { study: CaseStudy }) {
           {/* The wedge, not a feature list. It states the thesis before any
               body copy, it cannot be faked, and no competitor can draw it
               without having the same numbers. */}
-          <div className="lg:col-span-5">
+          <div className="lg:col-span-6">
             <FunnelWedge stages={study.funnel} />
           </div>
         </div>
