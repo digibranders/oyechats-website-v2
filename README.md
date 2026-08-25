@@ -1,6 +1,6 @@
-# OyeChats — Voltage Paper
+# OyeChats: Voltage Paper
 
-Full rebuild of oyechats.com on the **Voltage Paper** design system — a technical-modern light theme with warm paper neutrals, near-black ink, and a single electric violet accent.
+Full rebuild of oyechats.com on the **Voltage Paper** design system: a technical-modern light theme with warm paper neutrals, near-black ink, and a single electric violet accent.
 
 ## Stack
 

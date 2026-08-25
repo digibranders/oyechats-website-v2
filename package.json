@@ -2,7 +2,7 @@
   "name": "oyechats-website-v2",
   "version": "1.0.0",
   "private": true,
-  "description": "OyeChats — Voltage Paper design system rebuild",
+  "description": "OyeChats: Voltage Paper design system rebuild",
   "scripts": {
     "dev": "next dev",
     "build": "next build",
