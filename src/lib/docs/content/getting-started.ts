@@ -210,7 +210,7 @@ export const GETTING_STARTED: DocGroup = {
               t: 'callout',
               variant: 'info',
               title: 'About the credit link',
-              text: 'The `<a>` is the attribution link. It sits in your page\'s HTML so search engines and AI assistants can read it. The badge inside the widget only renders after a visitor opens the chat, so crawlers never see it. Plans that include white-label branding emit a snippet without this line. See [Branding](/docs/widget/customize).',
+              text: 'The `<a>` is the attribution link. It sits in your page\'s HTML so search engines and AI assistants can read it. The badge inside the widget only renders after a visitor opens the chat, so crawlers never see it. Workspaces with the branding removal add-on get a snippet without this line. See [Branding](/docs/widget/customize).',
             },
           ],
         },

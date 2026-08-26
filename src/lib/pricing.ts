@@ -60,6 +60,13 @@ export type PricingTier = {
 
 export const EXTRA_SEAT_PRICE: Money = { INR: 499, USD: 5 };
 
+/**
+ * Branding removal is sold per workspace as an add-on on top of any paid plan,
+ * the same way extra operator seats are. No plan includes it, Enterprise
+ * included, so it never appears as a bullet in `PRICING_TIERS`.
+ */
+export const BRANDING_ADDON_PRICE: Money = { INR: 499, USD: 5 };
+
 export const PRICING_TIERS: PricingTier[] = [
   {
     id: 'free',
@@ -120,7 +127,7 @@ export const PRICING_TIERS: PricingTier[] = [
       '2 operator seats',
       'BANT lead qualification & scoring',
       'Auto-recrawl + visitor & UTM tracking',
-      'Remove OyeChats branding · routing',
+      'Routing + departments',
       'Webhooks + REST API',
       '90-day history · priority support',
     ],
@@ -234,7 +241,14 @@ export const FEATURE_ROWS: PricingFeature[] = [
   { label: 'Qualification funnel analytics', free: false, starter: false, standard: true, professional: true, category: 'features' },
   { label: 'Visitor + behavioral tracking, UTM', free: 'Basic', starter: 'Basic', standard: true, professional: true, category: 'features' },
   { label: 'Webhooks (5 events) + REST API', free: false, starter: false, standard: true, professional: true, category: 'features' },
-  { label: 'Remove OyeChats branding', free: false, starter: false, standard: true, professional: true, category: 'features' },
+  {
+    label: 'Remove OyeChats branding',
+    free: '-',
+    starter: { INR: '₹499/mo add-on', USD: '$5/mo add-on' },
+    standard: { INR: '₹499/mo add-on', USD: '$5/mo add-on' },
+    professional: { INR: '₹499/mo add-on', USD: '$5/mo add-on' },
+    category: 'features',
+  },
   { label: 'White-label custom domain', free: false, starter: false, standard: false, professional: true, category: 'features' },
 
   { label: 'Roles & permissions (RBAC)', free: 'Owner', starter: true, standard: true, professional: true, category: 'security' },
@@ -257,6 +271,7 @@ export const PRICING_FAQ = [
   { q: 'What happens when I run out of credits?', a: 'Your bot pauses new conversations until your monthly credits reset, or you can buy a top-up pack any time from the Billing page. We hard-cap at zero (costs never run away) with a friendly message to visitors.' },
   { q: 'Do unused credits roll over?', a: 'Plan credits reset at the start of each billing cycle (use-it-or-lose-it). Top-up credits never expire and are used oldest first.' },
   { q: 'Can I add more operator seats?', a: 'Yes. Extra seats are ₹499 (or $5 for international customers) per month each, added or removed with one click from the Billing page.' },
+  { q: 'Can I remove the "Powered by OyeChats" branding?', a: 'Yes, as a paid add-on on any paid plan. It costs ₹499 (or $5 for international customers) per month per workspace and is not bundled into any plan. Switch it on from the Billing page: the badge inside the widget disappears and the dashboard gives you an embed snippet without the attribution link.' },
   { q: 'Can I change plans at any time?', a: 'Absolutely. Upgrade, downgrade, or cancel any time from your dashboard. Downgrades take effect at the end of the billing cycle.' },
   { q: 'How does BANT scoring work?', a: 'OyeChats analyzes every conversation across Budget, Authority, Need, and Timeline, scoring each dimension and combining them into a composite 0 to 100 lead score. That score drives webhook notifications and lead-tier assignments.' },
   { q: 'Is annual billing charged upfront?', a: 'Yes. Annual billing is charged as a single payment at the start of the year, giving you approximately 20% savings versus monthly.' },

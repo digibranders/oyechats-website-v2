@@ -346,7 +346,7 @@ export default function RootLayout({ children }) {
           blocks: [
             {
               t: 'p',
-              text: 'White-label branding is a plan entitlement. On plans that include it you can turn off the in-widget badge and edit the branding text and link, and the dashboard emits an embed snippet without the attribution anchor.',
+              text: 'Branding removal is a paid add-on. Buy it on top of any paid plan from the Billing page; no plan includes it. Once it is active you can turn off the in-widget badge and edit the branding text and link, and the dashboard emits an embed snippet without the attribution anchor.',
             },
             {
               t: 'callout',
