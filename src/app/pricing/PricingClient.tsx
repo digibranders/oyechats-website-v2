@@ -25,6 +25,7 @@ import {
   CREDIT_COSTS,
   TOPUP_PACKS,
   CATEGORY_LABELS,
+  TAX_NOTE,
   formatPrice,
   isCurrencyText,
   type Currency,
@@ -201,6 +202,7 @@ export default function PricingClient({ currency }: { currency: Currency }) {
             );
           })}
         </div>
+        <p className="type-body-sm text-muted mt-6">{TAX_NOTE[currency]}</p>
       </Section>
 
       <Section

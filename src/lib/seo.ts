@@ -121,6 +121,13 @@ function pricingOffers(): Record<string, unknown>[] {
           '@type': 'UnitPriceSpecification',
           price: amount,
           priceCurrency: code,
+          // These are BASE prices: Indian customers are charged 18% GST on top
+          // at checkout. Without this flag the offer is silent on tax, and a
+          // consumer of the graph is free to read the INR figure as the amount
+          // payable, which under-states it. schema.org resolves the ambiguity
+          // with exactly this boolean, so declare it rather than leaving the
+          // markup to disagree with the page's own visible price.
+          valueAddedTaxIncluded: false,
           billingIncrement: 1,
           unitCode: 'MON',
           referenceQuantity: { '@type': 'QuantitativeValue', value: 1, unitCode: 'MON' },

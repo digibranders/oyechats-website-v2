@@ -67,6 +67,18 @@ export const EXTRA_SEAT_PRICE: Money = { INR: 499, USD: 5 };
  */
 export const BRANDING_ADDON_PRICE: Money = { INR: 499, USD: 5 };
 
+/**
+ * Every price in this file is a base price, exclusive of tax. Indian customers
+ * are charged 18% GST on top at checkout; the USD rail is an export of services
+ * and carries no Indian GST, so the listed USD figure is the full charge. This
+ * note is rendered under the plan grid on `/pricing` and covers plans, extra
+ * seats, the branding add-on, and top-up packs alike.
+ */
+export const TAX_NOTE: CurrencyText = {
+  INR: 'Prices exclude GST. 18% GST is added at checkout and shown as a separate line on your tax invoice.',
+  USD: 'Prices are in USD and exclude any tax due in your own country. Indian GST is not charged.',
+};
+
 export const PRICING_TIERS: PricingTier[] = [
   {
     id: 'free',
@@ -267,6 +279,7 @@ export const PRICING_FAQ = [
   { q: "What's a credit?", a: 'Credits are how OyeChats measures usage. Each AI chat reply uses 1 credit, each email verification uses 10 credits, each URL scan uses 5 credits, each company name lookup uses 5 credits, and each document scan uses 1 credit per 250 words. System emails and live-chat operator messages are always free.' },
   { q: 'Which currency will I be billed in?', a: 'Pricing is shown in your local currency. Customers in India are billed in INR (₹); international customers are billed in USD ($). You always see a single currency based on your location.' },
   { q: 'How do I pay?', a: 'Indian customers pay via Razorpay: UPI, cards, NetBanking, and wallets are all supported. International customers pay by card in USD. You can switch payment methods any time from the Billing page.' },
+  { q: 'Is GST included in these prices?', a: 'No. Every price shown is a base price. Customers in India are charged 18% GST on top at checkout, and it appears as a separate line on the tax invoice. International customers pay in USD and are not charged Indian GST; any tax due in your own country is your responsibility. Extra operator seats, the branding removal add-on, and credit top-up packs are base prices too.' },
   { q: 'Is there a free trial?', a: 'Yes. New accounts can start a 7-day free trial of the Standard plan: the full Standard feature set, no credit card required. And the Free plan runs a working grounded bot at no cost, forever.' },
   { q: 'What happens when I run out of credits?', a: 'Your bot pauses new conversations until your monthly credits reset, or you can buy a top-up pack any time from the Billing page. We hard-cap at zero (costs never run away) with a friendly message to visitors.' },
   { q: 'Do unused credits roll over?', a: 'Plan credits reset at the start of each billing cycle (use-it-or-lose-it). Top-up credits never expire and are used oldest first.' },

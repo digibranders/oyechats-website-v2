@@ -251,7 +251,7 @@ Optional extras
                 'Every charge produces a numbered invoice with a PDF, under **Workspace → Billing**.',
                 'Invoices are emailed when they are issued.',
                 'Indian GST is computed and shown on the invoice, with the CGST/SGST or IGST split determined by place of supply.',
-                'Displayed prices are GST-inclusive: the tax is broken out on the invoice rather than added on top at checkout.',
+                'Displayed prices are GST-exclusive: 18% GST is added on top at checkout and carried as a separate line on the invoice.',
                 'Add your GSTIN and billing address under **Workspace → Billing** before your first charge so they appear on the invoice from the start.',
               ],
             },
