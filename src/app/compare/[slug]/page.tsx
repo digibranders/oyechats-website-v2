@@ -17,12 +17,21 @@ import {
 } from '@/components/ds';
 import { CompareTable } from '@/components/site/CompareTable';
 import { COMPETITORS, getCompetitor } from '@/lib/compare';
+import { ZOHO_SLUG } from '../oyechats-vs-zoho-salesiq/content';
 import { APP_LINKS } from '@/lib/site';
 
 type Params = { slug: string };
 
+/**
+ * Zoho SalesIQ is excluded: it has a dedicated route at
+ * `/compare/oyechats-vs-zoho-salesiq` that shadows this segment. Generating the
+ * path here too would have two routes resolve to one URL, which Next treats as
+ * a build error rather than a precedence rule. The competitor entry itself stays
+ * in `@/lib/compare` — the hub, the cross-links and the dedicated page's own
+ * feature matrix all read from it.
+ */
 export function generateStaticParams(): Params[] {
-  return COMPETITORS.map((c) => ({ slug: c.slug }));
+  return COMPETITORS.filter((c) => c.slug !== ZOHO_SLUG).map((c) => ({ slug: c.slug }));
 }
 
 export async function generateMetadata({
