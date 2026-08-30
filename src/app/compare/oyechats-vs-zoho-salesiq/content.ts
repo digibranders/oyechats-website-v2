@@ -79,6 +79,9 @@ export const WHAT_THEY_ARE = {
  * The long-form deep dives. `edge` mirrors the shared matrix in `@/lib/compare`
  * and is judged from our side, but marks `tie` and `them` honestly.
  */
+/** Which figure renders beside a dive. Keys map to `./visuals.tsx`. */
+export type DiveVisual = 'answers' | 'qualification' | 'handoff' | 'webhooks' | 'install';
+
 export type DeepDive = {
   id: string;
   eyebrow: string;
@@ -88,6 +91,9 @@ export type DeepDive = {
   zoho: string;
   /** The fair reading. Written to survive a sceptical reader, not to win. */
   verdict: string;
+  visual: DiveVisual;
+  /** Caption under the figure. Says what is being shown, not what to think. */
+  visualCaption: string;
 };
 
 export const DEEP_DIVES: DeepDive[] = [
@@ -100,6 +106,9 @@ export const DEEP_DIVES: DeepDive[] = [
     zoho: 'SalesIQ ships Zobot, a bot builder with several authoring modes (a codeless flow builder, a scripting option, and AI-assisted answering) plus a resource library the bot can draw on. It is capable, and it is a build: the quality of grounding is a function of how much you configure.',
     verdict:
       'The difference is not whether grounded answers are possible on both. It is what a new account does on day one. Ours answers from your content as its default state; theirs answers well once you have built it.',
+    visual: 'answers',
+    visualCaption:
+      'A crawl of your site, then an answer that names the page it came from.'
   },
   {
     id: 'qualification',
@@ -110,6 +119,9 @@ export const DEEP_DIVES: DeepDive[] = [
     zoho: 'SalesIQ has visitor scoring and lead ranking built around engagement and on-site behaviour, fed by genuinely strong visitor tracking. What it does not present as a configurable product primitive is a named B2B sales framework.',
     verdict:
       'This is the widest gap on the page, and it is a difference in the question being answered. Behavioural scoring tells you who is engaged. Framework qualification tells you who is ready to buy, and which dimension they are still weak on.',
+    visual: 'qualification',
+    visualCaption:
+      'One conversation scored, and the tier that score lands on.'
   },
   {
     id: 'handoff',
@@ -120,6 +132,9 @@ export const DEEP_DIVES: DeepDive[] = [
     zoho: 'Live chat is what SalesIQ is for, and it is mature: routing, departments, canned replies, operator mobile apps, and richer in-chat modalities than we offer today.',
     verdict:
       'We are not going to claim we out-live-chat a dedicated live chat vendor. Call it a tie. Our narrow advantage is a consequence of the row above: the operator picking up a handoff already knows the tier of the lead before they type a word.',
+    visual: 'handoff',
+    visualCaption:
+      'The four session states, and what an operator picks up with.'
   },
   {
     id: 'integrations',
@@ -130,6 +145,9 @@ export const DEEP_DIVES: DeepDive[] = [
     zoho: 'Native, first-party, deeply-wired integration with Zoho CRM, Zoho Desk and the wider suite. It is the kind of integration only the vendor who owns both sides can build.',
     verdict:
       'Stated plainly: OyeChats has no native Zoho CRM integration. Leads reach any CRM through webhooks and the REST API. That is genuinely CRM-agnostic, and it is genuinely more work than a first-party connector. If your CRM is Zoho, that is a real point for them.',
+    visual: 'webhooks',
+    visualCaption:
+      'Where a qualified lead goes, and the retry ladder behind it.'
   },
   {
     id: 'setup',
@@ -140,7 +158,40 @@ export const DEEP_DIVES: DeepDive[] = [
     zoho: 'A suite product carrying visitor tracking, routing rules, departments and a bot builder is configured before it is useful. That is the cost of its flexibility, not a defect.',
     verdict:
       'Setup depth, not vendor competence. If you want to be answering questions this afternoon, the shallower setup wins. If you want to model a 12-person support org, the deeper one earns its configuration.',
+    visual: 'install',
+    visualCaption:
+      'The whole install. There is no second step.'
   },
+];
+
+/**
+ * The qualification tier ladder. Same thresholds the qualification service
+ * uses, shared across all four frameworks. Rendered as positions on a ladder
+ * beside the qualification dive rather than repeated as prose.
+ */
+export const TIERS: { tier: string; at: number }[] = [
+  { tier: 'MQL', at: 30 },
+  { tier: 'SAL', at: 55 },
+  { tier: 'SQL', at: 75 },
+];
+
+/** Outbound webhook retry ladder, rendered beside the integrations dive. */
+export const RETRY_LADDER = ['30s', '2m', '10m', '1h', '4h'];
+
+/**
+ * Section anchors for the sticky pill nav. The page is long by design, so it
+ * gets the same scroll-spy treatment as /features rather than asking a buyer
+ * to scroll past four sections to find the pricing they came for.
+ */
+export const SECTIONS: { id: string; label: string }[] = [
+  { id: 'verdict', label: 'Short answer' },
+  { id: 'matrix', label: 'At a glance' },
+  { id: 'differences', label: 'Differences' },
+  { id: 'frameworks', label: 'Qualification' },
+  { id: 'pricing', label: 'Pricing' },
+  { id: 'when-zoho', label: 'When Zoho wins' },
+  { id: 'switching', label: 'Switching' },
+  { id: 'faq', label: 'FAQ' },
 ];
 
 /** The four frameworks, for the qualification deep-dive table. */
