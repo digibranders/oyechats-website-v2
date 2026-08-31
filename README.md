@@ -61,3 +61,5 @@ A live HTML showcase is `design-system.html` in the original repo.
 4. Never render `--muted` at body size for content. Meta only.
 5. Never add decoration to already-elevated components.
 6. When in doubt, remove.
+
+<!-- deploy pipeline verified after GitHub org migration (digibranders org) -->

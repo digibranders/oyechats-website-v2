@@ -10,8 +10,9 @@ import { currencyForCountry } from '@/lib/pricing';
  * client-side detection, no currency flip after hydration, no per-request
  * render, and no chance of the home page and the pricing page disagreeing.
  *
- *   /         ->  /in
- *   /pricing  ->  /in/pricing
+ *   /                                  ->  /in
+ *   /pricing                           ->  /in/pricing
+ *   /compare/oyechats-vs-zoho-salesiq  ->  /in/compare/oyechats-vs-zoho-salesiq
  *
  * `x-vercel-ip-country` is set by Vercel's edge. It is absent locally and on
  * any non-Vercel host, where `currencyForCountry` resolves to USD and the
@@ -36,5 +37,5 @@ export function proxy(request: NextRequest): NextResponse {
 }
 
 export const config = {
-  matcher: ['/', '/pricing'],
+  matcher: ['/', '/pricing', '/compare/oyechats-vs-zoho-salesiq'],
 };
