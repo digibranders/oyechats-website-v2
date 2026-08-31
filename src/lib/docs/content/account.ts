@@ -1,5 +1,5 @@
 import type { DocGroup } from '../types';
-import { TRIAL_PLAN, capabilitiesTable, limitsTable } from '../plan-matrix';
+import { TRIAL, capabilitiesTable, limitsTable } from '../plan-matrix';
 
 export const ACCOUNT: DocGroup = {
   slug: 'account',
@@ -71,13 +71,13 @@ export const ACCOUNT: DocGroup = {
           blocks: [
             {
               t: 'p',
-              text: `There is a ${TRIAL_PLAN ? `${TRIAL_PLAN.days}-day trial of the ${TRIAL_PLAN.name} tier, with full ${TRIAL_PLAN.name} features. It is the only trial offered, and the other tiers do not carry one` : 'no trial on any tier'}. Free is not a trial; it is a permanent tier with a small allowance and no card required.`,
+              text: `Every new account starts on ${TRIAL ? `a ${TRIAL.days}-day trial with the full Professional feature set, ${TRIAL.credits.toLocaleString('en-IN')} credits, one chatbot and one operator seat. Training your website for the first time is free, up to ${TRIAL.max_crawl_pages} pages, and does not spend those credits` : 'no trial'}. It takes no card. No tier carries a separate trial of its own, and Free is not a trial; it is a permanent tier with a small allowance.`,
             },
             {
               t: 'callout',
               variant: 'warn',
               title: 'What happens after an unconverted trial',
-              text: 'A trial that ends without a subscription has a short grace window, after which the chatbots, knowledge base and conversations created under it are deleted. Export anything you need before the window closes.',
+              text: 'The account moves to the Free plan and keeps everything. Chatbots, knowledge base, conversations and leads are all retained. Knowledge above the Free plan\'s allowance is paused rather than deleted, so the chatbot stops answering from it until you upgrade, and one upgrade restores all of it. Nothing is deleted at the end of a trial.',
             },
           ],
         },
@@ -455,7 +455,7 @@ Optional extras
                 },
                 {
                   term: 'Expired trials',
-                  text: 'A trial that ends without converting has its chatbots, knowledge and conversations deleted after a short grace window.',
+                  text: 'Nothing is deleted. The account moves to the Free plan with its data intact; knowledge above the Free allowance is paused until an upgrade restores it.',
                 },
                 {
                   term: 'Account deletion',

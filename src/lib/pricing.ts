@@ -143,7 +143,7 @@ export const PRICING_TIERS: PricingTier[] = [
       'Webhooks + REST API',
       '90-day history · priority support',
     ],
-    cta: 'Start 7-day trial',
+    cta: 'Start free trial',
     ctaHref: APP_LINKS.registerStandard,
   },
   {
@@ -280,7 +280,7 @@ export const PRICING_FAQ = [
   { q: 'Which currency will I be billed in?', a: 'Pricing is shown in your local currency. Customers in India are billed in INR (₹); international customers are billed in USD ($). You always see a single currency based on your location.' },
   { q: 'How do I pay?', a: 'Indian customers pay via Razorpay: UPI, cards, NetBanking, and wallets are all supported. International customers pay by card in USD. You can switch payment methods any time from the Billing page.' },
   { q: 'Is GST included in these prices?', a: 'No. Every price shown is a base price. Customers in India are charged 18% GST on top at checkout, and it appears as a separate line on the tax invoice. International customers pay in USD and are not charged Indian GST; any tax due in your own country is your responsibility. Extra operator seats, the branding removal add-on, and credit top-up packs are base prices too.' },
-  { q: 'Is there a free trial?', a: 'Yes. New accounts can start a 7-day free trial of the Standard plan: the full Standard feature set, no credit card required. And the Free plan runs a working grounded bot at no cost, forever.' },
+  { q: 'Is there a free trial?', a: 'Yes. Every new account starts on a 14-day trial with the full Professional feature set, one chatbot and one operator seat, and no credit card. Training your website for the first time is free. When the trial ends the account moves to the Free plan and nothing is deleted: your chatbots, knowledge base and conversations are all kept, and knowledge above the Free allowance is paused until you upgrade.' },
   { q: 'What happens when I run out of credits?', a: 'Your bot pauses new conversations until your monthly credits reset, or you can buy a top-up pack any time from the Billing page. We hard-cap at zero (costs never run away) with a friendly message to visitors.' },
   { q: 'Do unused credits roll over?', a: 'Plan credits reset at the start of each billing cycle (use-it-or-lose-it). Top-up credits never expire and are used oldest first.' },
   { q: 'Can I add more operator seats?', a: 'Yes. Extra seats are ₹499 (or $5 for international customers) per month each, added or removed with one click from the Billing page.' },

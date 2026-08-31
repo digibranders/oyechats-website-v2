@@ -106,7 +106,7 @@ export const LEGAL_PAGES: LegalPage[] = [
         'We retain personal information only as long as needed for the purposes described in this policy:',
         '- Account data: Retained for the life of the account and deleted (or anonymized) within 30 days of account closure, except where longer retention is required by law.',
         '- Conversation history: Your plan determines how far back conversation history remains available to you, 7 days on Free, 30 days on Starter, 90 days on Standard, and 365 days on Professional. Conversation data older than your plan window is no longer accessible through the dashboard, exports, or the API. It is not automatically deleted from our database at the end of that window; it is deleted when you close your account, or earlier on request as described below.',
-        '- Trial accounts: Conversation and knowledge base data created during a free trial that does not convert to a paid plan is deleted 15 days after the trial ends.',
+        '- Trial accounts: A trial that does not convert to a paid plan moves the account to the Free plan. Conversation and knowledge base data created during the trial is retained, subject to the Free plan\'s limits; knowledge above those limits is made inactive rather than deleted, and is restored if you upgrade. It is deleted when you delete it or close your account.',
         '- Knowledge base content: Retained until you delete it or close your account.',
         '- Visitor behavioural events (page views, return visits, campaign parameters): Retained for up to 180 days.',
         '- Diagnostic and error logs: Retained for up to 90 days.',
@@ -229,7 +229,7 @@ export const LEGAL_PAGES: LegalPage[] = [
         'Free plan. We offer a free plan with reduced limits. It is provided as is, without any warranty or support commitment, and we may change or discontinue it on notice.',
         'Trials. Where a plan is offered with a free trial, the trial runs for the period stated at sign-up and gives you the paid plan\'s features. Unless you cancel before the trial ends, the trial converts automatically to a paid subscription and the plan fee is charged to your designated payment method. You can cancel at any point during the trial from your dashboard at no charge.',
         'Pre-debit notice. Where a recurring charge is set up on an Indian card or e-mandate, we send you a notification in advance of each debit, as the applicable Reserve Bank of India requirements provide. Receiving that notice does not extend the cancellation deadline; cancel before the debit date if you do not want the charge.',
-        'Trial data. Conversation and knowledge base data created during a trial that does not convert to a paid plan is deleted 15 days after the trial ends.',
+        'Trial data. A trial that does not convert to a paid plan moves the account to the Free plan. Conversation and knowledge base data created during the trial is retained subject to the Free plan\'s limits, and knowledge above those limits is made inactive rather than deleted. Upgrading restores it. We do not delete trial data on a timer.',
         'Promotional credits. Credits granted as part of a promotion are not purchased credits. They carry the expiry and eligibility conditions stated when they are granted, are not refundable or transferable, and may be withdrawn if the promotion\'s conditions are not met.',
       ]},
       { id: 'subscription', heading: 'Subscription Term, Fees and Payment', body: [

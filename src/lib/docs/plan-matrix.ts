@@ -26,6 +26,20 @@ type PlanRow = {
   limits: Record<string, number | null>;
 };
 
+/**
+ * The signup trial. Not a `PlanRow`: it is every new account's starting state
+ * rather than a tier anyone chooses, so it is exported beside `plans` and never
+ * inside it. Null only if the seed carries no trial row at all.
+ */
+type TrialFacts = {
+  name: string;
+  days: number;
+  credits: number;
+  max_crawl_pages: number | null;
+  bots: number | null;
+  operators: number | null;
+};
+
 type Capability = {
   key: string;
   label: string;
@@ -74,11 +88,15 @@ function formatLimit(value: number | null | undefined): string {
 /** Plan display names, in seeded order, the column headers for both tables. */
 export const PLAN_NAMES: string[] = PLANS.map((p) => p.name);
 
-/** The tier that carries a trial, if any. Used for the trial paragraph. */
-export const TRIAL_PLAN: { name: string; days: number } | null = (() => {
-  const withTrial = PLANS.find((p) => p.trial_days > 0);
-  return withTrial ? { name: withTrial.name, days: withTrial.trial_days } : null;
-})();
+/**
+ * The signup trial's own facts, read from the artifact's `trial` block.
+ *
+ * It used to be derived by scanning `PLANS` for `trial_days > 0`, which broke
+ * the moment the trial stopped being a tier's offer: the trial row is seeded
+ * `is_public: false` and so is excluded from `plans` entirely, leaving the docs
+ * to announce "no trial on any tier" while every new account was in one.
+ */
+export const TRIAL: TrialFacts | null = (matrix as { trial?: TrialFacts | null }).trial ?? null;
 
 /** Limits table: one row per limit, one column per plan. */
 export function limitsTable(): DocBlock {
