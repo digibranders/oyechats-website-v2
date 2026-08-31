@@ -70,7 +70,7 @@ export const FEATURE_AXES: FeatureAxis[] = [
   {
     key: 'rag',
     label: 'Grounded answers from your own content',
-    oye: 'Hybrid semantic + keyword RAG, answers cite the source doc',
+    oye: 'Hybrid semantic + keyword RAG grounded in your own content and site crawl',
   },
   {
     key: 'bant',
@@ -90,7 +90,7 @@ export const FEATURE_AXES: FeatureAxis[] = [
   {
     key: 'integrations',
     label: 'Webhooks & integrations',
-    oye: 'Outbound webhooks on every event plus native CRM/tool integrations',
+    oye: 'HMAC-signed outbound webhooks on every event, CRM-agnostic by design',
   },
   {
     key: 'setup',
@@ -214,29 +214,30 @@ export const COMPETITORS: Competitor[] = [
     tagline: 'Live chat and visitor engagement inside the Zoho ecosystem.',
     intent: 'Zoho SalesIQ alternative',
     summary:
-      'Zoho SalesIQ is affordable live chat with visitor tracking and the Zobot builder, and it shines if you already run on Zoho CRM and Desk. OyeChats is the AI-native option that is not tied to one ecosystem: RAG answers and BANT scoring work out of the box regardless of which CRM you use.',
+      'Zoho SalesIQ is affordable per-operator live chat with visitor tracking, the Zobot builder, and, on its Enterprise tier, the Answer Bot and Zia AI layer. It shines if you already run on Zoho CRM and Desk. OyeChats is the AI-native option that is not tied to one ecosystem: grounded RAG answers and BANT scoring are included from the entry tier, regardless of which CRM you use.',
     theirStrengths: [
-      'Tight integration with Zoho CRM, Desk and the wider Zoho suite',
-      'Affordable, with solid visitor tracking and triggers',
-      'Familiar if your team already lives in Zoho',
+      'Tight, native integration with Zoho CRM, Desk and the wider Zoho suite',
+      'Mature live chat with omnichannel (WhatsApp, Instagram and more) and voice',
+      'Capable AI (Answer Bot, Zia Agents) once you are on the Enterprise tier',
     ],
     oyeEdge: [
-      'RAG answers and BANT scoring ship ready, no bot-building project',
-      'CRM-agnostic: webhooks push qualified leads anywhere, not just Zoho',
-      'Sales-qualification analytics rather than generic visitor stats',
+      'Grounded AI answers and BANT scoring included from the entry tier, no top-tier upgrade',
+      'CRM-agnostic: HMAC-signed webhooks push qualified leads anywhere, not just Zoho',
+      'Sales-qualification frameworks rather than generic visitor scores',
     ],
     whenToChooseThem:
-      'Choose Zoho SalesIQ if your business already runs on Zoho and you want chat that plugs straight into Zoho CRM and Desk with minimal friction.',
-    pricingModel: 'Affordable per-operator tiers; best value inside the Zoho ecosystem.',
+      'Choose Zoho SalesIQ if your business already runs on Zoho and you want chat that plugs straight into Zoho CRM and Desk, or if you need omnichannel and voice in one suite.',
+    pricingModel:
+      'Per-operator tiers; AI answering (Answer Bot, Zia) sits on the Enterprise tier.',
     features: {
-      rag: { text: 'Zobot answer bot; setup-heavy to ground well', edge: 'oye' },
-      bant: { text: 'No native BANT framework', edge: 'oye' },
-      handoff: { text: 'Solid live chat with operator routing', edge: 'tie' },
+      rag: { text: 'Answer Bot & Zia AI, gated to the Enterprise tier', edge: 'oye' },
+      bant: { text: 'Behavioural lead scoring, no named BANT framework', edge: 'oye' },
+      handoff: { text: 'Mature live chat, routing, plus voice & omnichannel', edge: 'tie' },
       analytics: { text: 'Visitor tracking & engagement analytics', edge: 'tie' },
-      integrations: { text: 'Best inside Zoho; broader is limited', edge: 'oye' },
+      integrations: { text: 'Native inside Zoho; broader is limited', edge: 'oye' },
       setup: { text: 'More configuration to reach an AI bot', edge: 'oye' },
-      pricing: { text: 'Low per-operator pricing', edge: 'them' },
-      bestFor: { text: 'Existing Zoho customers', edge: 'them' },
+      pricing: { text: 'Low per-operator price; AI is Enterprise-only', edge: 'them' },
+      bestFor: { text: 'Existing Zoho customers; omnichannel teams', edge: 'them' },
     },
     faqs: [
       {

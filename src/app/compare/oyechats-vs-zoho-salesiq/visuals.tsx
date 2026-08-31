@@ -168,7 +168,13 @@ export function TallyBar({ tally }: { tally: EdgeTally }) {
   );
 }
 
-/** Grounded answers: a crawl, then an answer that cites where it came from. */
+/**
+ * Grounded answers: a crawl of the customer's own site, then an answer drawn
+ * from it. The answer is the demo customer's content (acme.com), not a claim
+ * about an OyeChats feature, and it shows no "source:" line: the agent is
+ * instructed never to expose sources to the visitor, so drawing a citation here
+ * would mock a capability the product does not ship.
+ */
 export function GroundedAnswerVisual() {
   return (
     <div className="flex flex-col gap-4">
@@ -180,10 +186,10 @@ export function GroundedAnswerVisual() {
         </div>
       </TerminalCard>
       <ChatStack className="max-w-none">
-        <ChatBubble role="visitor">Do you support SSO on the starter plan?</ChatBubble>
+        <ChatBubble role="visitor">Do you offer next-day delivery to Mumbai?</ChatBubble>
         <ChatBubble role="agent">
-          SSO is available from the Standard plan up. Starter covers email and password sign in.
-          <span className="mt-2 block type-mono-sm opacity-70">source: /docs/security</span>
+          Yes. Orders to Mumbai placed before 3pm ship same day and arrive next day. Standard
+          delivery elsewhere in India is 2 to 4 business days.
         </ChatBubble>
       </ChatStack>
     </div>

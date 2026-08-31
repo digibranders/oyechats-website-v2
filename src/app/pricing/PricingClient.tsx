@@ -78,7 +78,12 @@ export default function PricingClient({ currency }: { currency: Currency }) {
   // Single shared "open FAQ" across both columns so only one is open at a time.
   const [openFaq, setOpenFaq] = useState<string | null>(PRICING_FAQ[0]?.q ?? null);
   const toggleFaq = (q: string) => setOpenFaq((prev) => (prev === q ? null : q));
-  const cardTiers = PRICING_TIERS;
+  // Enterprise is pulled out of the four-up grid and rendered as a full-width
+  // horizontal card below it: five equal columns read as cramped and waste
+  // vertical space, and Enterprise is a contact-sales motion that does not
+  // belong in the self-serve row anyway.
+  const selfServeTiers = PRICING_TIERS.filter((t) => t.id !== 'enterprise');
+  const enterpriseTier = PRICING_TIERS.find((t) => t.id === 'enterprise');
 
   return (
     <>
@@ -124,12 +129,27 @@ export default function PricingClient({ currency }: { currency: Currency }) {
               </button>
             </div>
           </div>
+
+          {/* Universal-trial reassurance. Every signup lands on the same 14-day
+              trial regardless of the plan chosen, so it is stated once here,
+              where the eye lands before the cards, rather than as a badge
+              repeated on all four. */}
+          <div className="mt-6 flex justify-center">
+            <p className="inline-flex flex-wrap items-center justify-center gap-x-2 gap-y-1 rounded-[var(--r-full)] border border-line bg-canvas px-4 py-2 type-body-sm text-ink-2 shadow-[var(--e-1)]">
+              <Check size={15} className="text-signal shrink-0" aria-hidden />
+              <span className="font-medium text-ink">14-day free trial on every plan</span>
+              <span className="text-muted-2" aria-hidden>
+                ·
+              </span>
+              <span>No credit card required</span>
+            </p>
+          </div>
         </Container>
       </section>
 
       <Section tone="canvas" containerSize="wide">
         <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-4">
-          {cardTiers.map((tier, i) => {
+          {selfServeTiers.map((tier, i) => {
             const money = annual ? tier.annualMonthly : tier.monthly;
             const price = money ? money[currency] : null;
             const annualTotal = tier.annualTotal ? tier.annualTotal[currency] : null;
@@ -202,6 +222,70 @@ export default function PricingClient({ currency }: { currency: Currency }) {
             );
           })}
         </div>
+
+        {enterpriseTier &&
+          (() => {
+            const money = annual ? enterpriseTier.annualMonthly : enterpriseTier.monthly;
+            const price = money ? money[currency] : null;
+            const annualTotal = enterpriseTier.annualTotal
+              ? enterpriseTier.annualTotal[currency]
+              : null;
+            return (
+              <Reveal className="mt-4">
+                <div className="relative overflow-hidden rounded-[var(--r-4)] border border-line-2 bg-canvas p-7 md:p-8">
+                  <div className="grid gap-7 lg:grid-cols-[minmax(0,300px)_1fr] lg:items-center lg:gap-12">
+                    {/* Identity, price and CTA */}
+                    <div>
+                      <div className="type-mono-sm text-muted mb-3">{enterpriseTier.name}</div>
+                      <div className="mb-1 flex items-baseline gap-1.5">
+                        <span className="font-display font-semibold text-[36px] leading-none text-ink tabular-nums tracking-[-0.03em]">
+                          {price === null ? (
+                            'Custom'
+                          ) : (
+                            <PricingPrice
+                              key={`ent-${annual ? 'annual' : 'monthly'}-${currency}`}
+                              value={price}
+                              currency={currency}
+                            />
+                          )}
+                        </span>
+                        {price !== null && price > 0 && (
+                          <span className="text-[13px] text-muted font-normal">/mo</span>
+                        )}
+                      </div>
+                      {annual && annualTotal !== null && annualTotal > 0 ? (
+                        <div className="type-mono-sm text-muted mb-1">
+                          Billed {formatPrice(annualTotal, currency)}/yr
+                        </div>
+                      ) : null}
+                      <p className="type-body-sm text-muted mt-2">{enterpriseTier.tagline}</p>
+                      <Button
+                        href={enterpriseTier.ctaHref}
+                        external={enterpriseTier.ctaHref.startsWith('http')}
+                        variant="ghost"
+                        className="mt-6 w-full lg:w-auto"
+                      >
+                        {enterpriseTier.cta} →
+                      </Button>
+                    </div>
+
+                    {/* Features, laid out horizontally so the card reads wide, not tall */}
+                    <ul className="grid gap-x-8 gap-y-3 sm:grid-cols-2 lg:border-l lg:border-line lg:pl-12">
+                      {enterpriseTier.features.map((f) => (
+                        <li key={f} className="type-body-sm text-ink-2 flex items-start gap-2.5">
+                          <span className="mt-0.5 inline-flex h-4 w-4 shrink-0 items-center justify-center rounded-full bg-signal-tint text-signal">
+                            <Check size={11} strokeWidth={3} />
+                          </span>
+                          <span>{f}</span>
+                        </li>
+                      ))}
+                    </ul>
+                  </div>
+                </div>
+              </Reveal>
+            );
+          })()}
+
         <p className="type-body-sm text-muted mt-6">{TAX_NOTE[currency]}</p>
       </Section>
 
@@ -296,6 +380,7 @@ export default function PricingClient({ currency }: { currency: Currency }) {
                     <Th>Starter</Th>
                     <Th>Standard</Th>
                     <Th>Professional</Th>
+                    <Th>Enterprise</Th>
                   </tr>
                 </thead>
                 <tbody>
@@ -306,6 +391,7 @@ export default function PricingClient({ currency }: { currency: Currency }) {
                       <Td>{renderCell(r.starter, currency)}</Td>
                       <Td>{renderCell(r.standard, currency)}</Td>
                       <Td>{renderCell(r.professional, currency)}</Td>
+                      <Td>{renderCell(r.enterprise, currency)}</Td>
                     </tr>
                   ))}
                 </tbody>

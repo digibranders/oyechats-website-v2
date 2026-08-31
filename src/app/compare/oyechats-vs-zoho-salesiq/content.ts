@@ -7,17 +7,20 @@
  * if the two disagree, the doc wins and this file is wrong.
  *
  * Three rules this file exists to enforce, restated because they are the ones
- * most likely to be broken by a well-meaning edit:
+ * most likely to be broken by a well-meaning edit (posture updated 2026-08-31):
  *
- *  1. NO live Zoho SalesIQ pricing figures. Their pricing *model* only. Rival
- *     prices change without notice and a stale number here is both a
- *     credibility loss and needless legal exposure.
- *  2. NO benchmarks, conversion rates, ROI figures or "Nx better" claims. The
- *     platform's own claim matrix marks every such number NOT SUPPORTED.
+ *  1. Zoho pricing is DATED and CAVEATED. Their pricing *model* plus
+ *     representative figures are allowed, but every figure ships next to an
+ *     "as of <month year>, verify" line, because rival prices move without
+ *     notice. Our own numbers are read live from `@/lib/pricing`.
+ *  2. NO invented benchmarks, conversion rates, ROI figures or "Nx better"
+ *     claims, and NO manufactured head-to-head score. A qualitative, dated
+ *     account of a real hands-on test is allowed; a number like "85 vs 34.5"
+ *     is not.
  *  3. The honest losses stay in. SalesIQ wins on headline price, on ecosystem
- *     breadth and on native Zoho CRM wiring, and this page says so. A grid
- *     where we win every row is not read as a strong product, it is read as
- *     marketing, and it loses the reader for the rows we genuinely win.
+ *     breadth, on omnichannel and voice, on India data residency, and on native
+ *     Zoho CRM wiring, and this page says so. A grid where we win every row is
+ *     not read as a strong product, it is read as marketing.
  *
  * "Zoho" and "Zoho SalesIQ" are trademarks of Zoho Corporation, used here
  * nominatively to identify the product compared. No affiliation or endorsement
@@ -55,9 +58,10 @@ export const CHOOSE_ZOHO: Verdict = {
   lead: 'You already run on Zoho. This is not a courtesy line: for a business inside that suite, SalesIQ is usually the right call.',
   points: [
     'Your CRM is Zoho CRM and your helpdesk is Zoho Desk, and you want chat wired natively into both',
+    'You need to meet customers on WhatsApp, Instagram and other channels, or take audio and video calls',
     'You want a mature human live chat product first, with the AI layer as something you configure over time',
+    'Indian data residency inside a suite you already trust is a requirement rather than a preference',
     'You are buying the wider Zoho suite anyway, where the marginal cost of adding chat is small',
-    'You need the breadth of Zoho One rather than one focused product',
   ],
 };
 
@@ -71,7 +75,7 @@ export const WHAT_THEY_ARE = {
   zoho: {
     name: 'Zoho SalesIQ',
     category: 'Live chat with a bot builder',
-    body: 'SalesIQ is a live chat, visitor-tracking and engagement product inside the Zoho suite. Its centre of gravity is human live chat plus visitor intelligence, with the Zobot builder layered on top for automation, and its defining strength is native integration with Zoho CRM, Zoho Desk and the rest of the ecosystem.',
+    body: 'SalesIQ is a live chat, visitor-tracking and engagement product inside the Zoho suite. Its centre of gravity is human live chat plus visitor intelligence, with the Zobot builder on every tier and its Answer Bot and Zia AI layer on Enterprise. Its defining strength is native integration with Zoho CRM, Zoho Desk and the rest of the ecosystem.',
   },
 } as const;
 
@@ -102,13 +106,13 @@ export const DEEP_DIVES: DeepDive[] = [
     eyebrow: 'Grounded answers',
     heading: 'Retrieval over your content vs a bot you build',
     edge: 'oye',
-    oye: 'OyeChats runs hybrid retrieval: semantic vector search over your content combined with Postgres full-text keyword search, so an exact product name matches as reliably as a vaguely-phrased question. Content comes from PDFs, DOCX and TXT uploads or a crawl of your site. An optional relevance gate lets the agent decline rather than improvise when nothing relevant comes back.',
-    zoho: 'SalesIQ ships Zobot, a bot builder with several authoring modes (a codeless flow builder, a scripting option, and AI-assisted answering) plus a resource library the bot can draw on. It is capable, and it is a build: the quality of grounding is a function of how much you configure.',
+    oye: 'OyeChats runs hybrid retrieval: semantic vector search over your content combined with Postgres full-text keyword search, so an exact product name matches as reliably as a vaguely-phrased question. Content comes from a crawl of your live site or from PDF, DOCX and TXT uploads. A relevance gate, on by default, lets the agent decline rather than improvise when nothing relevant comes back.',
+    zoho: 'SalesIQ has real AI: the Zobot flow builder on every tier, and on the Enterprise tier the Answer Bot plus the Zia Agents launched in 2026, which retrieve from your knowledge-base articles and uploaded documents and can bring your own LLM. It is capable, and two things are true of it: the AI answering layer sits on the top tier, and it grounds on a knowledge base you assemble rather than a one-step crawl of your site.',
     verdict:
-      'The difference is not whether grounded answers are possible on both. It is what a new account does on day one. Ours answers from your content as its default state; theirs answers well once you have built it.',
+      'Not whether grounded answers are possible on both. They are. It is what a new account does on day one and where the AI sits in the price list. Ours crawls your own site and answers from it from the entry tier; theirs is a build on knowledge-base content, on Enterprise. In a hands-on test in July 2026, given the same website content, OyeChats answered from the pages while SalesIQ’s out-of-box bot either declined or, allowed to use built-in knowledge, invented a price.',
     visual: 'answers',
     visualCaption:
-      'A crawl of your site, then an answer that names the page it came from.'
+      'A crawl of your site, then a grounded answer. Sources stay internal, not shown to the visitor.'
   },
   {
     id: 'qualification',
@@ -141,10 +145,10 @@ export const DEEP_DIVES: DeepDive[] = [
     eyebrow: 'Integrations',
     heading: 'CRM-agnostic, with an honest gap',
     edge: 'oye',
-    oye: 'Outbound webhooks on every event, HMAC-signed, with a five-attempt retry ladder at 30 seconds, 2 minutes, 10 minutes, 1 hour and 4 hours, plus a REST API with a full OpenAPI spec. Install is documented for HTML, Next.js, React, Vue, Angular, Shopify, Squarespace, Svelte, Webflow, Wix, WordPress, Framer, Bubble, Astro and GTM.',
+    oye: 'Every event (a lead captured, a tier crossed, a handoff, a booking) is delivered as an HMAC-signed outbound webhook, with five delivery attempts backing off 30 seconds, 2 minutes, 10 minutes and an hour if your endpoint is down. Install is documented for HTML, Next.js, React, Vue, Angular, Shopify, Squarespace, Svelte, Webflow, Wix, WordPress, Framer, Bubble, Astro and GTM.',
     zoho: 'Native, first-party, deeply-wired integration with Zoho CRM, Zoho Desk and the wider suite. It is the kind of integration only the vendor who owns both sides can build.',
     verdict:
-      'Stated plainly: OyeChats has no native Zoho CRM integration. Leads reach any CRM through webhooks and the REST API. That is genuinely CRM-agnostic, and it is genuinely more work than a first-party connector. If your CRM is Zoho, that is a real point for them.',
+      'Stated plainly: OyeChats has no native Zoho CRM integration. Leads reach any CRM through HMAC-signed webhooks. That is genuinely CRM-agnostic, and it is genuinely more work than a first-party connector. If your CRM is Zoho, that is a real point for them.',
     visual: 'webhooks',
     visualCaption:
       'Where a qualified lead goes, and the retry ladder behind it.'
@@ -175,8 +179,13 @@ export const TIERS: { tier: string; at: number }[] = [
   { tier: 'SQL', at: 75 },
 ];
 
-/** Outbound webhook retry ladder, rendered beside the integrations dive. */
-export const RETRY_LADDER = ['30s', '2m', '10m', '1h', '4h'];
+/**
+ * Outbound webhook retry ladder, rendered beside the integrations dive. These
+ * are the backoff gaps between five delivery attempts, verified against
+ * `webhook_service.py` (`_RETRY_DELAYS = [30, 120, 600, 3600]`, `_MAX_RETRIES = 5`).
+ * There is no 4h step; do not add one back.
+ */
+export const RETRY_LADDER = ['30s', '2m', '10m', '1h'];
 
 /**
  * Section anchors for the sticky pill nav. The page is long by design, so it
@@ -225,15 +234,23 @@ export const MIGRATION_STEPS: { title: string; body: string }[] = [
 export const FAQS: { q: string; a: string }[] = [
   {
     q: 'What is the real difference between OyeChats and Zoho SalesIQ?',
-    a: 'Zoho SalesIQ is live chat that has added AI; OyeChats is an AI agent that has added live chat. SalesIQ starts from human chat and visitor tracking, with the Zobot builder layered on for automation. OyeChats starts from an AI agent that answers from your own content and scores every conversation on a sales framework, with human handoff built in. Both products have both halves. The difference is which half is the default.',
+    a: 'Zoho SalesIQ is live chat that has added AI; OyeChats is an AI agent that has added live chat. SalesIQ starts from human chat and visitor tracking, with the Zobot builder on every tier and its Answer Bot and Zia AI layer on Enterprise. OyeChats starts from an AI agent that answers from your own content and scores every conversation on a sales framework, with human handoff built in. Both products have both halves. The difference is which half is the default, and where the AI sits in the price list.',
   },
   {
     q: 'Is OyeChats a good Zoho SalesIQ alternative if I do not use Zoho?',
-    a: 'That is the case it is strongest in. The biggest advantage SalesIQ has is native integration with Zoho CRM and Zoho Desk, and that advantage does not transfer if your CRM is something else. OyeChats is CRM-agnostic: qualified leads are pushed by HMAC-signed webhook and a REST API to whatever you already use.',
+    a: 'That is the case it is strongest in. The biggest advantage SalesIQ has is native integration with Zoho CRM and Zoho Desk, and that advantage does not transfer if your CRM is something else. OyeChats is CRM-agnostic: qualified leads are pushed by HMAC-signed webhook to whatever you already use.',
   },
   {
     q: 'Does Zoho SalesIQ do BANT lead scoring?',
     a: 'SalesIQ scores and ranks visitors on engagement and on-site behaviour, which is genuinely useful for spotting who is active on your site. It does not present a named B2B sales framework as a configurable primitive. OyeChats ships four of them (BANT, MEDDIC, CHAMP and GPCTBA+C&I) with weighted dimensions, a composite score out of 100, and MQL, SAL and SQL tiers.',
+  },
+  {
+    q: 'Does Zoho SalesIQ have AI, and is it any good?',
+    a: 'Yes, and it is capable. SalesIQ has the Zobot flow builder on every tier, and on its Enterprise tier the Answer Bot plus the Zia Agents it launched in 2026, which retrieve from your knowledge-base articles and uploaded documents and can even bring your own LLM. Two things are worth knowing before you compare. That AI answering layer sits on the Enterprise tier, whereas grounded AI is included on OyeChats from the entry tier. And it grounds on a knowledge base you assemble rather than a one-step crawl of your live site. This is a genuine product, not a strawman, so the honest way to judge it is to run both on a real page for a week.',
+  },
+  {
+    q: 'Did you actually test the two side by side?',
+    a: 'We did, in July 2026: both bots were given the same OyeChats website content and asked the same questions on a live page. OyeChats answered from the pages, declined out-of-scope questions and still redirected usefully, while SalesIQ’s out-of-box bot either could not find an answer or, when allowed to use built-in model knowledge, invented a price. That test predates Zoho’s 2026 AI updates and reflects the out-of-box, non-Enterprise experience, so treat it as one dated data point, not a verdict. The reliable test is your own: put both on one of your pages and read the transcripts.',
   },
   {
     q: 'Which one has better live chat?',
@@ -241,7 +258,7 @@ export const FAQS: { q: string; a: string }[] = [
   },
   {
     q: 'Can I keep using Zoho CRM with OyeChats?',
-    a: 'Yes, through webhooks and the REST API rather than a native connector. Being straight about it: OyeChats has no first-party Zoho CRM integration, so this is plumbing you or your developer set up once. If deep Zoho CRM wiring with zero setup is the deciding factor, SalesIQ is the better buy.',
+    a: 'Yes, through HMAC-signed webhooks rather than a native connector. Being straight about it: OyeChats has no first-party Zoho CRM integration, so this is plumbing you or your developer set up once. If deep Zoho CRM wiring with zero setup is the deciding factor, SalesIQ is the better buy.',
   },
   {
     q: 'How long does it take to get OyeChats live?',
@@ -249,7 +266,7 @@ export const FAQS: { q: string; a: string }[] = [
   },
   {
     q: 'How does OyeChats pricing compare to Zoho SalesIQ?',
-    a: 'They are shaped differently, and on headline price for a small team SalesIQ is often the cheaper line item, especially if you already buy the Zoho suite. SalesIQ prices per operator. OyeChats prices in credits, where one AI reply is one credit, with a small number of operator seats included on each plan. The practical consequence is that our bill tracks conversation volume rather than headcount: adding a colleague who wants to watch the inbox does not re-price the product. Check the current pricing page of each vendor before deciding.',
+    a: 'They are shaped differently, and on headline price for a small team SalesIQ is often the cheaper line item, especially if you already buy the Zoho suite. SalesIQ prices per operator, with representative figures around $10 to $25 per operator per month as of August 2026 (verify their current page, rival pricing moves). Two things reshape the comparison. Its AI answering, the Answer Bot and Zia layer, sits on the Enterprise tier, while OyeChats includes grounded AI from Free and Starter. And OyeChats prices in credits, one AI reply is one credit, with operator seats included on each plan, so our bill tracks conversation volume rather than headcount: adding a colleague who wants to watch the inbox does not re-price the product.',
   },
   {
     q: 'Is there a free plan?',

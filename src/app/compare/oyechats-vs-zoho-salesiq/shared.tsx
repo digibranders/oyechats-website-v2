@@ -358,6 +358,12 @@ export function ZohoComparisonRoute({ currency }: { currency: Currency }): React
               tracks how much your visitors talk to the agent, not how many people on your team
               can log in.
             </p>
+            <p className="type-body text-ink-2 mt-4">
+              One more thing shapes the comparison, and it is easy to miss on a headline-price
+              read. SalesIQ&rsquo;s AI answering, its Answer Bot and Zia layer, sits on the
+              Enterprise tier. Grounded AI answers are included on OyeChats from Free and Starter.
+              So the like-for-like comparison is often our entry tiers against their top one.
+            </p>
           </Reveal>
 
           <Reveal className="mb-10">
@@ -396,7 +402,7 @@ export function ZohoComparisonRoute({ currency }: { currency: Currency }): React
                         {t.monthly === null ? 'Custom' : formatPrice(t.monthly[currency], currency)}
                       </Td>
                       <Td num>{t.credits === null ? 'Custom' : t.credits.toLocaleString()}</Td>
-                      <Td num>{t.includedSeats}</Td>
+                      <Td num>{t.includedSeats === -1 ? 'Unlimited' : t.includedSeats}</Td>
                     </tr>
                   ))}
                 </tbody>
@@ -419,10 +425,11 @@ export function ZohoComparisonRoute({ currency }: { currency: Currency }): React
               </Callout>
             </Reveal>
             <Reveal delay={120}>
-              <Callout variant="warn" title="Check both, always">
-                We do not publish Zoho SalesIQ&rsquo;s prices here, because a rival&rsquo;s figure
-                copied onto our site goes stale without warning and then misleads you. Read their
-                current pricing page next to ours before you decide.
+              <Callout variant="warn" title="Zoho SalesIQ, as of Aug 2026">
+                SalesIQ prices per operator, roughly $10 to $25 per operator per month across its
+                paid tiers, cheaper annually and geo-discounted in India, with AI answering on the
+                Enterprise tier. Rival pricing moves without warning, so read their current pricing
+                page next to ours before you decide.
               </Callout>
             </Reveal>
           </div>
@@ -462,6 +469,8 @@ export function ZohoComparisonRoute({ currency }: { currency: Currency }): React
               <ul className="space-y-4">
                 {[
                   'You want a mature human live chat product first, and would rather grow into the AI layer than start there.',
+                  'You need omnichannel and voice: WhatsApp, Instagram, Telegram and audio or video calls in one product. We are a website widget, and do not pretend otherwise.',
+                  'Indian data residency is a hard requirement. Zoho runs India data centres; our infrastructure leans India but makes no residency guarantee.',
                   'You want CRM, helpdesk, books, campaigns and chat on one bill. That is the whole proposition of Zoho One, and we are one focused product, not a suite.',
                   'Your team already lives in Zoho, so the tool nobody has to be trained on is worth more than any feature row above.',
                 ].map((point) => (

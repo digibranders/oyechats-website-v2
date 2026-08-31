@@ -37,7 +37,7 @@ export function formatPrice(amount: number, currency: Currency): string {
 /** A value expressed in both billing currencies. */
 export type Money = Record<Currency, number>;
 
-export type TierId = 'free' | 'starter' | 'standard' | 'professional';
+export type TierId = 'free' | 'starter' | 'standard' | 'professional' | 'enterprise';
 
 export type PricingTier = {
   id: TierId;
@@ -50,6 +50,7 @@ export type PricingTier = {
   /** Total charged per year on annual billing. */
   annualTotal: Money | null;
   credits: number | null;
+  /** Operator seats included. `-1` means unlimited (Enterprise). */
   includedSeats: number | null;
   features: string[];
   cta: string;
@@ -88,7 +89,7 @@ export const PRICING_TIERS: PricingTier[] = [
     annualMonthly: { INR: 0, USD: 0 },
     annualTotal: { INR: 0, USD: 0 },
     credits: 100,
-    includedSeats: 1,
+    includedSeats: 0,
     features: [
       '1 chatbot',
       '100 credits / month',
@@ -140,10 +141,10 @@ export const PRICING_TIERS: PricingTier[] = [
       'BANT lead qualification & scoring',
       'Auto-recrawl + visitor & UTM tracking',
       'Routing + departments',
-      'Webhooks + REST API',
+      'Webhooks (5 events, HMAC-signed)',
       '90-day history · priority support',
     ],
-    cta: 'Start free trial',
+    cta: 'Get started',
     ctaHref: APP_LINKS.registerStandard,
   },
   {
@@ -151,8 +152,8 @@ export const PRICING_TIERS: PricingTier[] = [
     name: 'Professional',
     tagline: 'For teams scaling qualified pipeline under their own brand.',
     monthly: { INR: 2999, USD: 45.99 },
-    annualMonthly: { INR: 2399, USD: 37.99 },
-    annualTotal: { INR: 28788, USD: 455.88 },
+    annualMonthly: { INR: 2349, USD: 37.99 },
+    annualTotal: { INR: 28188, USD: 455.88 },
     credits: 8000,
     includedSeats: 3,
     features: [
@@ -166,6 +167,26 @@ export const PRICING_TIERS: PricingTier[] = [
     cta: 'Get started',
     ctaHref: APP_LINKS.registerProfessional,
   },
+  {
+    id: 'enterprise',
+    name: 'Enterprise',
+    tagline: 'For agencies running many client sites from one account.',
+    monthly: { INR: 5999, USD: 89.99 },
+    annualMonthly: { INR: 4799, USD: 71.99 },
+    annualTotal: { INR: 57588, USD: 863.88 },
+    credits: 10000,
+    includedSeats: -1,
+    features: [
+      'Everything in Professional, plus',
+      'Unlimited chatbots',
+      'Unlimited operator seats',
+      'Pooled credits across every bot',
+      'Unlimited crawl pages & document uploads',
+      'Priority onboarding & support',
+    ],
+    cta: 'Contact sales',
+    ctaHref: '/contact',
+  },
 ];
 
 export type CreditCost = { action: string; credits: number };
@@ -175,7 +196,7 @@ export const CREDIT_COSTS: CreditCost[] = [
   { action: '1 email verification', credits: 10 },
   { action: '1 URL scan', credits: 5 },
   { action: '1 company name lookup', credits: 5 },
-  { action: '1 document scan (per 250 words)', credits: 1 },
+  { action: '1 document upload', credits: 3 },
 ];
 
 export type TopupPack = {
@@ -186,11 +207,10 @@ export type TopupPack = {
 };
 
 export const TOPUP_PACKS: TopupPack[] = [
-  { price: { INR: 1000, USD: 13 }, credits: 2_000, bonusPct: 0 },
-  { price: { INR: 4000, USD: 50 }, credits: 8_000, bonusPct: 0 },
-  { price: { INR: 10000, USD: 125 }, credits: 30_000, bonusPct: 0 },
-  { price: { INR: 20000, USD: 250 }, credits: 70_000, bonusPct: 0 },
-  { price: { INR: 30000, USD: 375 }, credits: 120_000, bonusPct: 0 },
+  { price: { INR: 1599, USD: 19 }, credits: 3_000, bonusPct: 0 },
+  { price: { INR: 3999, USD: 49 }, credits: 8_000, bonusPct: 7 },
+  { price: { INR: 7999, USD: 99 }, credits: 24_000, bonusPct: 60, badge: 'Best value' },
+  { price: { INR: 19999, USD: 249 }, credits: 75_000, bonusPct: 100 },
 ];
 
 export type PricingFeatureCategory = 'usage' | 'features' | 'security';
@@ -203,6 +223,7 @@ export type PricingFeature = {
   starter: PricingFeatureValue;
   standard: PricingFeatureValue;
   professional: PricingFeatureValue;
+  enterprise: PricingFeatureValue;
   category: PricingFeatureCategory;
 };
 
@@ -217,6 +238,7 @@ export const FEATURE_ROWS: PricingFeature[] = [
     starter: { INR: '₹599 / mo', USD: '$7.99 / mo' },
     standard: { INR: '₹1,199 / mo', USD: '$15.99 / mo' },
     professional: { INR: '₹2,999 / mo', USD: '$45.99 / mo' },
+    enterprise: { INR: '₹5,999 / mo', USD: '$89.99 / mo' },
     category: 'usage',
   },
   {
@@ -224,49 +246,52 @@ export const FEATURE_ROWS: PricingFeature[] = [
     free: '-',
     starter: { INR: '₹479/mo (₹5,748/yr)', USD: '$6.49/mo ($77.88/yr)' },
     standard: { INR: '₹959/mo (₹11,508/yr)', USD: '$12.99/mo ($155.88/yr)' },
-    professional: { INR: '₹2,399/mo (₹28,788/yr)', USD: '$37.99/mo ($455.88/yr)' },
+    professional: { INR: '₹2,349/mo (₹28,188/yr)', USD: '$37.99/mo ($455.88/yr)' },
+    enterprise: { INR: '₹4,799/mo (₹57,588/yr)', USD: '$71.99/mo ($863.88/yr)' },
     category: 'usage',
   },
-  { label: 'Monthly credits', free: '100', starter: '1,000', standard: '2,500', professional: '8,000', category: 'usage' },
-  { label: 'Chatbots', free: '1', starter: '1', standard: '1', professional: '1', category: 'usage' },
-  { label: 'Operator seats included', free: '1', starter: '1', standard: '2', professional: '3', category: 'usage' },
+  { label: 'Monthly credits', free: '100', starter: '1,000', standard: '2,500', professional: '8,000', enterprise: '10,000 (pooled)', category: 'usage' },
+  { label: 'Chatbots', free: '1', starter: '1', standard: '1', professional: '1', enterprise: 'Unlimited', category: 'usage' },
+  { label: 'Operator seats included', free: '0', starter: '1', standard: '2', professional: '3', enterprise: 'Unlimited', category: 'usage' },
   {
     label: 'Extra operator seats',
     free: '-',
     starter: { INR: '₹499/mo each', USD: '$5/mo each' },
     standard: { INR: '₹499/mo each', USD: '$5/mo each' },
     professional: { INR: '₹499/mo each', USD: '$5/mo each' },
+    enterprise: 'All included',
     category: 'usage',
   },
-  { label: 'Crawl pages / doc uploads per month', free: '20 / 3', starter: '500 / 20', standard: '2,000 / 50', professional: '5,000 / 150', category: 'usage' },
-  { label: 'Chat history retention', free: '7 days', starter: '30 days', standard: '90 days', professional: '1 year', category: 'usage' },
-  { label: 'Credit top-ups / overage', free: false, starter: true, standard: true, professional: true, category: 'usage' },
+  { label: 'Crawl pages / doc uploads per month', free: '20 / 3', starter: '500 / 20', standard: '2,000 / 50', professional: '5,000 / 150', enterprise: 'Unlimited', category: 'usage' },
+  { label: 'Chat history retention', free: '7 days', starter: '30 days', standard: '90 days', professional: '1 year', enterprise: '1 year', category: 'usage' },
+  { label: 'Credit top-ups / overage', free: false, starter: true, standard: true, professional: true, enterprise: true, category: 'usage' },
 
-  { label: 'Grounded AI answers (streamed)', free: true, starter: true, standard: true, professional: true, category: 'features' },
-  { label: 'Hallucination guardrails', free: 'Sampled', starter: true, standard: 'Full', professional: 'Full', category: 'features' },
-  { label: 'Website crawl + file upload', free: true, starter: true, standard: true, professional: true, category: 'features' },
-  { label: 'Auto-recrawl (weekly refresh)', free: false, starter: false, standard: true, professional: true, category: 'features' },
-  { label: 'Proactive triggers + meeting booking', free: false, starter: true, standard: true, professional: true, category: 'features' },
-  { label: 'Live chat / human handoff', free: false, starter: true, standard: true, professional: true, category: 'features' },
-  { label: 'Routing + departments', free: false, starter: false, standard: true, professional: true, category: 'features' },
-  { label: 'BANT lead qualification', free: false, starter: false, standard: true, professional: true, category: 'features' },
-  { label: 'Qualification funnel analytics', free: false, starter: false, standard: true, professional: true, category: 'features' },
-  { label: 'Visitor + behavioral tracking, UTM', free: 'Basic', starter: 'Basic', standard: true, professional: true, category: 'features' },
-  { label: 'Webhooks (5 events) + REST API', free: false, starter: false, standard: true, professional: true, category: 'features' },
+  { label: 'Grounded AI answers (streamed)', free: true, starter: true, standard: true, professional: true, enterprise: true, category: 'features' },
+  { label: 'Hallucination guardrails', free: 'Sampled', starter: true, standard: 'Full', professional: 'Full', enterprise: 'Full', category: 'features' },
+  { label: 'Website crawl + file upload', free: true, starter: true, standard: true, professional: true, enterprise: true, category: 'features' },
+  { label: 'Auto-recrawl (weekly refresh)', free: false, starter: false, standard: true, professional: true, enterprise: true, category: 'features' },
+  { label: 'Proactive triggers + meeting booking', free: false, starter: true, standard: true, professional: true, enterprise: true, category: 'features' },
+  { label: 'Live chat / human handoff', free: false, starter: true, standard: true, professional: true, enterprise: true, category: 'features' },
+  { label: 'Routing + departments', free: false, starter: false, standard: true, professional: true, enterprise: true, category: 'features' },
+  { label: 'BANT lead qualification', free: false, starter: false, standard: true, professional: true, enterprise: true, category: 'features' },
+  { label: 'Qualification funnel analytics', free: false, starter: false, standard: true, professional: true, enterprise: true, category: 'features' },
+  { label: 'Visitor + behavioral tracking, UTM', free: 'Basic', starter: 'Basic', standard: true, professional: true, enterprise: true, category: 'features' },
+  { label: 'Webhooks (5 events, HMAC-signed)', free: false, starter: false, standard: true, professional: true, enterprise: true, category: 'features' },
   {
     label: 'Remove OyeChats branding',
     free: '-',
     starter: { INR: '₹499/mo add-on', USD: '$5/mo add-on' },
     standard: { INR: '₹499/mo add-on', USD: '$5/mo add-on' },
     professional: { INR: '₹499/mo add-on', USD: '$5/mo add-on' },
+    enterprise: { INR: '₹499/mo add-on', USD: '$5/mo add-on' },
     category: 'features',
   },
-  { label: 'White-label custom domain', free: false, starter: false, standard: false, professional: true, category: 'features' },
+  { label: 'White-label custom domain', free: false, starter: false, standard: false, professional: true, enterprise: true, category: 'features' },
 
-  { label: 'Roles & permissions (RBAC)', free: 'Owner', starter: true, standard: true, professional: true, category: 'security' },
-  { label: 'Domain allowlist security', free: true, starter: true, standard: true, professional: true, category: 'security' },
-  { label: 'Audit logs', free: false, starter: false, standard: false, professional: true, category: 'security' },
-  { label: 'Support', free: 'Community', starter: 'Email', standard: 'Priority', professional: 'Priority chat', category: 'security' },
+  { label: 'Roles & permissions (RBAC)', free: 'Owner', starter: true, standard: true, professional: true, enterprise: true, category: 'security' },
+  { label: 'Domain allowlist security', free: true, starter: true, standard: true, professional: true, enterprise: true, category: 'security' },
+  { label: 'Audit logs', free: false, starter: false, standard: false, professional: true, enterprise: true, category: 'security' },
+  { label: 'Support', free: 'Community', starter: 'Email', standard: 'Priority', professional: 'Priority chat', enterprise: 'Priority chat', category: 'security' },
 ];
 
 export const CATEGORY_LABELS: Record<PricingFeatureCategory, string> = {
@@ -276,14 +301,14 @@ export const CATEGORY_LABELS: Record<PricingFeatureCategory, string> = {
 };
 
 export const PRICING_FAQ = [
-  { q: "What's a credit?", a: 'Credits are how OyeChats measures usage. Each AI chat reply uses 1 credit, each email verification uses 10 credits, each URL scan uses 5 credits, each company name lookup uses 5 credits, and each document scan uses 1 credit per 250 words. System emails and live-chat operator messages are always free.' },
+  { q: "What's a credit?", a: 'Credits are how OyeChats measures usage. Each AI chat reply uses 1 credit, each email verification uses 10 credits, each URL scan uses 5 credits, each company name lookup uses 5 credits, and each document upload uses 3 credits. System emails and live-chat operator messages are always free.' },
   { q: 'Which currency will I be billed in?', a: 'Pricing is shown in your local currency. Customers in India are billed in INR (₹); international customers are billed in USD ($). You always see a single currency based on your location.' },
   { q: 'How do I pay?', a: 'Indian customers pay via Razorpay: UPI, cards, NetBanking, and wallets are all supported. International customers pay by card in USD. You can switch payment methods any time from the Billing page.' },
   { q: 'Is GST included in these prices?', a: 'No. Every price shown is a base price. Customers in India are charged 18% GST on top at checkout, and it appears as a separate line on the tax invoice. International customers pay in USD and are not charged Indian GST; any tax due in your own country is your responsibility. Extra operator seats, the branding removal add-on, and credit top-up packs are base prices too.' },
   { q: 'Is there a free trial?', a: 'Yes. Every new account starts on a 14-day trial with the full Professional feature set, one chatbot and one operator seat, and no credit card. Training your website for the first time is free. When the trial ends the account moves to the Free plan and nothing is deleted: your chatbots, knowledge base and conversations are all kept, and knowledge above the Free allowance is paused until you upgrade.' },
   { q: 'What happens when I run out of credits?', a: 'Your bot pauses new conversations until your monthly credits reset, or you can buy a top-up pack any time from the Billing page. We hard-cap at zero (costs never run away) with a friendly message to visitors.' },
   { q: 'Do unused credits roll over?', a: 'Plan credits reset at the start of each billing cycle (use-it-or-lose-it). Top-up credits never expire and are used oldest first.' },
-  { q: 'Can I add more operator seats?', a: 'Yes. Extra seats are ₹499 (or $5 for international customers) per month each, added or removed with one click from the Billing page.' },
+  { q: 'Can I add more operator seats?', a: 'Yes. Extra seats are ₹499 (or $5 for international customers) per month each, added or removed with one click from the Billing page. INR prices exclude GST, which is added at checkout.' },
   { q: 'Can I remove the "Powered by OyeChats" branding?', a: 'Yes, as a paid add-on on any paid plan. It costs ₹499 (or $5 for international customers) per month per workspace and is not bundled into any plan. Switch it on from the Billing page: the badge inside the widget disappears and the dashboard gives you an embed snippet without the attribution link.' },
   { q: 'Can I change plans at any time?', a: 'Absolutely. Upgrade, downgrade, or cancel any time from your dashboard. Downgrades take effect at the end of the billing cycle.' },
   { q: 'How does BANT scoring work?', a: 'OyeChats analyzes every conversation across Budget, Authority, Need, and Timeline, scoring each dimension and combining them into a composite 0 to 100 lead score. That score drives webhook notifications and lead-tier assignments.' },

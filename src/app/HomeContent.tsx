@@ -8,7 +8,7 @@
  */
 import type { Metadata } from 'next';
 import Link from 'next/link';
-import { ArrowRight } from 'lucide-react';
+import { ArrowRight, Check } from 'lucide-react';
 import { FinalCTA } from '@/components/site/FinalCTA';
 import { HeroDemo } from '@/components/site/HeroDemo';
 import {
@@ -265,8 +265,23 @@ export function HomeContent({ currency }: { currency: Currency }) {
         heading={<>Simple, credit-based pricing.</>}
         sub="Start free. Scale credits as you grow. Cancel anytime."
       >
+        {/* Same universal-trial reassurance as /pricing: every signup starts on
+            the 14-day trial regardless of plan. Stated once above the cards. */}
+        <div className="mb-6 flex justify-center">
+          <p className="inline-flex flex-wrap items-center justify-center gap-x-2 gap-y-1 rounded-[var(--r-full)] border border-line bg-canvas px-4 py-2 type-body-sm text-ink-2 shadow-[var(--e-1)]">
+            <Check size={15} className="text-signal shrink-0" aria-hidden />
+            <span className="font-medium text-ink">14-day free trial on every plan</span>
+            <span className="text-muted-2" aria-hidden>
+              ·
+            </span>
+            <span>No credit card required</span>
+          </p>
+        </div>
+
+        {/* Homepage shows the four self-serve tiers; Enterprise (contact-sales)
+            lives on the full /pricing page, reached by the link below. */}
         <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-4">
-          {PRICING_TIERS.map((tier, idx) => (
+          {PRICING_TIERS.filter((tier) => tier.id !== 'enterprise').map((tier, idx) => (
             <Reveal key={tier.id} delay={idx * 100}>
               <div
                 className={`group relative h-full flex flex-col rounded-[var(--r-4)] p-7 bg-canvas transition-[transform,box-shadow,border-color] duration-300 ${
