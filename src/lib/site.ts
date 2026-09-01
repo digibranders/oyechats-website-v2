@@ -5,6 +5,13 @@
 
 const APP_URL = process.env.NEXT_PUBLIC_APP_URL ?? 'https://app.oyechats.com';
 
+/**
+ * The app's origin, for recognising links that leave this site for the console.
+ * `AttributionCapture` matches anchors against it to carry `?ref=` / `?code=`
+ * through to signup.
+ */
+export const APP_ORIGIN = APP_URL;
+
 /** Platform REST API base. Health status is read from `${API_URL}/health`. */
 export const API_URL = process.env.NEXT_PUBLIC_API_URL ?? 'https://api.oyechats.com';
 
