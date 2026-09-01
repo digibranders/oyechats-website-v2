@@ -1,6 +1,5 @@
 import { Suspense } from 'react';
 import type { Metadata, Viewport } from 'next';
-import Script from 'next/script';
 import { Inter, Geist, Geist_Mono, Fraunces } from 'next/font/google';
 import Navbar from '@/components/site/Navbar';
 import Footer from '@/components/site/Footer';
@@ -134,11 +133,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
           <CookieConsent />
 
         </ConsentProvider>
-        <Script
-          src="http://localhost:4173/oyechats-widget.js"
-          data-bot-key="bot-b9f90f2f8c79"
-          strategy="lazyOnload"
-        />
+
 
       </body>
     </html>
