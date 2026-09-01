@@ -1,3 +1,4 @@
+import { Suspense } from 'react';
 import type { Metadata, Viewport } from 'next';
 import { Inter, Geist, Geist_Mono, Fraunces } from 'next/font/google';
 import Navbar from '@/components/site/Navbar';
@@ -5,9 +6,9 @@ import Footer from '@/components/site/Footer';
 // Hidden for now, re-enable (import + render below) when there's an announcement or offer.
 // import AnnouncementBar from '@/components/site/AnnouncementBar';
 import './globals.css';
-import WidgetLoader from '@/components/site/WidgetLoader';
 import Analytics from '@/components/site/Analytics';
 import ConsentProvider from '@/components/site/ConsentProvider';
+import AttributionCapture from '@/components/site/AttributionCapture';
 import CookieConsent from '@/components/site/CookieConsent';
 import { jsonLd, siteGraph } from '@/lib/seo';
 import { FEATURES } from '@/lib/features';
@@ -105,6 +106,12 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         <Analytics />
       </head>
       <body>
+        {/* Catches `?ref=` / `?code=` from a shared link and carries it to
+            signup. `useSearchParams` suspends during prerender, so the
+            boundary keeps every page statically renderable. */}
+        <Suspense fallback={null}>
+          <AttributionCapture />
+        </Suspense>
         <ConsentProvider>
           {/* Keyboard users otherwise tab through the logo, six nav links and two
               CTAs on every page before reaching content (WCAG 2.4.1). */}
@@ -123,9 +130,11 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
             dangerouslySetInnerHTML={{ __html: jsonLd(siteSchema) }}
           />
 
-          <WidgetLoader />
           <CookieConsent />
+
         </ConsentProvider>
+
+
       </body>
     </html>
   );
