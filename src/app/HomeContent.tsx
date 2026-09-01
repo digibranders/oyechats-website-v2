@@ -267,7 +267,7 @@ export function HomeContent({ currency }: { currency: Currency }) {
       >
         {/* Same universal-trial reassurance as /pricing: every signup starts on
             the 14-day trial regardless of plan. Stated once above the cards. */}
-        <div className="mb-6 flex justify-center">
+        <div className="mb-6 flex flex-col items-center gap-3">
           <p className="inline-flex flex-wrap items-center justify-center gap-x-2 gap-y-1 rounded-[var(--r-full)] border border-line bg-canvas px-4 py-2 type-body-sm text-ink-2 shadow-[var(--e-1)]">
             <Check size={15} className="text-signal shrink-0" aria-hidden />
             <span className="font-medium text-ink">14-day free trial on every plan</span>
@@ -275,6 +275,11 @@ export function HomeContent({ currency }: { currency: Currency }) {
               ·
             </span>
             <span>No credit card required</span>
+          </p>
+          <p className="type-body-sm text-muted max-w-lg text-center">
+            Every trial unlocks the{' '}
+            <span className="font-medium text-ink">full Professional feature set</span>, BANT lead
+            scoring, live chat, auto-recrawl and webhooks, whichever plan you start on.
           </p>
         </div>
 

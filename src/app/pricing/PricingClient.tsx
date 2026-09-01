@@ -134,7 +134,7 @@ export default function PricingClient({ currency }: { currency: Currency }) {
               trial regardless of the plan chosen, so it is stated once here,
               where the eye lands before the cards, rather than as a badge
               repeated on all four. */}
-          <div className="mt-6 flex justify-center">
+          <div className="mt-6 flex flex-col items-center gap-3">
             <p className="inline-flex flex-wrap items-center justify-center gap-x-2 gap-y-1 rounded-[var(--r-full)] border border-line bg-canvas px-4 py-2 type-body-sm text-ink-2 shadow-[var(--e-1)]">
               <Check size={15} className="text-signal shrink-0" aria-hidden />
               <span className="font-medium text-ink">14-day free trial on every plan</span>
@@ -142,6 +142,11 @@ export default function PricingClient({ currency }: { currency: Currency }) {
                 ·
               </span>
               <span>No credit card required</span>
+            </p>
+            <p className="type-body-sm text-muted max-w-lg text-center">
+              Every trial unlocks the{' '}
+              <span className="font-medium text-ink">full Professional feature set</span>, BANT lead
+              scoring, live chat, auto-recrawl and webhooks, whichever plan you start on.
             </p>
           </div>
         </Container>
