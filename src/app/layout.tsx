@@ -1,3 +1,4 @@
+import Script from 'next/script';
 import { Suspense } from 'react';
 import type { Metadata, Viewport } from 'next';
 import { Inter, Geist, Geist_Mono, Fraunces } from 'next/font/google';
@@ -134,7 +135,18 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
 
         </ConsentProvider>
 
-
+        <Script
+          src="https://cdn.oyechats.com/oyechats-widget.js"
+          data-bot-key="bot-cd72ea98fd30"
+          strategy="lazyOnload"
+        />
+        <a
+          href="https://www.oyechats.com/?ref=bot-cd72ea98fd30&utm_source=widget&utm_medium=referral"
+          rel="nofollow"
+          style={{ fontSize: 11, color: 'inherit', opacity: 0.7, textDecoration: 'none' }}
+        >
+          Powered by OyeChats
+        </a>
       </body>
     </html>
   );
