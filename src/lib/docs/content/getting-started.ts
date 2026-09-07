@@ -199,18 +199,13 @@ export const GETTING_STARTED: DocGroup = {
 <script
   src="https://cdn.oyechats.com/oyechats-widget.js"
   data-bot-key="YOUR_BOT_KEY"
-></script>
-<a
-  href="https://www.oyechats.com/?ref=YOUR_BOT_KEY&utm_source=widget&utm_medium=referral"
-  rel="nofollow"
-  style="font-size:11px;color:inherit;opacity:0.7;text-decoration:none"
->Powered by OyeChats</a>`,
+></script>`,
             },
             {
               t: 'callout',
               variant: 'info',
-              title: 'About the credit link',
-              text: 'The `<a>` is the attribution link. It sits in your page\'s HTML so search engines and AI assistants can read it. The badge inside the widget only renders after a visitor opens the chat, so crawlers never see it. Workspaces with the branding removal add-on get a snippet without this line. See [Branding](/docs/widget/customize).',
+              title: 'One tag, nothing else',
+              text: 'The snippet adds no markup to your page beyond the script tag. OyeChats branding is a small badge inside the widget itself, which the branding removal add-on turns off. See [Branding](/docs/widget/customize).',
             },
           ],
         },

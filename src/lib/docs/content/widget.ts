@@ -346,13 +346,13 @@ export default function RootLayout({ children }) {
           blocks: [
             {
               t: 'p',
-              text: 'Branding removal is a paid add-on. Buy it on top of any paid plan from the Billing page; no plan includes it. Once it is active you can turn off the in-widget badge and edit the branding text and link, and the dashboard emits an embed snippet without the attribution anchor.',
+              text: 'Branding removal is a paid add-on. Buy it on top of any paid plan from the Billing page; no plan includes it. Once it is active you can turn off the in-widget badge and edit the branding text and link.',
             },
             {
               t: 'callout',
               variant: 'info',
-              title: 'Two separate things',
-              text: 'The in-widget badge and the attribution `<a>` in your page HTML are distinct. The badge is inside the shadow root and only visible after a visitor opens the chat; the anchor is in your served HTML, which is the only version search engines and AI assistants can read. Removing branding removes both.',
+              title: 'Branding is inside the widget',
+              text: 'The badge lives in the widget itself, inside its shadow root, and appears once a visitor opens the chat. Nothing is added to your own page markup: the snippet is the script tag and nothing more.',
             },
           ],
         },

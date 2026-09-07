@@ -1,7 +1,6 @@
 import Link from 'next/link';
 import { Linkedin, Instagram, Twitter, Github, type LucideIcon } from 'lucide-react';
 import { FOOTER_COLUMNS, SOCIAL_LINKS } from '@/lib/site';
-import { ENTITY, REGISTERED_ADDRESS } from '@/lib/entity';
 import { CHANGELOG } from '@/lib/changelog';
 import { Logo } from './Logo';
 import { SystemStatus } from './SystemStatus';
@@ -104,12 +103,6 @@ export default function Footer() {
             <span>© {new Date().getFullYear()} OyeChats</span>
             <CookiePreferencesButton />
           </div>
-          {/* Companies Act 2013 s.12(3)(c): the CIN and registered name belong on
-              every official publication, and a website counts as one. */}
-          <p className="mt-3 leading-relaxed">
-            {ENTITY.tradeName} is a brand of {ENTITY.legalName}. CIN {ENTITY.cin}. Registered
-            office: {REGISTERED_ADDRESS}.
-          </p>
         </div>
       </div>
 
