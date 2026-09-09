@@ -188,7 +188,8 @@ export default function SolutionsPage() {
                     {p}
                   </p>
                 ))}
-                <ul className="mt-6 space-y-2.5">
+                <h3 className="type-body text-ink font-semibold mt-8 mb-3">What you get</h3>
+                <ul className="space-y-2.5">
                   {s.bullets.map((b, i) => (
                     <li key={i} className="flex gap-3 type-body text-ink-2 items-start">
                       <span

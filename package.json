@@ -5,7 +5,7 @@
   "description": "OyeChats: Voltage Paper design system rebuild",
   "scripts": {
     "dev": "next dev",
-    "build": "next build",
+    "build": "next build && npm run verify:html",
     "start": "next start",
     "lint": "eslint .",
     "typecheck": "tsc --noEmit",

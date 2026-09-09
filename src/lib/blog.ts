@@ -426,15 +426,97 @@ export function getToc(content: BlogBlock[]): TocEntry[] {
  * orphaning them. Scoring by tag overlap makes the module reciprocal without
  * changing how it looks or how many cards it renders.
  */
-export function getRelatedPosts(slug: string, limit = 3): BlogPost[] {
-  const current = getPostBySlug(slug);
-  if (!current) return BLOG_POSTS.slice(0, limit);
-  const tags = new Set(current.tags);
-  const score = (p: BlogPost) =>
-    (p.category === current.category ? 100 : 0) +
-    p.tags.filter((t) => tags.has(t)).length * 10;
+//: How many related posts a post page renders, and therefore how many inbound
+//: links each post can give. With N posts and K slots there are N*K links to
+//: distribute, so every post can reach the three-inbound floor only if K >= 3.
+const RELATED_LIMIT = 3;
 
-  return BLOG_POSTS.filter((p) => p.slug !== slug)
-    .sort((a, b) => score(b) - score(a) || b.dateISO.localeCompare(a.dateISO))
-    .slice(0, limit);
+/** Relevance of `candidate` to `post`. Same category dominates; shared tags break ties. */
+function relatedScore(post: BlogPost, candidate: BlogPost): number {
+  const tags = new Set(post.tags);
+  return (
+    (candidate.category === post.category ? 100 : 0) +
+    candidate.tags.filter((t) => tags.has(t)).length * 10
+  );
+}
+
+/**
+ * Related posts for every slug at once, with inbound coverage guaranteed.
+ *
+ * Scoring each post's list independently is the obvious implementation and it
+ * strands posts. Category dominates the score, so a small category's posts all
+ * pick each other and nothing outside it ever links in: four of eight posts sat
+ * on one or two inbound links, which is what `L-2` in `scripts/verify-html.mjs`
+ * fails the build on. A post nothing links to is a post search engines and
+ * answer engines treat as peripheral, however good it is.
+ *
+ * So the lists are built together rather than one at a time. Take the greedy
+ * by-score assignment, then repair it: while some post is below the floor,
+ * move it into the list of whichever post can accept it most cheaply, replacing
+ * a target that has links to spare. Cost is the score given up, so the repair
+ * takes the least relevant link it can.
+ */
+function assignRelated(): Map<string, BlogPost[]> {
+  const posts = BLOG_POSTS;
+  const bySlug = new Map(posts.map((p) => [p.slug, p]));
+  const lists = new Map<string, string[]>();
+
+  for (const post of posts) {
+    lists.set(
+      post.slug,
+      posts
+        .filter((p) => p.slug !== post.slug)
+        .sort(
+          (a, b) =>
+            relatedScore(post, b) - relatedScore(post, a) || b.dateISO.localeCompare(a.dateISO),
+        )
+        .slice(0, RELATED_LIMIT)
+        .map((p) => p.slug),
+    );
+  }
+
+  const inbound = () => {
+    const counts = new Map(posts.map((p) => [p.slug, 0]));
+    for (const targets of lists.values()) {
+      for (const slug of targets) counts.set(slug, (counts.get(slug) ?? 0) + 1);
+    }
+    return counts;
+  };
+
+  const FLOOR = 3;
+  // Bounded so a data change that makes the floor unreachable degrades to the
+  // best assignment found rather than spinning. `verify-html` still reports it.
+  for (let pass = 0; pass < posts.length * RELATED_LIMIT; pass += 1) {
+    const counts = inbound();
+    const starved = posts.find((p) => (counts.get(p.slug) ?? 0) < FLOOR);
+    if (!starved) break;
+
+    let best: { source: string; drop: string; cost: number } | null = null;
+    for (const source of posts) {
+      if (source.slug === starved.slug) continue;
+      const targets = lists.get(source.slug) ?? [];
+      if (targets.includes(starved.slug)) continue;
+      for (const drop of targets) {
+        if ((counts.get(drop) ?? 0) <= FLOOR) continue;
+        const cost = relatedScore(source, bySlug.get(drop)!) - relatedScore(source, starved);
+        if (!best || cost < best.cost) best = { source: source.slug, drop, cost };
+      }
+    }
+    if (!best) break;
+
+    const targets = lists.get(best.source)!;
+    targets[targets.indexOf(best.drop)] = starved.slug;
+  }
+
+  return new Map(
+    posts.map((p) => [p.slug, (lists.get(p.slug) ?? []).map((slug) => bySlug.get(slug)!)]),
+  );
+}
+
+const RELATED_BY_SLUG = assignRelated();
+
+export function getRelatedPosts(slug: string, limit = RELATED_LIMIT): BlogPost[] {
+  const assigned = RELATED_BY_SLUG.get(slug);
+  if (!assigned) return BLOG_POSTS.slice(0, limit);
+  return assigned.slice(0, limit);
 }
