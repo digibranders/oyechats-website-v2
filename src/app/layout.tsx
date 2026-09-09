@@ -63,6 +63,12 @@ export const metadata: Metadata = {
   },
   description: SITE_DESCRIPTION,
   alternates: { canonical: '/' },
+  icons: {
+    icon: [
+      { url: '/icon-dark.png', type: 'image/png', media: '(prefers-color-scheme: light)' },
+      { url: '/icon-light.png', type: 'image/png', media: '(prefers-color-scheme: dark)' },
+    ],
+  },
   openGraph: {
     type: 'website',
     // No `url` here: it is the homepage's own value, but is silently inherited by
