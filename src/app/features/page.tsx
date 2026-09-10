@@ -165,10 +165,13 @@ export default function FeaturesPage() {
                     <s.icon size={18} />
                   </div>
                   <div className="flex-1 min-w-0">
-                    <div className="type-body-sm text-ink font-semibold">
+                    {/* h3, not a div. These are the section's subheadings in
+                        everything but markup, and an answer engine that cannot
+                        see a heading tier cannot chunk the page. */}
+                    <h3 className="type-body-sm text-ink font-semibold">
                       <span className="text-volt font-mono text-[11px] mr-2">{String(i + 1).padStart(2, '0')}</span>
                       {s.label}
-                    </div>
+                    </h3>
                     <div className="type-mono-sm text-muted mt-0.5">{s.desc}</div>
                   </div>
                 </div>

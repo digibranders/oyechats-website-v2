@@ -1,7 +1,7 @@
 # OyeChats Content Style Guide
 
 **Purpose:** One consistent voice for every word on the OyeChats website. Use this when writing or editing any page, component, form, error, empty state, tooltip, CTA, or metadata.
-**Companion docs:** `CONTENT_AUDIT.md` (findings) · `CONTENT_CHANGELOG.md` (changes made).
+**Companion docs:** `docs/audits/CONTENT_AUDIT.md` (findings) · `CONTENT_CHANGELOG.md` (changes made).
 
 ---
 

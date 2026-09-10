@@ -2,7 +2,7 @@
 
 > **For agentic workers:** REQUIRED SUB-SKILL: Use superpowers:subagent-driven-development (recommended) or superpowers:executing-plans to implement this plan task-by-task. Steps use checkbox (`- [ ]`) syntax for tracking.
 
-**Goal:** Close every code-fixable finding in `SEO_AEO_GEO_AUDIT_2026-07-29.md`, taking Overall SEO from 62 → ~90 and AI Search Readiness from 48 → ~85, without altering one word of visible page copy.
+**Goal:** Close every code-fixable finding in `docs/audits/SEO_AEO_GEO_AUDIT_2026-07-29.md`, taking Overall SEO from 62 → ~90 and AI Search Readiness from 48 → ~85, without altering one word of visible page copy.
 
 **Architecture:** Three structural moves carry most of the value. (1) A checked-in **HTML assertion harness** that runs against the compiled output — the audit's three critical bugs all passed `lint`, `tsc` and `build`, so output assertions are the only control that would have caught them. (2) **Centralised metadata and schema helpers** in `src/lib/seo.ts`, so `og:image`, `@id` anchors and JSON-LD escaping are structurally impossible to omit per-page. (3) **Generated GEO assets** (`llms.txt`, `llms-full.txt`) derived from the same typed modules that generate the sitemap, so they cannot drift from the product the way the current hand-written file did.
 
@@ -63,7 +63,7 @@ When executing via `superpowers:subagent-driven-development`, this gate is the s
 There is an **uncommitted, unverified** change set in the working tree from the audit session. Task 2 reconciles it. Do not start at Task 3 assuming a clean tree.
 
 Modified: `src/lib/seo.ts`, `src/lib/site.ts`, `src/app/layout.tsx`, `src/components/site/Footer.tsx`, `src/app/globals.css`, `src/app/features/page.tsx`, `src/app/solutions/page.tsx`, `src/components/ds/Chip.tsx`, `src/components/site/HeroDemo.tsx`.
-Untracked: `SEO_AEO_GEO_AUDIT_2026-07-29.md`.
+Untracked: `docs/audits/SEO_AEO_GEO_AUDIT_2026-07-29.md`.
 
 ---
 
