@@ -543,7 +543,7 @@ export const LEGAL_PAGES: LegalPage[] = [
         'We use a small number of strictly-necessary first-party cookies, plus one analytics category that runs only with your permission where consent is required. We do not run advertising cookies or cross-site advertising pixels on our own properties.',
         '- oyechats_session: Keeps you signed in to the customer dashboard between page loads and protects against session fixation. (Session, cleared on logout)',
         '- oyechats_csrf: Protects state-changing requests from cross-site request forgery attacks. (Session)',
-        '- oyechats_consent: Remembers your cookie banner choice on the marketing site. (6 months)',
+        '- oyechats_consent: Remembers your cookie banner choice, on the marketing site and in the customer dashboard. (6 months)',
         'Analytics cookies, set by Google Analytics via Google Tag Manager on oyechats.com only:',
         '- _ga: Distinguishes one browser from another so we can count returning visitors. (2 years)',
         '- _ga_E5ZZ461R8T: Holds the session state for our Google Analytics property. (2 years)',

@@ -55,8 +55,34 @@ export function readConsentCookie(cookieString: string): ConsentValue | null {
   return match[1] === 'granted' ? 'granted' : 'denied';
 }
 
-export function serializeConsentCookie(value: ConsentValue): string {
-  return `${CONSENT_COOKIE}=${value}; Path=/; Max-Age=${CONSENT_MAX_AGE_SECONDS}; SameSite=Lax; Secure`;
+/**
+ * The dashboard at app.oyechats.com loads the same GTM container and reads this
+ * cookie in its own head bootstrap, but has no banner of its own. Scoping the
+ * cookie to the registrable domain is what lets it honour a choice made here.
+ */
+export const CONSENT_COOKIE_DOMAIN = 'oyechats.com';
+
+function sharesConsentDomain(hostname: string): boolean {
+  return hostname === CONSENT_COOKIE_DOMAIN || hostname.endsWith(`.${CONSENT_COOKIE_DOMAIN}`);
+}
+
+/**
+ * Shared across oyechats.com in production. Host-only anywhere else (localhost,
+ * Vercel previews), where a `Domain` naming another site would be rejected and
+ * the choice silently not stored.
+ */
+export function serializeConsentCookie(value: ConsentValue, hostname: string): string {
+  const domain = sharesConsentDomain(hostname) ? `; Domain=${CONSENT_COOKIE_DOMAIN}` : '';
+  return `${CONSENT_COOKIE}=${value}; Path=/${domain}; Max-Age=${CONSENT_MAX_AGE_SECONDS}; SameSite=Lax; Secure`;
+}
+
+/**
+ * Expires the host-only copy written before the cookie was shared. When both
+ * exist the browser lists the older one first, and every reader here takes the
+ * first match, so a stale host-only choice would outrank a newer shared one.
+ */
+export function expiredHostOnlyConsentCookie(): string {
+  return `${CONSENT_COOKIE}=; Path=/; Max-Age=0; SameSite=Lax; Secure`;
 }
 
 /** Resolved IANA zone, or undefined where Intl is unavailable or throws. */

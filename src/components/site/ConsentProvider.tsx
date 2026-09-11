@@ -3,6 +3,7 @@
 import { createContext, useCallback, useContext, useEffect, useMemo, useState } from 'react';
 import {
   currentTimeZone,
+  expiredHostOnlyConsentCookie,
   isRestrictedZone,
   readConsentCookie,
   serializeConsentCookie,
@@ -100,7 +101,10 @@ export default function ConsentProvider({
     setConsent(value);
     setIsPanelOpen(false);
     try {
-      document.cookie = serializeConsentCookie(value);
+      // Clear a host-only copy from before the cookie was shared first, so the
+      // shared cookie is the only one left for either site to read.
+      document.cookie = expiredHostOnlyConsentCookie();
+      document.cookie = serializeConsentCookie(value, window.location.hostname);
     } catch {
       // Storage blocked; the in-memory choice still suppresses the banner for
       // this page view and the default stays denied on the next one.
