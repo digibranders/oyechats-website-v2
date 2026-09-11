@@ -30,6 +30,7 @@ import {
 } from '@/components/ds';
 import { FEATURES } from '@/lib/features';
 import { PRICING_TIERS, CURRENCY_SYMBOL, type Currency } from '@/lib/pricing';
+import { pricingPlanAttributes } from '@/lib/analytics';
 import { INTEGRATIONS } from '@/lib/integrations';
 import { APP_LINKS } from '@/lib/site';
 import { buildGraph, jsonLd } from '@/lib/seo';
@@ -326,6 +327,12 @@ export function HomeContent({ currency }: { currency: Currency }) {
                   external={tier.ctaHref.startsWith('http')}
                   variant={tier.featured ? 'volt' : 'ghost'}
                   className="w-full"
+                  {...pricingPlanAttributes({
+                    tier,
+                    currency,
+                    billingPeriod: 'monthly',
+                    location: 'home_pricing',
+                  })}
                 >
                   {tier.cta} →
                 </Button>
