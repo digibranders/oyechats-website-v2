@@ -38,7 +38,7 @@ export default function Footer() {
           }}
         />
 
-        <div className="relative mx-auto max-w-[1360px] px-6 md:px-12 py-12 md:py-14">
+        <div className="relative mx-auto max-w-[1360px] px-6 md:px-12 pt-12 md:pt-14 pb-6 md:pb-8">
           <div className="grid md:grid-cols-[1.4fr_2fr] gap-10 md:gap-16">
             {/* Brand column */}
             <div className="max-w-sm">
