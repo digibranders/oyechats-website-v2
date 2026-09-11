@@ -32,6 +32,7 @@ import {
   type PricingFeatureCategory,
   type PricingFeatureValue,
 } from '@/lib/pricing';
+import { pricingPlanAttributes, type BillingPeriod } from '@/lib/analytics';
 
 const CATEGORIES: PricingFeatureCategory[] = ['usage', 'features', 'security'];
 
@@ -74,6 +75,7 @@ function perThousand(price: number, credits: number, currency: Currency) {
  */
 export default function PricingClient({ currency }: { currency: Currency }) {
   const [annual, setAnnual] = useState(false);
+  const billingPeriod: BillingPeriod = annual ? 'annual' : 'monthly';
 
   // Single shared "open FAQ" across both columns so only one is open at a time.
   const [openFaq, setOpenFaq] = useState<string | null>(PRICING_FAQ[0]?.q ?? null);
@@ -219,6 +221,7 @@ export default function PricingClient({ currency }: { currency: Currency }) {
                     external={tier.ctaHref.startsWith('http')}
                     variant={tier.featured ? 'volt' : 'ghost'}
                     className="w-full"
+                    {...pricingPlanAttributes({ tier, currency, billingPeriod, location: 'pricing_page' })}
                   >
                     {tier.cta} →
                   </Button>
@@ -269,6 +272,12 @@ export default function PricingClient({ currency }: { currency: Currency }) {
                         external={enterpriseTier.ctaHref.startsWith('http')}
                         variant="ghost"
                         className="mt-6 w-full lg:w-auto"
+                        {...pricingPlanAttributes({
+                          tier: enterpriseTier,
+                          currency,
+                          billingPeriod,
+                          location: 'pricing_page',
+                        })}
                       >
                         {enterpriseTier.cta} →
                       </Button>

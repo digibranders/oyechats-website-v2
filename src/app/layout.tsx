@@ -10,6 +10,7 @@ import './globals.css';
 import Analytics from '@/components/site/Analytics';
 import ConsentProvider from '@/components/site/ConsentProvider';
 import AttributionCapture from '@/components/site/AttributionCapture';
+import PricingClickTracker from '@/components/site/PricingClickTracker';
 import CookieConsent from '@/components/site/CookieConsent';
 import { jsonLd, siteGraph } from '@/lib/seo';
 import { FEATURES } from '@/lib/features';
@@ -119,6 +120,8 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         <Suspense fallback={null}>
           <AttributionCapture />
         </Suspense>
+        {/* One delegated listener that reports pricing CTA clicks to GTM. */}
+        <PricingClickTracker />
         <ConsentProvider>
           {/* Keyboard users otherwise tab through the logo, six nav links and two
               CTAs on every page before reaching content (WCAG 2.4.1). */}
