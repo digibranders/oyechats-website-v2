@@ -38,7 +38,7 @@ export default function Footer() {
           }}
         />
 
-        <div className="relative mx-auto max-w-[1360px] px-6 md:px-12 py-16 md:py-16">
+        <div className="relative mx-auto max-w-[1360px] px-6 md:px-12 py-12 md:py-14">
           <div className="grid md:grid-cols-[1.4fr_2fr] gap-10 md:gap-16">
             {/* Brand column */}
             <div className="max-w-sm">
@@ -103,7 +103,7 @@ export default function Footer() {
             </nav>
           </div>
 
-          <div className="mt-16 pt-6 border-t border-white/10 text-[12px] text-ink-invert-muted">
+          <div className="mt-10 pt-5 border-t border-white/10 text-[12px] text-ink-invert-muted">
             <div className="flex flex-wrap items-center gap-x-4 gap-y-2">
               <span>© {new Date().getFullYear()} OyeChats</span>
               <CookiePreferencesButton />
