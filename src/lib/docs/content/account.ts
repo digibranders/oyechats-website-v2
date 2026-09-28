@@ -120,9 +120,9 @@ export const ACCOUNT: DocGroup = {
                 ['AI reply to a visitor', '1'],
                 ['Crawled page indexed', '5'],
                 ['Uploaded document', '1 per 250 words, minimum 1 per file'],
-                ['Follow-up email sent from OyeChats', '1'],
-                ['Background email verification of a lead', '10'],
-                ['Visitor company / network identification', '5, charged only when a company is actually identified'],
+                ['Follow-up email sent from OyeChats', 'Free'],
+                ['Background email verification of a lead', '10, including the company behind a work address'],
+                ['Visitor company identification from their connection', '5, charged only when a real business is identified'],
               ],
             },
             { t: 'h3', text: 'What is free' },
@@ -134,6 +134,7 @@ export const ACCOUNT: DocGroup = {
                 'Live chat with a human operator. Operator capacity is billed as seats, not credits.',
                 'Reading anything: dashboard, analytics, exports, API reads.',
                 'The real-time email format check on the lead form.',
+                'Company identification that finds only an ISP, mobile network, VPN or server.',
               ],
             },
             {
@@ -202,7 +203,18 @@ Optional extras
           blocks: [
             {
               t: 'p',
-              text: 'Buy extra credits any time from **Workspace → Usage**, in packs, with larger packs carrying bonus credits. Available on Starter and above; current packs and pricing are shown in the dashboard.',
+              text: 'Buy extra credits any time from **Workspace → Usage**, in packs, with larger packs carrying bonus credits. Available on Starter and above. Prices exclude GST.',
+            },
+            {
+              t: 'table',
+              head: ['Pack (INR)', 'Pack (USD)', 'Credits'],
+              rows: [
+                ['₹1,000', '$13', '2,000'],
+                ['₹4,000', '$50', '8,000'],
+                ['₹10,000', '$125', '30,000'],
+                ['₹20,000', '$250', '70,000'],
+                ['₹30,000', '$375', '100,000'],
+              ],
             },
             {
               t: 'list',

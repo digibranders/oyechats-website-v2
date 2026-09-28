@@ -651,7 +651,7 @@ export const LEGAL_PAGES: LegalPage[] = [
       'When OyeChats refunds apply, what is and is not eligible, how to request one, and how long refunds take to process for INR and USD customers.',
     title: 'Refund Policy',
     description: 'OyeChats Refund Policy, when refunds apply and how to request one.',
-    lastUpdated: '2026-08-17',
+    lastUpdated: '2026-09-28',
     sections: [
       { id: 'introduction', heading: 'Introduction', body: [
         `This Refund Policy applies to all payments made to OyeChats, a brand of ${ENTITY.legalName}. It should be read together with our Terms of Service and Cancellation Policy.`,
@@ -667,7 +667,7 @@ export const LEGAL_PAGES: LegalPage[] = [
         'Plan upgrades. When you upgrade from a lower to a higher plan mid-cycle, any unused credit from the current cycle is applied as a prorated credit toward the new plan. No cash refund is issued for this adjustment.',
       ]},
       { id: 'topup-credits', heading: 'Top-Up Credits', body: [
-        'Top-up credit packs are non-refundable once purchased. Credits are valid for 12 months from the date of purchase and roll over month-to-month within that window.',
+        'Top-up credit packs are non-refundable once purchased. Top-up credits do not expire and carry forward from month to month.',
         'Promotional credits granted as part of an offer are not purchased credits, carry the conditions stated when they are granted, and are not refundable.',
         'If you believe credits were deducted in error, contact us at support@oyechats.com within 30 days and we will investigate.',
       ]},
@@ -701,7 +701,7 @@ export const LEGAL_PAGES: LegalPage[] = [
       'How to cancel your OyeChats subscription, when the cancellation takes effect, what happens to your bots and data, and how final billing is handled.',
     title: 'Cancellation Policy',
     description: 'OyeChats Cancellation Policy, how to cancel your subscription and what happens next.',
-    lastUpdated: '2026-08-17',
+    lastUpdated: '2026-09-28',
     sections: [
       { id: 'introduction', heading: 'Introduction', body: [
         'This Cancellation Policy explains how to cancel your OyeChats subscription and what happens when you do.',
@@ -731,7 +731,7 @@ export const LEGAL_PAGES: LegalPage[] = [
       ]},
       { id: 'credits', heading: 'Credits After Cancellation', body: [
         'Plan credits. Monthly plan credits (included with your subscription) expire at the end of the billing cycle and are not carried forward after cancellation.',
-        'Top-up credits. Top-up credits you have purchased separately are not affected by subscription cancellation. They remain in your account and are valid for 12 months from their purchase date.',
+        'Top-up credits. Top-up credits you have purchased separately are not affected by subscription cancellation. They remain in your account and do not expire.',
         'Promotional credits. Credits granted as part of a promotion end with the promotion and are not carried forward.',
       ]},
       { id: 'data', heading: 'Your Data After Cancellation', body: [

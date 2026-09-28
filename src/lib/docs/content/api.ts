@@ -336,7 +336,7 @@ export const API: DocGroup = {
                 { method: 'GET', path: '/leads/{session_id}', text: 'One lead with its full transcript and dimension breakdown.' },
                 { method: 'GET', path: '/leads/stats', text: 'Lead counts by tier.' },
                 { method: 'GET', path: '/leads/export', text: 'CSV export. Starter and above.' },
-                { method: 'POST', path: '/leads/{session_id}/follow-up', text: 'Send a follow-up email. Costs 1 credit.' },
+                { method: 'POST', path: '/leads/{session_id}/follow-up', text: 'Send a follow-up email. Free.' },
               ],
             },
             {

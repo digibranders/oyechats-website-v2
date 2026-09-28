@@ -195,8 +195,8 @@ export const CREDIT_COSTS: CreditCost[] = [
   { action: '1 AI chat reply', credits: 1 },
   { action: '1 email verification', credits: 10 },
   { action: '1 URL scan', credits: 5 },
-  { action: '1 company name lookup', credits: 5 },
-  { action: '1 document upload', credits: 3 },
+  { action: '1 company identified', credits: 5 },
+  { action: '250 words of an uploaded document', credits: 1 },
 ];
 
 export type TopupPack = {
@@ -206,11 +206,14 @@ export type TopupPack = {
   badge?: string;
 };
 
+// Mirrors `pricing_config.topup_packs` on the platform, which is what checkout
+// charges. Change both together.
 export const TOPUP_PACKS: TopupPack[] = [
-  { price: { INR: 1599, USD: 19 }, credits: 3_000, bonusPct: 0 },
-  { price: { INR: 3999, USD: 49 }, credits: 8_000, bonusPct: 7 },
-  { price: { INR: 7999, USD: 99 }, credits: 24_000, bonusPct: 60, badge: 'Best value' },
-  { price: { INR: 19999, USD: 249 }, credits: 75_000, bonusPct: 100 },
+  { price: { INR: 1000, USD: 13 }, credits: 2_000, bonusPct: 0 },
+  { price: { INR: 4000, USD: 50 }, credits: 8_000, bonusPct: 0 },
+  { price: { INR: 10000, USD: 125 }, credits: 30_000, bonusPct: 50 },
+  { price: { INR: 20000, USD: 250 }, credits: 70_000, bonusPct: 75, badge: 'Best value' },
+  { price: { INR: 30000, USD: 375 }, credits: 100_000, bonusPct: 67 },
 ];
 
 export type PricingFeatureCategory = 'usage' | 'features' | 'security';
@@ -301,7 +304,7 @@ export const CATEGORY_LABELS: Record<PricingFeatureCategory, string> = {
 };
 
 export const PRICING_FAQ = [
-  { q: "What's a credit?", a: 'Credits are how OyeChats measures usage. Each AI chat reply uses 1 credit, each email verification uses 10 credits, each URL scan uses 5 credits, each company name lookup uses 5 credits, and each document upload uses 3 credits. System emails and live-chat operator messages are always free.' },
+  { q: "What's a credit?", a: "Credits are how OyeChats measures usage. Each AI chat reply uses 1 credit, each URL scan uses 5 credits, and uploaded documents use 1 credit per 250 words. Identifying a visitor's company from their connection uses 5 credits, charged only when it is a real business (never an ISP, mobile network, VPN or server). Verifying a lead's email uses 10 credits, and when it is a work address the company behind it is included at no extra cost. System emails, follow-up emails and live-chat operator messages are always free." },
   { q: 'Which currency will I be billed in?', a: 'Pricing is shown in your local currency. Customers in India are billed in INR (₹); international customers are billed in USD ($). You always see a single currency based on your location.' },
   { q: 'How do I pay?', a: 'Indian customers pay via Razorpay: UPI, cards, NetBanking, and wallets are all supported. International customers pay by card in USD. You can switch payment methods any time from the Billing page.' },
   { q: 'Is GST included in these prices?', a: 'No. Every price shown is a base price. Customers in India are charged 18% GST on top at checkout, and it appears as a separate line on the tax invoice. International customers pay in USD and are not charged Indian GST; any tax due in your own country is your responsibility. Extra operator seats, the branding removal add-on, and credit top-up packs are base prices too.' },

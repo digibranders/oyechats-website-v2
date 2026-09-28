@@ -74,7 +74,7 @@ export const LEADS: DocGroup = {
             },
             {
               t: 'p',
-              text: 'A deeper verification runs in the background on Standard and above, after capture. It costs 10 credits per lead and stores the result on the record. On Free the check does not run at all.',
+              text: 'A deeper verification runs in the background on Standard and above, after capture. It costs 10 credits per lead and stores the result on the record. When the address is a work address, the company behind its domain is included in those 10 credits. If the verification service cannot run the check, the 10 credits are refunded. On Free the check does not run at all.',
             },
           ],
         },
@@ -328,8 +328,8 @@ Conversation order: Need → Timeline → Authority → Budget`,
               rows: [
                 ['Approximate location (city, region, country) and device type', 'All paid tiers', 'Included'],
                 ['Page journey and campaign attribution', 'Standard and above', 'Included'],
-                ['Background email verification', 'Standard and above', '10 credits per lead'],
-                ['Company / network identification from the visitor\'s connection', 'Professional and above', '5 credits, charged only when a company is actually identified'],
+                ['Background email verification, including the company behind a work address', 'Standard and above', '10 credits per lead'],
+                ['Company identification from the visitor\'s connection', 'Professional and above', '5 credits, charged only when a real business is identified (never an ISP, mobile network, VPN or server)'],
               ],
             },
           ],
@@ -398,7 +398,7 @@ Conversation order: Need → Timeline → Authority → Budget`,
           blocks: [
             {
               t: 'p',
-              text: 'You can send a follow-up email to a lead straight from OyeChats. It costs 1 credit, sends from your branded sender with your Reply-To so replies reach your own inbox, and includes a working unsubscribe link.',
+              text: 'You can send a follow-up email to a lead straight from OyeChats. It is free, sends from your branded sender with your Reply-To so replies reach your own inbox, and includes a working unsubscribe link.',
             },
             {
               t: 'callout',
