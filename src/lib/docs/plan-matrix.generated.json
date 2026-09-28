@@ -16,7 +16,7 @@
       "trial_days": 0,
       "included_operator_seats": 0,
       "limits": {
-        "credits": 200,
+        "credits": 100,
         "bots": 1,
         "operators": 0,
         "leads": 15,
@@ -70,7 +70,7 @@
       "trial_days": 0,
       "included_operator_seats": 3,
       "limits": {
-        "credits": 10000,
+        "credits": 8000,
         "bots": 1,
         "operators": 3,
         "leads": -1,

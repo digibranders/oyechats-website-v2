@@ -535,3 +535,58 @@ img { max-width: 100%; display: block; }
   to   { opacity: 1; transform: translateY(0); }
 }
 .consent-card { animation: consent-in 240ms var(--ease-out) both; }
+
+/* ═══════════════════════ FOOTER SIGNATURE ═══════════════════════ */
+/* The footer's real content (brand column, nav, copyright) is the opaque
+   curtain (`.footer-body`, z-index 1). Underneath it sits a second band
+   (`.footer-signature`) holding the wordmark, pinned to the viewport bottom
+   via `position: sticky`. As the curtain's bottom edge scrolls past the
+   viewport bottom, the pinned band is revealed beneath it. Driven by
+   FooterSignature's scroll listener, it drifts upward at half scroll speed via
+   `--footer-signature-progress`, landing in normal flow at the true end of
+   the page. Without JavaScript the variable defaults to 1 (no offset), so
+   the wordmark is still simply revealed 1:1 by the curtain lifting.
+
+   The curtain's gradient ends in the exact color the band starts from, so
+   the handoff between "content" and "wordmark" has no visible seam. */
+.footer {
+  /* Fallback fill for the band's in-flow slot while it is pinned above it
+     (element screenshots, programmatic scroll-into-view): never paint white. */
+  background: #08060c;
+}
+
+.footer-body {
+  position: relative;
+  z-index: 1;
+  overflow: hidden;
+  background: linear-gradient(180deg, var(--ink-invert) 0%, #08060c 100%);
+}
+
+.footer-signature {
+  position: sticky;
+  bottom: 0;
+  z-index: 0;
+  overflow: hidden;
+  line-height: 0;
+  pointer-events: none;
+  background: #08060c;
+}
+
+/* The OyeChats wordmark (cursive "Oye" + chat-bubble "C" + "chats"), used as
+   a mask so the fill can carry a top-to-bottom fade: violet at the cursive
+   flourish and the bubble, easing to a dim white toward the baseline, so it
+   reads as engraved into the footer rather than printed on top of it. */
+.footer-wordmark {
+  width: 100%;
+  aspect-ratio: 1390 / 424;
+  background: linear-gradient(180deg, rgba(167, 139, 250, 0.55) 0%, rgba(167, 139, 250, 0.32) 25%, rgba(245, 241, 250, 0.16) 55%, rgba(245, 241, 250, 0.06) 100%);
+  -webkit-mask: url('/oyechats-wordmark-light.png') center / 100% 100% no-repeat;
+  mask: url('/oyechats-wordmark-light.png') center / 100% 100% no-repeat;
+  transform: translateY(calc((1 - var(--footer-signature-progress, 1)) * 50%));
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .footer-wordmark {
+    transform: none;
+  }
+}
